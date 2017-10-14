@@ -15,6 +15,7 @@
 		4EAE9AB61F91DCE700499B18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */; };
 		4EAE9AC11F91DCE700499B18 /* papao_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AC01F91DCE700499B18 /* papao_iosTests.swift */; };
 		4EAE9ACC1F91DCE700499B18 /* papao_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9ACB1F91DCE700499B18 /* papao_iosUITests.swift */; };
+		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papao_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA51F91DCE700499B18 /* papao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "papao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EAE9AAA1F91DCE700499B18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		4EAE9AC71F91DCE700499B18 /* papao-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "papao-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9ACB1F91DCE700499B18 /* papao_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = papao_iosUITests.swift; sourceTree = "<group>"; };
 		4EAE9ACD1F91DCE700499B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2828F5352F55D0AAA070CED4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */,
+				D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4EAE9A9C1F91DCE700499B18 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +97,8 @@
 				4EAE9ABF1F91DCE700499B18 /* papao-iosTests */,
 				4EAE9ACA1F91DCE700499B18 /* papao-iosUITests */,
 				4EAE9AA61F91DCE700499B18 /* Products */,
+				2828F5352F55D0AAA070CED4 /* Pods */,
+				EF54A41229C9B6A69EFEEEAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +144,14 @@
 			path = "papao-iosUITests";
 			sourceTree = "<group>";
 		};
+		EF54A41229C9B6A69EFEEEAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4EAE9AD01F91DCE700499B18 /* Build configuration list for PBXNativeTarget "papao-ios" */;
 			buildPhases = (
+				97416437B72357137F5DC6E6 /* [CP] Check Pods Manifest.lock */,
 				4EAE9AA11F91DCE700499B18 /* Sources */,
 				4EAE9AA21F91DCE700499B18 /* Frameworks */,
 				4EAE9AA31F91DCE700499B18 /* Resources */,
+				89C7EA8CE68F5D41B9D05B3F /* [CP] Embed Pods Frameworks */,
+				FD7F36EF9E447E8ACEDC4EAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,6 +283,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		89C7EA8CE68F5D41B9D05B3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97416437B72357137F5DC6E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-papao-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD7F36EF9E447E8ACEDC4EAA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4EAE9AA11F91DCE700499B18 /* Sources */ = {
@@ -428,6 +509,7 @@
 		};
 		4EAE9AD11F91DCE700499B18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -443,6 +525,7 @@
 		};
 		4EAE9AD21F91DCE700499B18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
