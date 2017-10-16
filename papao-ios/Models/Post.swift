@@ -23,7 +23,26 @@ struct Post {
     var state: String?
     var type: String?
     var userAddress: String?
-    var userContracts: String?
+    var userContact: String?
     var userName: String?
     var weight: String?
+    
+    init(_ postDict: Dictionary<String, String>) {
+        self.feature = postDict["feature"]
+        self.gender = postDict["gender"]
+        self.happenDate = postDict["happenDate"]
+        self.happenPlace = postDict["happenPlace"]
+        self.id = Int(postDict["id"]!)!
+        self.imageUrl = postDict["imageUrl"]
+        self.introduction = postDict["introduction"]
+        self.kindCode = postDict["kindCode"]
+        self.kindName = postDict["kindName"]
+        self.kindUpCode = postDict[""]
+        self.neuter = postDict["neuter"]
+        self.state = postDict["state"]
+        self.type = postDict["type"]
+        self.userAddress = postDict["userAddress"]
+        self.userContact = postDict["userContact"]
+        self.weight = postDict["weight"]
+    }
 }
