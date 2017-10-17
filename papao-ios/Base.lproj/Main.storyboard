@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,6 +67,7 @@
                                             <outlet property="happenPlaceLabel" destination="Gv4-Vd-Xy0" id="9ah-Th-lot"/>
                                             <outlet property="kindLabel" destination="jGr-8v-DfL" id="MuB-cy-TKk"/>
                                             <outlet property="postImageView" destination="BNr-0U-qPh" id="0UN-VX-Oye"/>
+                                            <segue destination="9Kx-qY-ef7" kind="show" identifier="`" id="oU6-kP-kCi"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -95,6 +97,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1116" y="131.78410794602701"/>
+        </scene>
+        <!--Post Detail View Controller-->
+        <scene sceneID="T2V-yT-Tn5">
+            <objects>
+                <viewController id="9Kx-qY-ef7" customClass="PostDetailViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9EN-uX-680">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rij-1O-kcB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="281.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q84-FB-rWI">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="282"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="282" id="S13-Ol-zoi"/>
+                                            <constraint firstAttribute="width" constant="375" id="W7F-MQ-Hnr"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Q84-FB-rWI" secondAttribute="trailing" id="h1X-W7-Cys"/>
+                                    <constraint firstItem="Q84-FB-rWI" firstAttribute="top" secondItem="Rij-1O-kcB" secondAttribute="top" id="jeS-9u-tes"/>
+                                    <constraint firstAttribute="width" secondItem="Rij-1O-kcB" secondAttribute="height" multiplier="4:3" id="uZC-5P-tRT"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q84-FB-rWI" secondAttribute="bottom" id="ygL-bg-Md6"/>
+                                    <constraint firstItem="Q84-FB-rWI" firstAttribute="leading" secondItem="Rij-1O-kcB" secondAttribute="leading" id="z8E-kh-bSa"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="9Kx-qY-ef7" id="r6e-8w-PBW"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Rij-1O-kcB" firstAttribute="top" secondItem="wBh-h6-mdO" secondAttribute="top" id="FjO-jE-AoQ"/>
+                            <constraint firstItem="Rij-1O-kcB" firstAttribute="trailing" secondItem="wBh-h6-mdO" secondAttribute="trailing" id="GE4-f4-1cm"/>
+                            <constraint firstItem="Rij-1O-kcB" firstAttribute="leading" secondItem="wBh-h6-mdO" secondAttribute="leading" id="tWv-dA-khB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wBh-h6-mdO"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="imageView" destination="Q84-FB-rWI" id="0ue-Ie-EtY"/>
+                        <outlet property="imageViewHeight" destination="Q84-FB-rWI" id="Vlt-TN-Gil"/>
+                        <outlet property="imageViewWidth" destination="Q84-FB-rWI" id="VKZ-JF-imy"/>
+                        <outlet property="scrollView" destination="Rij-1O-kcB" id="8Mi-Le-ry9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17I-AE-ULT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768.8" y="131.78410794602701"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rnQ-QC-CVx">
