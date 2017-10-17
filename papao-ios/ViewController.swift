@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.happenPlaceLabel.text = post.happenPlace
         
         if let url = post.imageUrl {
-            Alamofire.download(url).responseData { response in
+            Alamofire.request(url).responseData { response in
                 print(response)
                 if let data = response.result.value {
                     let image = UIImage(data: data)
