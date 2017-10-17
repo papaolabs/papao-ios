@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class PostDetailViewController: UIViewController, UIScrollViewDelegate {
-    let post: Post? = nil
+    var post: Post?
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
@@ -20,6 +20,16 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let post = self.post {
+            if let url = post.imageUrl {
+                Alamofire.request(url).responseData { response in
+                    if let data = response.result.value {
+                        let image = UIImage(data: data)
+                        self.setImageToCrop(image: image!)
+                    }
+                }
+            }
+        }
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

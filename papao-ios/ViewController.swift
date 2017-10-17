@@ -75,7 +75,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let url = post.imageUrl {
             Alamofire.request(url).responseData { response in
-                print(response)
                 if let data = response.result.value {
                     let image = UIImage(data: data)
                     cell.postImageView.image = image
@@ -97,7 +96,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let row = self.posts[indexPath.row]
+        guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
+            return
+        }
+
+        postDetailViewController.post = row
+        self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }
 

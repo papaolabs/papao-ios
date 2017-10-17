@@ -67,7 +67,6 @@
                                             <outlet property="happenPlaceLabel" destination="Gv4-Vd-Xy0" id="9ah-Th-lot"/>
                                             <outlet property="kindLabel" destination="jGr-8v-DfL" id="MuB-cy-TKk"/>
                                             <outlet property="postImageView" destination="BNr-0U-qPh" id="0UN-VX-Oye"/>
-                                            <segue destination="9Kx-qY-ef7" kind="show" identifier="`" id="oU6-kP-kCi"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -92,6 +91,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="3cI-r2-vjF" id="J0l-Ay-NIk"/>
+                        <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="fX6-tz-dqg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -101,7 +101,7 @@
         <!--Post Detail View Controller-->
         <scene sceneID="T2V-yT-Tn5">
             <objects>
-                <viewController id="9Kx-qY-ef7" customClass="PostDetailViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetail" id="9Kx-qY-ef7" customClass="PostDetailViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9EN-uX-680">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,8 +140,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="Q84-FB-rWI" id="0ue-Ie-EtY"/>
-                        <outlet property="imageViewHeight" destination="Q84-FB-rWI" id="Vlt-TN-Gil"/>
-                        <outlet property="imageViewWidth" destination="Q84-FB-rWI" id="VKZ-JF-imy"/>
+                        <outlet property="imageViewHeight" destination="S13-Ol-zoi" id="IIQ-YO-SOd"/>
+                        <outlet property="imageViewWidth" destination="W7F-MQ-Hnr" id="anw-PM-YsO"/>
                         <outlet property="scrollView" destination="Rij-1O-kcB" id="8Mi-Le-ry9"/>
                     </connections>
                 </viewController>
