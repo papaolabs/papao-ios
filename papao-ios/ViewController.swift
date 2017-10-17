@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
@@ -44,6 +45,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - IBAction
+    @objc func favoriteButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "즐겨찾기 되었습니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .cancel) { (_) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: false)
+        
+        let button = sender as! UIButton
+        button.tintColor = UIColor.gray
+    }
 
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,12 +64,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "postCellIdentifier",
-                                                                  for: indexPath)
+        let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postCellIdentifier",
+                                                                  for: indexPath) as! PostTableViewCell
         let row = indexPath.row;
         let post = posts[row]
         
-        cell.textLabel?.text = post.kindName
+        cell.kindLabel.text = post.kindName
+        cell.happenDateLabel.text = post.happenDate
+        cell.happenPlaceLabel.text = post.happenPlace
+        
+        if let url = post.imageUrl {
+            Alamofire.download(url).responseData { response in
+                print(response)
+                if let data = response.result.value {
+                    let image = UIImage(data: data)
+                    cell.postImageView.image = image
+                }
+            }
+        }
+        cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
         
         return cell
     }
@@ -67,7 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 58
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
