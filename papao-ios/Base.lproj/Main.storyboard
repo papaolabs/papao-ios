@@ -110,7 +110,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="postDetailImageCell" selectionStyle="default" indentationWidth="10" rowHeight="375" id="GGm-ap-nge" customClass="PostDetailImageTableViewCell" customModule="papao_ios" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postDetailImageCell" rowHeight="375" id="GGm-ap-nge" customClass="PostDetailImageTableViewCell" customModule="papao_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="375"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GGm-ap-nge" id="lOB-sJ-TMk">
@@ -127,7 +127,7 @@
                                             <outlet property="postImageView" destination="lK9-RK-crW" id="ACU-86-YEY"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="postDetailButtonCell" selectionStyle="default" indentationWidth="10" id="ZFZ-hy-PDW" customClass="PostDetailButtonTableViewCell" customModule="papao_ios" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postDetailButtonCell" id="ZFZ-hy-PDW" customClass="PostDetailButtonTableViewCell" customModule="papao_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="403" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFZ-hy-PDW" id="yer-C2-eZh">
@@ -163,7 +163,7 @@
                                             <outlet property="shareButton" destination="jnO-q8-JpZ" id="j67-NS-fOr"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostDetailTextCell" selectionStyle="default" indentationWidth="10" id="0W3-Eq-zzM" customClass="PostDetailTextTableViewCell" customModule="papao_ios" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postDetailTextCell" id="0W3-Eq-zzM" customClass="PostDetailTextTableViewCell" customModule="papao_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="447" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0W3-Eq-zzM" id="YOy-dC-ldT">
@@ -192,12 +192,19 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9Kx-qY-ef7" id="jeg-1W-mkO"/>
+                                    <outlet property="delegate" destination="9Kx-qY-ef7" id="3Q4-0u-Skx"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="wBh-h6-mdO"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="rk9-Wx-9O5" id="4xp-hZ-MHn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17I-AE-ULT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

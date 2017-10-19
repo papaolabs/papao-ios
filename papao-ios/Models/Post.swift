@@ -45,4 +45,13 @@ struct Post {
         self.userContact = postDict["userContact"]
         self.weight = postDict["weight"]
     }
+    
+    /**
+     표시할 수 있는 텍스트 정보 수 반환
+     Todo: - 로직 추가 필요
+     **/
+    let countOfTextInfo: Int! = {
+        var count = 1
+        return count
+    }()
 }
