@@ -51,9 +51,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let section = indexPath.section
-        let row = indexPath.row
         
         switch section {
         case 0:
@@ -64,6 +62,12 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                     if let data = response.result.value {
                         let image = UIImage(data: data)
                         cell.postImageView.image = image
+                        
+                        // Comment: - Cell 높이를 이미지 비율에 맞게 재지정을 위한 트릭
+                        UIView.setAnimationsEnabled(false)
+                        tableView.beginUpdates()
+                        tableView.endUpdates()
+                        UIView.setAnimationsEnabled(true)
                     }
                 }
             }
@@ -94,11 +98,29 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let section = indexPath.section
         switch section {
         case 0:
+            // Comment: - 스크린 사이즈 비율에 따른 이미지 높이로 이미지셀 높이 지정
+            if let currentCell = tableView.cellForRow(at: indexPath) as? PostDetailImageTableViewCell {
+                if let size = currentCell.postImageView.image?.size {
+                    let aspectRatio = size.height/size.width
+                    return aspectRatio * UIScreen.main.bounds.width
+                }
+            }
+            return 44
+        default:
+            return 44
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        switch section {
+        case 0:
             return 375
         default:
             return 44
         }
     }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
