@@ -5,14 +5,15 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--보호소-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="보호소" id="BYZ-38-t0r" customClass="ViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,17 +223,18 @@
                     </tabBar>
                     <connections>
                         <segue destination="TaB-Pe-tml" kind="relationship" relationship="viewControllers" id="cxf-o4-xIg"/>
+                        <segue destination="40W-xx-EqJ" kind="relationship" relationship="viewControllers" id="8tm-lI-ZOO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tn-il-hOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-163.19999999999999" y="132.23388305847078"/>
         </scene>
-        <!--보호소/개인보호-->
+        <!--보호소-->
         <scene sceneID="aYH-uE-ZMi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TaB-Pe-tml" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="보호소/개인보호" id="ZcN-vj-OkA"/>
+                    <tabBarItem key="tabBarItem" title="보호소" id="ZcN-vj-OkA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wl7-QP-npm">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -246,6 +248,95 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEU-38-URK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="475.19999999999999" y="132.23388305847078"/>
+        </scene>
+        <!--제보-->
+        <scene sceneID="Iac-66-h7O">
+            <objects>
+                <viewController title="제보" id="s5w-ii-cZ5" customClass="ReportListViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dKo-Hb-0xb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e98-bE-YWX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportCellIdentifier" id="gVb-Td-jGw">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gVb-Td-jGw" id="r0A-3K-JoQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="E8a-TQ-otJ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QAf-a9-Be6">
+                        <rightBarButtonItems>
+                            <barButtonItem title="퀵 제보" id="ZoD-zB-By6">
+                                <connections>
+                                    <segue destination="B1G-Rm-6VC" kind="show" id="gtx-yp-GrS"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="일반 제보" id="0sD-Oc-QN6"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPb-xr-riw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1116" y="902.69865067466276"/>
+        </scene>
+        <!--사진 등록-->
+        <scene sceneID="vN1-nx-bow">
+            <objects>
+                <viewController title="사진 등록" id="B1G-Rm-6VC" customClass="ReportUploadViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Ja-8h-yqi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wos-rL-OHj">
+                                <rect key="frame" x="159" y="90" width="56" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="사진 등록"/>
+                                <connections>
+                                    <action selector="uploadButtonPressedWithButton:" destination="B1G-Rm-6VC" eventType="touchUpInside" id="Agg-xp-rPu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="iN8-Nf-oXW"/>
+                    </view>
+                    <connections>
+                        <outlet property="uploadButton" destination="wos-rL-OHj" id="Jrj-b8-QVS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyZ-My-rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768.8" y="902.69865067466276"/>
+        </scene>
+        <!--제보-->
+        <scene sceneID="1Ci-MK-2D0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="40W-xx-EqJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="제보" id="CVZ-2x-PxY"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cfx-g5-Fqt">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="s5w-ii-cZ5" kind="relationship" relationship="rootViewController" id="xLE-Iq-RkP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ncv-qt-Ug1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="473.60000000000002" y="903.14842578710648"/>
         </scene>
     </scenes>
 </document>
