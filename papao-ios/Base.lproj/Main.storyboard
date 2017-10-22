@@ -307,12 +307,17 @@
                                     <action selector="uploadButtonPressedWithButton:" destination="B1G-Rm-6VC" eventType="touchUpInside" id="Agg-xp-rPu"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUW-S3-Fk6">
+                                <rect key="frame" x="16" y="128" width="343" height="182"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="iN8-Nf-oXW"/>
                     </view>
                     <connections>
                         <outlet property="uploadButton" destination="wos-rL-OHj" id="Jrj-b8-QVS"/>
+                        <outlet property="uploadedImageView" destination="mUW-S3-Fk6" id="3uq-gn-Tqc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyZ-My-rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
