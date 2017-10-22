@@ -311,11 +311,27 @@
                                 <rect key="frame" x="16" y="128" width="343" height="182"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzA-1O-W5J">
+                                <rect key="frame" x="16" y="439" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqe-W8-5vS">
+                                <rect key="frame" x="16" y="468" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="iN8-Nf-oXW"/>
                     </view>
                     <connections>
+                        <outlet property="dateTakenLabel" destination="VzA-1O-W5J" id="ogP-bf-d04"/>
+                        <outlet property="locationTakenLabel" destination="yqe-W8-5vS" id="tC5-RJ-zuN"/>
                         <outlet property="uploadButton" destination="wos-rL-OHj" id="Jrj-b8-QVS"/>
                         <outlet property="uploadedImageView" destination="mUW-S3-Fk6" id="3uq-gn-Tqc"/>
                     </connections>
