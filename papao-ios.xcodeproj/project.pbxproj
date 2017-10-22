@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
+		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
+		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
+		4E835F011F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
+		4E835F021F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */; };
 		4EAE9AAB1F91DCE700499B18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAA1F91DCE700499B18 /* ViewController.swift */; };
 		4EAE9AAE1F91DCE700499B18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAC1F91DCE700499B18 /* Main.storyboard */; };
@@ -15,6 +20,8 @@
 		4EAE9AB61F91DCE700499B18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */; };
 		4EAE9AC11F91DCE700499B18 /* papao_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AC01F91DCE700499B18 /* papao_iosTests.swift */; };
 		4EAE9ACC1F91DCE700499B18 /* papao_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9ACB1F91DCE700499B18 /* papao_iosUITests.swift */; };
+		4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */; };
+		4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +44,10 @@
 
 /* Begin PBXFileReference section */
 		3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papao_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
+		4E835F001F9230A700BFA6BD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4EAE9AA51F91DCE700499B18 /* papao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "papao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EAE9AAA1F91DCE700499B18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +62,8 @@
 		4EAE9AC71F91DCE700499B18 /* papao-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "papao-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9ACB1F91DCE700499B18 /* papao_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = papao_iosUITests.swift; sourceTree = "<group>"; };
 		4EAE9ACD1F91DCE700499B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTextTableViewCell.swift; sourceTree = "<group>"; };
+		4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +103,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4E835EFD1F92307900BFA6BD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4E835F001F9230A700BFA6BD /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		4EAE9A9C1F91DCE700499B18 = {
 			isa = PBXGroup;
 			children = (
@@ -115,9 +136,15 @@
 		4EAE9AA71F91DCE700499B18 /* papao-ios */ = {
 			isa = PBXGroup;
 			children = (
+				4E835EFD1F92307900BFA6BD /* Models */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
+				4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */,
 				4EAE9AAA1F91DCE700499B18 /* ViewController.swift */,
 				4EAE9AAC1F91DCE700499B18 /* Main.storyboard */,
+				4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */,
+				4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */,
+				4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */,
+				4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */,
 				4EAE9AB71F91DCE700499B18 /* Info.plist */,
@@ -344,8 +371,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EAE9AAB1F91DCE700499B18 /* ViewController.swift in Sources */,
+				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
+				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
+				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
+				4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */,
+				4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */,
 				4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */,
+				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EAE9AC11F91DCE700499B18 /* papao_iosTests.swift in Sources */,
+				4E835F021F9230A700BFA6BD /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

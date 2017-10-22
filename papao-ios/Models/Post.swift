@@ -23,7 +23,41 @@ struct Post {
     var state: String?
     var type: String?
     var userAddress: String?
-    var userContracts: String?
+    var userContact: String?
     var userName: String?
     var weight: String?
+    
+    init(_ postDict: Dictionary<String, String>) {
+        self.feature = postDict["feature"]
+        self.gender = postDict["gender"]
+        self.happenDate = postDict["happenDate"]
+        self.happenPlace = postDict["happenPlace"]
+        self.id = Int(postDict["id"]!)!
+        self.imageUrl = postDict["imageUrl"]
+        self.introduction = postDict["introduction"]
+        self.kindCode = postDict["kindCode"]
+        self.kindName = postDict["kindName"]
+        self.kindUpCode = postDict[""]
+        self.neuter = postDict["neuter"]
+        self.state = postDict["state"]
+        self.type = postDict["type"]
+        self.userAddress = postDict["userAddress"]
+        self.userContact = postDict["userContact"]
+        self.userName = postDict["userName"]
+        self.weight = postDict["weight"]
+    }
+    
+    /**
+     표시할 수 있는 텍스트 정보 수 반환
+     Todo: - 로직 추가 필요
+     **/
+    func countOfTextInfo() -> Int! {
+        var count = 0
+        if (feature != nil && feature != "") { count += 1 }
+        if (kindName != nil && kindName != "") { count += 1 }
+        if (happenPlace != nil && happenPlace != "") { count += 1 }
+        if (userName != nil && userName != "") { count += 1 }
+        if (userContact != nil && userContact != "") { count += 1 }
+        return count
+    }
 }
