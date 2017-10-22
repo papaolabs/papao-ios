@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             "userId": "01",
             "userName": "ㅇㅇㅇ애견",
             "userAddress": "서울시 금천구",
-            "userContracts": "010-1234-5678",
+            "userContact": "010-1234-5678",
             "weight": "4.0",
             "gender": "F",
             "state": "보호중",
@@ -37,8 +37,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             "feature": "프렌치불독",
             "introduction": ""
         ]
+        let postDict2: [String: String] = [
+            "id": "2",
+            "desertionId": "445468201700459",
+            "type": "01",
+            "imageUrl": "http://www.animal.go.kr/files/shelter/2017/08/201710042010406.jpg",
+            "kindUpCode": "417000",
+            "kindCode": "128",
+            "kindName": "푸들",
+            "happenDate": "20171001",
+            "happenPlace": "전라북도 익산시",
+            "userId": "01",
+            "userName": "익산유기동물보호소",
+            "userAddress": "전라북도 익산시 함라면 신함1길 12-7 (함라면) ",
+            "userContact": "063-831-7417",
+            "weight": "3.0",
+            "gender": "M",
+            "state": "보호중",
+            "neuter": "N",
+            "feature": "상태 양호함",
+            "introduction": ""
+        ]
         let post = Post(postDict)
+        let post2 = Post(postDict2)
         posts.append(post)
+        posts.append(post2)
     }
 
     override func didReceiveMemoryWarning() {

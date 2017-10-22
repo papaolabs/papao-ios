@@ -42,7 +42,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return 1
         case 2:
             if let thePost = post {
-                return thePost.countOfTextInfo
+                return thePost.countOfTextInfo()
             }
             return 1
         default:
@@ -52,6 +52,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
+        let row = indexPath.row
         
         switch section {
         case 0:
@@ -81,9 +82,39 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         default:
             let cell: PostDetailTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailTextCell",
                                                                                     for: indexPath) as! PostDetailTextTableViewCell
-            if let kindName = post?.kindName {
-                cell.contentLabel.text = kindName
+            switch row {
+            case 0:
+                if let kindName = post?.kindName {
+                    cell.titleLabel.text = "종류"
+                    cell.contentLabel.text = kindName
+                }
+                break
+            case 1:
+                if let feature = post?.feature {
+                    cell.titleLabel.text = "특징"
+                    cell.contentLabel.text = feature
+                }
+            case 2:
+                if let happenPlace = post?.happenPlace {
+                    cell.titleLabel.text = "발생장소"
+                    cell.contentLabel.text = happenPlace
+                }
+                break
+            case 3:
+                if let userName = post?.userName {
+                    cell.titleLabel.text = "보호센터"
+                    cell.contentLabel.text = userName
+                }
+                break
+            case 4:
+                if let userContact = post?.userContact {
+                    cell.titleLabel.text = "연락처"
+                    cell.contentLabel.text = userContact
+                }
+            default:
+                break
             }
+            
             // Todo: - 표시할 수 있는 모든 텍스트 정보를 동적으로 셀에 표시 필요
             return cell
         }

@@ -43,6 +43,7 @@ struct Post {
         self.type = postDict["type"]
         self.userAddress = postDict["userAddress"]
         self.userContact = postDict["userContact"]
+        self.userName = postDict["userName"]
         self.weight = postDict["weight"]
     }
     
@@ -50,8 +51,13 @@ struct Post {
      표시할 수 있는 텍스트 정보 수 반환
      Todo: - 로직 추가 필요
      **/
-    let countOfTextInfo: Int! = {
-        var count = 1
+    func countOfTextInfo() -> Int! {
+        var count = 0
+        if (feature != nil && feature != "") { count += 1 }
+        if (kindName != nil && kindName != "") { count += 1 }
+        if (happenPlace != nil && happenPlace != "") { count += 1 }
+        if (userName != nil && userName != "") { count += 1 }
+        if (userContact != nil && userContact != "") { count += 1 }
         return count
-    }()
+    }
 }
