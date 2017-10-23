@@ -13,6 +13,8 @@
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
 		4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */; };
+		4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FC1F9E10580041A680 /* keys.plist */; };
+		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
 		4E835F011F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4E835F021F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */; };
@@ -45,6 +47,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4E4CA5FB1F9E0C7D0041A680 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papao_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E21DE421F9C620500E34203 /* ReportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +67,8 @@
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
 		4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
+		4E4CA5FC1F9E10580041A680 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		4E835F001F9230A700BFA6BD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4EAE9AA51F91DCE700499B18 /* papao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "papao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +125,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4E4CA5FE1F9E10F20041A680 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		4E835EFD1F92307900BFA6BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +145,7 @@
 		4EAE9A9C1F91DCE700499B18 = {
 			isa = PBXGroup;
 			children = (
+				4E4CA5FC1F9E10580041A680 /* keys.plist */,
 				4EAE9AA71F91DCE700499B18 /* papao-ios */,
 				4EAE9ABF1F91DCE700499B18 /* papao-iosTests */,
 				4EAE9ACA1F91DCE700499B18 /* papao-iosUITests */,
@@ -143,6 +168,7 @@
 		4EAE9AA71F91DCE700499B18 /* papao-ios */ = {
 			isa = PBXGroup;
 			children = (
+				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
 				4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */,
@@ -201,6 +227,7 @@
 				4EAE9AA31F91DCE700499B18 /* Resources */,
 				89C7EA8CE68F5D41B9D05B3F /* [CP] Embed Pods Frameworks */,
 				FD7F36EF9E447E8ACEDC4EAA /* [CP] Copy Pods Resources */,
+				4E4CA5FB1F9E0C7D0041A680 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -298,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */,
 				4EAE9AB61F91DCE700499B18 /* LaunchScreen.storyboard in Resources */,
 				4EAE9AB31F91DCE700499B18 /* Assets.xcassets in Resources */,
 				4EAE9AAE1F91DCE700499B18 /* Main.storyboard in Resources */,
@@ -363,9 +391,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -381,6 +412,7 @@
 			files = (
 				4EAE9AAB1F91DCE700499B18 /* ViewController.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
+				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
