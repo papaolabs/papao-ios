@@ -37,7 +37,7 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         uploadedImageView.contentMode = .scaleAspectFit
         uploadedImageView.image = chosenImage
-        
+
         let assetURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL as URL], options: nil)
         guard let result = asset.firstObject else {
@@ -51,20 +51,11 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
             if let imageSource = CGImageSourceCreateWithData(imageData, nil) {
                 let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil)! as NSDictionary
                 print("imageProperties: ", imageProperties)
-                if let exif = imageProperties["{Exif}"] as? [String: Any] {
-                    if let date = exif["DateTimeOriginal"] {
-                        self.dateTakenLabel.text = "날짜시간: \(date as! String)"
-                    }
-                }
-                if let gps = imageProperties["{GPS}"] as? [String: Any] {
-                    if let latitude = gps["Latitude"] {
-                        self.locationTakenLabel.text = String(describing: "위치: \(latitude as! Float)")
-                    }
-                    if let longitude = gps["Longitude"] {
-                        self.locationTakenLabel.text = "\(String(describing: self.locationTakenLabel.text)), \(longitude)"
-                    }
-                }
+
+                let imageInfo = ImageInfo(imageProperties)
+                self.dateTakenLabel.text = imageInfo.date
                 
+                self.locationTakenLabel.text = String(describing:CLLocationCoordinate2D.init(latitude: imageInfo.latitude!, longitude: imageInfo.longitude!))
             }
             
         })

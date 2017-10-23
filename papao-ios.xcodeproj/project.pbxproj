@@ -12,6 +12,7 @@
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
+		4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */; };
 		4E835F011F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4E835F021F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */; };
@@ -51,6 +52,7 @@
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
+		4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 		4E835F001F9230A700BFA6BD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4EAE9AA51F91DCE700499B18 /* papao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "papao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				4E835F001F9230A700BFA6BD /* Post.swift */,
+				4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */,
 				4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */,
 				4E21DE431F9C620500E34203 /* ReportListViewController.swift in Sources */,
+				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
 				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,
 			);
