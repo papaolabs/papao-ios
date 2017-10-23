@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import PhotosUI
+import GoogleMaps
 
 class ReportUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet var uploadButton: UIButton!
@@ -55,7 +56,16 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
                 let imageInfo = ImageInfo(imageProperties)
                 self.dateTakenLabel.text = imageInfo.date
                 
-                self.locationTakenLabel.text = String(describing:CLLocationCoordinate2D.init(latitude: imageInfo.latitude!, longitude: imageInfo.longitude!))
+                if let latitude = imageInfo.latitude, let longitude = imageInfo.longitude {
+                    let coordinate = CLLocationCoordinate2D.init(latitude: latitude, longitude: longitude)
+                    self.addMap(coordinate)
+                    
+                    let geocoder = GMSGeocoder.init()
+                    geocoder.reverseGeocodeCoordinate(coordinate) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
+                        print(geocodeResponse as Any)
+                        self.locationTakenLabel.text = geocodeResponse?.firstResult()?.lines?.joined(separator: ", ")
+                    }
+                }
             }
             
         })
@@ -65,5 +75,19 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Private Functions
+    private func addMap(_ coordinate: CLLocationCoordinate2D) {
+        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 16.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: view.bounds.height/2+100, width: view.bounds.size.width, height: 200), camera: camera)
+        mapView.isMyLocationEnabled = false
+        view.addSubview(mapView)
+        
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        marker.title = "발견 장소"
+        marker.map = mapView
     }
 }
