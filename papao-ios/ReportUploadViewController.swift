@@ -11,14 +11,18 @@ import Photos
 import PhotosUI
 import GoogleMaps
 
-class ReportUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ReportUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, GMSMapViewDelegate {
     @IBOutlet var uploadButton: UIButton!
 
     @IBOutlet var uploadedImageView: UIImageView!
     @IBOutlet weak var dateTakenLabel: UILabel!
     @IBOutlet weak var locationTakenLabel: UILabel!
 
+    // for getting a photo
     let picker = UIImagePickerController()
+    
+    // for marking to a location
+    var mapView: GMSMapView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +64,7 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
                     let coordinate = CLLocationCoordinate2D.init(latitude: latitude, longitude: longitude)
                     self.addMap(coordinate)
                     
-                    let geocoder = GMSGeocoder.init()
-                    geocoder.reverseGeocodeCoordinate(coordinate) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
-                        print(geocodeResponse as Any)
-                        self.locationTakenLabel.text = geocodeResponse?.firstResult()?.lines?.joined(separator: ", ")
-                    }
+                    self.setAddress(from: coordinate)
                 }
             }
             
@@ -77,17 +77,43 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Google Marker Delegates
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        let geocoder = GMSGeocoder.init()
+        geocoder.reverseGeocodeCoordinate(marker.position) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
+            self.locationTakenLabel.text = geocodeResponse?.firstResult()?.lines?.joined(separator: ", ")
+        }
+    }
+    
     // MARK: - Private Functions
     private func addMap(_ coordinate: CLLocationCoordinate2D) {
         let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 16.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: view.bounds.height/2+100, width: view.bounds.size.width, height: 200), camera: camera)
-        mapView.isMyLocationEnabled = false
-        view.addSubview(mapView)
-        
+    
+        self.mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: view.bounds.height/2+100, width: view.bounds.size.width, height: 200), camera: camera)
+        self.mapView?.isMyLocationEnabled = false
+        self.mapView?.delegate = self
+        if let mapView = self.mapView {
+            view.addSubview(mapView)
+        }
+
+        self.addMarker(from: coordinate)
+    }
+    
+    private func addMarker(from coordinate: CLLocationCoordinate2D) {
         // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        marker.title = "발견 장소"
-        marker.map = mapView
+        if let mapView = self.mapView {
+            let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            marker.title = "발견 장소"
+            marker.map = mapView
+            marker.isDraggable = true
+        }
+    }
+    
+    private func setAddress(from coordinate: CLLocationCoordinate2D) {
+        let geocoder = GMSGeocoder.init()
+        geocoder.reverseGeocodeCoordinate(coordinate) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
+            self.locationTakenLabel.text = geocodeResponse?.firstResult()?.lines?.joined(separator: ", ")
+        }
     }
 }
