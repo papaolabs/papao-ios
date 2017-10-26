@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE421F9C620500E34203 /* ReportTableViewController.swift */; };
 		4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */; };
+		4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */; };
+		4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
@@ -63,6 +65,9 @@
 		3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papao_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E21DE421F9C620500E34203 /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
+		4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageUploadViewController.swift; sourceTree = "<group>"; };
+		4E326A861FA204A8006325B4 /* UIColor+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+PPAdditions.swift"; sourceTree = "<group>"; };
+		4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ruler.swift"; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 			children = (
 				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
 				4E21DE421F9C620500E34203 /* ReportTableViewController.swift */,
+				4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -146,6 +152,16 @@
 			);
 			path = PostView;
 			sourceTree = "<group>";
+		};
+		4E326A851FA2049C006325B4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4E326A861FA204A8006325B4 /* UIColor+PPAdditions.swift */,
+				4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */,
+			);
+			name = Extension;
+			path = "papao-ios/Extension";
+			sourceTree = SOURCE_ROOT;
 		};
 		4E4CA5FE1F9E10F20041A680 /* Utilities */ = {
 			isa = PBXGroup;
@@ -194,6 +210,7 @@
 				4E326A801FA1FE9B006325B4 /* ReportView */,
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
+				4E326A851FA2049C006325B4 /* Extension */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
 				4EAE9AAC1F91DCE700499B18 /* Main.storyboard */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
@@ -432,11 +449,13 @@
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
+				4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */,
 				4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */,
 				4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */,
 				4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */,
 				4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */,
 				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
+				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
 				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,
 			);
