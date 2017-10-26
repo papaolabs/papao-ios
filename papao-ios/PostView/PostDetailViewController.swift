@@ -15,7 +15,6 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     // MARK: - IBAction

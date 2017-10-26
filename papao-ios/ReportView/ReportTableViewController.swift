@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReportListViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
+class ReportTableViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
     var report: [Any]?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E21DE431F9C620500E34203 /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE421F9C620500E34203 /* ReportListViewController.swift */; };
+		4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE421F9C620500E34203 /* ReportTableViewController.swift */; };
 		4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
@@ -18,7 +18,7 @@
 		4E835F011F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4E835F021F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */; };
-		4EAE9AAB1F91DCE700499B18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAA1F91DCE700499B18 /* ViewController.swift */; };
+		4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAA1F91DCE700499B18 /* PostTableViewController.swift */; };
 		4EAE9AAE1F91DCE700499B18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAC1F91DCE700499B18 /* Main.storyboard */; };
 		4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAF1F91DCE700499B18 /* papao_ios.xcdatamodeld */; };
 		4EAE9AB31F91DCE700499B18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE9AB21F91DCE700499B18 /* Assets.xcassets */; };
@@ -61,7 +61,7 @@
 
 /* Begin PBXFileReference section */
 		3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papao_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E21DE421F9C620500E34203 /* ReportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
+		4E21DE421F9C620500E34203 /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		4E835F001F9230A700BFA6BD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4EAE9AA51F91DCE700499B18 /* papao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "papao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4EAE9AAA1F91DCE700499B18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4EAE9AAA1F91DCE700499B18 /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		4EAE9AAD1F91DCE700499B18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4EAE9AB01F91DCE700499B18 /* papao_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = papao_ios.xcdatamodel; sourceTree = "<group>"; };
 		4EAE9AB21F91DCE700499B18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +125,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4E326A801FA1FE9B006325B4 /* ReportView */ = {
+			isa = PBXGroup;
+			children = (
+				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
+				4E21DE421F9C620500E34203 /* ReportTableViewController.swift */,
+			);
+			path = ReportView;
+			sourceTree = "<group>";
+		};
+		4E326A811FA1FEDA006325B4 /* PostView */ = {
+			isa = PBXGroup;
+			children = (
+				4EAE9AAA1F91DCE700499B18 /* PostTableViewController.swift */,
+				4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */,
+				4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */,
+				4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */,
+				4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */,
+				4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */,
+			);
+			path = PostView;
+			sourceTree = "<group>";
+		};
 		4E4CA5FE1F9E10F20041A680 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,18 +190,12 @@
 		4EAE9AA71F91DCE700499B18 /* papao-ios */ = {
 			isa = PBXGroup;
 			children = (
+				4E326A811FA1FEDA006325B4 /* PostView */,
+				4E326A801FA1FE9B006325B4 /* ReportView */,
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
-				4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */,
-				4EAE9AAA1F91DCE700499B18 /* ViewController.swift */,
 				4EAE9AAC1F91DCE700499B18 /* Main.storyboard */,
-				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
-				4E21DE421F9C620500E34203 /* ReportListViewController.swift */,
-				4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */,
-				4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */,
-				4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */,
-				4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */,
 				4EAE9AB71F91DCE700499B18 /* Info.plist */,
@@ -410,7 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EAE9AAB1F91DCE700499B18 /* ViewController.swift in Sources */,
+				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
@@ -419,7 +435,7 @@
 				4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */,
 				4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */,
 				4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */,
-				4E21DE431F9C620500E34203 /* ReportListViewController.swift in Sources */,
+				4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */,
 				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
 				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,

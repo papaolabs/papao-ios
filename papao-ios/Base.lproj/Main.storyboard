@@ -13,7 +13,7 @@
         <!--보호소-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="보호소" id="BYZ-38-t0r" customClass="ViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="보호소" id="BYZ-38-t0r" customClass="PostTableViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,7 +252,7 @@
         <!--제보-->
         <scene sceneID="Iac-66-h7O">
             <objects>
-                <viewController title="제보" id="s5w-ii-cZ5" customClass="ReportListViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="제보" id="s5w-ii-cZ5" customClass="ReportTableViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dKo-Hb-0xb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
