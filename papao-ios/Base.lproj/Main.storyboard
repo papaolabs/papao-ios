@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -339,6 +340,11 @@
                                     <constraint firstAttribute="width" constant="39" id="BCb-ze-50O"/>
                                     <constraint firstAttribute="height" constant="37" id="g2a-aB-tG5"/>
                                 </constraints>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" name="warmPink"/>
+                                <connections>
+                                    <action selector="pageChangeValueWithSender:" destination="VVA-Yn-yd4" eventType="valueChanged" id="Hzw-03-da3"/>
+                                </connections>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LU-pk-GHX">
                                 <rect key="frame" x="16" y="583" width="343" height="30"/>
@@ -457,4 +463,10 @@
             <point key="canvasLocation" x="473.60000000000002" y="903.14842578710648"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="warmPink">
+            <color red="0.98799997568130493" green="0.3059999942779541" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+    <color key="tintColor" name="warmPink"/>
 </document>
