@@ -66,7 +66,6 @@
 		4E21DE421F9C620500E34203 /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
 		4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageUploadViewController.swift; sourceTree = "<group>"; };
-		4E326A861FA204A8006325B4 /* UIColor+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+PPAdditions.swift"; sourceTree = "<group>"; };
 		4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ruler.swift"; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -156,7 +155,6 @@
 		4E326A851FA2049C006325B4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				4E326A861FA204A8006325B4 /* UIColor+PPAdditions.swift */,
 				4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */,
 			);
 			name = Extension;
