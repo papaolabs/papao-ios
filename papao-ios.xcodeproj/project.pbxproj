@@ -29,6 +29,7 @@
 		4EAE9ACC1F91DCE700499B18 /* papao_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9ACB1F91DCE700499B18 /* papao_iosUITests.swift */; };
 		4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */; };
 		4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */; };
+		4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		4EAE9ACD1F91DCE700499B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
+		4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnimalInfoViewController.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
 				4E21DE421F9C620500E34203 /* ReportTableViewController.swift */,
 				4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */,
+				4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
 				4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */,
 				4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */,
+				4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */,
 				4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */,
 				4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */,
 				4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */,
