@@ -20,7 +20,8 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     private let picker = BSImagePickerViewController()
 
     // imageViews for picked photos
-    private var uploadImagesViews: [UIImageView]!
+    private var selectedImagesViews: [UIImageView]!
+    private var selectedImages: [UIImage]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +54,13 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     
     override func viewDidLayoutSubviews() {
         // initialize imageViews in scrollView
-        if uploadImagesViews == nil {
-            uploadImagesViews = []
+        if selectedImagesViews == nil {
+            selectedImagesViews = []
             for index in 0..<pageControl.numberOfPages {
                 let imageView = UIImageView.init(frame: CGRect(origin: CGPoint(x:Int(imageScrollView.bounds.size.width) * index, y:0), size: imageScrollView.bounds.size))
                 imageView.contentMode = .scaleAspectFit
                 imageView.tag = index
-                uploadImagesViews.append(imageView)
+                selectedImagesViews.append(imageView)
                 imageScrollView.addSubview(imageView)
             }
         }
@@ -74,22 +75,34 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     @IBAction func uploadImagesPressed() {
         bs_presentImagePickerController(picker, animated: true,
                                         select: { (asset: PHAsset) -> Void in
-                                            // User selected an asset.
-                                            // Do something with it, start upload perhaps?
-                                            print("select")
         }, deselect: { (asset: PHAsset) -> Void in
         }, cancel: { (assets: [PHAsset]) -> Void in
         }, finish: { (assets: [PHAsset]) -> Void in
+            self.clearSelectedImages()
             // extract images from PHAssets
-            var images:[UIImage] = []
             for asset:PHAsset in assets {
                 if let image = self.getUIImage(asset: asset) {
-                    images.append(image)
+                    self.selectedImages.append(image)
                 }
             }
             // set images to imageViews
-            self.setUploadImages(images)
+            self.setImagesForPreview(self.selectedImages)
+            
+            // scroll to front forcibly
+            self.scrollToFront()
         }, completion: nil)
+    }
+
+    @IBAction func nextButtonPressed(_ sender: Any) {
+        if self.selectedImages == nil || self.selectedImages.isEmpty {
+            let alert = UIAlertController(title: nil, message: "사진은 반드시 한장 이상 등록해주세요.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: false)
+        } else {
+            // Todo: - go to next step
+        }
     }
     
     // MARK: - Private
@@ -107,17 +120,31 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         return image
     }
     
-    func setUploadImages(_ images: [UIImage]) {
+    func setImagesForPreview(_ images: [UIImage]) {
         DispatchQueue.main.async(execute: {
             // remove existing images in each imageViews
-            self.uploadImagesViews.forEach({ (imageView) in
-                imageView.image = nil
-            })
+            self.clearSelectedImageViews()
 
             // set new images to each imageViews
             for index in 0..<images.count {
-                self.uploadImagesViews[index].image = images[index]
+                self.selectedImagesViews[index].image = images[index]
             }
+        })
+    }
+
+    func clearSelectedImages() {
+        self.selectedImages = []
+    }
+    
+    func clearSelectedImageViews() {
+        self.selectedImagesViews.forEach({ (imageView) in
+            imageView.image = nil
+        })
+    }
+    
+    func scrollToFront() {
+        DispatchQueue.main.async(execute: {
+            self.imageScrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
         })
     }
     
@@ -130,7 +157,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     // MARK: - ImagePickerController Delegates
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imageView = uploadImagesViews[0]
+        let imageView = selectedImagesViews[0]
         imageView.image = chosenImage
         
         dismiss(animated:true, completion: nil)

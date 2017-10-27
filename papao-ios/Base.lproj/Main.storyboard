@@ -353,6 +353,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="다음"/>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="VVA-Yn-yd4" eventType="touchUpInside" id="syF-e3-lpr"/>
+                                </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mqm-Lx-ITs">
                                 <rect key="frame" x="16" y="177" width="343" height="343"/>
