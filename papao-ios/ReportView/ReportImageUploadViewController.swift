@@ -7,22 +7,27 @@
 //
 
 import UIKit
+import BSImagePicker
+import Photos
 
-class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate {
+class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet var progressToolBar: UIToolbar!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
     
     // for getting a photo
-    let picker = UIImagePickerController()
+    private let picker = BSImagePickerViewController()
 
-    var uploadImagesViews: [UIImageView] = []
-    var uploadButtonView: UIView!
-    var uploadButton: UIButton!
+    // imageViews for picked photos
+    private var uploadImagesViews: [UIImageView]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set picker
+        picker.delegate = self
+        picker.maxNumberOfSelections = 3
         
         // resize of the toolbar
         var yPosition = UIViewController.statusBarHeight
@@ -47,13 +52,16 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        // create imageViews in scrollView
-        for index in 0..<pageControl.numberOfPages {
-            let imageView = UIImageView.init(frame: CGRect(origin: CGPoint(x:Int(imageScrollView.bounds.size.width) * index, y:0), size: imageScrollView.bounds.size))
-            imageView.contentMode = .scaleAspectFill
-            imageView.tag = index
-            uploadImagesViews.append(imageView)
-            imageScrollView.addSubview(imageView)
+        // initialize imageViews in scrollView
+        if uploadImagesViews == nil {
+            uploadImagesViews = []
+            for index in 0..<pageControl.numberOfPages {
+                let imageView = UIImageView.init(frame: CGRect(origin: CGPoint(x:Int(imageScrollView.bounds.size.width) * index, y:0), size: imageScrollView.bounds.size))
+                imageView.contentMode = .scaleAspectFit
+                imageView.tag = index
+                uploadImagesViews.append(imageView)
+                imageScrollView.addSubview(imageView)
+            }
         }
     }
     
@@ -64,8 +72,53 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func uploadImagesPressed() {
-        print("uploadButtonPressed")
-        addImageView()
+        bs_presentImagePickerController(picker, animated: true,
+                                        select: { (asset: PHAsset) -> Void in
+                                            // User selected an asset.
+                                            // Do something with it, start upload perhaps?
+                                            print("select")
+        }, deselect: { (asset: PHAsset) -> Void in
+        }, cancel: { (assets: [PHAsset]) -> Void in
+        }, finish: { (assets: [PHAsset]) -> Void in
+            // extract images from PHAssets
+            var images:[UIImage] = []
+            for asset:PHAsset in assets {
+                if let image = self.getUIImage(asset: asset) {
+                    images.append(image)
+                }
+            }
+            // set images to imageViews
+            self.setUploadImages(images)
+        }, completion: nil)
+    }
+    
+    // MARK: - Private
+    func getUIImage(asset: PHAsset) -> UIImage? {
+        var image: UIImage?
+        let manager = PHImageManager.default()
+        let options = PHImageRequestOptions()
+        options.version = .original
+        options.isSynchronous = true
+        manager.requestImageData(for: asset, options: options) { data, _, _, _ in
+            if let data = data {
+                image = UIImage(data: data)
+            }
+        }
+        return image
+    }
+    
+    func setUploadImages(_ images: [UIImage]) {
+        DispatchQueue.main.async(execute: {
+            // remove existing images in each imageViews
+            self.uploadImagesViews.forEach({ (imageView) in
+                imageView.image = nil
+            })
+
+            // set new images to each imageViews
+            for index in 0..<images.count {
+                self.uploadImagesViews[index].image = images[index]
+            }
+        })
     }
     
     // MARK: - UIScrollView Delegate
@@ -74,9 +127,16 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = Int(floor((scrollView.contentOffset.x - pageWidth / 3) / pageWidth) + 1)
     }
     
-    // MARK: - private
-    func addImageView() {
+    // MARK: - ImagePickerController Delegates
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageView = uploadImagesViews[0]
-        imageView.image = UIImage(named: "sampleDog")
+        imageView.image = chosenImage
+        
+        dismiss(animated:true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
