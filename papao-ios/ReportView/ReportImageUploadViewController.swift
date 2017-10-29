@@ -11,7 +11,6 @@ import BSImagePicker
 import Photos
 
 class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet var progressToolBar: UIToolbar!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
@@ -22,6 +21,15 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     // imageViews for picked photos
     private var selectedImagesViews: [UIImageView]!
     private var selectedImages: [UIImage]!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(named: "warmPink")
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .black
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +37,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         // set picker
         picker.delegate = self
         picker.maxNumberOfSelections = 3
-        
-        // resize of the toolbar
-        var yPosition = UIViewController.statusBarHeight
-        if let heightOfNavigation = self.navigationController?.navigationBar.intrinsicContentSize.height {
-            yPosition += heightOfNavigation
-        }
-        progressToolBar.frame = CGRect(x:0, y:yPosition, width:self.view.bounds.size.width, height:54)
-        
+
         // set pageControl
         pageControl.numberOfPages = 3
         
@@ -58,7 +59,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
             selectedImagesViews = []
             for index in 0..<pageControl.numberOfPages {
                 let imageView = UIImageView.init(frame: CGRect(origin: CGPoint(x:Int(imageScrollView.bounds.size.width) * index, y:0), size: imageScrollView.bounds.size))
-                imageView.contentMode = .scaleAspectFit
+                imageView.contentMode = .scaleAspectFill
                 imageView.tag = index
                 selectedImagesViews.append(imageView)
                 imageScrollView.addSubview(imageView)

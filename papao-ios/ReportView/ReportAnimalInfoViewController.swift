@@ -62,6 +62,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         if let selectedItems = picker?.selectedItems, let callerView = picker?.callerButton {
             print("\(selectedItems)")
             callerView.titleLabel?.text = selectedItems[0].name
+            callerView.sizeToFit()
             // Todo: post용 데이터 로직처리
         }
         picker?.endPicking()
