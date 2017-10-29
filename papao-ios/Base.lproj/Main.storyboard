@@ -482,6 +482,9 @@
                                                             <constraint firstAttribute="height" constant="30" id="YRg-X6-a4N"/>
                                                         </constraints>
                                                         <state key="normal" title="개"/>
+                                                        <connections>
+                                                            <action selector="speciesButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="7DT-oR-scO"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xd4-tY-HsJ">
                                                         <rect key="frame" x="42" y="183" width="290" height="30"/>
@@ -489,6 +492,9 @@
                                                             <constraint firstAttribute="height" constant="30" id="NcN-Qq-L94"/>
                                                         </constraints>
                                                         <state key="normal" title="믹스견"/>
+                                                        <connections>
+                                                            <action selector="breedButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="hgR-lQ-bT3"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="색깔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYA-bY-PFk">
                                                         <rect key="frame" x="42" y="228" width="29.5" height="21"/>

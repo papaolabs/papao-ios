@@ -31,6 +31,8 @@
 		4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */; };
 		4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6F3901FA5CC4D009E287C /* Breed.swift */; };
 		4ED6F3941FA5D0DE009E287C /* BreedList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3931FA5D0DE009E287C /* BreedList.plist */; };
+		4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3951FA5E004009E287C /* SpeciesList.plist */; };
+		4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6F3971FA5E1C7009E287C /* Species.swift */; };
 		4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
@@ -95,6 +97,8 @@
 		4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4ED6F3901FA5CC4D009E287C /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
 		4ED6F3931FA5D0DE009E287C /* BreedList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BreedList.plist; sourceTree = "<group>"; };
+		4ED6F3951FA5E004009E287C /* SpeciesList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SpeciesList.plist; sourceTree = "<group>"; };
+		4ED6F3971FA5E1C7009E287C /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
 		4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnimalInfoViewController.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				4E835F001F9230A700BFA6BD /* Post.swift */,
 				4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */,
 				4ED6F3901FA5CC4D009E287C /* Breed.swift */,
+				4ED6F3971FA5E1C7009E287C /* Species.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,7 +223,6 @@
 				4E835EFD1F92307900BFA6BD /* Models */,
 				4E326A851FA2049C006325B4 /* Extension */,
 				4ED6F3921FA5D0B7009E287C /* Resources */,
-				4ED6F3931FA5D0DE009E287C /* BreedList.plist */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
 				4EAE9AAC1F91DCE700499B18 /* Main.storyboard */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
@@ -250,6 +254,8 @@
 		4ED6F3921FA5D0B7009E287C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4ED6F3931FA5D0DE009E287C /* BreedList.plist */,
+				4ED6F3951FA5E004009E287C /* SpeciesList.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */,
+				4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */,
 				4EAE9AB61F91DCE700499B18 /* LaunchScreen.storyboard in Resources */,
 				4EAE9AB31F91DCE700499B18 /* Assets.xcassets in Resources */,
 				4ED6F3941FA5D0DE009E287C /* BreedList.plist in Resources */,
@@ -481,6 +488,7 @@
 				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
 				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
+				4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */,
 				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
