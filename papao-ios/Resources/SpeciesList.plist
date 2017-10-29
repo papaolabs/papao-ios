@@ -12,7 +12,7 @@
 		</dict>
 		<dict>
 			<key>code</key>
-			<string>422400</string>
+			<integer>422400</integer>
 			<key>name</key>
 			<string>CAT</string>
 		</dict>

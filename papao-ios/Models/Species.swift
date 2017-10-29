@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Species {
+struct Species: PublicDataProtocol {
     var code: Int
     var name: String
     
