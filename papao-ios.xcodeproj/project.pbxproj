@@ -22,6 +22,7 @@
 		4E7060D51FA6132500B88F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7060D41FA612FE00B88F92 /* Main.storyboard */; };
 		4E835F011F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
 		4E835F021F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
+		4EA9CA051FA7674C00115784 /* ReportDetectionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */; };
 		4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */; };
 		4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAA1F91DCE700499B18 /* PostTableViewController.swift */; };
 		4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAF1F91DCE700499B18 /* papao_ios.xcdatamodeld */; };
@@ -84,6 +85,7 @@
 		4E7060D01FA6022600B88F92 /* PublicDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicDataProtocol.swift; sourceTree = "<group>"; };
 		4E7060D41FA612FE00B88F92 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4E835F001F9230A700BFA6BD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetectionInfoViewController.swift; sourceTree = "<group>"; };
 		4EAE9AA51F91DCE700499B18 /* papao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "papao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EAE9AAA1F91DCE700499B18 /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				4E21DE421F9C620500E34203 /* ReportTableViewController.swift */,
 				4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */,
 				4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */,
+				4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EA9CA051FA7674C00115784 /* ReportDetectionInfoViewController.swift in Sources */,
 				4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */,
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
