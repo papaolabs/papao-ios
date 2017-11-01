@@ -102,7 +102,11 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
             alert.addAction(okAction)
             self.present(alert, animated: false)
         } else {
-            // Todo: - go to next step
+//             Todo: - go to next step
+            guard let reportAnimalInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostAnimalInfo") as? ReportAnimalInfoViewController else {
+                return
+            }
+            reportAnimalInfoViewController.uploadImages = self.selectedImages
         }
     }
     

@@ -9,6 +9,9 @@
 import UIKit
 
 class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
+    var uploadImages: [UIImage]! = nil
+    var post: Post?
+    
     var breedList: [Breed]!
     var speciesList: [Species]!
     
@@ -61,27 +64,26 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     @objc func pickerSetAction() {
         if let selectedItems = picker?.selectedItems, let callerView = picker?.callerButton {
             print("\(selectedItems)")
-            callerView.titleLabel?.text = selectedItems[0].name
-            callerView.sizeToFit()
+            callerView.setTitle(selectedItems[0].name, for: .normal)
             // Todo: post용 데이터 로직처리
         }
         picker?.endPicking()
     }
     
     func pickerView(inputAccessoryViewFor pickerView: PPOPicker) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
         view.backgroundColor = .white
         let buttonWidth: CGFloat = 100
         
-        let cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - buttonWidth - 10, y: 0, width: buttonWidth, height: 30))
-        cancelButton.setTitle("Cancel", for: .normal)
+        let cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - buttonWidth - 10, y: 0, width: buttonWidth, height: 40))
+        cancelButton.setTitle("취소", for: .normal)
         cancelButton.setTitleColor(.black, for: .normal)
         cancelButton.setTitleColor(.lightGray, for: .highlighted)
         cancelButton.addTarget(self, action: #selector(pickerCancelAction), for: .touchUpInside)
         view.addSubview(cancelButton)
         
-        let setButton = UIButton(frame: CGRect(x: 10, y: 0, width: buttonWidth, height: 30))
-        setButton.setTitle("Set", for: .normal)
+        let setButton = UIButton(frame: CGRect(x: 10, y: 0, width: buttonWidth, height: 40))
+        setButton.setTitle("선택", for: .normal)
         setButton.setTitleColor(.black, for: .normal)
         setButton.setTitleColor(.lightGray, for: .highlighted)
         setButton.addTarget(self, action: #selector(pickerSetAction), for: .touchUpInside)

@@ -887,7 +887,7 @@
             </objects>
             <point key="canvasLocation" x="1769" y="1739"/>
         </scene>
-        <!--작성하기-->
+        <!--Delegate-->
         <scene sceneID="0gb-dM-Qdj">
             <objects>
                 <viewController title="작성하기" id="oMh-hW-vWT" customClass="ReportDetectionInfoViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -1058,12 +1058,15 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZe-Br-4cK">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZe-Br-4cK" customClass="GMSMapView">
                                                         <rect key="frame" x="15" y="345" width="345" height="178"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="178" id="G4M-3h-yfQ"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="oMh-hW-vWT" id="fgx-o2-Deq"/>
+                                                        </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7Y-j1-KaE">
                                                         <rect key="frame" x="42" y="804" width="290" height="48"/>
@@ -1171,7 +1174,7 @@
                         <outlet property="contactTextField" destination="VLc-mZ-18e" id="GRd-IQ-ZWd"/>
                         <outlet property="dateTextField" destination="ZwA-b0-c5Y" id="4BX-gr-IQM"/>
                         <outlet property="featureTextView" destination="l47-oS-4z8" id="pcO-6M-TtX"/>
-                        <outlet property="mapView" destination="vZe-Br-4cK" id="xyi-Hy-rdT"/>
+                        <outlet property="mapView" destination="vZe-Br-4cK" id="DhT-bS-4Nv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scA-mC-cIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
