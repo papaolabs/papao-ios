@@ -2,7 +2,7 @@
 //  PostDetailViewController.swift
 //  papao-ios
 //
-//  Created by 1002719 on 2017. 10. 17..
+//  Created by closer27 on 2017. 10. 17..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
@@ -57,7 +57,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case 0:
             let cell: PostDetailImageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailImageCell",
                                                                         for: indexPath) as! PostDetailImageTableViewCell
-            if let url = post?.imageUrl {
+            if let url = post?.imageUrls[0] {
                 Alamofire.request(url).responseData { response in
                     if let data = response.result.value {
                         let image = UIImage(data: data)

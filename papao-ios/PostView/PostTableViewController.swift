@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  papao-ios
 //
-//  Created by 1002719 on 2017. 10. 14..
+//  Created by closer27 on 2017. 10. 14..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
@@ -16,52 +16,31 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let postDict: [String: String] = [
-            "id": "1",
-            "type": "01",
-            "imageUrl": "http://www.animal.go.kr/files/shelter/2017/08/201710111610187.jpg",
-            "kindUpCode": "417000",
-            "kindCode": "50",
-            "kindName": "프렌치 불독",
-            "happenDate": "20171001",
-            "happenPlace": "전라남도 나주시",
-            "userId": "01",
-            "userName": "ㅇㅇㅇ애견",
-            "userAddress": "서울시 금천구",
-            "userContact": "010-1234-5678",
-            "weight": "4.0",
-            "gender": "F",
-            "state": "보호중",
-            "neuter": "U",
-            "feature": "프렌치불독",
-            "introduction": ""
-        ]
-        let postDict2: [String: String] = [
-            "id": "2",
-            "desertionId": "445468201700459",
-            "type": "01",
-            "imageUrl": "http://www.animal.go.kr/files/shelter/2017/08/201710042010406.jpg",
-            "kindUpCode": "417000",
-            "kindCode": "128",
-            "kindName": "푸들",
-            "happenDate": "20171001",
-            "happenPlace": "전라북도 익산시",
-            "userId": "01",
-            "userName": "익산유기동물보호소",
-            "userAddress": "전라북도 익산시 함라면 신함1길 12-7 (함라면) ",
-            "userContact": "063-831-7417",
-            "weight": "3.0",
-            "gender": "M",
-            "state": "보호중",
-            "neuter": "N",
-            "feature": "상태 양호함",
-            "introduction": ""
-        ]
-        let post = Post(postDict)
-        let post2 = Post(postDict2)
-        posts.append(post)
-        posts.append(post2)
+
+        let postString = "{\n" +
+            "  \"id\": 257,\n" +
+            "  \"type\": \"01\",\n" +
+            "  \"imageUrls\": [\"http://www.animal.go.kr/files/shelter/2017/08/201709012009506.jpg\"],\n" +
+            "  \"kindUpCode\": \"417000\",\n" +
+            "  \"kindCode\": \"72\",\n" +
+            "  \"kindName\": \"말티즈\",\n" +
+            "  \"happenDate\": \"20170901\",\n" +
+            "  \"happenPlace\": \"경기도 남양주시\",\n" +
+            "  \"userId\": \"01\",\n" +
+            "  \"userName\": \"남양주동물보호협회\",\n" +
+            "  \"userAddress\": \"경기도 남양주시 금곡로 44 (금곡동 성원빌딩) 1층\",\n" +
+            "  \"userContact\": \"031-591-7270\",\n" +
+            "  \"weight\": \"3.7\",\n" +
+            "  \"gender\": \"M\",\n" +
+            "  \"state\": \"종료(입양)\",\n" +
+            "  \"neuter\": \"Y\",\n" +
+            "  \"feature\": \"목줄 없고 온순함\",\n" +
+            "  \"introduction\": \"\"\n" +
+        "}"
+        if let dict = postString.dictionaryFromJSON() {
+            let post = Post(fromDict: dict)
+            posts.append(post)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,14 +75,13 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.happenDateLabel.text = post.happenDate
         cell.happenPlaceLabel.text = post.happenPlace
         
-        if let url = post.imageUrl {
-            Alamofire.request(url).responseData { response in
-                if let data = response.result.value {
-                    let image = UIImage(data: data)
-                    cell.postImageView.image = image
-                }
+        Alamofire.request(post.imageUrls[0]).responseData { response in
+            if let data = response.result.value {
+                let image = UIImage(data: data)
+                cell.postImageView.image = image
             }
         }
+        
         cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
         
         return cell
