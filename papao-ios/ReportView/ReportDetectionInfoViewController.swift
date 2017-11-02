@@ -17,6 +17,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
+    var markerForCurrentLocation: GMSMarker?
 
     // for input the date
     var comp = NSDateComponents()
@@ -38,7 +39,8 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     func setDatePicker() {
         //Formate Date
         datePicker.datePickerMode = .date
-        datePicker.locale = Locale.current
+        datePicker.calendar = Calendar.autoupdatingCurrent
+        datePicker.locale = Locale.init(identifier: "kr_KR")
 
         //ToolBar
         let toolbar = UIToolbar();
@@ -78,27 +80,45 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
         let geocoder = GMSGeocoder.init()
         geocoder.reverseGeocodeCoordinate(marker.position) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
-            print(String(describing:geocodeResponse?.firstResult()?.lines?.joined(separator: ", ")))
+            if let markerForCurrentLocation = self.markerForCurrentLocation {
+                markerForCurrentLocation.title = self.addressExceptCountry(geocodeResponse?.firstResult())
+            }
         }
     }
 
     // MARK: - Private Functions
-    private func addMarker(_ location: CLLocationCoordinate2D) {
+    private func createMarker(_ location: CLLocationCoordinate2D) {
+        print("addMarker")
         // Creates a marker in the center of the map.
-        if let mapView = self.mapView {
-            let marker = GMSMarker()
-            marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            marker.title = "발견 장소"
-            marker.map = mapView
-            marker.isDraggable = true
+        if markerForCurrentLocation == nil {
+            markerForCurrentLocation = GMSMarker()
+            markerForCurrentLocation?.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            markerForCurrentLocation?.map = mapView
+            markerForCurrentLocation?.isDraggable = true
+            setAddress(from: location)
+            mapView.selectedMarker = markerForCurrentLocation
         }
     }
     
     private func setAddress(from coordinate: CLLocationCoordinate2D) {
         let geocoder = GMSGeocoder.init()
         geocoder.reverseGeocodeCoordinate(coordinate) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
-            print(String(describing:geocodeResponse?.firstResult()?.lines?.joined(separator: ", ")))
+            if let markerForCurrentLocation = self.markerForCurrentLocation {
+                markerForCurrentLocation.title = self.addressExceptCountry(geocodeResponse?.firstResult())
+            }
         }
+    }
+    
+    private func addressExceptCountry(_ address: GMSAddress?) -> String? {
+        // 주소에서 대한민국 글자 제거하고 리턴
+        if let addressString = address?.lines?.joined(separator: ", ") {
+            if let range = addressString.range(of: "대한민국 ") {
+                let addressExceptCountry = addressString[range.upperBound..<addressString.endIndex]
+                print(addressExceptCountry) // print Hello
+                return String(addressExceptCountry)
+            }
+        }
+        return nil
     }
 }
 
@@ -111,7 +131,7 @@ extension ReportDetectionInfoViewController: CLLocationManagerDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,
                                               zoom: 15)
-        self.addMarker(location.coordinate)
+        self.createMarker(location.coordinate)
 
         if mapView.isHidden {
             mapView.isHidden = false
