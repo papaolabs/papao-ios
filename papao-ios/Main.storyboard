@@ -432,7 +432,7 @@
                                                         <state key="normal" title="다음"/>
                                                         <connections>
                                                             <action selector="nextButtonPressed:" destination="VVA-Yn-yd4" eventType="touchUpInside" id="syF-e3-lpr"/>
-                                                            <segue destination="dOE-c2-VuM" kind="show" identifier="" id="zLD-y2-cFY"/>
+                                                            <segue destination="dOE-c2-VuM" kind="show" identifier="AnimalInfoSegue" id="zLD-y2-cFY"/>
                                                         </connections>
                                                     </button>
                                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="CJO-J0-eTA">
@@ -751,21 +751,27 @@
                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                     </button>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vA4-h7-fJQ">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="vA4-h7-fJQ">
                                                         <rect key="frame" x="42" y="486" width="290" height="29"/>
                                                         <segments>
-                                                            <segment title="모름"/>
                                                             <segment title="수컷"/>
                                                             <segment title="암컷"/>
+                                                            <segment title="모름"/>
                                                         </segments>
+                                                        <connections>
+                                                            <action selector="genderValueChanged:" destination="dOE-c2-VuM" eventType="valueChanged" id="fey-ni-i32"/>
+                                                        </connections>
                                                     </segmentedControl>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kcC-Pd-a6d">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="kcC-Pd-a6d">
                                                         <rect key="frame" x="32" y="769" width="311" height="29"/>
                                                         <segments>
-                                                            <segment title="모름"/>
                                                             <segment title="중성화 O"/>
                                                             <segment title="중성화 X"/>
+                                                            <segment title="모름"/>
                                                         </segments>
+                                                        <connections>
+                                                            <action selector="neuterValueChanged:" destination="dOE-c2-VuM" eventType="valueChanged" id="R48-0a-EYb"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="중성화 여부" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEh-dJ-j7b">
                                                         <rect key="frame" x="32" y="740" width="78" height="21"/>
@@ -789,6 +795,7 @@
                                                         </constraints>
                                                         <state key="normal" title="다음"/>
                                                         <connections>
+                                                            <action selector="nextButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="2Ty-eH-TcN"/>
                                                             <segue destination="oMh-hW-vWT" kind="show" id="dH0-7x-SJD"/>
                                                         </connections>
                                                     </button>
@@ -882,6 +889,12 @@
                         <viewLayoutGuide key="safeArea" id="naf-tk-wli"/>
                     </view>
                     <size key="freeformSize" width="375" height="1067"/>
+                    <connections>
+                        <outlet property="ageButton" destination="kf4-dw-fos" id="Mud-58-uzj"/>
+                        <outlet property="breedButton" destination="xd4-tY-HsJ" id="eRz-ax-xir"/>
+                        <outlet property="speciesButton" destination="gja-uk-m7I" id="va6-aL-fAc"/>
+                        <outlet property="weightButton" destination="atf-c9-jqh" id="I4o-sX-xJT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bt-At-z8p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -890,7 +903,7 @@
         <!--Delegate-->
         <scene sceneID="0gb-dM-Qdj">
             <objects>
-                <viewController title="작성하기" id="oMh-hW-vWT" customClass="ReportDetectionInfoViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetectionInfo" title="작성하기" id="oMh-hW-vWT" customClass="ReportDetectionInfoViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uZd-Tc-28Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1050"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

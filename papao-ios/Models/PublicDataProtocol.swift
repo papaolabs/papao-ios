@@ -12,5 +12,4 @@ import Foundation
 protocol PublicDataProtocol {
     var code: Int { set get }
     var name: String { set get }
-    
 }

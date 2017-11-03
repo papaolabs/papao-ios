@@ -6,7 +6,7 @@
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Post {
     // MARK: - Required
@@ -29,6 +29,17 @@ struct Post {
     var userContact: String?        // 유저 연락처
     var userName: String?           // 유저 이름
     var weight: String?             // 몸무게 Float
+    
+    // MARK: - For UI
+    var images: [UIImage]?
+    
+    init() {
+        self.happenDate = ""
+        self.happenPlace = ""
+        self.id = -1
+        self.kindUpCode = ""
+        self.type = "01"
+    }
     
     init(fromDict postDict: Dictionary<String, AnyObject>) {
         self.happenDate = postDict["happenDate"] as! String

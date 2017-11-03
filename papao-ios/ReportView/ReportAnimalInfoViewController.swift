@@ -8,17 +8,35 @@
 
 import UIKit
 
+enum PickerName: Int {
+    case SpeciesPicker
+    case BreedPicker
+    case WeightPicker
+    case AgePicker
+}
+
 class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
-    var uploadImages: [UIImage]! = nil
+    @IBOutlet weak var speciesButton: UIButton!
+    @IBOutlet weak var breedButton: UIButton!
+    @IBOutlet weak var weightButton: UIButton!
+    @IBOutlet weak var ageButton: UIButton!
+    
+    // instance for posting Post
     var post: Post?
     
-    var breedList: [Breed]!
-    var speciesList: [Species]!
+    var breedList: [PublicDataProtocol]!
+    var speciesList: [PublicDataProtocol]!
     
     fileprivate var picker: PPOPicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set Indice to caller buttons to specify data
+        breedButton.tag = PickerName.BreedPicker.rawValue
+        speciesButton.tag = PickerName.SpeciesPicker.rawValue
+        weightButton.tag = PickerName.WeightPicker.rawValue
+        ageButton.tag = PickerName.AgePicker.rawValue
         
         // create species list
         if let path = Bundle.main.path(forResource: "SpeciesList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
@@ -46,6 +64,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         picker?.callerButton = sender
         picker?.set(items: [speciesList])
         picker?.startPicking()
+        
     }
     
     @IBAction func breedButtonPressed(_ sender: UIButton) {
@@ -56,6 +75,40 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         picker?.startPicking()
     }
     
+    @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            post?.gender = "M"
+        case 1:
+            post?.gender = "F"
+        case 2:
+            post?.gender = "Q"
+        default:
+            post?.gender = "Q"
+        }
+    }
+    
+    @IBAction func neuterValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            post?.neuter = "Y"
+        case 1:
+            post?.neuter = "N"
+        case 2:
+            post?.neuter = "U"
+        default:
+            post?.neuter = "U"
+        }
+    }
+    
+    @IBAction func nextButtonPressed(_ sender: Any) {
+        // go to next step with post instance
+        guard let reportDetectionInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetectionInfo") as? ReportDetectionInfoViewController else {
+            return
+        }
+        reportDetectionInfoViewController.post = self.post
+    }
+
     // MARK: - PPOPicker Delegate
     @objc func pickerCancelAction() {
         picker?.endPicking()
@@ -64,8 +117,22 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     @objc func pickerSetAction() {
         if let selectedItems = picker?.selectedItems, let callerView = picker?.callerButton {
             print("\(selectedItems)")
-            callerView.setTitle(selectedItems[0].name, for: .normal)
-            // Todo: post용 데이터 로직처리
+            let selectedPublicData: PublicDataProtocol = selectedItems[0]
+            callerView.setTitle(selectedPublicData.name, for: .normal)
+            
+            // set selected data to post instance as picker
+            switch callerView.tag {
+            case PickerName.SpeciesPicker.rawValue:
+                if let species = selectedPublicData as? Species {
+                    post?.kindUpCode = String(describing: species.code)
+                }
+            case PickerName.BreedPicker.rawValue:
+                if let breed = selectedPublicData as? Breed {
+                    post?.kindCode = String(describing: breed.code)
+                    post?.kindName = breed.name
+                }
+            default: break
+            }
         }
         picker?.endPicking()
     }
@@ -93,6 +160,6 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     }
     
     func pickerView(didSelect value: PublicDataProtocol, inRow row: Int, inComponent component: Int, delegatedFrom pickerView: PPOPicker) {
-        print("\(value)")
     }
 }
+

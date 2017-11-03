@@ -22,6 +22,8 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     private var selectedImagesViews: [UIImageView]!
     private var selectedImages: [UIImage]!
     
+    var post: Post = Post.init()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barTintColor = UIColor.init(named: "warmPink")
@@ -101,12 +103,6 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
             }
             alert.addAction(okAction)
             self.present(alert, animated: false)
-        } else {
-//             Todo: - go to next step
-            guard let reportAnimalInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostAnimalInfo") as? ReportAnimalInfoViewController else {
-                return
-            }
-            reportAnimalInfoViewController.uploadImages = self.selectedImages
         }
     }
     
@@ -170,5 +166,18 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AnimalInfoSegue" {
+            if let viewController = segue.destination as? ReportAnimalInfoViewController {
+                // set images of post to selectedImages
+                self.post.images = selectedImages
+
+                // pass data to next viewController
+                viewController.post = post
+            }
+        }
     }
 }
