@@ -20,12 +20,19 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     @IBOutlet weak var breedButton: UIButton!
     @IBOutlet weak var weightButton: UIButton!
     @IBOutlet weak var ageButton: UIButton!
+    @IBOutlet weak var genderSegment: UISegmentedControl!
+    @IBOutlet weak var neuterSegment: UISegmentedControl!
     
     // instance for posting Post
     var post: Post?
     
     var breedList: [PublicDataProtocol]!
     var speciesList: [PublicDataProtocol]!
+    var ageList: [PublicDataProtocol]!
+    var weightList: [PublicDataProtocol]!
+    
+    var genderList: [Gender] = [Gender.M, Gender.F, Gender.Q]
+    var neuterList: [Neuter] = [Neuter.Y, Neuter.N, Neuter.U]
     
     fileprivate var picker: PPOPicker?
     
@@ -37,6 +44,16 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         speciesButton.tag = PickerName.SpeciesPicker.rawValue
         weightButton.tag = PickerName.WeightPicker.rawValue
         ageButton.tag = PickerName.AgePicker.rawValue
+        
+        // set segment for selecting Neuter
+        for (index, element) in neuterList.enumerated() {
+            neuterSegment.setTitle(element.rawValue, forSegmentAt: index)
+        }
+        
+        // set segment for selecting Gender
+        for (index, element) in genderList.enumerated() {
+            genderSegment.setTitle(element.rawValue, forSegmentAt: index)
+        }
         
         // create species list
         if let path = Bundle.main.path(forResource: "SpeciesList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
@@ -52,6 +69,24 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             if let breedList: [AnyObject] = dict["Breed"] as? [AnyObject] {
                 self.breedList = breedList.map({ (dict) -> Breed in
                     return Breed(dict: dict as! [String: AnyObject])
+                })
+            }
+        }
+        
+        // create weight list
+        if let path = Bundle.main.path(forResource: "WeightList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let weightList: [AnyObject] = dict["Weight"] as? [AnyObject] {
+                self.weightList = weightList.map({ (dict) -> Weight in
+                    return Weight(dict: dict as! [String: AnyObject])
+                })
+            }
+        }
+        
+        // create age list
+        if let path = Bundle.main.path(forResource: "AgeList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let ageList: [AnyObject] = dict["Age"] as? [AnyObject] {
+                self.ageList = ageList.map({ (dict) -> Age in
+                    return Age(dict: dict as! [String: AnyObject])
                 })
             }
         }
@@ -75,30 +110,30 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         picker?.startPicking()
     }
     
+    @IBAction func ageButtonPressed(_ sender: UIButton) {
+        picker = PPOPicker(parentViewController: self)
+        picker?.delegate = self
+        picker?.callerButton = sender
+        picker?.set(items: [ageList])
+        picker?.startPicking()
+    }
+    
+    @IBAction func weightButtonPressed(_ sender: UIButton) {
+        picker = PPOPicker(parentViewController: self)
+        picker?.delegate = self
+        picker?.callerButton = sender
+        picker?.set(items: [weightList])
+        picker?.startPicking()
+    }
+    
     @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            post?.gender = "M"
-        case 1:
-            post?.gender = "F"
-        case 2:
-            post?.gender = "Q"
-        default:
-            post?.gender = "Q"
-        }
+        post?.gender = genderList[sender.selectedSegmentIndex].keyName
+        print(String(describing: post))
     }
     
     @IBAction func neuterValueChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            post?.neuter = "Y"
-        case 1:
-            post?.neuter = "N"
-        case 2:
-            post?.neuter = "U"
-        default:
-            post?.neuter = "U"
-        }
+        post?.neuter = neuterList[sender.selectedSegmentIndex].keyName
+        print(String(describing: post))
     }
     
     @IBAction func nextButtonPressed(_ sender: Any) {
@@ -131,6 +166,14 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
                     post?.kindCode = String(describing: breed.code)
                     post?.kindName = breed.name
                 }
+            case PickerName.AgePicker.rawValue:
+                if let age = selectedPublicData as? Age {
+                    post?.age = age.name
+                }
+            case PickerName.WeightPicker.rawValue:
+                if let weight = selectedPublicData as? Weight {
+                    post?.weight = weight.name
+                }
             default: break
             }
         }
@@ -160,6 +203,16 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     }
     
     func pickerView(didSelect value: PublicDataProtocol, inRow row: Int, inComponent component: Int, delegatedFrom pickerView: PPOPicker) {
+    }
+    
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetectionInfoSegue" {
+            if let viewController = segue.destination as? ReportDetectionInfoViewController {
+                // pass data to next viewController
+                viewController.post = post
+            }
+        }
     }
 }
 

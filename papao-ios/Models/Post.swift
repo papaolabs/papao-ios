@@ -8,16 +8,47 @@
 
 import UIKit
 
+enum Type: String {
+    case SYSTEM = "01"
+    case ABSENCE = "02"
+    case PROTECT = "03"
+    
+    var keyName: String {
+        get { return String(describing: self) }
+    }
+}
+
+enum Neuter: String {
+    case Y = "중성화 O"
+    case N = "중성화 X"
+    case U = "모름"
+    
+    var keyName: String {
+        get { return String(describing: self) }
+    }
+}
+
+enum Gender: String {
+    case M = "수컷"
+    case F = "암컷"
+    case Q = "모름"
+    
+    var keyName: String {
+        get { return String(describing: self) }
+    }
+}
+
 struct Post {
     // MARK: - Required
-    var happenDate: String          // 발견날짜
-    var happenPlace: String         // 발견장소
+    var happenDate: String          // 발견날짜 (yyyyMMdd)
+    var happenPlace: String         // 발견장소 (주소 문자열)
     var id : Int                    // Post ID
     var imageUrls: [String] = []    // 사진 URL
     var kindUpCode: String          // 축종코드
     var type: String                // Post 타입
 
     // MARK: - Optional
+    var age: String?                // 나이
     var feature: String?            // 특징(메모)
     var kindCode: String?           // 품종코드
     var kindName: String?           // 품종 이름
@@ -51,6 +82,7 @@ struct Post {
         self.kindUpCode = postDict["kindUpCode"] as! String
         self.type = postDict["type"] as! String
         
+        self.age = postDict["age"] as? String
         self.feature = postDict["feature"] as? String
         self.gender = postDict["gender"] as? String
         self.introduction = postDict["introduction"] as? String

@@ -730,6 +730,9 @@
                                                         <state key="normal" title="3.0 kg">
                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="weightButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="3Ac-8Z-4km"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연령" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzb-Ck-iSB">
                                                         <rect key="frame" x="32" y="639" width="29.5" height="21"/>
@@ -750,6 +753,9 @@
                                                         <state key="normal" title="6 개월">
                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="ageButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="TIC-ac-eB5"/>
+                                                        </connections>
                                                     </button>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="vA4-h7-fJQ">
                                                         <rect key="frame" x="42" y="486" width="290" height="29"/>
@@ -796,7 +802,7 @@
                                                         <state key="normal" title="다음"/>
                                                         <connections>
                                                             <action selector="nextButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="2Ty-eH-TcN"/>
-                                                            <segue destination="oMh-hW-vWT" kind="show" id="dH0-7x-SJD"/>
+                                                            <segue destination="oMh-hW-vWT" kind="show" identifier="DetectionInfoSegue" id="dH0-7x-SJD"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -892,6 +898,8 @@
                     <connections>
                         <outlet property="ageButton" destination="kf4-dw-fos" id="Mud-58-uzj"/>
                         <outlet property="breedButton" destination="xd4-tY-HsJ" id="eRz-ax-xir"/>
+                        <outlet property="genderSegment" destination="vA4-h7-fJQ" id="h4o-Gz-gZF"/>
+                        <outlet property="neuterSegment" destination="kcC-Pd-a6d" id="MOM-r5-Xc6"/>
                         <outlet property="speciesButton" destination="gja-uk-m7I" id="va6-aL-fAc"/>
                         <outlet property="weightButton" destination="atf-c9-jqh" id="I4o-sX-xJT"/>
                     </connections>
