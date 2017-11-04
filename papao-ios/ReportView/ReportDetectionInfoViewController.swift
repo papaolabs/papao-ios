@@ -50,9 +50,9 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         toolbar.sizeToFit()
         
         //done button & cancel button
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker))
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelDatePicker))
         toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
         
         // add toolbar to textField
@@ -81,17 +81,11 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     
     // MARK: - Google Marker Delegates
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-        let geocoder = GMSGeocoder.init()
-        geocoder.reverseGeocodeCoordinate(marker.position) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
-            if let markerForCurrentLocation = self.markerForCurrentLocation {
-                markerForCurrentLocation.title = self.addressExceptCountry(geocodeResponse?.firstResult())
-            }
-        }
+        setAddress(from: marker.position)
     }
 
     // MARK: - Private Functions
     private func createMarker(_ location: CLLocationCoordinate2D) {
-        print("addMarker")
         // Creates a marker in the center of the map.
         if markerForCurrentLocation == nil {
             markerForCurrentLocation = GMSMarker()
@@ -106,8 +100,9 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     private func setAddress(from coordinate: CLLocationCoordinate2D) {
         let geocoder = GMSGeocoder.init()
         geocoder.reverseGeocodeCoordinate(coordinate) { (geocodeResponse: GMSReverseGeocodeResponse?, error) in
-            if let markerForCurrentLocation = self.markerForCurrentLocation {
-                markerForCurrentLocation.title = self.addressExceptCountry(geocodeResponse?.firstResult())
+            if let markerForCurrentLocation = self.markerForCurrentLocation, let addressString = self.addressExceptCountry(geocodeResponse?.firstResult()) {
+                markerForCurrentLocation.title = addressString
+                self.post?.happenPlace = addressString
             }
         }
     }
@@ -119,6 +114,8 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
                 let addressExceptCountry = addressString[range.upperBound..<addressString.endIndex]
                 print(addressExceptCountry) // print Hello
                 return String(addressExceptCountry)
+            } else {
+                return addressString
             }
         }
         return nil
