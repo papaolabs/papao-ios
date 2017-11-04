@@ -37,6 +37,25 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         locationManager.delegate = self
         
         setDatePicker()
+        setContactTextField()
+    }
+    
+    func setContactTextField() {
+        let toolbar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(doneContactTextField))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([spaceButton,doneButton], animated: false)
+        toolbar.sizeToFit()
+
+        contactTextField.inputAccessoryView = toolbar
+    }
+    
+    @objc func doneContactTextField() {
+        if let text = contactTextField.text {
+            // set user contact to post instance
+            post?.userContact = text
+        }
+        self.view.endEditing(true)
     }
     
     func setDatePicker() {
@@ -66,6 +85,11 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         dateTextField.text = formatter.string(from: datePicker.date)
+        
+        // set date for Post instance
+        formatter.dateFormat = "yyyyMMdd"
+        post?.happenDate = formatter.string(from: datePicker.date)
+        
         //dismiss date picker dialog
         self.view.endEditing(true)
     }
