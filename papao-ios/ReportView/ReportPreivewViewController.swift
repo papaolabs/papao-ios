@@ -56,9 +56,17 @@ class ReportPreviewViewController: UIViewController {
     }
 
     func setImages() {
+        let array = [thumbnailButton1, thumbnailButton2, thumbnailButton3]
         if let images = post?.images {
-            
+            for (index, element) in images.enumerated() {
+                let thumbnailButton = array[index]
+                thumbnailButton?.setImage(element, for: .normal)
+                thumbnailButton?.isHidden = false
+            }
         }
+        
+        // default selection
+        thumbnailButton1Pressed(thumbnailButton1)
     }
     
     func setAnimalInfo() {
@@ -117,6 +125,50 @@ class ReportPreviewViewController: UIViewController {
             mapView.camera = camera
         } else {
             mapView.animate(to: camera)
+        }
+    }
+    
+    private func imageToGrayscale(_ image: UIImage) -> UIImage {
+        let context = CIContext(options: nil)
+        let currentFilter = CIFilter(name: "CIPhotoEffectNoir")
+        currentFilter!.setValue(CIImage(image: image), forKey: kCIInputImageKey)
+        let output = currentFilter!.outputImage
+        let cgimg = context.createCGImage(output!,from: output!.extent)
+        let processedImage = UIImage(cgImage: cgimg!)
+        return processedImage
+    }
+    
+    // MARK: - IBActions
+    @IBAction func thumbnailButton1Pressed(_ sender: UIButton) {
+        if let images = self.post?.images {
+            if images.indices.contains(0) {
+                thumbnailButton1.layer.opacity = 1
+                thumbnailButton2.layer.opacity = 0.4
+                thumbnailButton3.layer.opacity = 0.4
+                representImageView.image = images[0]
+            }
+        }
+    }
+    
+    @IBAction func thumbnailButton2Pressed(_ sender: UIButton) {
+        if let images = self.post?.images {
+            if images.indices.contains(1) {
+                thumbnailButton1.layer.opacity = 0.4
+                thumbnailButton2.layer.opacity = 1
+                thumbnailButton3.layer.opacity = 0.4
+                representImageView.image = images[1]
+            }
+        }
+    }
+    
+    @IBAction func thumbnailButton3Pressed(_ sender: UIButton) {
+        if let images = self.post?.images {
+            if images.indices.contains(2) {
+                thumbnailButton1.layer.opacity = 0.4
+                thumbnailButton2.layer.opacity = 0.4
+                thumbnailButton3.layer.opacity = 1
+                representImageView.image = images[2]
+            }
         }
     }
     
