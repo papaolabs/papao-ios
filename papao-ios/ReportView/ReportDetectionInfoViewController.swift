@@ -164,6 +164,16 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         }
         return nil
     }
+    
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PreviewSegue" {
+            if let viewController = segue.destination as? ReportPreviewViewController {
+                // pass data to next viewController
+                viewController.post = post
+            }
+        }
+    }
 }
 
 extension ReportDetectionInfoViewController: CLLocationManagerDelegate {
