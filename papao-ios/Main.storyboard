@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oJ3-Lx-sMj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oJ3-Lx-sMj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -1078,6 +1078,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="oMh-hW-vWT" id="87l-qa-fvf"/>
+                                                        </connections>
                                                     </textView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZe-Br-4cK" customClass="GMSMapView">
                                                         <rect key="frame" x="15" y="345" width="345" height="178"/>
@@ -1193,6 +1196,7 @@
                     <size key="freeformSize" width="375" height="1050"/>
                     <connections>
                         <outlet property="contactTextField" destination="VLc-mZ-18e" id="GRd-IQ-ZWd"/>
+                        <outlet property="contentScrollView" destination="jZN-pA-4uS" id="nA3-5i-dRZ"/>
                         <outlet property="dateTextField" destination="ZwA-b0-c5Y" id="4BX-gr-IQM"/>
                         <outlet property="featureTextView" destination="l47-oS-4z8" id="pcO-6M-TtX"/>
                         <outlet property="mapView" destination="vZe-Br-4cK" id="DhT-bS-4Nv"/>

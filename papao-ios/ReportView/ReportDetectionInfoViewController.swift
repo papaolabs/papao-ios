@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 
 class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
+    @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var mapView: GMSMapView!
@@ -205,5 +206,16 @@ extension ReportDetectionInfoViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
         print("Error: \(error)")
+    }
+}
+
+extension ReportDetectionInfoViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        contentScrollView.setContentOffset(CGPoint.init(x: 0, y: contentScrollView.frame.size.height), animated: true)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        contentScrollView.setContentOffset(CGPoint.init(x: 0, y: contentScrollView.contentSize.height - contentScrollView.frame.size.height), animated: true)
+        self.view.endEditing(true);
     }
 }
