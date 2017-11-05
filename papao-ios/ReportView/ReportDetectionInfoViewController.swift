@@ -38,6 +38,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         
         setDatePicker()
         setContactTextField()
+        setFeatureTextView()
     }
     
     func setContactTextField() {
@@ -80,7 +81,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         dateTextField.inputView = datePicker
     }
 
-    @objc func doneDatePicker(){
+    @objc func doneDatePicker() {
         //For date formate
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -94,8 +95,26 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         self.view.endEditing(true)
     }
     
-    @objc func cancelDatePicker(){
+    @objc func cancelDatePicker() {
         //cancel button dismiss datepicker dialog
+        self.view.endEditing(true)
+    }
+    
+    func setFeatureTextView() {
+        let toolbar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(doneFeatureTextView))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([spaceButton,doneButton], animated: false)
+        toolbar.sizeToFit()
+
+        featureTextView.inputAccessoryView = toolbar
+    }
+    
+    @objc func doneFeatureTextView() {
+        if let featureText = featureTextView.text {
+            post?.feature = featureText
+            print(post)
+        }
         self.view.endEditing(true)
     }
     
