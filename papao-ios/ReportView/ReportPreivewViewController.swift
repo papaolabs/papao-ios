@@ -36,9 +36,6 @@ class ReportPreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(post)
-        
         setPost()
     }
     
@@ -51,8 +48,8 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setTitle() {
-        if let species = post?.kindUpCode, let breedName = post?.kindName, let gender = post?.gender {
-            speciesLabel.text = species
+        if let species = post?.kindUpCode, let speciesCode = Int(species), let speciesName = SpeciesName(rawValue: speciesCode), let breedName = post?.kindName, let gender = post?.gender {
+            speciesLabel.text = speciesName.description
             genderLabel.text = gender
             breedLabel.text = breedName
         }
@@ -74,11 +71,11 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setDetectionInfo() {
-        if let contact = post?.userContact, let date = post?.happenDate, let place = post?.happenPlace, let feature = post?.feature {
-            userContactLabel.text = contact
-            happenDateLabel.text = date
-            happenPlaceLabel.text = place
-            featureLabel.text = feature
+        if let post = self.post {
+            happenDateLabel.text = post.happenDate
+            happenPlaceLabel.text = post.happenPlace
+            userContactLabel.text = post.userContact ?? ""
+            featureLabel.text = post.feature ?? ""
         }
     }
     

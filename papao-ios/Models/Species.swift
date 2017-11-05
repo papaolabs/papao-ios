@@ -8,13 +8,24 @@
 
 import Foundation
 
-enum SpeciesName: String {
-    case DOG = "개"
-    case CAT = "고양이"
-    case ETC = "기타"
+enum SpeciesName: Int {
+    case DOG = 417000
+    case CAT = 422400
+    case ETC = 429900
     
     var keyName: String {
         get { return String(describing: self) }
+    }
+    
+    var description: String {
+        switch self {
+        case .DOG:
+            return "개"
+        case .CAT:
+            return "고양이"
+        case .ETC:
+            return "기타"
+        }
     }
 }
 
@@ -26,13 +37,13 @@ struct Species: PublicDataProtocol {
         self.code = dict["code"] as! Int
         switch dict["name"] as! String {
         case SpeciesName.DOG.keyName:
-            self.name = SpeciesName.DOG.rawValue
+            self.name = SpeciesName.DOG.description
         case SpeciesName.CAT.keyName:
-            self.name = SpeciesName.CAT.rawValue
+            self.name = SpeciesName.CAT.description
         case SpeciesName.ETC.keyName:
-            self.name = SpeciesName.ETC.rawValue
+            self.name = SpeciesName.ETC.description
         default:
-            self.name = SpeciesName.ETC.rawValue
+            self.name = SpeciesName.ETC.description
         }
     }
 }
