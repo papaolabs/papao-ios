@@ -13,7 +13,6 @@ import Photos
 class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var nextButton: UIButton!
     
     // for getting a photo
     private let picker = BSImagePickerViewController()
@@ -21,6 +20,8 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     // imageViews for picked photos
     private var selectedImagesViews: [UIImageView]!
     private var selectedImages: [UIImage]!
+    
+    let tagForIconView = 999
     
     var post: Post = Post.init()
     
@@ -45,14 +46,16 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         
         // set content size of scrollView
         imageScrollView.contentSize = CGSize(width: imageScrollView.bounds.size.width * 3, height: imageScrollView.bounds.size.height)
-        imageScrollView.backgroundColor = UIColor.lightGray
-        imageScrollView.layer.cornerRadius = 5
         imageScrollView.showsVerticalScrollIndicator = false
         imageScrollView.showsHorizontalScrollIndicator = false
         imageScrollView.alwaysBounceVertical = false
         imageScrollView.alwaysBounceHorizontal = true
         imageScrollView.isPagingEnabled = true
         imageScrollView.delegate = self
+        imageScrollView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uploadImagesPressed))
+        imageScrollView.addGestureRecognizer(tapGestureRecognizer)
+        imageScrollView.isUserInteractionEnabled = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,8 +64,14 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
             selectedImagesViews = []
             for index in 0..<pageControl.numberOfPages {
                 let imageView = UIImageView.init(frame: CGRect(origin: CGPoint(x:Int(imageScrollView.bounds.size.width) * index, y:0), size: imageScrollView.bounds.size))
-                imageView.contentMode = .scaleAspectFill
-                imageView.tag = index
+                imageView.contentMode = .scaleAspectFit
+                
+                // add icon
+                let iconImageView = UIImageView.init(image: UIImage.init(named: "iconAddpic"))
+                iconImageView.center = imageView.center
+                iconImageView.tag = tagForIconView
+                imageView.addSubview(iconImageView)
+                
                 selectedImagesViews.append(imageView)
                 imageScrollView.addSubview(imageView)
             }
@@ -128,7 +137,9 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
 
             // set new images to each imageViews
             for index in 0..<images.count {
-                self.selectedImagesViews[index].image = images[index]
+                let imageView = self.selectedImagesViews[index]
+                imageView.viewWithTag(self.tagForIconView)?.isHidden = true   // hidden icon view
+                imageView.image = images[index]
             }
         })
     }
@@ -170,6 +181,17 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 다음 페이지 넘어가기전 vaildation
+        if self.selectedImages == nil || self.selectedImages.isEmpty {
+            let alert = UIAlertController(title: nil, message: "사진은 반드시 한장 이상 등록해주세요.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: false)
+            
+            return
+        }
+
         if segue.identifier == "AnimalInfoSegue" {
             if let viewController = segue.destination as? ReportAnimalInfoViewController {
                 // set images of post to selectedImages

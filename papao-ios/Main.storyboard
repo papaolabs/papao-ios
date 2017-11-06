@@ -302,7 +302,7 @@
             <objects>
                 <viewController title="작성하기" id="VVA-Yn-yd4" customClass="ReportImageUploadViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vCZ-ix-CFD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="681"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9E-sN-cYG" userLabel="Progress View">
@@ -388,13 +388,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBu-Cq-ahp" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="514"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUj-8y-Sr2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnP-QO-mTa" userLabel="Content View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사진은 최대 3장까지 등록 가능합니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVx-8L-vgq">
                                                         <rect key="frame" x="90" y="54" width="195" height="16"/>
@@ -412,29 +412,6 @@
                                                             <constraint firstAttribute="width" secondItem="Mqm-Lx-ITs" secondAttribute="height" multiplier="1:1" id="Coa-Oe-AMk"/>
                                                         </constraints>
                                                     </scrollView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ss-aU-nsD">
-                                                        <rect key="frame" x="295" y="94" width="72" height="40"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="72" id="Acj-DL-3Ws"/>
-                                                            <constraint firstAttribute="height" constant="40" id="jQb-S6-Iut"/>
-                                                        </constraints>
-                                                        <state key="normal" title="사진 등록"/>
-                                                        <connections>
-                                                            <action selector="uploadImagesPressed" destination="VVA-Yn-yd4" eventType="touchUpInside" id="637-Bl-INg"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LU-pk-GHX">
-                                                        <rect key="frame" x="16" y="491" width="343" height="44"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="HQi-Fe-3D0"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                        <state key="normal" title="다음"/>
-                                                        <connections>
-                                                            <action selector="nextButtonPressed:" destination="VVA-Yn-yd4" eventType="touchUpInside" id="syF-e3-lpr"/>
-                                                            <segue destination="dOE-c2-VuM" kind="show" identifier="AnimalInfoSegue" id="zLD-y2-cFY"/>
-                                                        </connections>
-                                                    </button>
                                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="CJO-J0-eTA">
                                                         <rect key="frame" x="168" y="453" width="39" height="37"/>
                                                         <constraints>
@@ -442,7 +419,7 @@
                                                             <constraint firstAttribute="height" constant="37" id="g2a-aB-tG5"/>
                                                         </constraints>
                                                         <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="currentPageIndicatorTintColor" name="warmPink"/>
+                                                        <color key="currentPageIndicatorTintColor" name="brightBlue"/>
                                                         <connections>
                                                             <action selector="pageChangeValueWithSender:" destination="VVA-Yn-yd4" eventType="valueChanged" id="Hzw-03-da3"/>
                                                         </connections>
@@ -459,17 +436,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="backgroundGray"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CJO-J0-eTA" secondAttribute="bottom" constant="24" id="3jh-VT-wG1"/>
                                                     <constraint firstItem="jaq-Da-9fB" firstAttribute="top" secondItem="dnP-QO-mTa" secondAttribute="top" constant="30" id="4g4-Ff-B50"/>
-                                                    <constraint firstItem="3LU-pk-GHX" firstAttribute="top" secondItem="CJO-J0-eTA" secondAttribute="bottom" constant="1" id="7Ov-Mm-iia"/>
-                                                    <constraint firstItem="9Ss-aU-nsD" firstAttribute="leading" secondItem="Mqm-Lx-ITs" secondAttribute="trailing" constant="-72" id="AoR-6h-0w3"/>
                                                     <constraint firstItem="CJO-J0-eTA" firstAttribute="top" secondItem="Mqm-Lx-ITs" secondAttribute="bottom" id="Rhi-QT-BQw"/>
-                                                    <constraint firstItem="Mqm-Lx-ITs" firstAttribute="top" secondItem="9Ss-aU-nsD" secondAttribute="bottom" constant="-40" id="SqA-r6-UbA"/>
                                                     <constraint firstItem="Mqm-Lx-ITs" firstAttribute="top" secondItem="JVx-8L-vgq" secondAttribute="bottom" constant="24" id="Toh-Fn-OqO"/>
                                                     <constraint firstAttribute="trailing" secondItem="Mqm-Lx-ITs" secondAttribute="trailing" constant="8" id="ZQp-4c-qun"/>
                                                     <constraint firstItem="CJO-J0-eTA" firstAttribute="centerX" secondItem="dnP-QO-mTa" secondAttribute="centerX" id="d9D-Io-Am1"/>
-                                                    <constraint firstAttribute="trailing" secondItem="3LU-pk-GHX" secondAttribute="trailing" constant="16" id="e03-yn-NaS"/>
                                                     <constraint firstItem="jaq-Da-9fB" firstAttribute="centerX" secondItem="dnP-QO-mTa" secondAttribute="centerX" id="exI-DM-7gr"/>
-                                                    <constraint firstItem="3LU-pk-GHX" firstAttribute="leading" secondItem="dnP-QO-mTa" secondAttribute="leading" constant="16" id="g45-BJ-R96"/>
                                                     <constraint firstItem="Mqm-Lx-ITs" firstAttribute="leading" secondItem="dnP-QO-mTa" secondAttribute="leading" constant="8" id="lid-ki-7YE"/>
                                                     <constraint firstItem="JVx-8L-vgq" firstAttribute="top" secondItem="jaq-Da-9fB" secondAttribute="bottom" constant="4" id="qSz-jQ-Pwm"/>
                                                     <constraint firstItem="JVx-8L-vgq" firstAttribute="centerX" secondItem="dnP-QO-mTa" secondAttribute="centerX" id="vPw-Bs-N6m"/>
@@ -495,7 +468,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="backgroundGray"/>
                         <constraints>
                             <constraint firstItem="PBu-Cq-ahp" firstAttribute="leading" secondItem="eYZ-2H-Ak6" secondAttribute="leading" id="B5z-q4-pzo"/>
                             <constraint firstItem="m9E-sN-cYG" firstAttribute="top" secondItem="eYZ-2H-Ak6" secondAttribute="top" constant="-64" id="Bg8-4R-hny"/>
@@ -507,16 +480,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eYZ-2H-Ak6"/>
                     </view>
-                    <size key="freeformSize" width="375" height="716"/>
+                    <navigationItem key="navigationItem" title="작성하기" id="RY5-gX-RhW">
+                        <barButtonItem key="rightBarButtonItem" title="다음" id="AeG-AN-G5Y">
+                            <connections>
+                                <action selector="nextButtonPressed:" destination="VVA-Yn-yd4" id="s8A-ev-Qoc"/>
+                                <segue destination="dOE-c2-VuM" kind="show" identifier="AnimalInfoSegue" id="axk-Dz-zXZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="375" height="681"/>
                     <connections>
                         <outlet property="imageScrollView" destination="Mqm-Lx-ITs" id="aqJ-1o-Apr"/>
-                        <outlet property="nextButton" destination="3LU-pk-GHX" id="TcK-3M-yPM"/>
                         <outlet property="pageControl" destination="CJO-J0-eTA" id="mdZ-kv-cEX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kZ-a2-5pB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1116" y="1582"/>
+            <point key="canvasLocation" x="1116" y="1565"/>
         </scene>
         <!--작성하기-->
         <scene sceneID="jBl-0e-YGi">
@@ -882,7 +862,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="backgroundGray"/>
                         <constraints>
                             <constraint firstItem="23e-JT-N6p" firstAttribute="top" secondItem="VFk-Oe-jF8" secondAttribute="bottom" id="DDG-2w-Rkn"/>
                             <constraint firstItem="VFk-Oe-jF8" firstAttribute="leading" secondItem="naf-tk-wli" secondAttribute="leading" id="IVZ-W9-ee6"/>
@@ -1181,7 +1161,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="backgroundGray"/>
                         <constraints>
                             <constraint firstItem="fJk-4G-Tt0" firstAttribute="trailing" secondItem="hor-Ml-gQo" secondAttribute="trailing" id="4CJ-xQ-xAc"/>
                             <constraint firstItem="fJk-4G-Tt0" firstAttribute="top" secondItem="Vvd-Ux-TyF" secondAttribute="bottom" id="JrM-gO-uBS"/>
@@ -1531,7 +1511,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="backgroundGray"/>
                         <constraints>
                             <constraint firstItem="MQh-gh-eCF" firstAttribute="width" secondItem="722-hz-WWV" secondAttribute="width" id="4hN-m0-StN"/>
                             <constraint firstItem="tWK-rc-xIk" firstAttribute="trailing" secondItem="722-hz-WWV" secondAttribute="trailing" id="91R-t3-S30"/>
@@ -1647,8 +1627,14 @@
         <namedColor name="backgroundGray">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="backgroundGray">
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="borderColor">
             <color red="0.875" green="0.86299997568130493" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brightBlue">
+            <color red="0.0" green="0.4779999852180481" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="placeholderGray">
             <color red="0.60799998044967651" green="0.60799998044967651" blue="0.60799998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
