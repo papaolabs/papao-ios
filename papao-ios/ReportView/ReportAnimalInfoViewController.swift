@@ -53,12 +53,12 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         
         // set segment for selecting Neuter
         for (index, element) in neuterList.enumerated() {
-            neuterSegment.setTitle(element.rawValue, forSegmentAt: index)
+            neuterSegment.setTitle(element.description, forSegmentAt: index)
         }
         
         // set segment for selecting Gender
         for (index, element) in genderList.enumerated() {
-            genderSegment.setTitle(element.rawValue, forSegmentAt: index)
+            genderSegment.setTitle(element.description, forSegmentAt: index)
         }
         
         // create species list
@@ -141,14 +141,6 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         post?.neuter = neuterList[sender.selectedSegmentIndex].keyName
         print(String(describing: post))
     }
-    
-    @IBAction func nextButtonPressed(_ sender: Any) {
-        // go to next step with post instance
-        guard let reportDetectionInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetectionInfo") as? ReportDetectionInfoViewController else {
-            return
-        }
-        reportDetectionInfoViewController.post = self.post
-    }
 
     // MARK: - PPOPicker Delegate
     @objc func pickerCancelAction() {
@@ -213,6 +205,8 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Todo: Post Validation
+        
         if segue.identifier == "DetectionInfoSegue" {
             if let viewController = segue.destination as? ReportDetectionInfoViewController {
                 // pass data to next viewController
