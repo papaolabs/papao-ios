@@ -11,6 +11,9 @@ import BSImagePicker
 import Photos
 
 class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var stepLabel2: UILabel!
+    @IBOutlet weak var stepLabel3: UILabel!
+
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -36,6 +39,12 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set step Label
+        stepLabel2.setRadius(radius: stepLabel2.bounds.width/2)
+        stepLabel2.setBorder(color: UIColor.white)
+        stepLabel3.setRadius(radius: stepLabel2.bounds.width/2)
+        stepLabel3.setBorder(color: UIColor.white)
         
         // set picker
         picker.delegate = self

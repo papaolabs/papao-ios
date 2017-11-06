@@ -16,6 +16,8 @@ enum PickerName: Int {
 }
 
 class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
+    @IBOutlet weak var stepLabel3: UILabel!
+    
     @IBOutlet weak var speciesButton: UIButton!
     @IBOutlet weak var breedButton: UIButton!
     @IBOutlet weak var weightButton: UIButton!
@@ -38,6 +40,10 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set step label
+        stepLabel3.setBorder(color: .white)
+        stepLabel3.setRadius(radius: stepLabel3.bounds.width/2)
         
         // set Indice to caller buttons to specify data
         breedButton.tag = PickerName.BreedPicker.rawValue
