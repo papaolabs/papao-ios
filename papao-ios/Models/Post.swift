@@ -105,7 +105,7 @@ struct Post {
         self.happenPlace = ""
         self.id = -1
         self.kindUpCode = ""
-        self.type = "01"
+        self.type = Type.ROADREPORT.description
     }
     
     init(fromDict postDict: Dictionary<String, AnyObject>) {

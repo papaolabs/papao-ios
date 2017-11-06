@@ -206,6 +206,15 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Todo: Post Validation
+        if let post = post {
+            guard post.kindUpCode != "" else {
+                presentAlert(message: "축종 선택은 필수입니다.")
+                return
+            }
+        } else {
+            print("post 생성 에러")
+            return
+        }
         
         if segue.identifier == "DetectionInfoSegue" {
             if let viewController = segue.destination as? ReportDetectionInfoViewController {
@@ -214,6 +223,15 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
                 print("AnimalInfo \(post)")
             }
         }
+    }
+    
+    // MARK: - Private Functions
+    func presentAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: false)
     }
 }
 
