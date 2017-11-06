@@ -11,7 +11,7 @@ import GoogleMaps
 import Alamofire
 
 class ReportPreviewViewController: UIViewController {
-    @IBOutlet weak var speciesLabel: UILabel!
+    @IBOutlet weak var speciesLabel: PPOBadge!
     @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     
@@ -19,6 +19,7 @@ class ReportPreviewViewController: UIViewController {
     @IBOutlet weak var thumbnailButton1: UIButton!
     @IBOutlet weak var thumbnailButton2: UIButton!
     @IBOutlet weak var thumbnailButton3: UIButton!
+    var thumbnailButtons: [UIButton] = []
     
     @IBOutlet weak var genderDescriptionLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
@@ -36,7 +37,18 @@ class ReportPreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setCustomUI()
         setPost()
+    }
+    
+    func setCustomUI() {
+        speciesLabel.setBorder(color: UIColor.init(named: "borderBlack") ?? UIColor.black)
+        speciesLabel.setRadius(radius: 13)
+        
+        thumbnailButtons = [thumbnailButton1, thumbnailButton2, thumbnailButton3]
+        thumbnailButtons.forEach { (button) in
+            button.setRadius(radius: 2)
+        }
     }
     
     func setPost() {
@@ -48,20 +60,21 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setTitle() {
-        if let species = post?.kindUpCode, let speciesCode = Int(species), let speciesName = SpeciesName(rawValue: speciesCode), let breedName = post?.kindName, let gender = post?.gender {
-            speciesLabel.text = speciesName.description
-            genderLabel.text = gender
-            breedLabel.text = breedName
+        if let species = post?.kindUpCode, let speciesCode = Int(species) {
+            if let speciesName = SpeciesName(rawValue: speciesCode) {
+                speciesLabel.setTitle(speciesName.description, for: .normal)
+            }
+            breedLabel.text = post?.kindName ?? "기타축종"
+            genderLabel.text = post?.gender ?? "모름"
         }
     }
 
     func setImages() {
-        let array = [thumbnailButton1, thumbnailButton2, thumbnailButton3]
         if let images = post?.images {
             for (index, element) in images.enumerated() {
-                let thumbnailButton = array[index]
-                thumbnailButton?.setImage(element, for: .normal)
-                thumbnailButton?.isHidden = false
+                let thumbnailButton = thumbnailButtons[index]
+                thumbnailButton.setImage(element, for: .normal)
+                thumbnailButton.isHidden = false
             }
         }
         
@@ -70,24 +83,25 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setAnimalInfo() {
-        if let age = post?.age, let neuter = post?.neuter, let gender = post?.gender, let weight = post?.weight {
-            weightLabel.text = weight
-            neuterLabel.text = neuter
-            ageLabel.text = age
-            genderDescriptionLabel.text = gender
-        }
+        weightLabel.text = post?.weight ?? "모름"
+        neuterLabel.text = post?.neuter ?? Neuter.U.description
+        ageLabel.text = post?.age ?? "미상"
+        genderDescriptionLabel.text = post?.gender ?? Gender.Q.description
     }
     
     func setDetectionInfo() {
         if let post = self.post {
             happenDateLabel.text = post.happenDate
             happenPlaceLabel.text = post.happenPlace
-            userContactLabel.text = post.userContact ?? ""
+            userContactLabel.text = post.userContact ?? "없음"
             featureLabel.text = post.feature ?? ""
         }
     }
     
     func setMapView() {
+        mapView.settings.scrollGestures = false
+        mapView.settings.zoomGestures = false
+        
         if let escapeAddress = post?.happenPlace.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
             let url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=@\(escapeAddress)"
             print(url)
@@ -115,7 +129,7 @@ class ReportPreviewViewController: UIViewController {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         marker.map = mapView
-        marker.isDraggable = true
+        marker.isDraggable = false
         
         let camera = GMSCameraPosition.camera(withLatitude: location.latitude,
                                               longitude: location.longitude,

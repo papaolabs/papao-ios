@@ -211,6 +211,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             if let viewController = segue.destination as? ReportDetectionInfoViewController {
                 // pass data to next viewController
                 viewController.post = post
+                print("AnimalInfo \(post)")
             }
         }
     }

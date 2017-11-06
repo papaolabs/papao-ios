@@ -43,6 +43,8 @@
 		4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3951FA5E004009E287C /* SpeciesList.plist */; };
 		4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6F3971FA5E1C7009E287C /* Species.swift */; };
 		4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */; };
+		4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */; };
+		4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		4ED6F3951FA5E004009E287C /* SpeciesList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SpeciesList.plist; sourceTree = "<group>"; };
 		4ED6F3971FA5E1C7009E287C /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
 		4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnimalInfoViewController.swift; sourceTree = "<group>"; };
+		4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+OvalBorder.swift"; sourceTree = "<group>"; };
+		4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBadge.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +192,7 @@
 			children = (
 				4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */,
 				4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */,
+				4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */,
 			);
 			name = Extension;
 			path = "papao-ios/Extension";
@@ -197,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */,
-				4E7060CE1FA5FEE300B88F92 /* PPOPicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -247,6 +251,7 @@
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
 				4E326A851FA2049C006325B4 /* Extension */,
+				4EDC3C711FAF2551004F3406 /* CustomUI */,
 				4ED6F3921FA5D0B7009E287C /* Resources */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
@@ -285,6 +290,15 @@
 				4E6423B91FADD4A20099A4C7 /* AgeList.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4EDC3C711FAF2551004F3406 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				4E7060CE1FA5FEE300B88F92 /* PPOPicker.swift */,
+				4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		EF54A41229C9B6A69EFEEEAE /* Frameworks */ = {
@@ -507,6 +521,7 @@
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
+				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
 				4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */,
@@ -523,6 +538,7 @@
 				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
 				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */,
+				4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
 				4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */,
 				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,

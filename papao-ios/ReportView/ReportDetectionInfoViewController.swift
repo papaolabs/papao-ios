@@ -114,13 +114,11 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     @objc func doneFeatureTextView() {
         if let featureText = featureTextView.text {
             post?.feature = featureText
-            print(post)
         }
         self.view.endEditing(true)
     }
     
     @IBAction func previewButtonPressed(_ sender: UIButton) {
-        
     }
     
     // MARK: - Google Marker Delegates
@@ -171,6 +169,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
             if let viewController = segue.destination as? ReportPreviewViewController {
                 // pass data to next viewController
                 viewController.post = post
+                print("AnimalInfo \(post)")
             }
         }
     }

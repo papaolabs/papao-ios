@@ -9,32 +9,68 @@
 import UIKit
 
 enum Type: String {
-    case SYSTEM = "01"
-    case ABSENCE = "02"
-    case PROTECT = "03"
-    
+    case SYSTEM = "SYSTEM"
+    case PROTECTING = "PROTECTING"
+    case ROADREPORT = "ROADREPORT"
+    case MISSING = "MISSING"
+
     var keyName: String {
         get { return String(describing: self) }
+    }
+    
+    var description: String {
+        switch self {
+        case .SYSTEM:
+            return "보호소"
+        case .PROTECTING:
+            return "개인보호"
+        case .ROADREPORT:
+            return "제보"
+        case .MISSING:
+            return "실종"
+        }
     }
 }
 
 enum Neuter: String {
-    case Y = "중성화 O"
-    case N = "중성화 X"
-    case U = "모름"
+    case Y = "Y"
+    case N = "N"
+    case U = "U"
     
     var keyName: String {
         get { return String(describing: self) }
     }
+    
+    var description: String {
+        switch self {
+        case .Y:
+            return "중성화 O"
+        case .N:
+            return "중성화 X"
+        case .U:
+            return "모름"
+        }
+    }
 }
 
 enum Gender: String {
-    case M = "수컷"
-    case F = "암컷"
-    case Q = "모름"
+    case M = "M"
+    case F = "F"
+    case Q = "Q"
     
     var keyName: String {
         get { return String(describing: self) }
+    }
+    
+    var description: String {
+        switch self {
+        case .M:
+            return "수컷"
+        case .F:
+            return "암컷"
+        case .Q:
+            return "모름"
+        }
     }
 }
 
