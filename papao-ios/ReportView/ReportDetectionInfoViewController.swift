@@ -30,6 +30,11 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        mapView.setRadius(radius: 2)
+        featureTextView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        featureTextView.setRadius(radius: 2)
+        
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -118,9 +123,6 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         self.view.endEditing(true)
     }
     
-    @IBAction func previewButtonPressed(_ sender: UIButton) {
-    }
-    
     // MARK: - Google Marker Delegates
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
         setAddress(from: marker.position)
@@ -162,9 +164,32 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         }
         return nil
     }
-    
+
+    func presentAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: false)
+    }
+
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Todo: Post Validation
+        if let post = post {
+            guard post.happenDate != "" else {
+                presentAlert(message: "발견 날짜 입력은 필수입니다.")
+                return
+            }
+            guard post.happenDate != "" else {
+                presentAlert(message: "발견 장소 지정은 필수입니다.")
+                return
+            }
+        } else {
+            print("post 생성 에러")
+            return
+        }
+        
         if segue.identifier == "PreviewSegue" {
             if let viewController = segue.destination as? ReportPreviewViewController {
                 // pass data to next viewController

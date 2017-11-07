@@ -49,6 +49,9 @@ class ReportPreviewViewController: UIViewController {
         thumbnailButtons.forEach { (button) in
             button.setRadius(radius: 2)
         }
+        
+        mapView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        mapView.setRadius(radius: 2)
     }
     
     func setPost() {
@@ -187,6 +190,7 @@ class ReportPreviewViewController: UIViewController {
     }
     
     @IBAction func registerReport(_ sender: Any) {
+        // Todo: Http POST
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
