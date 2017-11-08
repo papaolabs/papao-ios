@@ -9,9 +9,20 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    @IBOutlet var postImageView: UIImageView!
-    @IBOutlet var kindLabel: UILabel!
-    @IBOutlet var happenDateLabel: UILabel!
-    @IBOutlet var happenPlaceLabel: UILabel!
-    @IBOutlet var favoriteButton: UIButton!
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var happenDateLabel: UILabel!
+    @IBOutlet weak var happenPlaceLabel: UILabel!
+    @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var viewCountLabel: UILabel!
+    @IBOutlet weak var stateBadge: PPOBadge!
+    
+    override func awakeFromNib() {
+        initialize()
+    }
+    
+    func initialize() {
+        postImageView.setRadius(radius: 8)
+    }
 }
