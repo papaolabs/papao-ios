@@ -73,7 +73,8 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
             selectedImagesViews = []
             for index in 0..<pageControl.numberOfPages {
                 let imageView = UIImageView.init(frame: CGRect(origin: CGPoint(x:Int(imageScrollView.bounds.size.width) * index, y:0), size: imageScrollView.bounds.size))
-                imageView.contentMode = .scaleAspectFit
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
                 
                 // add icon
                 let iconImageView = UIImageView.init(image: UIImage.init(named: "iconAddpic"))

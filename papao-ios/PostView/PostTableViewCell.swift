@@ -24,5 +24,6 @@ class PostTableViewCell: UITableViewCell {
     
     func initialize() {
         postImageView.setRadius(radius: 8)
+        stateBadge.setStyle(type: .small)
     }
 }

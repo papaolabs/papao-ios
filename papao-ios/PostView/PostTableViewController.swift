@@ -23,7 +23,7 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
             "  \"imageUrls\": [\"http://www.animal.go.kr/files/shelter/2017/08/201709012009506.jpg\"],\n" +
             "  \"kindUpCode\": \"417000\",\n" +
             "  \"kindCode\": \"72\",\n" +
-            "  \"kindName\": \"말티즈\",\n" +
+            "  \"kindName\": \"아메리칸 도고 아르젠티나\",\n" +
             "  \"happenDate\": \"20170901\",\n" +
             "  \"happenPlace\": \"경기도 남양주시\",\n" +
             "  \"userId\": \"01\",\n" +
@@ -82,8 +82,6 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
-        
         return cell
     }
     
@@ -93,10 +91,12 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 140
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         let row = self.posts[indexPath.row]
         guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
             return

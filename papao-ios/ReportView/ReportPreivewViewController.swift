@@ -42,8 +42,7 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setCustomUI() {
-        speciesLabel.setBorder(color: UIColor.init(named: "borderBlack") ?? UIColor.black)
-        speciesLabel.setRadius(radius: 13)
+        speciesLabel.setStyle(type: .medium)
         
         thumbnailButtons = [thumbnailButton1, thumbnailButton2, thumbnailButton3]
         thumbnailButtons.forEach { (button) in
