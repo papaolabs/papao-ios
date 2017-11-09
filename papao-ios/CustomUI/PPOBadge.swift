@@ -49,6 +49,7 @@ class PPOBadge: UIButton {
     func setColor(color: UIColor?) {
         if let backgroundColor = color {
             self.backgroundColor = backgroundColor
+            setBorder(color: backgroundColor)
             setTitleColor(.white, for: .normal)
         } else {
             setBorder(color: UIColor.init(named: "textBlack") ?? .black)

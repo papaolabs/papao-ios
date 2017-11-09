@@ -24,6 +24,17 @@ class PostTableViewCell: UITableViewCell {
     
     func initialize() {
         postImageView.setRadius(radius: 8)
-        stateBadge.setStyle(type: .small)
+    }
+    
+    func setPost(post: Post) {
+        if let stateValue = post.stateType, let state = State(rawValue: stateValue) {
+            if state == .PROCESS {
+                stateBadge.isHidden = true
+            } else {
+                stateBadge.isHidden = false
+                stateBadge.setStyle(type: .small, backgroundColor: state.color)
+                stateBadge.setTitle(state.rawValue, for: .normal)
+            }
+        }
     }
 }

@@ -33,11 +33,11 @@ enum Type: String {
 }
 
 enum State: String {
-    case PROCESS = "보호중"
-    case RETURN = "종료(반환)"
-    case NATURALDEATH = "종료(자연사)"
-    case EUTHANASIA = "종료(안락사)"
-    case ADOPTION = "종료(입양)"
+    case PROCESS = "PROCESS"
+    case RETURN = "RETURN"
+    case NATURALDEATH = "NATURALDEATH"
+    case EUTHANASIA = "EUTHANASIA"
+    case ADOPTION = "ADOPTION"
     
     var color: UIColor? {
         switch self {
@@ -56,6 +56,21 @@ enum State: String {
     
     var keyName: String {
         get { return String(describing: self) }
+    }
+    
+    var description: String {
+        switch self {
+        case .PROCESS:
+            return "보호중"
+        case .RETURN:
+            return "종료(반환)"
+        case .NATURALDEATH:
+            return "종료(자연사)"
+        case .EUTHANASIA:
+            return "종료(안락사)"
+        case .ADOPTION:
+            return "종료(입양)"
+        }
     }
 }
 
@@ -149,7 +164,7 @@ struct Post {
         self.id = Int(id)
         
         self.desertionId = json["desertionId"] as? String
-        self.stateType = json["state"] as? String
+        self.stateType = json["stateType"] as? String
         self.postType = json["postType"] as? String
         self.genderType = json["gender"] as? String
         self.neuterType = json["neuter"] as? String
