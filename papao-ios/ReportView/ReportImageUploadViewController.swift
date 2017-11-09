@@ -26,7 +26,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     
     let tagForIconView = 999
     
-    var post: Post = Post.init()
+    var post: PostRequest = PostRequest.init()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

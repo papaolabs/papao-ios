@@ -57,7 +57,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case 0:
             let cell: PostDetailImageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailImageCell",
                                                                         for: indexPath) as! PostDetailImageTableViewCell
-            if let url = post?.imageUrls[0] {
+            if let urlDict: [String: Any] = post?.imageUrls[0], let url = urlDict["url"] as? String {
                 Alamofire.request(url).responseData { response in
                     if let data = response.result.value {
                         let image = UIImage(data: data)
@@ -100,13 +100,13 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
                 break
             case 3:
-                if let userName = post?.userName {
+                if let userName = post?.managerName {
                     cell.titleLabel.text = "보호센터"
                     cell.contentLabel.text = userName
                 }
                 break
             case 4:
-                if let userContact = post?.userContact {
+                if let userContact = post?.managerContact {
                     cell.titleLabel.text = "연락처"
                     cell.contentLabel.text = userContact
                 }

@@ -17,16 +17,26 @@ struct PostRequest {
     var postType: String                        // Post 타입
     
     // Optional
-    var kindUpCode: String?                     // 축종코드
+    var upKindCode: Int?                        // 축종코드
     var kindCode: Int?                          // 품종코드
-    var feature: String?                        // 특징
-    var gender: String?                         // 성별
-    var neuter: String?                         // 중성화
+    var contact: String?                        // 연락처
+    
+    var genderType: String?                     // 성별
+    var neuterType: String?                     // 중성화
     var age: Int?                               // 출생년도
     var weight: Float?                          // 몸무게
+    var feature: String?                        // 특징
+    
     var sidoCode: Int?                          // 시도
     var gunguCode: Int?                         // 군구
     
     // MARK: - For UI
     var images: [UIImage]?
+    
+    init() {
+        happenDate = ""
+        happenPlace = ""
+        uid = -1
+        postType = Type.ROADREPORT.rawValue
+    }
 }

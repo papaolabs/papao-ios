@@ -25,7 +25,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     private let datePicker = UIDatePicker()
 
     // instance for posting Post
-    var post: Post?
+    var post: PostRequest?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     @objc func doneContactTextField() {
         if let text = contactTextField.text {
             // set user contact to post instance
-            post?.userContact = text
+            post?.contact = text
         }
         self.view.endEditing(true)
     }
