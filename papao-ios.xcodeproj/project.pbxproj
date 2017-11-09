@@ -18,6 +18,7 @@
 		4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */; };
 		4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FC1F9E10580041A680 /* keys.plist */; };
 		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
+		4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E579E7E1FB47E22002E5404 /* PostRequest.swift */; };
 		4E6423B41FADD44E0099A4C7 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6423B31FADD44E0099A4C7 /* Weight.swift */; };
 		4E6423B61FADD48B0099A4C7 /* WeightList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B51FADD48B0099A4C7 /* WeightList.plist */; };
 		4E6423BA1FADD4A20099A4C7 /* AgeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B91FADD4A20099A4C7 /* AgeList.plist */; };
@@ -91,6 +92,7 @@
 		4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 		4E4CA5FC1F9E10580041A680 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		4E579E7E1FB47E22002E5404 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		4E6423B31FADD44E0099A4C7 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		4E6423B51FADD48B0099A4C7 /* WeightList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeightList.plist; sourceTree = "<group>"; };
 		4E6423B91FADD4A20099A4C7 /* AgeList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgeList.plist; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				4E835F001F9230A700BFA6BD /* Post.swift */,
+				4E579E7E1FB47E22002E5404 /* PostRequest.swift */,
 				4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */,
 				4ED6F3901FA5CC4D009E287C /* Breed.swift */,
 				4ED6F3971FA5E1C7009E287C /* Species.swift */,
@@ -544,6 +547,7 @@
 				4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */,
 				4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
+				4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */,
 				4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */,
 				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,
 			);
