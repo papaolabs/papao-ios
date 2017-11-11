@@ -11,7 +11,9 @@ import Alamofire
 
 class PostDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
-    var post: Post? = nil
+    
+    var postId: Int?
+    private var postDetail: PostDetail? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case 0, 1: // ImageCell, ButtonCell
             return 1
         case 2:
-            if let thePost = post {
+            if let thePost = postDetail {
                 return thePost.countOfTextInfo()
             }
             return 1
@@ -57,7 +59,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case 0:
             let cell: PostDetailImageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailImageCell",
                                                                         for: indexPath) as! PostDetailImageTableViewCell
-            if let urlDict: [String: Any] = post?.imageUrls[0], let url = urlDict["url"] as? String {
+            if let urlDict: [String: Any] = postDetail?.imageUrls[0], let url = urlDict["url"] as? String {
                 Alamofire.request(url).responseData { response in
                     if let data = response.result.value {
                         let image = UIImage(data: data)
@@ -83,30 +85,30 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                                                                                     for: indexPath) as! PostDetailTextTableViewCell
             switch row {
             case 0:
-                if let kindName = post?.kindName {
+                if let kindName = postDetail?.kindName {
                     cell.titleLabel.text = "종류"
                     cell.contentLabel.text = kindName
                 }
                 break
             case 1:
-                if let feature = post?.feature {
+                if let feature = postDetail?.feature {
                     cell.titleLabel.text = "특징"
                     cell.contentLabel.text = feature
                 }
             case 2:
-                if let happenPlace = post?.happenPlace {
+                if let happenPlace = postDetail?.happenPlace {
                     cell.titleLabel.text = "발생장소"
                     cell.contentLabel.text = happenPlace
                 }
                 break
             case 3:
-                if let userName = post?.managerName {
+                if let userName = postDetail?.managerName {
                     cell.titleLabel.text = "보호센터"
                     cell.contentLabel.text = userName
                 }
                 break
             case 4:
-                if let userContact = post?.managerContact {
+                if let userContact = postDetail?.managerContact {
                     cell.titleLabel.text = "연락처"
                     cell.contentLabel.text = userContact
                 }

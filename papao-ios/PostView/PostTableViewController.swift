@@ -18,28 +18,22 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view, typically from a nib.
 
         let postString = "{\n" +
-            "  \"id\": 1341124,\n" +
-            "  \"desertionId\": \"448542201700126\",\n" +
+            "  \"id\": 1912741,\n" +
             "  \"stateType\": \"PROCESS\",\n" +
-            "  \"postType\": \"SYSTEM\",\n" +
             "  \"genderType\": \"M\",\n" +
-            "  \"neuterType\": \"N\",\n" +
-            "  \"imageUrls\": [],\n" +
-            "  \"feature\": \"양호\",\n" +
-            "  \"shelterName\": \"백호종합동물병원\",\n" +
-            "  \"managerName\": \"고성군\",\n" +
-            "  \"managerContact\": \"055-670-4324\",\n" +
-            "  \"happenDate\": \"20171109\",\n" +
-            "  \"happenPlace\": \"고성군 고성읍 대가로27 공룡지구대앞\",\n" +
-            "  \"upKindName\": \"개\",\n" +
-            "  \"kindName\": \"웰시 코기 펨브로크\",\n" +
-            "  \"sidoName\": \"경상남도\",\n" +
-            "  \"gunguName\": \"고성군\",\n" +
-            "  \"age\": 2015,\n" +
-            "  \"weight\": 10,\n" +
+            "  \"imageUrls\": [\n" +
+            "    {\n" +
+            "      \"key\": 1920705,\n" +
+            "      \"url\": \"http://www.animal.go.kr/files/shelter/2017/11/201711111011903.jpg\"\n" +
+            "    }\n" +
+            "  ],\n" +
+            "  \"happenDate\": \"20171111\",\n" +
+            "  \"happenPlace\": \"경기도 안양시\",\n" +
+            "  \"kindName\": \"포메라니안\",\n" +
             "  \"hitCount\": 0,\n" +
-            "  \"createdDate\": \"2017-11-09 16:32:00\",\n" +
-            "  \"updatedDate\": \"2017-11-09 21:20:00\"\n" +
+            "  \"commentCount\": 0,\n" +
+            "  \"createdDate\": \"2017-11-11 10:20:01\",\n" +
+            "  \"updatedDate\": \"2017-11-11 18:30:00\"\n" +
         "}"
         if let dict = postString.dictionaryFromJSON(), let post = Post(json: dict) {
             posts.append(post)
@@ -116,7 +110,7 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
             return
         }
 
-        postDetailViewController.post = row
+        postDetailViewController.postId = row.id
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }
