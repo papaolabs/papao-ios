@@ -48,6 +48,7 @@
 		4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */; };
 		4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */; };
 		4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */; };
+		4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */; };
 		4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,7 @@
 		4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+OvalBorder.swift"; sourceTree = "<group>"; };
 		4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBadge.swift; sourceTree = "<group>"; };
 		4EF617951FB801A800DADA27 /* papao-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "papao-ios.entitlements"; sourceTree = "<group>"; };
+		4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOPickerButton.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				4EDC3C711FAF2551004F3406 /* CustomUI */,
 				4ED6F3921FA5D0B7009E287C /* Resources */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
+				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4E7060D41FA612FE00B88F92 /* Main.storyboard */,
 				4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */,
@@ -516,6 +519,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-resources.sh",
+				"${PODS_ROOT}/AccountKit/AccountKitStrings.bundle",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -546,6 +550,7 @@
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4E177B921FB6FCB200A10017 /* Post.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
+				4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */,
 				4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */,
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
 				4E6423BC1FADD75E0099A4C7 /* Age.swift in Sources */,
