@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Type: String {
+enum PostType: String {
     case SYSTEM = "SYSTEM"
     case PROTECTING = "PROTECTING"
     case ROADREPORT = "ROADREPORT"
@@ -119,10 +119,10 @@ enum Gender: String {
 struct PostDetail {
     var id : Int                    // Post ID
     var desertionId: String?        // 공공데이터 ID
-    var stateType: String?          // 보호 상태
-    var postType: String?           // Post 타입
-    var genderType: String?         // 성별
-    var neuterType: String?         // 중성화 여부
+    var stateType: State            // 보호 상태
+    var postType: PostType          // Post 타입
+    var genderType: Gender          // 성별
+    var neuterType: Neuter          // 중성화 여부
     var imageUrls: [[String: Any]] = []    // 사진 URL
 
     var feature: String?            // 특징(메모)
@@ -140,9 +140,29 @@ struct PostDetail {
     var gunguName: String?          // 군구
 
     var age: Int?                   // 출생연도
+    var ageDesc: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        
+        guard let age = self.age,
+              let birthday: Date = formatter.date(from: String(age)) else {
+            return "모름"
+        }
+        
+        let now = Date()
+        let calendar = Calendar.current
+        
+        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+        let ageYear = ageComponents.year!
+        
+        if ageYear < 1 {
+            return "1살 미만"
+        }
+        return String(describing: "\(ageYear) 살")
+    }
     var weight: Float?              // 몸무게 Float
     
-    var commentCount: Int?
+    var commentCount: Int?          // 댓글 수
     var hitCount: Int?              // 조회수
     var createdDate: String?        // 등록 날짜
     var updatedDate: String?        // 수정 날짜
@@ -163,12 +183,31 @@ struct PostDetail {
         self.happenDate = happenDate
         self.happenPlace = happenPlace
         self.id = Int(id)
-        
         self.desertionId = json["desertionId"] as? String
-        self.stateType = json["stateType"] as? String
-        self.postType = json["postType"] as? String
-        self.genderType = json["genderType"] as? String
-        self.neuterType = json["neuterType"] as? String
+
+        if let stateType = json["stateType"] as? String {
+            self.stateType = State(rawValue: stateType) ?? State.PROCESS
+        } else {
+            self.stateType = State.PROCESS
+        }
+        
+        if let postType = json["postType"] as? String {
+            self.postType = PostType(rawValue: postType) ?? PostType.SYSTEM
+        } else {
+            self.postType = PostType.SYSTEM
+        }
+        
+        if let genderType = json["genderType"] as? String {
+            self.genderType = Gender(rawValue: genderType) ?? Gender.Q
+        } else {
+            self.genderType = Gender.Q
+        }
+        
+        if let neuterType = json["neuterType"] as? String {
+            self.neuterType = Neuter(rawValue: neuterType) ?? Neuter.U
+        } else {
+            self.neuterType = Neuter.U
+        }
         
         self.feature = json["feature"] as? String
         self.shelterName = json["shelterName"] as? String
@@ -207,18 +246,6 @@ struct PostDetail {
         
         self.createdDate = json["createdDate"] as? String
         self.updatedDate = json["updatedDate"] as? String
-    }
-    
-    /**
-     표시할 수 있는 텍스트 정보 수 반환
-     Todo: - 로직 추가 필요
-     **/
-    func countOfTextInfo() -> Int! {
-        var count = 0
-        if (feature != nil && feature != "") { count += 1 }
-        if (kindName != nil && kindName != "") { count += 1 }
-        if (happenPlace != nil && happenPlace != "") { count += 1 }
-        return count
     }
 }
 

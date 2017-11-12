@@ -37,6 +37,6 @@ struct PostRequest {
         happenDate = ""
         happenPlace = ""
         uid = -1
-        postType = Type.ROADREPORT.rawValue
+        postType = PostType.ROADREPORT.rawValue
     }
 }

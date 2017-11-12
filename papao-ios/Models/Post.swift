@@ -10,14 +10,14 @@ import Foundation
 
 struct Post {
     var id : Int                    // Post ID
-    var stateType: String?          // 보호 상태
-    var genderType: String?         // 성별
+    var stateType: State            // 보호 상태
+    var genderType: Gender          // 성별
     var imageUrls: [[String: Any]] = []    // 사진 URL
 
     var happenDate: String          // 발견날짜 (yyyyMMdd)
     var happenPlace: String         // 발견장소 (주소 문자열)
     
-    var kindName: String?           // 품종 이름
+    var kindName: String            // 품종 이름
     
     var commentCount: Int?
     var hitCount: Int?              // 조회수
@@ -40,11 +40,19 @@ struct Post {
         self.id = Int(id)
         
         
-        self.stateType = json["stateType"] as? String
+        if let stateType = json["stateType"] as? String {
+            self.stateType = State(rawValue: stateType) ?? State.PROCESS
+        } else {
+            self.stateType = State.PROCESS
+        }
         
-        self.genderType = json["genderType"] as? String
+        if let genderType = json["genderType"] as? String {
+            self.genderType = Gender(rawValue: genderType) ?? Gender.Q
+        } else {
+            self.genderType = Gender.Q
+        }
         
-        self.kindName = json["kindName"] as? String
+        self.kindName = json["kindName"] as? String ?? "기타"
 
         if let commentCount = json["commentCount"] as? Int {
             self.commentCount = Int(commentCount)

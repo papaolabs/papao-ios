@@ -28,20 +28,16 @@ class PostDetailTextTableViewCell: UITableViewCell {
             return
         }
         
-        genderLabel.text = postDetail.genderType ?? "모름"
-        if let age = postDetail.age {
-            ageLabel.text = "\(age)"
-        } else {
-            ageLabel.text = "모름"
-        }
+        genderLabel.text = postDetail.genderType.description
+        ageLabel.text = postDetail.ageDesc
         
         if let weight = postDetail.weight {
-            weightLabel.text = "\(weight)"
+            weightLabel.text = "\(weight) kg"
         } else {
             weightLabel.text = "모름"
         }
         
-        neuterLabel.text = postDetail.neuterType ?? "모름"
+        neuterLabel.text = postDetail.neuterType.description
         
         desertionNumberLabel.text = postDetail.desertionId ?? ""
         happenDateLabel.text = postDetail.happenDate

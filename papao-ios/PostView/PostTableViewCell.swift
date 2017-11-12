@@ -28,8 +28,8 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func setPost(post: Post) {
-        kindLabel.text = post.kindName ?? "기타"
-        genderLabel.text = post.genderType ?? ""
+        kindLabel.text = post.kindName
+        genderLabel.text = post.genderType.description
         happenDateLabel.text = post.happenDate
         happenPlaceLabel.text = post.happenPlace
         viewCountLabel.text = String(describing:post.hitCount ?? 0)
@@ -48,14 +48,12 @@ class PostTableViewCell: UITableViewCell {
         }
         
         // state badge
-        if let stateValue = post.stateType, let state = State(rawValue: stateValue) {
-            if state == .PROCESS {
-                stateBadge.isHidden = true
-            } else {
-                stateBadge.isHidden = false
-                stateBadge.setStyle(type: .small, backgroundColor: state.color)
-                stateBadge.setTitle(state.rawValue, for: .normal)
-            }
+        if post.stateType == .PROCESS {
+            stateBadge.isHidden = true
+        } else {
+            stateBadge.isHidden = false
+            stateBadge.setStyle(type: .small, backgroundColor: post.stateType.color)
+            stateBadge.setTitle(post.stateType.description, for: .normal)
         }
     }
 }
