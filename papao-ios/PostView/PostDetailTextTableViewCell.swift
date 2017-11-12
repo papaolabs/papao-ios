@@ -2,22 +2,52 @@
 //  PostDetailLabelTableViewCell.swift
 //  papao-ios
 //
-//  Created by 1002719 on 2017. 10. 19..
+//  Created by closer27 on 2017. 10. 19..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
 import UIKit
 
 class PostDetailTextTableViewCell: UITableViewCell {
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var contentLabel: UILabel!
-//    @IBOutlet var happenDateLabel: UILabel!
-//    @IBOutlet var happenPlaceLabel: UILabel!
-//    @IBOutlet var userNameLabel: UILabel!
-//    @IBOutlet var userContactLabel: UILabel!
-//    
-//    @IBOutlet var favoriteButton: UIButton!
-//    @IBOutlet var replyButton: UIButton!
-//    @IBOutlet var shareButton: UIButton!
+    @IBOutlet var genderLabel: UILabel!
+    @IBOutlet var ageLabel: UILabel!
+    @IBOutlet var weightLabel: UILabel!
+    @IBOutlet var neuterLabel: UILabel!
+    
+    @IBOutlet var desertionNumberLabel: UILabel!
+    @IBOutlet var desertionDateLabel: UILabel!
+    
+    @IBOutlet var happenDateLabel: UILabel!
+    @IBOutlet var happenPlaceLabel: UILabel!
+    
+    @IBOutlet var featureLabel: UILabel!
+    @IBOutlet var userContactLabel: UILabel!
+    
+    func setPostDetail(_ postDetail: PostDetail?) {
+        guard let postDetail = postDetail else {
+            return
+        }
+        
+        genderLabel.text = postDetail.genderType ?? "모름"
+        if let age = postDetail.age {
+            ageLabel.text = "\(age)"
+        } else {
+            ageLabel.text = "모름"
+        }
+        
+        if let weight = postDetail.weight {
+            weightLabel.text = "\(weight)"
+        } else {
+            weightLabel.text = "모름"
+        }
+        
+        neuterLabel.text = postDetail.neuterType ?? "모름"
+        
+        desertionNumberLabel.text = postDetail.desertionId ?? ""
+        happenDateLabel.text = postDetail.happenDate
+        happenPlaceLabel.text = postDetail.happenPlace
+        featureLabel.text = postDetail.feature ?? ""
+        userContactLabel.text = "\(postDetail.shelterName ?? postDetail.managerName ?? "") (\(postDetail.managerContact ?? ""))"
+    }
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E177B921FB6FCB200A10017 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E177B911FB6FCB200A10017 /* Post.swift */; };
+		4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */; };
 		4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */; };
 		4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE421F9C620500E34203 /* ReportTableViewController.swift */; };
 		4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */; };
@@ -83,6 +84,7 @@
 /* Begin PBXFileReference section */
 		3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papao_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E177B911FB6FCB200A10017 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCommentButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DictionaryFromJson.swift"; sourceTree = "<group>"; };
 		4E21DE421F9C620500E34203 /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */,
 				4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */,
 				4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */,
+				4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				4EA9CA051FA7674C00115784 /* ReportDetectionInfoViewController.swift in Sources */,
 				4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */,
 				4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */,
+				4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */,
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,

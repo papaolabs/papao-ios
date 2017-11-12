@@ -2,7 +2,7 @@
 //  PostTableViewCell.swift
 //  papao-ios
 //
-//  Created by 1002719 on 2017. 10. 17..
+//  Created by closer27 on 2017. 10. 17..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
