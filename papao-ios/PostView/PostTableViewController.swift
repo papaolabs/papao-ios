@@ -18,27 +18,24 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view, typically from a nib.
 
         let postString = "{\n" +
-            "  \"id\": 257,\n" +
-            "  \"type\": \"01\",\n" +
-            "  \"imageUrls\": [\"http://www.animal.go.kr/files/shelter/2017/08/201709012009506.jpg\"],\n" +
-            "  \"kindUpCode\": \"417000\",\n" +
-            "  \"kindCode\": \"72\",\n" +
-            "  \"kindName\": \"말티즈\",\n" +
-            "  \"happenDate\": \"20170901\",\n" +
-            "  \"happenPlace\": \"경기도 남양주시\",\n" +
-            "  \"userId\": \"01\",\n" +
-            "  \"userName\": \"남양주동물보호협회\",\n" +
-            "  \"userAddress\": \"경기도 남양주시 금곡로 44 (금곡동 성원빌딩) 1층\",\n" +
-            "  \"userContact\": \"031-591-7270\",\n" +
-            "  \"weight\": \"3.7\",\n" +
-            "  \"gender\": \"M\",\n" +
-            "  \"state\": \"종료(입양)\",\n" +
-            "  \"neuter\": \"Y\",\n" +
-            "  \"feature\": \"목줄 없고 온순함\",\n" +
-            "  \"introduction\": \"\"\n" +
+            "  \"id\": 1912741,\n" +
+            "  \"stateType\": \"PROCESS\",\n" +
+            "  \"genderType\": \"M\",\n" +
+            "  \"imageUrls\": [\n" +
+            "    {\n" +
+            "      \"key\": 1920705,\n" +
+            "      \"url\": \"http://www.animal.go.kr/files/shelter/2017/11/201711111011903.jpg\"\n" +
+            "    }\n" +
+            "  ],\n" +
+            "  \"happenDate\": \"20171111\",\n" +
+            "  \"happenPlace\": \"경기도 안양시\",\n" +
+            "  \"kindName\": \"포메라니안\",\n" +
+            "  \"hitCount\": 0,\n" +
+            "  \"commentCount\": 0,\n" +
+            "  \"createdDate\": \"2017-11-11 10:20:01\",\n" +
+            "  \"updatedDate\": \"2017-11-11 18:30:00\"\n" +
         "}"
-        if let dict = postString.dictionaryFromJSON() {
-            let post = Post(fromDict: dict)
+        if let dict = postString.dictionaryFromJSON(), let post = Post(json: dict) {
             posts.append(post)
         }
     }
@@ -71,18 +68,27 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
         let row = indexPath.row;
         let post = posts[row]
         
+        cell.setPost(post: post)
         cell.kindLabel.text = post.kindName
         cell.happenDateLabel.text = post.happenDate
         cell.happenPlaceLabel.text = post.happenPlace
         
-        Alamofire.request(post.imageUrls[0]).responseData { response in
-            if let data = response.result.value {
-                let image = UIImage(data: data)
-                cell.postImageView.image = image
+        if post.imageUrls.count > 0 {
+            if let url = post.imageUrls[0]["url"] as? String {
+                Alamofire.request(url).responseData { response in
+                    if let data = response.result.value {
+                        let image = UIImage(data: data)
+                        cell.postImageView.image = image
+                        
+                        // Comment: - Cell 높이를 이미지 비율에 맞게 재지정을 위한 트릭
+                        UIView.setAnimationsEnabled(false)
+                        tableView.beginUpdates()
+                        tableView.endUpdates()
+                        UIView.setAnimationsEnabled(true)
+                    }
+                }
             }
         }
-        
-        cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
         
         return cell
     }
@@ -93,16 +99,18 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 140
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         let row = self.posts[indexPath.row]
         guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
             return
         }
 
-        postDetailViewController.post = row
+        postDetailViewController.postId = row.id
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }
