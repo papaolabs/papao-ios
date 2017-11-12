@@ -42,7 +42,7 @@ struct Post {
         
         self.stateType = json["stateType"] as? String
         
-        self.genderType = json["gender"] as? String
+        self.genderType = json["genderType"] as? String
         
         self.kindName = json["kindName"] as? String
 
@@ -54,7 +54,7 @@ struct Post {
             self.hitCount = Int(hitCount)
         }
         
-        self.createdDate = json["weight"] as? String
-        self.updatedDate = json["weight"] as? String
+        self.createdDate = json["createdDate"] as? String
+        self.updatedDate = json["updatedDate"] as? String
     }
 }

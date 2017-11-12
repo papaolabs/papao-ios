@@ -69,6 +69,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             "  \"gunguName\": \"안양시\",\n" +
             "  \"age\": 2016,\n" +
             "  \"weight\": 3,\n" +
+            "  \"commentCount\": 1,\n" +
             "  \"hitCount\": 1,\n" +
             "  \"createdDate\": \"2017-11-11 10:20:01\",\n" +
             "  \"updatedDate\": \"2017-11-11 19:20:00\"\n" +
@@ -107,31 +108,17 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
-        let row = indexPath.row
         
         switch section {
         case PostDetailSection.image.hashValue:
             let cell: PostDetailImageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailImageCell",
                                                                         for: indexPath) as! PostDetailImageTableViewCell
-            if let urlDict: [String: Any] = postDetail?.imageUrls[0], let url = urlDict["url"] as? String {
-                Alamofire.request(url).responseData { response in
-                    if let data = response.result.value {
-                        let image = UIImage(data: data)
-                        cell.postImageView.image = image
-                        
-                        // Comment: - Cell 높이를 이미지 비율에 맞게 재지정을 위한 트릭
-                        UIView.setAnimationsEnabled(false)
-                        tableView.beginUpdates()
-                        tableView.endUpdates()
-                        UIView.setAnimationsEnabled(true)
-                    }
-                }
-            }
-            // Todo: - 이미지 호출 후 이미지뷰 크기와 셀 높이를 재정의
+            cell.setPostDetail(postDetail)
             return cell
         case PostDetailSection.menu.hashValue:
             let cell: PostDetailButtonTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailButtonCell",
             for: indexPath) as! PostDetailButtonTableViewCell
+            cell.setPostDetail(postDetail)
             cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
             return cell
         case PostDetailSection.description.hashValue:
@@ -159,25 +146,6 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let section = indexPath.section
         switch section {
         case PostDetailSection.image.rawValue:
-            // Comment: - 스크린 사이즈 비율에 따른 이미지 높이로 이미지셀 높이 지정
-            if let currentCell = tableView.cellForRow(at: indexPath) as? PostDetailImageTableViewCell {
-                if let size = currentCell.postImageView.image?.size {
-                    let aspectRatio = size.height/size.width
-                    return aspectRatio * UIScreen.main.bounds.width
-                }
-            }
-            return 40
-        case PostDetailSection.description.rawValue:
-            return 244
-        default:
-            return 40
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = indexPath.section
-        switch section {
-        case PostDetailSection.image.rawValue:
             return 421
         case PostDetailSection.description.rawValue:
             return 244
@@ -186,8 +154,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

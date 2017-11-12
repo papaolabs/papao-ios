@@ -167,8 +167,8 @@ struct PostDetail {
         self.desertionId = json["desertionId"] as? String
         self.stateType = json["stateType"] as? String
         self.postType = json["postType"] as? String
-        self.genderType = json["gender"] as? String
-        self.neuterType = json["neuter"] as? String
+        self.genderType = json["genderType"] as? String
+        self.neuterType = json["neuterType"] as? String
         
         self.feature = json["feature"] as? String
         self.shelterName = json["shelterName"] as? String
@@ -181,24 +181,32 @@ struct PostDetail {
         self.gunguName = json["gunguName"] as? String
         
         
-        if let age = json["age"] as? String {
-            self.age = Int(age)
+        if let age = json["age"] as? Int{
+            self.age = age
+        } else if let ageString = json["age"] as? String {
+            self.age = Int(ageString)
         }
         
-        if let weight = json["weight"] as? String {
-            self.weight = Float(weight)
+        if let weight = json["weight"] as? Float {
+            self.weight = weight
+        } else if let weightString = json["weight"] as? String {
+            self.weight = Float(weightString)
         }
         
-        if let commentCount = json["commentCount"] as? String {
-            self.commentCount = Int(commentCount)
+        if let commentCount = json["commentCount"] as? Int {
+            self.commentCount = commentCount
+        } else if let commentCountString = json["commentCount"] as? String {
+            self.commentCount = Int(commentCountString)
         }
 
-        if let hitCount = json["hitCount"] as? String {
-            self.hitCount = Int(hitCount)
+        if let hitCount = json["hitCount"] as? Int {
+            self.hitCount = hitCount
+        } else if let hitCountString = json["hitCount"] as? String {
+            self.hitCount = Int(hitCountString)
         }
         
-        self.createdDate = json["weight"] as? String
-        self.updatedDate = json["weight"] as? String
+        self.createdDate = json["createdDate"] as? String
+        self.updatedDate = json["updatedDate"] as? String
     }
     
     /**
