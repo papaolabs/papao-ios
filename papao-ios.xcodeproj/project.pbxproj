@@ -50,6 +50,7 @@
 		4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */; };
 		4EF282FC1FB94D1600731679 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF282FB1FB94D1600731679 /* NotificationViewController.swift */; };
 		4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */; };
+		4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617961FB86EE000DADA27 /* HttpHelper.swift */; };
 		4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
@@ -134,6 +135,7 @@
 		4EF282FB1FB94D1600731679 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		4EF617951FB801A800DADA27 /* papao-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "papao-ios.entitlements"; sourceTree = "<group>"; };
 		4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4EF617961FB86EE000DADA27 /* HttpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOPickerButton.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */,
+				4EF617961FB86EE000DADA27 /* HttpHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4E177B921FB6FCB200A10017 /* Post.swift in Sources */,
+				4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
 				4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */,
 				4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */,
