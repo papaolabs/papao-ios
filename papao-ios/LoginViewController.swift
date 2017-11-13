@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         showAccountOnAppear = accountKit.currentAccessToken != nil
-        pendingLoginViewController = accountKit.viewControllerForLoginResume() as? AKFViewController
+        pendingLoginViewController = accountKit.viewControllerForLoginResume()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +28,9 @@ class LoginViewController: UIViewController {
         
         if showAccountOnAppear {
             showAccountOnAppear = false
-            presentWithSegueIdentifier("loginSegue", animated: animated)
+            DispatchQueue.main.async(execute: {
+                self.presentWithSegueIdentifier("loginSegue", animated: animated)
+            })
         } else if let viewController = pendingLoginViewController {
             prepareLoginViewController(viewController)
             if let viewController = viewController as? UIViewController {
@@ -57,7 +59,7 @@ class LoginViewController: UIViewController {
     
     fileprivate func presentWithSegueIdentifier(_ segueIdentifier: String, animated: Bool) {
         if animated {
-            performSegue(withIdentifier: segueIdentifier, sender: nil)
+            dismiss(animated: true, completion: nil)
         } else {
             UIView.performWithoutAnimation {
                 self.performSegue(withIdentifier: segueIdentifier, sender: nil)
@@ -69,12 +71,14 @@ class LoginViewController: UIViewController {
 // MARK: - AKFViewControllerDelegate extension
 
 extension LoginViewController: AKFViewControllerDelegate {
-    func viewController(_ viewController: UIViewController!, didCompleteLoginWith accessToken: AKFAccessToken!, state: String!) {
+    private func viewController(_ viewController: UIViewController!, didCompleteLoginWith accessToken: AKFAccessToken!, state: String!) {
         // Todo: - 서버로 account token post 해줘야함.
-        presentWithSegueIdentifier("loginSegue", animated: false)
+        DispatchQueue.main.async(execute: {
+            self.dismiss(animated: true, completion: nil)
+        })
     }
     
-    func viewController(_ viewController: UIViewController!, didFailWithError error: Error!) {
+    private func viewController(_ viewController: UIViewController!, didFailWithError error: Error!) {
         print("\(viewController) did fail with error: \(error)")
     }
 }
