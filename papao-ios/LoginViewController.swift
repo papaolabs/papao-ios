@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         if showAccountOnAppear {
             showAccountOnAppear = false
             DispatchQueue.main.async(execute: {
-                self.presentWithSegueIdentifier("loginSegue", animated: animated)
+                self.dismiss(animated: true, completion: nil)
             })
         } else if let viewController = pendingLoginViewController {
             prepareLoginViewController(viewController)
@@ -55,16 +55,6 @@ class LoginViewController: UIViewController {
     
     fileprivate func prepareLoginViewController(_ loginViewController: AKFViewController) {
         loginViewController.delegate = self
-    }
-    
-    fileprivate func presentWithSegueIdentifier(_ segueIdentifier: String, animated: Bool) {
-        if animated {
-            dismiss(animated: true, completion: nil)
-        } else {
-            UIView.performWithoutAnimation {
-                self.performSegue(withIdentifier: segueIdentifier, sender: nil)
-            }
-        }
     }
 }
 
