@@ -144,5 +144,15 @@ final class HttpHelper {
             }
         }
     }
+    
+    func createPost(postRequest: PostRequest,completion: @escaping (ApiResult<PostDetail>) -> Void) {
+        manager.request(endpoint: Endpoint.createPost(), parameters: postRequest.toDict(), headers: nil).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
+                completion(ApiResult{ return postDetail })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
 }
 
