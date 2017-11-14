@@ -16,28 +16,16 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        let postString = "{\n" +
-            "  \"id\": 1912741,\n" +
-            "  \"stateType\": \"PROCESS\",\n" +
-            "  \"genderType\": \"M\",\n" +
-            "  \"imageUrls\": [\n" +
-            "    {\n" +
-            "      \"key\": 1920705,\n" +
-            "      \"url\": \"http://www.animal.go.kr/files/shelter/2017/11/201711111011903.jpg\"\n" +
-            "    }\n" +
-            "  ],\n" +
-            "  \"happenDate\": \"20171111\",\n" +
-            "  \"happenPlace\": \"경기도 안양시\",\n" +
-            "  \"kindName\": \"포메라니안\",\n" +
-            "  \"hitCount\": 0,\n" +
-            "  \"commentCount\": 0,\n" +
-            "  \"createdDate\": \"2017-11-11 10:20:01\",\n" +
-            "  \"updatedDate\": \"2017-11-11 18:30:00\"\n" +
-        "}"
-        if let dict = postString.dictionaryFromJSON(), let post = Post(json: dict) {
-            posts.append(post)
-        }
+        
+        let api = HttpHelper.init()
+        api.readPosts(completion: { (result) in
+            do {
+                self.posts = try result.unwrap()
+                self.tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

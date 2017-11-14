@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 enum ApiResult<Value> {
     case Success(value: Value)
@@ -98,6 +99,18 @@ enum Endpoint {
     }
 }
 
+extension SessionManager {
+    func request(endpoint: Endpoint, parameters: [String : AnyObject]? = nil, headers: [String : String]? = nil) -> DataRequest {
+        // Insert your common headers here, for example, authorization token or accept.
+        var commonHeaders = ["Accept" : "application/json"]
+        if let headers = headers {
+            commonHeaders.merge(headers, uniquingKeysWith: +)
+        }
+        
+        return request(endpoint.url, method: endpoint.method, parameters: parameters, headers: commonHeaders)
+    }
+}
+
 final class HttpHelper {
     private let manager: SessionManager
     
@@ -107,9 +120,25 @@ final class HttpHelper {
     
     // MARK: - Public Methods
     func readPost(postId: Int, completion: @escaping (ApiResult<PostDetail>) -> Void) {
-        manager.request(Endpoint.readPost(postId: "\(postId)").url).responseString { response in
+        manager.request(endpoint: Endpoint.readPost(postId: "\(postId)")).responseString { response in
             if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
                 completion(ApiResult{ return postDetail })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
+    func readPosts(completion: @escaping (ApiResult<[Post]>) -> Void) {
+        manager.request(endpoint: Endpoint.readPosts()).responseJSON { response in
+            print(response)
+            if let value = response.result.value {
+                let postJsonList = JSON(value)
+                let posts = postJsonList.arrayValue.flatMap({ (json) -> Post? in
+                    // Todo: - 강제 옵셔널 캐스팅 처리
+                    return Post.init(json: json.dictionaryObject!)!
+                })
+                completion(ApiResult{ return posts })
             } else {
                 completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
             }
