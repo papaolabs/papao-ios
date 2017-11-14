@@ -44,44 +44,22 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getPostDetail(postId: Int) {
-        let postDetailString = "{\n" +
-            "  \"id\": 1912741,\n" +
-            "  \"desertionId\": \"441383201700553\",\n" +
-            "  \"stateType\": \"PROCESS\",\n" +
-            "  \"postType\": \"SYSTEM\",\n" +
-            "  \"genderType\": \"M\",\n" +
-            "  \"neuterType\": \"N\",\n" +
-            "  \"imageUrls\": [\n" +
-            "    {\n" +
-            "      \"key\": 1920886,\n" +
-            "      \"url\": \"http://www.animal.go.kr/files/shelter/2017/11/201711111011903.jpg\"\n" +
-            "    }\n" +
-            "  ],\n" +
-            "  \"feature\": \"포메믹스, 귀끝이 흑색, 미용됨, 기본훈련됨\",\n" +
-            "  \"shelterName\": \"한국야생동물보호협회\",\n" +
-            "  \"managerName\": \"안양시\",\n" +
-            "  \"managerContact\": \"031-8045-2605\",\n" +
-            "  \"happenDate\": \"20171111\",\n" +
-            "  \"happenPlace\": \"삼천리자전거맞은편\",\n" +
-            "  \"upKindName\": \"개\",\n" +
-            "  \"kindName\": \"포메라니안\",\n" +
-            "  \"sidoName\": \"경기도\",\n" +
-            "  \"gunguName\": \"안양시\",\n" +
-            "  \"age\": 2016,\n" +
-            "  \"weight\": 3,\n" +
-            "  \"commentCount\": 1,\n" +
-            "  \"hitCount\": 1,\n" +
-            "  \"createdDate\": \"2017-11-11 10:20:01\",\n" +
-            "  \"updatedDate\": \"2017-11-11 19:20:00\"\n" +
-        "}"
-        if let dict = postDetailString.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
-            self.postDetail = postDetail
-            
-            speciesLabel.setTitle(postDetail.upKindName, for: .normal)
-            breedLabel.text = postDetail.kindName
-            commentLabel.text = "\(postDetail.commentCount ?? 0)"
-            hitCountLabel.text = "\(postDetail.hitCount ?? 0)"
-        }
+        let api = HttpHelper.init()
+        api.readPost(postId: postId, completion: { (result) in
+            do {
+                let postDetail = try result.unwrap()
+                self.postDetail = postDetail
+                
+                self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
+                self.breedLabel.text = postDetail.kindName
+                self.commentLabel.text = "\(postDetail.commentCount ?? 0)"
+                self.hitCountLabel.text = "\(postDetail.hitCount ?? 0)"
+                
+                self.tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        })
     }
     
     // MARK: - IBAction

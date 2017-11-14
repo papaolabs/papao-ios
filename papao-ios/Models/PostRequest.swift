@@ -39,4 +39,25 @@ struct PostRequest {
         uid = -1
         postType = PostType.ROADREPORT.rawValue
     }
+
+    func toDict() -> [String: AnyObject] {
+        // Todo: - imageUrls 처리
+        return [
+            "happenDate": happenDate as AnyObject,
+            "happenPlace": happenPlace as AnyObject,
+            "uid": uid as AnyObject,
+            "postType": postType as AnyObject,
+            "imageUrls": ["http://www.animal.go.kr/files/shelter/2017/11/20171114091119.jpg"] as AnyObject,
+            "upKindCode": upKindCode as AnyObject,
+            "kindCode": kindCode as AnyObject,
+            "contact": contact as AnyObject,
+            "genderType": genderType as AnyObject,
+            "neuterType": neuterType as AnyObject,
+            "age": age as AnyObject,
+            "weight": weight as AnyObject,
+            "feature": feature as AnyObject,
+            "sidoCode": sidoCode as AnyObject,
+            "gunguCode": gunguCode as AnyObject
+        ]
+    }
 }
