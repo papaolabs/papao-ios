@@ -21,6 +21,7 @@
 		4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FC1F9E10580041A680 /* keys.plist */; };
 		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
 		4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E579E7E1FB47E22002E5404 /* PostRequest.swift */; };
+		4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */; };
 		4E6423B41FADD44E0099A4C7 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6423B31FADD44E0099A4C7 /* Weight.swift */; };
 		4E6423B61FADD48B0099A4C7 /* WeightList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B51FADD48B0099A4C7 /* WeightList.plist */; };
 		4E6423BA1FADD4A20099A4C7 /* AgeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B91FADD4A20099A4C7 /* AgeList.plist */; };
@@ -101,6 +102,7 @@
 		4E4CA5FC1F9E10580041A680 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		4E579E7E1FB47E22002E5404 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTableViewController.swift; sourceTree = "<group>"; };
 		4E6423B31FADD44E0099A4C7 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		4E6423B51FADD48B0099A4C7 /* WeightList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeightList.plist; sourceTree = "<group>"; };
 		4E6423B91FADD4A20099A4C7 /* AgeList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgeList.plist; sourceTree = "<group>"; };
@@ -225,6 +227,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		4E5F80061FBC7A45001A23BE /* MissingView */ = {
+			isa = PBXGroup;
+			children = (
+				4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */,
+			);
+			path = MissingView;
+			sourceTree = "<group>";
+		};
 		4E835EFD1F92307900BFA6BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +280,7 @@
 				4EF617951FB801A800DADA27 /* papao-ios.entitlements */,
 				4E326A811FA1FEDA006325B4 /* PostView */,
 				4E326A801FA1FE9B006325B4 /* ReportView */,
+				4E5F80061FBC7A45001A23BE /* MissingView */,
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
 				4E326A851FA2049C006325B4 /* Extension */,
@@ -549,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */,
 				4EA9CA051FA7674C00115784 /* ReportDetectionInfoViewController.swift in Sources */,
 				4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */,
 				4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */,
