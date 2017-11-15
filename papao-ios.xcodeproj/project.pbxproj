@@ -183,8 +183,8 @@
 		4E326A801FA1FE9B006325B4 /* ReportView */ = {
 			isa = PBXGroup;
 			children = (
-				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
 				4E21DE421F9C620500E34203 /* ReportTableViewController.swift */,
+				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
 				4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */,
 				4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */,
 				4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */,
