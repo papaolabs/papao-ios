@@ -48,6 +48,7 @@
 		4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */; };
 		4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */; };
 		4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */; };
+		4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6B3E71FBB32C30017037D /* HomeViewController.swift */; };
 		4EF282FC1FB94D1600731679 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF282FB1FB94D1600731679 /* NotificationViewController.swift */; };
 		4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617961FB86EE000DADA27 /* HttpHelper.swift */; };
 		4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */; };
@@ -132,6 +133,7 @@
 		4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnimalInfoViewController.swift; sourceTree = "<group>"; };
 		4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+OvalBorder.swift"; sourceTree = "<group>"; };
 		4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBadge.swift; sourceTree = "<group>"; };
+		4EE6B3E71FBB32C30017037D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4EF282FB1FB94D1600731679 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		4EF617951FB801A800DADA27 /* papao-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "papao-ios.entitlements"; sourceTree = "<group>"; };
 		4EF617961FB86EE000DADA27 /* HttpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				4ED6F3921FA5D0B7009E287C /* Resources */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
 				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
+				4EE6B3E71FBB32C30017037D /* HomeViewController.swift */,
 				4EF282FB1FB94D1600731679 /* NotificationViewController.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4E7060D41FA612FE00B88F92 /* Main.storyboard */,
@@ -551,6 +554,7 @@
 				4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */,
 				4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */,
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
+				4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
