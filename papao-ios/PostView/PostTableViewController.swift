@@ -18,7 +18,7 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view, typically from a nib.
         
         let api = HttpHelper.init()
-        api.readPosts(completion: { (result) in
+        api.readPosts(postType: PostType.SYSTEM, completion: { (result) in
             do {
                 self.posts = try result.unwrap()
                 self.tableView.reloadData()

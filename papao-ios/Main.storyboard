@@ -2456,6 +2456,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lNQ-Gb-qX0" id="fUK-qd-A7O"/>
+                                    <outlet property="delegate" destination="lNQ-Gb-qX0" id="me1-P7-VNu"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2468,6 +2472,10 @@
                         <viewLayoutGuide key="safeArea" id="DaI-YM-p2o"/>
                     </view>
                     <navigationItem key="navigationItem" id="zuW-7Q-ESM"/>
+                    <connections>
+                        <outlet property="tableView" destination="l3e-8s-zn3" id="5t2-qZ-dTu"/>
+                        <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="iuM-cw-uXR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4j6-PK-P2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2571,5 +2579,8 @@
             <color red="0.98799997568130493" green="0.3059999942779541" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="iuM-cw-uXR"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>

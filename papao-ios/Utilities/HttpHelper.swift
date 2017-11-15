@@ -33,11 +33,13 @@ enum ApiResult<Value> {
     }
 }
 
-enum Endpoint {
+import Alamofire
+
+enum Router: URLRequestConvertible {
     case readPosts()
-    case createPost()
+    case createPost(parameters: Parameters)
     case deleteComment(commentId: String)
-    case readPostsByPage()
+    case readPostsByPage(parameters: Parameters)
     case readPost(postId: String)
     case deletePost(postId: String)
     case registerBookmark(postId: String)
@@ -47,9 +49,10 @@ enum Endpoint {
     case readComments(postId: String)
     case createComment(postId: String)
     case setStatus(postId: String)
+
+    static let baseURLString = "\(valueForAPIKey(keyname: "API_BASE_URL"))api/v1/"
     
-    // MARK: - Public Properties
-    var method: Alamofire.HTTPMethod {
+    var method: HTTPMethod {
         switch self {
         case .readPosts,
              .readPostsByPage,
@@ -69,45 +72,51 @@ enum Endpoint {
         }
     }
     
-    var url: URL {
-        let baseUrl = URL.init(string: valueForAPIKey(keyname: "API_BASE_URL"))!
-        let baseUrlWithPrefix = baseUrl.appendingPathComponent("api/v1/")
+    var path: String {
         switch self {
         case .readPost(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)")
-        case .readPosts(), .createPost():
-            return baseUrlWithPrefix.appendingPathComponent("posts")
+            return "posts/\(postId)"
+        case .readPosts(), .createPost(_):
+            return "posts"
         case .deletePost(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)")
+            return "posts/\(postId)"
         case .deleteComment(let commentId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/comments/\(commentId)")
-        case .readPostsByPage():
-            return baseUrlWithPrefix.appendingPathComponent("posts/pages")
+            return "posts/comments/\(commentId)"
+        case .readPostsByPage(_):
+            return "posts/pages"
         case .registerBookmark(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)/bookmarks")
+            return "posts/\(postId)/bookmarks"
         case .cancelBookmark(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)/bookmarks/cancel")
+            return "posts/\(postId)/bookmarks/cancel"
         case .checkBookmark(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)/bookmarks/check")
+            return "posts/\(postId)/bookmarks/check"
         case .countBookmark(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)/bookmarks/count")
+            return "posts/\(postId)/bookmarks/count"
         case .readComments(let postId), .createComment(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)/comments")
+            return "posts/\(postId)/comments"
         case .setStatus(let postId):
-            return baseUrlWithPrefix.appendingPathComponent("posts/\(postId)/state")
+            return "posts/\(postId)/state"
         }
     }
-}
-
-extension SessionManager {
-    func request(endpoint: Endpoint, parameters: [String : AnyObject]? = nil, headers: [String : String]? = nil) -> DataRequest {
-        // Insert your common headers here, for example, authorization token or accept.
-        var commonHeaders = ["Accept" : "application/json"]
-        if let headers = headers {
-            commonHeaders.merge(headers, uniquingKeysWith: +)
+    
+    // MARK: URLRequestConvertible
+    func asURLRequest() throws -> URLRequest {
+        let url = try Router.baseURLString.asURL()
+        
+        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        urlRequest.httpMethod = method.rawValue
+        
+        switch self {
+        case .readPost(_), .readPosts(), .deletePost(_), .deleteComment(_), .registerBookmark(_), .cancelBookmark(_),
+             .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_), .setStatus(_):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
+        case .createPost(let parameters):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .readPostsByPage(let parameters):
+            urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
         }
         
-        return request(endpoint.url, method: endpoint.method, parameters: parameters, headers: commonHeaders)
+        return urlRequest
     }
 }
 
@@ -120,7 +129,7 @@ final class HttpHelper {
     
     // MARK: - Public Methods
     func readPost(postId: Int, completion: @escaping (ApiResult<PostDetail>) -> Void) {
-        manager.request(endpoint: Endpoint.readPost(postId: "\(postId)")).responseString { response in
+        manager.request(Router.readPost(postId: "\(postId)")).responseString { response in
             if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
                 completion(ApiResult{ return postDetail })
             } else {
@@ -129,8 +138,8 @@ final class HttpHelper {
         }
     }
     
-    func readPosts(completion: @escaping (ApiResult<[Post]>) -> Void) {
-        manager.request(endpoint: Endpoint.readPosts()).responseJSON { response in
+    func readPosts(postType: PostType, completion: @escaping (ApiResult<[Post]>) -> Void) {
+        manager.request(Router.readPostsByPage(parameters: ["postType": postType])).responseJSON { response in
             print(response)
             if let value = response.result.value {
                 let postJsonList = JSON(value)
@@ -146,7 +155,7 @@ final class HttpHelper {
     }
     
     func createPost(postRequest: PostRequest,completion: @escaping (ApiResult<PostDetail>) -> Void) {
-        manager.request(endpoint: Endpoint.createPost(), parameters: postRequest.toDict(), headers: nil).responseString { response in
+        manager.request(Router.createPost(parameters: postRequest.toDict())).responseString { response in
             if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
                 completion(ApiResult{ return postDetail })
             } else {
