@@ -10,6 +10,7 @@ import Foundation
 
 struct Post {
     var id : Int                    // Post ID
+    var postType: PostType          // 포스트 타입
     var stateType: State            // 보호 상태
     var genderType: Gender          // 성별
     var imageUrls: [[String: Any]] = []    // 사진 URL
@@ -39,6 +40,11 @@ struct Post {
         self.happenPlace = happenPlace
         self.id = Int(id)
         
+        if let postType = json["postType"] as? String {
+            self.postType = PostType(rawValue: postType) ?? PostType.SYSTEM
+        } else {
+            self.postType = PostType.SYSTEM
+        }
         
         if let stateType = json["stateType"] as? String {
             self.stateType = State(rawValue: stateType) ?? State.PROCESS

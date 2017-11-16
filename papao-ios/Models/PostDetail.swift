@@ -23,9 +23,9 @@ enum PostType: String {
         case .SYSTEM:
             return "보호소"
         case .PROTECTING:
-            return "개인보호"
+            return "임시보호"
         case .ROADREPORT:
-            return "제보"
+            return "길거리 제보"
         case .MISSING:
             return "실종"
         }

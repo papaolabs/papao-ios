@@ -22,6 +22,7 @@
 		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
 		4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E579E7E1FB47E22002E5404 /* PostRequest.swift */; };
 		4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */; };
+		4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */; };
 		4E6423B41FADD44E0099A4C7 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6423B31FADD44E0099A4C7 /* Weight.swift */; };
 		4E6423B61FADD48B0099A4C7 /* WeightList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B51FADD48B0099A4C7 /* WeightList.plist */; };
 		4E6423BA1FADD4A20099A4C7 /* AgeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B91FADD4A20099A4C7 /* AgeList.plist */; };
@@ -103,6 +104,7 @@
 		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		4E579E7E1FB47E22002E5404 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTableViewController.swift; sourceTree = "<group>"; };
+		4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTypePostTableViewCell.swift; sourceTree = "<group>"; };
 		4E6423B31FADD44E0099A4C7 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		4E6423B51FADD48B0099A4C7 /* WeightList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeightList.plist; sourceTree = "<group>"; };
 		4E6423B91FADD4A20099A4C7 /* AgeList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgeList.plist; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */,
 				4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */,
 				4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */,
+				4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
 				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */,
+				4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */,
 				4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
 				4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */,

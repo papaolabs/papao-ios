@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
