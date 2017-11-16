@@ -33,24 +33,25 @@ class PPOBadge: UIButton {
         // blocking interactions
     }
     
-    func setStyle(type: PPOBadgeType, backgroundColor: UIColor? = nil) {
+    func setStyle(type: PPOBadgeType, backgroundColor: UIColor? = nil, titleColor: UIColor? = nil) {
         switch type {
         case .small:
-            setColor(color: backgroundColor)
             setRadius(radius: 10)
             contentEdgeInsets = .init(top: 3, left: 8, bottom: 2, right: 8)
         case .medium:
-            setColor(color: backgroundColor)
+            setBackgroundColor(color: backgroundColor)
             setRadius(radius: 13)
             contentEdgeInsets = .init(top: 5, left: 18, bottom: 4, right: 17)
         }
+        
+        setBackgroundColor(color: backgroundColor)
+        setTitleColor(titleColor, for: .normal)
     }
     
-    func setColor(color: UIColor?) {
+    func setBackgroundColor(color: UIColor?) {
         if let backgroundColor = color {
             self.backgroundColor = backgroundColor
             setBorder(color: backgroundColor)
-            setTitleColor(.white, for: .normal)
         } else {
             setBorder(color: UIColor.init(named: "textBlack") ?? .black)
         }

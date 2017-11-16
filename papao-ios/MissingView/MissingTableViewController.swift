@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
+//  MissingTableViewController.swift
 //  papao-ios
 //
-//  Created by closer27 on 2017. 10. 14..
+//  Created by closer27 on 2017. 11. 15..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
 import UIKit
 import Alamofire
 
-class PostTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MissingTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var posts: [Post] = []
     
@@ -18,7 +18,7 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view, typically from a nib.
         
         let api = HttpHelper.init()
-        api.readPosts(postType: PostType.SYSTEM, completion: { (result) in
+        api.readPosts(postType: PostType.MISSING, completion: { (result) in
             do {
                 self.posts = try result.unwrap()
                 self.tableView.reloadData()
@@ -27,24 +27,14 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         })
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - IBAction
-    @objc func favoriteButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: "즐겨찾기 되었습니다.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .cancel) { (_) in
-        }
-        alert.addAction(okAction)
-        self.present(alert, animated: false)
-        
-        let button = sender as! UIButton
-        button.tintColor = UIColor.gray
-    }
+}
 
+extension MissingTableViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -52,7 +42,7 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postCellIdentifier",
-                                                                  for: indexPath) as! PostTableViewCell
+                                                                    for: indexPath) as! PostTableViewCell
         let row = indexPath.row;
         let post = posts[row]
         
@@ -67,12 +57,6 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
                     if let data = response.result.value {
                         let image = UIImage(data: data)
                         cell.postImageView.image = image
-                        
-                        // Comment: - Cell 높이를 이미지 비율에 맞게 재지정을 위한 트릭
-                        UIView.setAnimationsEnabled(false)
-                        tableView.beginUpdates()
-                        tableView.endUpdates()
-                        UIView.setAnimationsEnabled(true)
                     }
                 }
             }
@@ -82,7 +66,7 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
+        
     }
     
     // MARK: - TableView Delegate
@@ -92,14 +76,13 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
         let row = self.posts[indexPath.row]
         guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
             return
         }
-
+        
         postDetailViewController.postId = row.id
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }
-
