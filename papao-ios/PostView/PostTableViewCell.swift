@@ -52,7 +52,7 @@ class PostTableViewCell: UITableViewCell {
             stateBadge.isHidden = true
         } else {
             stateBadge.isHidden = false
-            stateBadge.setStyle(type: .small, backgroundColor: post.stateType.color)
+            stateBadge.setStyle(type: .small, backgroundColor: post.stateType.color, titleColor: .white)
             stateBadge.setTitle(post.stateType.description, for: .normal)
         }
     }
