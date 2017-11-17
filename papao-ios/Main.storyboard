@@ -1206,7 +1206,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9E-sN-cYG" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-4L-JFa">
                                         <rect key="frame" x="287" y="94" width="50" height="16"/>
@@ -1286,10 +1286,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBu-Cq-ahp" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="122" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="514"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUj-8y-Sr2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnP-QO-mTa" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
@@ -1408,7 +1408,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFk-Oe-jF8" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvo-kg-qKx">
                                         <rect key="frame" x="287" y="94" width="50" height="16"/>
@@ -1486,10 +1486,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23e-JT-N6p" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="123" width="375" height="730"/>
+                                <rect key="frame" x="0.0" y="119" width="375" height="734"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CQY-WG-knY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5x-jG-3Rf" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
@@ -1762,7 +1762,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vvd-Ux-TyF" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dk-hx-su4">
                                         <rect key="frame" x="287" y="94" width="50" height="16"/>
@@ -1838,10 +1838,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJk-4G-Tt0" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="123" width="375" height="794"/>
+                                <rect key="frame" x="0.0" y="119" width="375" height="798"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZN-pA-4uS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="794"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="798"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0II-QU-CXA" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="794"/>
@@ -2046,7 +2046,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWK-rc-xIk">
-                                <rect key="frame" x="0.0" y="68" width="375" height="995"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="999"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-gh-eCF" userLabel="Background View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1015"/>

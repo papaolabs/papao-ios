@@ -50,6 +50,7 @@
 		4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */; };
 		4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */; };
 		4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */; };
+		4EDDBC191FBDC397009F9001 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDBC181FBDC397009F9001 /* User.swift */; };
 		4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6B3E71FBB32C30017037D /* HomeViewController.swift */; };
 		4EF282FC1FB94D1600731679 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF282FB1FB94D1600731679 /* NotificationViewController.swift */; };
 		4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617961FB86EE000DADA27 /* HttpHelper.swift */; };
@@ -137,6 +138,7 @@
 		4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnimalInfoViewController.swift; sourceTree = "<group>"; };
 		4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+OvalBorder.swift"; sourceTree = "<group>"; };
 		4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBadge.swift; sourceTree = "<group>"; };
+		4EDDBC181FBDC397009F9001 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4EE6B3E71FBB32C30017037D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4EF282FB1FB94D1600731679 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		4EF617951FB801A800DADA27 /* papao-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "papao-ios.entitlements"; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				4E7060D01FA6022600B88F92 /* PublicDataProtocol.swift */,
 				4E6423B31FADD44E0099A4C7 /* Weight.swift */,
 				4E6423BB1FADD75E0099A4C7 /* Age.swift */,
+				4EDDBC181FBDC397009F9001 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */,
 				4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */,
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
+				4EDDBC191FBDC397009F9001 /* User.swift in Sources */,
 				4E6423BC1FADD75E0099A4C7 /* Age.swift in Sources */,
 				4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */,
 				4E7060CF1FA5FEE300B88F92 /* PPOPicker.swift in Sources */,
