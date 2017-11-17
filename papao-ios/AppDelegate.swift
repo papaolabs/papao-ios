@@ -15,40 +15,12 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let defaults = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let googleMapAPIKey = valueForAPIKey(keyname: "GOOGLE_MAP_API_KEY")
         GMSServices.provideAPIKey(googleMapAPIKey)
-        
-        // Override point for customization after application launch.
-        /**************************** Push service start *****************************/
-        // iOS 11 support
-        if #available(iOS 11, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
-            application.registerForRemoteNotifications()
-        }
-        // iOS 10 support
-        else if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
-            application.registerForRemoteNotifications()
-        }
-            // iOS 9 support
-        else if #available(iOS 9, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-            // iOS 8 support
-        else if #available(iOS 8, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-            // iOS 7 support
-        else {
-            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
-        }
-        /***************************** Push service end ******************************/
         
         return true
     }
@@ -124,6 +96,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Push Notification
     
+    func registerPushNotification(_ application: UIApplication) {
+        // iOS 11 support
+        if #available(iOS 11, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+            // iOS 10 support
+        else if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+            // iOS 9 support
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 8 support
+        else if #available(iOS 8, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 7 support
+        else {
+            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+        }
+    }
+    
     // Called when APNs has assigned the device a unique token
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Convert token to string
@@ -132,25 +131,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         
-        // popup token on the screen
-        let topWindow = UIWindow(frame: UIScreen.main.bounds)
-        topWindow.rootViewController = UIViewController()
-        topWindow.windowLevel = UIWindowLevelAlert + 1
-        let alert = UIAlertController(title: "Push Notification Token", message: "\(deviceTokenString)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-            // continue your work
-            // important to hide the window after work completed.
-            // this also keeps a reference to the window until the action is invoked.
-            topWindow.isHidden = true
-        }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("복사", comment: "copy"), style: .default, handler: {(_ action: UIAlertAction) -> Void in
-            let pasteboard = UIPasteboard.general
-            pasteboard.string = "\(deviceTokenString)"
-        }))
-        topWindow.makeKeyAndVisible()
-        topWindow.rootViewController?.present(alert, animated: true)
-        
-        // Persist it in your backend in case it's new
+        // Store Device Token to userDefaults
+        defaults.set(deviceTokenString, forKey: UserDefaultsKeys.deviceToken.rawValue)
     }
     
     // Called when APNs failed to register the device for push notifications
