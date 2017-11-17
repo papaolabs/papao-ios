@@ -36,6 +36,7 @@ enum ApiResult<Value> {
 import Alamofire
 
 enum Router: URLRequestConvertible {
+    // Post
     case readPosts()
     case createPost(parameters: Parameters)
     case deleteComment(commentId: String)
@@ -49,6 +50,10 @@ enum Router: URLRequestConvertible {
     case readComments(postId: String)
     case createComment(postId: String)
     case setStatus(postId: String)
+    
+    // User
+    case join(parameters: Parameters)
+    case setPush(parameters: Parameters)
 
     static let baseURLString = "\(valueForAPIKey(keyname: "API_BASE_URL"))api/v1/"
     
@@ -67,7 +72,9 @@ enum Router: URLRequestConvertible {
              .registerBookmark,
              .cancelBookmark,
              .createComment,
-             .setStatus:
+             .setStatus,
+             .join,
+             .setPush:
             return .post
         }
     }
@@ -96,6 +103,10 @@ enum Router: URLRequestConvertible {
             return "posts/\(postId)/comments"
         case .setStatus(let postId):
             return "posts/\(postId)/state"
+        case .join(_):
+            return "users/join"
+        case .setPush(_):
+            return "users/push"
         }
     }
     
@@ -110,8 +121,8 @@ enum Router: URLRequestConvertible {
         case .readPost(_), .readPosts(), .deletePost(_), .deleteComment(_), .registerBookmark(_), .cancelBookmark(_),
              .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_), .setStatus(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .createPost(let parameters):
-            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .createPost(let parameters), .join(let parameters), .setPush(let parameters):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .readPostsByPage(let parameters):
             urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
         }
@@ -154,12 +165,28 @@ final class HttpHelper {
         }
     }
     
-    func createPost(postRequest: PostRequest,completion: @escaping (ApiResult<PostDetail>) -> Void) {
+    func createPost(postRequest: PostRequest, completion: @escaping (ApiResult<PostDetail>) -> Void) {
         manager.request(Router.createPost(parameters: postRequest.toDict())).responseString { response in
             if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
                 completion(ApiResult{ return postDetail })
             } else {
                 completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
+    // User
+    func join(parameters: [String:AnyObject], completion: @escaping (ApiResult<User>) -> Void) {
+        let router = Router.join(parameters: parameters)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+                if let value = response.result.value {
+                    let userJson = JSON(value)
+                    let user = User.init(json: userJson.dictionaryObject!)!
+                    completion(ApiResult{ return user })
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
             }
         }
     }

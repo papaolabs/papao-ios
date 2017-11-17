@@ -16,15 +16,23 @@ struct User {
     
     init?(json: [String: Any]) {
         guard let id = json["id"] as? String,
-            let nickName = json["nickName"] as? String,
-            let phone = json["phone"] as? String,
-            let push = json["push"] as? Bool else {
+            let phone = json["phone"] as? String else {
                 return nil
         }
         
         self.id = id
-        self.nickName = nickName
+        if let nickName = json["nickName"] as? String {
+            self.nickName = nickName
+        } else {
+            self.nickName = "말많은 프렌치불독"
+        }
+
         self.phone = phone
-        self.push = push
+        
+        if let push = json["push"] as? Bool {
+            self.push = push
+        } else {
+            self.push = false
+        }
     }
 }
