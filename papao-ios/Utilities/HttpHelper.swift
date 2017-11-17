@@ -190,5 +190,19 @@ final class HttpHelper {
             }
         }
     }
+    
+    func setPush(parameters: [String:AnyObject], completion: @escaping (ApiResult<[String: Any]>) -> Void) {
+        let router = Router.setPush(parameters: parameters)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+                if let value = response.result.value {
+                    let userJson = JSON(value)
+                    completion(ApiResult{ return userJson.dictionaryObject! })
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
+            }
+        }
+    }
 }
 
