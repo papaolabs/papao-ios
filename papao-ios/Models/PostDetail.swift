@@ -99,6 +99,7 @@ enum Gender: String {
     case M = "M"
     case F = "F"
     case Q = "Q"
+    case A = ""
     
     var keyName: String {
         get { return String(describing: self) }
@@ -112,6 +113,8 @@ enum Gender: String {
             return "암컷"
         case .Q:
             return "모름"
+        case .A:
+            return "전체"
         }
     }
 }
