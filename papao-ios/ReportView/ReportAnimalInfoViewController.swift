@@ -26,7 +26,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     @IBOutlet weak var neuterSegment: UISegmentedControl!
     
     // instance for posting Post
-    var post: Post?
+    var post: PostRequest?
     
     var breedList: [PublicDataProtocol]!
     var speciesList: [PublicDataProtocol]!
@@ -133,12 +133,12 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     }
     
     @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
-        post?.gender = genderList[sender.selectedSegmentIndex].keyName
+        post?.genderType = genderList[sender.selectedSegmentIndex].keyName
         print(String(describing: post))
     }
     
     @IBAction func neuterValueChanged(_ sender: UISegmentedControl) {
-        post?.neuter = neuterList[sender.selectedSegmentIndex].keyName
+        post?.neuterType = neuterList[sender.selectedSegmentIndex].keyName
         print(String(describing: post))
     }
 
@@ -157,20 +157,19 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             switch callerView.tag {
             case PickerName.SpeciesPicker.rawValue:
                 if let species = selectedPublicData as? Species {
-                    post?.kindUpCode = String(describing: species.code)
+                    post?.upKindCode = species.code
                 }
             case PickerName.BreedPicker.rawValue:
                 if let breed = selectedPublicData as? Breed {
-                    post?.kindCode = String(describing: breed.code)
-                    post?.kindName = breed.name
+                    post?.kindCode = breed.code
                 }
             case PickerName.AgePicker.rawValue:
                 if let age = selectedPublicData as? Age {
-                    post?.age = age.name
+                    post?.age = Int(age.name)
                 }
             case PickerName.WeightPicker.rawValue:
                 if let weight = selectedPublicData as? Weight {
-                    post?.weight = weight.name
+                    post?.weight = Float(weight.name)
                 }
             default: break
             }
@@ -207,7 +206,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Todo: Post Validation
         if let post = post {
-            guard post.kindUpCode != "" else {
+            guard post.upKindCode != nil else {
                 presentAlert(message: "축종 선택은 필수입니다.")
                 return
             }

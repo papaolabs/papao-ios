@@ -8,91 +8,91 @@
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.1 kg</string>
+			<string>0.1</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.2 kg</string>
+			<string>0.2</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.3 kg</string>
+			<string>0.3</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.4 kg</string>
+			<string>0.4</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.5 kg</string>
+			<string>0.5</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.6 kg</string>
+			<string>0.6</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.7 kg</string>
+			<string>0.7</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.8 kg</string>
+			<string>0.8</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>0.9 kg</string>
+			<string>0.9</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>1 kg</string>
+			<string>1</string>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>0</integer>
 			<key>name</key>
-			<string>2 kg</string>
+			<string>2</string>
 		</dict>
         <dict>
             <key>code</key>
             <integer>0</integer>
             <key>name</key>
-            <string>3 kg</string>
+            <string>3</string>
         </dict>
         <dict>
             <key>code</key>
             <integer>0</integer>
             <key>name</key>
-            <string>4 kg</string>
+            <string>4</string>
         </dict>
         <dict>
             <key>code</key>
             <integer>0</integer>
             <key>name</key>
-            <string>5 kg</string>
+            <string>5</string>
         </dict>
         <dict>
             <key>code</key>
             <integer>0</integer>
             <key>name</key>
-            <string>6 kg</string>
+            <string>6</string>
         </dict>
 	</array>
 </dict>

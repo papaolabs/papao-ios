@@ -33,7 +33,7 @@ class ReportPreviewViewController: UIViewController {
     @IBOutlet weak var featureLabel: UILabel!
     @IBOutlet weak var mapView: GMSMapView!
     
-    var post: Post?
+    var post: PostRequest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,7 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setCustomUI() {
-        speciesLabel.setBorder(color: UIColor.init(named: "borderBlack") ?? UIColor.black)
-        speciesLabel.setRadius(radius: 13)
+        speciesLabel.setStyle(type: .medium)
         
         thumbnailButtons = [thumbnailButton1, thumbnailButton2, thumbnailButton3]
         thumbnailButtons.forEach { (button) in
@@ -63,12 +62,12 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setTitle() {
-        if let species = post?.kindUpCode, let speciesCode = Int(species) {
-            if let speciesName = SpeciesName(rawValue: speciesCode) {
+        if let species = post?.upKindCode {
+            if let speciesName = SpeciesName(rawValue: Int(species)) {
                 speciesLabel.setTitle(speciesName.description, for: .normal)
             }
-            breedLabel.text = post?.kindName ?? "기타축종"
-            genderLabel.text = post?.gender ?? "모름"
+            breedLabel.text = String(describing:post?.kindCode)
+            genderLabel.text = post?.genderType ?? "모름"
         }
     }
 
@@ -86,17 +85,17 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setAnimalInfo() {
-        weightLabel.text = post?.weight ?? "모름"
-        neuterLabel.text = post?.neuter ?? Neuter.U.description
-        ageLabel.text = post?.age ?? "미상"
-        genderDescriptionLabel.text = post?.gender ?? Gender.Q.description
+        weightLabel.text = String(describing:post?.weight)
+        neuterLabel.text = String(describing:post?.neuterType)
+        ageLabel.text = String(describing:post?.age)
+        genderDescriptionLabel.text = post?.genderType ?? Gender.Q.description
     }
     
     func setDetectionInfo() {
         if let post = self.post {
             happenDateLabel.text = post.happenDate
             happenPlaceLabel.text = post.happenPlace
-            userContactLabel.text = post.userContact ?? "없음"
+            userContactLabel.text = post.contact ?? "없음"
             featureLabel.text = post.feature ?? ""
         }
     }

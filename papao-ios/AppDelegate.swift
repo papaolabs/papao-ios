@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import GoogleMaps
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let googleMapAPIKey = valueForAPIKey(keyname: "GOOGLE_MAP_API_KEY")
         GMSServices.provideAPIKey(googleMapAPIKey)
+        
+        // Override point for customization after application launch.
+        /**************************** Push service start *****************************/
+        // iOS 11 support
+        if #available(iOS 11, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+        // iOS 10 support
+        else if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+            // iOS 9 support
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 8 support
+        else if #available(iOS 8, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 7 support
+        else {
+            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+        }
+        /***************************** Push service end ******************************/
         
         return true
     }
@@ -91,6 +120,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    // MARK: - Push Notification
+    
+    // Called when APNs has assigned the device a unique token
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Convert token to string
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        
+        // Print it to console
+        print("APNs device token: \(deviceTokenString)")
+        
+        // popup token on the screen
+        let topWindow = UIWindow(frame: UIScreen.main.bounds)
+        topWindow.rootViewController = UIViewController()
+        topWindow.windowLevel = UIWindowLevelAlert + 1
+        let alert = UIAlertController(title: "Push Notification Token", message: "\(deviceTokenString)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+            // continue your work
+            // important to hide the window after work completed.
+            // this also keeps a reference to the window until the action is invoked.
+            topWindow.isHidden = true
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("복사", comment: "copy"), style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            let pasteboard = UIPasteboard.general
+            pasteboard.string = "\(deviceTokenString)"
+        }))
+        topWindow.makeKeyAndVisible()
+        topWindow.rootViewController?.present(alert, animated: true)
+        
+        // Persist it in your backend in case it's new
+    }
+    
+    // Called when APNs failed to register the device for push notifications
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        // Print the error to console (you should alert the user that registration failed)
+        print("APNs registration failed: \(error)")
+    }
+    
+    // Push notification received
+    func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
+        // Print notification payload data
+        print("Push notification received: \(data)")
     }
 
 }

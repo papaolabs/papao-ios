@@ -9,12 +9,57 @@
 import UIKit
 import Alamofire
 
+enum PostDetailSection: Int {
+    case image = 0
+    case menu
+    case description
+    case comment
+    
+    static var count: Int { return PostDetailSection.comment.hashValue + 1}
+}
+
 class PostDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
-    var post: Post? = nil
+    
+    @IBOutlet weak var speciesLabel: PPOBadge!
+    @IBOutlet weak var breedLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var hitCountLabel: UILabel!
+    
+    var postId: Int?
+    private var postDetail: PostDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        speciesLabel.setStyle(type: .medium)
+        
+        let footer = UIView.init(frame: CGRect.zero)
+        tableView.tableFooterView = footer
+        
+        if let postId = postId {
+            getPostDetail(postId: postId)
+        }
+    }
+    
+    func getPostDetail(postId: Int) {
+        let api = HttpHelper.init()
+        api.readPost(postId: postId, completion: { (result) in
+            do {
+                let postDetail = try result.unwrap()
+                self.postDetail = postDetail
+                
+                self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
+                self.breedLabel.text = postDetail.kindName
+                self.commentLabel.text = "\(postDetail.commentCount ?? 0)"
+                self.hitCountLabel.text = "\(postDetail.hitCount ?? 0)"
+                
+                self.tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        })
     }
     
     // MARK: - IBAction
@@ -31,90 +76,41 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        // Image, Button, Text 세가지
-        return 3
+        // Image, Menu, Description, Comment 세가지
+        return PostDetailSection.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0, 1: // ImageCell, ButtonCell
-            return 1
-        case 2:
-            if let thePost = post {
-                return thePost.countOfTextInfo()
-            }
-            return 1
-        default:
-            return 1
-        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
-        let row = indexPath.row
         
         switch section {
-        case 0:
+        case PostDetailSection.image.hashValue:
             let cell: PostDetailImageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailImageCell",
                                                                         for: indexPath) as! PostDetailImageTableViewCell
-            if let url = post?.imageUrls[0] {
-                Alamofire.request(url).responseData { response in
-                    if let data = response.result.value {
-                        let image = UIImage(data: data)
-                        cell.postImageView.image = image
-                        
-                        // Comment: - Cell 높이를 이미지 비율에 맞게 재지정을 위한 트릭
-                        UIView.setAnimationsEnabled(false)
-                        tableView.beginUpdates()
-                        tableView.endUpdates()
-                        UIView.setAnimationsEnabled(true)
-                    }
-                }
-            }
-            // Todo: - 이미지 호출 후 이미지뷰 크기와 셀 높이를 재정의
+            cell.setPostDetail(postDetail)
             return cell
-        case 1:
+        case PostDetailSection.menu.hashValue:
             let cell: PostDetailButtonTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailButtonCell",
             for: indexPath) as! PostDetailButtonTableViewCell
+            cell.setPostDetail(postDetail)
             cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
             return cell
-        default:
+        case PostDetailSection.description.hashValue:
             let cell: PostDetailTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailTextCell",
                                                                                     for: indexPath) as! PostDetailTextTableViewCell
-            switch row {
-            case 0:
-                if let kindName = post?.kindName {
-                    cell.titleLabel.text = "종류"
-                    cell.contentLabel.text = kindName
-                }
-                break
-            case 1:
-                if let feature = post?.feature {
-                    cell.titleLabel.text = "특징"
-                    cell.contentLabel.text = feature
-                }
-            case 2:
-                if let happenPlace = post?.happenPlace {
-                    cell.titleLabel.text = "발생장소"
-                    cell.contentLabel.text = happenPlace
-                }
-                break
-            case 3:
-                if let userName = post?.userName {
-                    cell.titleLabel.text = "보호센터"
-                    cell.contentLabel.text = userName
-                }
-                break
-            case 4:
-                if let userContact = post?.userContact {
-                    cell.titleLabel.text = "연락처"
-                    cell.contentLabel.text = userContact
-                }
-            default:
-                break
-            }
-            
-            // Todo: - 표시할 수 있는 모든 텍스트 정보를 동적으로 셀에 표시 필요
+            cell.setPostDetail(postDetail)
+            return cell
+        case PostDetailSection.comment.hashValue:
+            let cell: PostDetailCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentCell",
+                                                                              for: indexPath) as! PostDetailCommentTableViewCell
+            cell.setPostDetail(postDetail)
+            return cell
+        default:
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
         }
     }
@@ -127,32 +123,16 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         switch section {
-        case 0:
-            // Comment: - 스크린 사이즈 비율에 따른 이미지 높이로 이미지셀 높이 지정
-            if let currentCell = tableView.cellForRow(at: indexPath) as? PostDetailImageTableViewCell {
-                if let size = currentCell.postImageView.image?.size {
-                    let aspectRatio = size.height/size.width
-                    return aspectRatio * UIScreen.main.bounds.width
-                }
-            }
-            return 44
+        case PostDetailSection.image.rawValue:
+            return 421
+        case PostDetailSection.description.rawValue:
+            return 244
         default:
-            return 44
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = indexPath.section
-        switch section {
-        case 0:
-            return 375
-        default:
-            return 44
+            return 40
         }
     }
 
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
