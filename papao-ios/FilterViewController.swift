@@ -112,24 +112,42 @@ class FilterViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func dogButtonPressed(_ sender: PPOBadge) {
-        self.filter?.species = SpeciesName.DOG
-        sender.isSelected = true
         catButton.isSelected = false
         etcButton.isSelected = false
+        
+        if sender.isSelected {
+            self.filter?.species = nil
+            sender.isSelected = false
+        } else {
+            self.filter?.species = SpeciesName.DOG
+            sender.isSelected = true
+        }
     }
     
     @IBAction func catButtonPressed(_ sender: PPOBadge) {
-        self.filter?.species = SpeciesName.CAT
-        sender.isSelected = true
         dogButton.isSelected = false
         etcButton.isSelected = false
+        
+        if sender.isSelected {
+            self.filter?.species = nil
+            sender.isSelected = false
+        } else {
+            self.filter?.species = SpeciesName.CAT
+            sender.isSelected = true
+        }
     }
     
     @IBAction func etcButtonPressed(_ sender: PPOBadge) {
-        self.filter?.species = SpeciesName.ETC
-        sender.isSelected = true
         dogButton.isSelected = false
         catButton.isSelected = false
+        
+        if sender.isSelected {
+            self.filter?.species = nil
+            sender.isSelected = false
+        } else {
+            self.filter?.species = SpeciesName.ETC
+            sender.isSelected = true
+        }
     }
     
     @IBAction func breedButtonPressed(_ sender: UIButton) {
