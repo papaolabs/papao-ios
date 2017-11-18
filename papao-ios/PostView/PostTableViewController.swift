@@ -12,7 +12,7 @@ import Alamofire
 class PostTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     var posts: [Post] = []
-    var filter = Filter.init(postTypes: [PostType.SYSTEM.rawValue ])
+    var filter = Filter.init(postTypes: [PostType.SYSTEM])
     
     override func viewDidLoad() {
         super.viewDidLoad()

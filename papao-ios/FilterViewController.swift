@@ -71,25 +71,30 @@ class FilterViewController: UIViewController {
         for (index, element) in genderList.enumerated() {
             genderSegment.setTitle(element.description, forSegmentAt: index)
         }
+        
+        // 기존 필터 데이터 화면에 적용
+        if filter != nil {
+            
+        }
     }
     
     // MARK: - IBActions
     @IBAction func dogButtonPressed(_ sender: PPOBadge) {
-        self.filter?.upKindCode = "\(SpeciesName.DOG.rawValue)"
+        self.filter?.species = SpeciesName.DOG
         sender.isSelected = true
         catButton.isSelected = false
         etcButton.isSelected = false
     }
     
     @IBAction func catButtonPressed(_ sender: PPOBadge) {
-        self.filter?.upKindCode = "\(SpeciesName.CAT.rawValue)"
+        self.filter?.species = SpeciesName.CAT
         sender.isSelected = true
         dogButton.isSelected = false
         etcButton.isSelected = false
     }
     
     @IBAction func etcButtonPressed(_ sender: PPOBadge) {
-        self.filter?.upKindCode = "\(SpeciesName.ETC.rawValue)"
+        self.filter?.species = SpeciesName.ETC
         sender.isSelected = true
         dogButton.isSelected = false
         catButton.isSelected = false
@@ -104,7 +109,7 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func genderSegmentChanged(_ sender: UISegmentedControl) {
-        filter?.genderType = genderList[sender.selectedSegmentIndex].rawValue
+        filter?.genderType = genderList[sender.selectedSegmentIndex]
     }
     
     @IBAction func sidoButtonPressed(_ sender: UIButton) {
@@ -128,7 +133,7 @@ class FilterViewController: UIViewController {
 
     // MARK: - Private methods
     fileprivate func clearGungu() {
-        filter?.gunguCode = ""
+        filter?.gungu = nil
         gunguButton.setTitle("전체", for: .normal)
     }
     
@@ -160,7 +165,7 @@ class FilterViewController: UIViewController {
         
         // set date for Post instance
         formatter.dateFormat = "yyyyMMdd"
-        filter?.beginDate = formatter.string(from: beginDatePicker.date)
+        filter?.beginDate = beginDatePicker.date
         
         //dismiss date picker dialog
         self.view.endEditing(true)
@@ -194,7 +199,7 @@ class FilterViewController: UIViewController {
         
         // set date for Post instance
         formatter.dateFormat = "yyyyMMdd"
-        filter?.endDate = formatter.string(from: endDatePicker.date)
+        filter?.endDate = endDatePicker.date
         
         //dismiss date picker dialog
         self.view.endEditing(true)
@@ -222,11 +227,11 @@ extension FilterViewController: PPOPickerDelegate {
             switch callerView.tag {
             case PickerName.BreedPicker.rawValue:
                 if let breed = selectedPublicData as? Breed {
-                    filter?.kindCode = "\(breed.code)"
+                    filter?.breed = breed
                 }
             case PickerName.SidoPicker.rawValue:
                 if let sido = selectedPublicData as? Sido {
-                    filter?.sidoCode = "\(sido.code)"
+                    filter?.sido = sido
                     
                     // 군구 선택을 위한 설정
                     currentSido = sido
@@ -234,7 +239,7 @@ extension FilterViewController: PPOPickerDelegate {
                 }
             case PickerName.GunguPicker.rawValue:
                 if let gungu = selectedPublicData as? Gungu {
-                    filter?.gunguCode = "\(gungu.code)"
+                    filter?.gungu = gungu
                 }
             default: break
             }

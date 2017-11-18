@@ -12,7 +12,7 @@ import Alamofire
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var posts: [Post] = []
-    var filter = Filter.init(postTypes: [PostType.ROADREPORT.rawValue, PostType.PROTECTING.rawValue])
+    var filter = Filter.init(postTypes: [PostType.ROADREPORT, PostType.PROTECTING])
     
     override func viewDidLoad() {
         super.viewDidLoad()

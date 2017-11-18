@@ -12,7 +12,7 @@ import Alamofire
 class MissingTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var posts: [Post] = []
-    var filter = Filter.init(postTypes: [PostType.MISSING.rawValue])
+    var filter = Filter.init(postTypes: [PostType.MISSING])
     
     override func viewDidLoad() {
         super.viewDidLoad()
