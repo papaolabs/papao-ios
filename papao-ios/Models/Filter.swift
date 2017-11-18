@@ -15,7 +15,7 @@ struct Filter {
     var beginDate: String
     var endDate: String
     var sidoCode: String
-    var gungoCode: String
+    var gunguCode: String
     
     init() {
         species = ""
@@ -24,7 +24,7 @@ struct Filter {
         beginDate = ""
         endDate = ""
         sidoCode = ""
-        gungoCode = ""
+        gunguCode = ""
     }
 }
 

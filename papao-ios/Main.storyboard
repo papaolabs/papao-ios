@@ -2547,11 +2547,10 @@
                                             <constraint firstAttribute="height" constant="48" id="UMb-un-9RD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="서울시">
+                                        <state key="normal" title="전체">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="breedButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="604-BW-X0d"/>
                                             <action selector="sidoButtonPressed:" destination="XkD-I4-wDF" eventType="touchUpInside" id="Iq3-YP-FbS"/>
                                         </connections>
                                     </button>
@@ -2566,7 +2565,6 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="breedButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="q31-Av-Zg9"/>
                                             <action selector="gunguButtonPressed:" destination="XkD-I4-wDF" eventType="touchUpInside" id="PRt-iT-hpm"/>
                                         </connections>
                                     </button>
@@ -2727,10 +2725,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="breedButton" destination="tFx-Xc-SuT" id="ZjV-dj-o1q"/>
                         <outlet property="catButton" destination="hRc-f3-9KO" id="k5n-si-26g"/>
                         <outlet property="dogButton" destination="6jz-3R-mjW" id="v4e-Wd-qdm"/>
                         <outlet property="etcButton" destination="hHF-pe-gca" id="vct-Yy-Swh"/>
                         <outlet property="genderSegment" destination="Brc-Jf-0BA" id="aCM-d8-sy8"/>
+                        <outlet property="gunguButton" destination="wBc-wc-Ktu" id="Glv-6S-kJa"/>
+                        <outlet property="sidoButton" destination="Iwc-cc-lht" id="Zj9-CG-tVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEf-BK-Wrl" userLabel="First Responder" sceneMemberID="firstResponder"/>
