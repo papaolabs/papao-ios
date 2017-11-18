@@ -96,4 +96,10 @@ extension MissingTableViewController: UITableViewDelegate, UITableViewDataSource
             }
         }
     }
+    
+    @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
+        if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
+            self.filter = filter
+        }
+    }
 }

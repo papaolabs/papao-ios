@@ -2725,7 +2725,7 @@
                     <navigationItem key="navigationItem" title="필터" id="0y5-xk-Dwt">
                         <barButtonItem key="rightBarButtonItem" title="적용" id="KI0-Pg-zH8">
                             <connections>
-                                <action selector="applyFilter:" destination="XkD-I4-wDF" id="aet-ER-VJH"/>
+                                <segue destination="hbV-21-4TA" kind="unwind" unwindAction="unwindToPostViewControllerWithSegue:" id="zSk-yd-3pu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2742,6 +2742,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEf-BK-Wrl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hbV-21-4TA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2848.8000000000002" y="903.59820089955031"/>
         </scene>

@@ -125,11 +125,7 @@ class FilterViewController: UIViewController {
         picker?.set(items: [towns])
         picker?.startPicking()
     }
-    
-    @IBAction func applyFilter(_ sender: Any) {
-        print(filter)
-    }
-    
+
     // MARK: - Private methods
     fileprivate func clearGungu() {
         filter?.gunguCode = ""
