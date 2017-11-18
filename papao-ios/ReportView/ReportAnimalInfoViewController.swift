@@ -13,6 +13,8 @@ enum PickerName: Int {
     case BreedPicker
     case WeightPicker
     case AgePicker
+    case SidoPicker
+    case GunguPicker
 }
 
 class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {

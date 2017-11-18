@@ -12,13 +12,23 @@ import Alamofire
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var posts: [Post] = []
-    
+    var filter = Filter.init(postTypes: [PostType.ROADREPORT, PostType.PROTECTING])
+    let api = HttpHelper.init()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let api = HttpHelper.init()
-        api.readPosts(postType: PostType.ROADREPORT, completion: { (result) in
+        loadPostData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func loadPostData() {
+        api.readPosts(filter: filter, completion: { (result) in
             // Todo: - PROTECTING, ROADREPORT 둘다 받아서 보여줘야함
             do {
                 self.posts = try result.unwrap()
@@ -29,9 +39,23 @@ class ReportTableViewController: UIViewController {
         })
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FilterSegue" {
+            if let viewController = segue.destination as? FilterViewController {
+                // pass data to next viewController
+                viewController.filter = filter
+            }
+        }
+    }
+    
+    @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
+        if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
+            self.filter = filter
+            
+            // filter 적용 후 데이터 다시 로드
+            loadPostData()
+        }
     }
 }
 

@@ -44,6 +44,10 @@
 		4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */; };
 		4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */; };
 		4ED371D81FBF25860061C4C6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */; };
+		4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */; };
+		4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371DB1FC0376E0061C4C6 /* Filter.swift */; };
+		4ED371DE1FC038F90061C4C6 /* RegionList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED371DD1FC038F90061C4C6 /* RegionList.plist */; };
+		4ED371E01FC051C10061C4C6 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371DF1FC051C10061C4C6 /* Region.swift */; };
 		4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6F3901FA5CC4D009E287C /* Breed.swift */; };
 		4ED6F3941FA5D0DE009E287C /* BreedList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3931FA5D0DE009E287C /* BreedList.plist */; };
 		4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3951FA5E004009E287C /* SpeciesList.plist */; };
@@ -133,6 +137,10 @@
 		4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPreivewViewController.swift; sourceTree = "<group>"; };
 		4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		4ED371DB1FC0376E0061C4C6 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		4ED371DD1FC038F90061C4C6 /* RegionList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RegionList.plist; sourceTree = "<group>"; };
+		4ED371DF1FC051C10061C4C6 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		4ED6F3901FA5CC4D009E287C /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
 		4ED6F3931FA5D0DE009E287C /* BreedList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BreedList.plist; sourceTree = "<group>"; };
 		4ED6F3951FA5E004009E287C /* SpeciesList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SpeciesList.plist; sourceTree = "<group>"; };
@@ -256,6 +264,8 @@
 				4E6423B31FADD44E0099A4C7 /* Weight.swift */,
 				4E6423BB1FADD75E0099A4C7 /* Age.swift */,
 				4EDDBC181FBDC397009F9001 /* User.swift */,
+				4ED371DB1FC0376E0061C4C6 /* Filter.swift */,
+				4ED371DF1FC051C10061C4C6 /* Region.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
 				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
 				4EE6B3E71FBB32C30017037D /* HomeViewController.swift */,
+				4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */,
 				4EF282FB1FB94D1600731679 /* NotificationViewController.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4E7060D41FA612FE00B88F92 /* Main.storyboard */,
@@ -333,6 +344,7 @@
 				4ED6F3951FA5E004009E287C /* SpeciesList.plist */,
 				4E6423B51FADD48B0099A4C7 /* WeightList.plist */,
 				4E6423B91FADD4A20099A4C7 /* AgeList.plist */,
+				4ED371DD1FC038F90061C4C6 /* RegionList.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -474,6 +486,7 @@
 				4E6423BA1FADD4A20099A4C7 /* AgeList.plist in Resources */,
 				4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */,
 				4E6423B61FADD48B0099A4C7 /* WeightList.plist in Resources */,
+				4ED371DE1FC038F90061C4C6 /* RegionList.plist in Resources */,
 				4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */,
 				4EAE9AB61F91DCE700499B18 /* LaunchScreen.storyboard in Resources */,
 				4E7060D51FA6132500B88F92 /* Main.storyboard in Resources */,
@@ -576,6 +589,7 @@
 				4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */,
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
 				4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */,
+				4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
@@ -603,9 +617,11 @@
 				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */,
 				4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */,
+				4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */,
 				4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
 				4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */,
+				4ED371E01FC051C10061C4C6 /* Region.swift in Sources */,
 				4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */,
 				4E835F011F9230A700BFA6BD /* PostDetail.swift in Sources */,
 			);
