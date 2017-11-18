@@ -269,7 +269,6 @@ extension FilterViewController: PPOPickerDelegate {
     
     @objc func pickerSetAction() {
         if let selectedItems = picker?.selectedItems, let callerView = picker?.callerButton {
-            print("\(selectedItems)")
             let selectedPublicData: PublicDataProtocol = selectedItems[0]
             callerView.setTitle(selectedPublicData.name, for: .normal)
             

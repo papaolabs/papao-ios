@@ -25,7 +25,7 @@ struct Filter {
     func toDict() -> [String: AnyObject] {
         var dict = ["postType": postTypes.map({ (postType) -> String in
             return postType.rawValue
-        }) as AnyObject]
+        }).joined(separator: ",") as AnyObject]
         if let species = species {
             dict["upKindCode"] = "\(species.rawValue)" as AnyObject
         }
