@@ -12,13 +12,14 @@ import Alamofire
 class MissingTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var posts: [Post] = []
+    var filter = Filter.init(postTypes: [PostType.MISSING.rawValue])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         let api = HttpHelper.init()
-        api.readPosts(postType: PostType.MISSING, completion: { (result) in
+        api.readPosts(filter: filter, completion: { (result) in
             do {
                 self.posts = try result.unwrap()
                 self.tableView.reloadData()
@@ -84,5 +85,15 @@ extension MissingTableViewController: UITableViewDelegate, UITableViewDataSource
         
         postDetailViewController.postId = row.id
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
+    }
+    
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FilterSegue" {
+            if let viewController = segue.destination as? FilterViewController {
+                // pass data to next viewController
+                viewController.filter = filter
+            }
+        }
     }
 }

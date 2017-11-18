@@ -19,7 +19,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var beginDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
     
-    var filter = Filter.init()
+    var filter: Filter?
     var genderList: [Gender] = [Gender.M, Gender.F, Gender.A]
     var breedList: [PublicDataProtocol]!
     var sidoList: [PublicDataProtocol]!
@@ -75,21 +75,21 @@ class FilterViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func dogButtonPressed(_ sender: PPOBadge) {
-        self.filter.species = "\(SpeciesName.DOG.rawValue)"
+        self.filter?.upKindCode = "\(SpeciesName.DOG.rawValue)"
         sender.isSelected = true
         catButton.isSelected = false
         etcButton.isSelected = false
     }
     
     @IBAction func catButtonPressed(_ sender: PPOBadge) {
-        self.filter.species = "\(SpeciesName.CAT.rawValue)"
+        self.filter?.upKindCode = "\(SpeciesName.CAT.rawValue)"
         sender.isSelected = true
         dogButton.isSelected = false
         etcButton.isSelected = false
     }
     
     @IBAction func etcButtonPressed(_ sender: PPOBadge) {
-        self.filter.species = "\(SpeciesName.ETC.rawValue)"
+        self.filter?.upKindCode = "\(SpeciesName.ETC.rawValue)"
         sender.isSelected = true
         dogButton.isSelected = false
         catButton.isSelected = false
@@ -104,7 +104,7 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func genderSegmentChanged(_ sender: UISegmentedControl) {
-        filter.gender = genderList[sender.selectedSegmentIndex].rawValue
+        filter?.genderType = genderList[sender.selectedSegmentIndex].rawValue
     }
     
     @IBAction func sidoButtonPressed(_ sender: UIButton) {
@@ -132,7 +132,7 @@ class FilterViewController: UIViewController {
     
     // MARK: - Private methods
     fileprivate func clearGungu() {
-        filter.gunguCode = ""
+        filter?.gunguCode = ""
         gunguButton.setTitle("전체", for: .normal)
     }
     
@@ -164,7 +164,7 @@ class FilterViewController: UIViewController {
         
         // set date for Post instance
         formatter.dateFormat = "yyyyMMdd"
-        filter.beginDate = formatter.string(from: beginDatePicker.date)
+        filter?.beginDate = formatter.string(from: beginDatePicker.date)
         
         //dismiss date picker dialog
         self.view.endEditing(true)
@@ -198,7 +198,7 @@ class FilterViewController: UIViewController {
         
         // set date for Post instance
         formatter.dateFormat = "yyyyMMdd"
-        filter.endDate = formatter.string(from: endDatePicker.date)
+        filter?.endDate = formatter.string(from: endDatePicker.date)
         
         //dismiss date picker dialog
         self.view.endEditing(true)
@@ -226,11 +226,11 @@ extension FilterViewController: PPOPickerDelegate {
             switch callerView.tag {
             case PickerName.BreedPicker.rawValue:
                 if let breed = selectedPublicData as? Breed {
-                    filter.breed = "\(breed.code)"
+                    filter?.kindCode = "\(breed.code)"
                 }
             case PickerName.SidoPicker.rawValue:
                 if let sido = selectedPublicData as? Sido {
-                    filter.sidoCode = "\(sido.code)"
+                    filter?.sidoCode = "\(sido.code)"
                     
                     // 군구 선택을 위한 설정
                     currentSido = sido
@@ -238,7 +238,7 @@ extension FilterViewController: PPOPickerDelegate {
                 }
             case PickerName.GunguPicker.rawValue:
                 if let gungu = selectedPublicData as? Gungu {
-                    filter.gunguCode = "\(gungu.code)"
+                    filter?.gunguCode = "\(gungu.code)"
                 }
             default: break
             }

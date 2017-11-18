@@ -149,8 +149,8 @@ final class HttpHelper {
         }
     }
     
-    func readPosts(postType: PostType, completion: @escaping (ApiResult<[Post]>) -> Void) {
-        manager.request(Router.readPostsByPage(parameters: ["postType": postType])).responseJSON { response in
+    func readPosts(filter: Filter, completion: @escaping (ApiResult<[Post]>) -> Void) {
+        manager.request(Router.readPostsByPage(parameters: filter.toDict())).responseJSON { response in
             print(response)
             if let value = response.result.value {
                 let postJsonList = JSON(value)

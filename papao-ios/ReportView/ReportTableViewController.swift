@@ -12,13 +12,14 @@ import Alamofire
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var posts: [Post] = []
+    var filter = Filter.init(postTypes: [PostType.ROADREPORT.rawValue, PostType.PROTECTING.rawValue])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         let api = HttpHelper.init()
-        api.readPosts(postType: PostType.ROADREPORT, completion: { (result) in
+        api.readPosts(filter: filter, completion: { (result) in
             // Todo: - PROTECTING, ROADREPORT 둘다 받아서 보여줘야함
             do {
                 self.posts = try result.unwrap()
@@ -85,5 +86,15 @@ extension ReportTableViewController: UITableViewDelegate, UITableViewDataSource 
         
         postDetailViewController.postId = row.id
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
+    }
+    
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FilterSegue" {
+            if let viewController = segue.destination as? FilterViewController {
+                // pass data to next viewController
+                viewController.filter = filter
+            }
+        }
     }
 }

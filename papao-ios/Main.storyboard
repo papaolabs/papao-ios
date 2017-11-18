@@ -203,7 +203,7 @@
                     <navigationItem key="navigationItem" title="보호소" id="jWl-a8-62c">
                         <barButtonItem key="rightBarButtonItem" title="Filter" image="iconFilterBlack" id="TPY-9v-4cJ">
                             <connections>
-                                <segue destination="XkD-I4-wDF" kind="show" id="jQc-9Y-PAu"/>
+                                <segue destination="XkD-I4-wDF" kind="show" identifier="FilterSegue" id="jQc-9Y-PAu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -346,7 +346,7 @@
                                         <rect key="frame" x="0.0" y="116" width="375" height="421"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GGm-ap-nge" id="lOB-sJ-TMk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="420.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="421"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4Y-ol-X60" userLabel="Background View">
@@ -437,7 +437,7 @@
                                         <rect key="frame" x="0.0" y="537" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZFZ-hy-PDW" id="yer-C2-eZh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lrw-t8-kbD" userLabel="Background View">
@@ -508,7 +508,7 @@
                                         <rect key="frame" x="0.0" y="577" width="375" height="244"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0W3-Eq-zzM" id="YOy-dC-ldT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="243.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jfl-8E-LUz" userLabel="Background View">
@@ -806,7 +806,7 @@
                                         <rect key="frame" x="0.0" y="821" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5JC-sM-7eQ" id="1qD-1l-U2s">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYi-vs-czr" userLabel="Background View">
@@ -1189,7 +1189,7 @@
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Filter" image="iconFilterBlack" id="a6M-Q1-DAn">
                             <connections>
-                                <segue destination="XkD-I4-wDF" kind="show" id="8mm-yr-yuE"/>
+                                <segue destination="XkD-I4-wDF" kind="show" identifier="FilterSegue" id="8mm-yr-yuE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2935,7 +2935,7 @@
                     <navigationItem key="navigationItem" title="실종" id="zuW-7Q-ESM">
                         <barButtonItem key="rightBarButtonItem" title="Filter" image="iconFilterBlack" id="poq-LF-7oi">
                             <connections>
-                                <segue destination="XkD-I4-wDF" kind="show" id="6Ah-ec-oni"/>
+                                <segue destination="XkD-I4-wDF" kind="show" identifier="FilterSegue" id="6Ah-ec-oni"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -3063,8 +3063,8 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Ah-ec-oni"/>
-        <segue reference="iuM-cw-uXR"/>
+        <segue reference="jQc-9Y-PAu"/>
+        <segue reference="fX6-tz-dqg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>
