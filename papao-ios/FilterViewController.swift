@@ -73,8 +73,40 @@ class FilterViewController: UIViewController {
         }
         
         // 기존 필터 데이터 화면에 적용
-        if filter != nil {
+        if let filter = self.filter {
+            if filter.species == .DOG {
+                dogButtonPressed(dogButton)
+            } else if filter.species == .CAT {
+                catButtonPressed(catButton)
+            } else if filter.species == .ETC {
+                etcButtonPressed(etcButton)
+            }
             
+            if let breed = filter.breed {
+                breedButton.setTitle(breed.name, for: .normal)
+            }
+            
+            for (index, element) in genderList.enumerated() {
+                if (filter.genderType == element) {
+                    genderSegment.selectedSegmentIndex = index
+                }
+            }
+            
+            if let sido = filter.sido {
+                sidoButton.setTitle(sido.name, for: .normal)
+            }
+            if let gungu = filter.gungu {
+                gunguButton.setTitle(gungu.name, for: .normal)
+            }
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            if let beginDate = filter.beginDate {
+                beginDateTextField.text = formatter.string(from: beginDate)
+            }
+            if let endDate = filter.endDate {
+                endDateTextField.text = formatter.string(from: endDate)
+            }
         }
     }
     
