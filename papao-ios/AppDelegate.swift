@@ -10,18 +10,22 @@ import UIKit
 import CoreData
 import GoogleMaps
 import UserNotifications
+import AccountKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
     let defaults = UserDefaults.standard
+    fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let googleMapAPIKey = valueForAPIKey(keyname: "GOOGLE_MAP_API_KEY")
         GMSServices.provideAPIKey(googleMapAPIKey)
         
+        // register push
+        registerPushNotification(application)
+
         return true
     }
 
@@ -131,8 +135,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         
-        // Store Device Token to userDefaults
-        defaults.set(deviceTokenString, forKey: UserDefaultsKeys.deviceToken.rawValue)
+        // 로컬에 저장된 디바이스토큰과 비교
+        if let storedDeviceToken = defaults.object(forKey: UserDefaultsKeys.deviceToken.rawValue) {
+            if deviceTokenString != storedDeviceToken as! String {
+                // Store Device Token to userDefaults
+                defaults.set(deviceTokenString, forKey: UserDefaultsKeys.deviceToken.rawValue)
+            
+                // send to backend
+                sendDeviceToken(deviceTokenString)
+            }
+        }
+        
     }
     
     // Called when APNs failed to register the device for push notifications
@@ -147,5 +160,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Push notification received: \(data)")
     }
 
+    fileprivate func sendDeviceToken(_ deviceToken: String) {
+        let api = HttpHelper.init()
+        var parameters = ["deviceId": deviceToken, "type": PushType.GUEST.rawValue]
+        
+        accountKit.requestAccount { (account, error) in
+            if let error = error {
+                // 문제가 있거나 비회원일 때
+                print(error)
+            } else {
+                if let accountId = account?.accountID {
+                    // 회원일 때, 파라미터의 userId와 type을 변경해준다.
+                    parameters["userId"] = accountId
+                    parameters["type"] = PushType.USER.rawValue
+                }
+            }
+            // api call
+            api.setPush(parameters: parameters as [String: AnyObject], completion: { (result) in
+                do {
+                    let result = try result.unwrap()
+                    print(result)
+                } catch {
+                    print(error)
+                }
+            })
+        }
+        
+        // 회원일 때
+    }
 }
 
