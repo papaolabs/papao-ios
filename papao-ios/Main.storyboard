@@ -2474,7 +2474,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="AYK-20-gIk"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" name="warmPink"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2483,7 +2483,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="6yX-xf-bSb"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" name="warmPink"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2494,6 +2494,7 @@
                                             <segment title="암컷"/>
                                             <segment title="전체"/>
                                         </segments>
+                                        <color key="tintColor" name="borderGray"/>
                                         <connections>
                                             <action selector="genderSegmentChanged:" destination="XkD-I4-wDF" eventType="valueChanged" id="heh-9V-noz"/>
                                             <action selector="genderValueChanged:" destination="dOE-c2-VuM" eventType="valueChanged" id="VXT-Qo-ySG"/>
@@ -2504,7 +2505,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="V7Z-xC-S7w"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" name="warmPink"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2527,16 +2528,16 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="ehA-cI-MUp"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" name="warmPink"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="품종" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k72-GH-Rbt">
-                                        <rect key="frame" x="33" y="429" width="29.5" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k72-GH-Rbt">
+                                        <rect key="frame" x="33" y="429" width="30" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="5k0-c4-7uj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" name="warmPink"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2622,7 +2623,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="PMd-PU-7NB"/>
                                         </constraints>
-                                        <state key="normal" title="개"/>
+                                        <state key="normal" title="개">
+                                            <color key="titleColor" name="borderGray"/>
+                                        </state>
                                         <connections>
                                             <action selector="dogButtonPressed:" destination="XkD-I4-wDF" eventType="touchUpInside" id="WcS-yO-IMI"/>
                                         </connections>
@@ -2632,7 +2635,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="hpF-TU-oWr"/>
                                         </constraints>
-                                        <state key="normal" title="기타"/>
+                                        <state key="normal" title="기타">
+                                            <color key="titleColor" name="borderGray"/>
+                                        </state>
                                         <connections>
                                             <action selector="etcButtonPressed:" destination="XkD-I4-wDF" eventType="touchUpInside" id="3b1-7D-59S"/>
                                         </connections>
@@ -2642,12 +2647,14 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="IPT-MK-X6R"/>
                                         </constraints>
-                                        <state key="normal" title="고양이"/>
+                                        <state key="normal" title="고양이">
+                                            <color key="titleColor" name="borderGray"/>
+                                        </state>
                                         <connections>
                                             <action selector="catButtonPressed:" destination="XkD-I4-wDF" eventType="touchUpInside" id="zZh-en-RFq"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="iconPointer" translatesAutoresizingMaskIntoConstraints="NO" id="5oC-Re-X1m">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPointer" translatesAutoresizingMaskIntoConstraints="NO" id="5oC-Re-X1m">
                                         <rect key="frame" x="179" y="467" width="17" height="12"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="끝 날짜" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="SYS-dg-oF4">
@@ -2702,6 +2709,7 @@
                                     <constraint firstItem="wBc-wc-Ktu" firstAttribute="top" secondItem="rdz-og-B5s" secondAttribute="bottom" constant="8" id="qJS-yD-FYy"/>
                                     <constraint firstItem="ml2-ge-jtE" firstAttribute="top" secondItem="yd0-Gt-dI1" secondAttribute="top" constant="32" id="rA9-rg-JLg"/>
                                     <constraint firstItem="SYS-dg-oF4" firstAttribute="top" secondItem="AfB-Km-sCQ" secondAttribute="bottom" constant="-30" id="s5U-q8-8Wq"/>
+                                    <constraint firstItem="5oC-Re-X1m" firstAttribute="centerY" secondItem="AfB-Km-sCQ" secondAttribute="centerY" id="teF-43-ilS"/>
                                     <constraint firstItem="AfB-Km-sCQ" firstAttribute="width" secondItem="SYS-dg-oF4" secondAttribute="width" id="thQ-Em-Vpd"/>
                                     <constraint firstItem="9Mc-b7-hkx" firstAttribute="top" secondItem="6jz-3R-mjW" secondAttribute="bottom" constant="32" id="u57-jO-D8V"/>
                                     <constraint firstItem="q12-dy-HyU" firstAttribute="top" secondItem="tFx-Xc-SuT" secondAttribute="bottom" constant="32" id="uFf-eh-y2f"/>

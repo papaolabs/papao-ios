@@ -14,9 +14,20 @@ enum PPOBadgeType {
 }
 
 class PPOBadge: UIButton {
+    var borderColor: UIColor?
+    
+    override open var isSelected: Bool {
+        didSet {
+            backgroundColor = isSelected ? UIColor.init(named: "warmPink") : UIColor.clear
+            layer.borderColor = isSelected ? UIColor.init(named: "warmPink")?.cgColor : borderColor?.cgColor
+        }
+        
+    }
+
     required init(borderColor: UIColor) {
         super.init(frame: .zero)
         initialize()
+        self.borderColor = borderColor
         setBorder(color: borderColor)
     }
     
@@ -52,8 +63,10 @@ class PPOBadge: UIButton {
         if let backgroundColor = color {
             self.backgroundColor = backgroundColor
             setBorder(color: backgroundColor)
+            borderColor = color
         } else {
-            setBorder(color: UIColor.init(named: "textBlack") ?? .black)
+            setBorder(color: UIColor.init(named: "borderGray") ?? .black)
+            borderColor = UIColor.init(named: "borderGray") ?? .black
         }
     }
 }

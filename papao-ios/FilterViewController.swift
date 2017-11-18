@@ -41,8 +41,11 @@ class FilterViewController: UIViewController {
         
         // customizing some buttons
         dogButton.setStyle(type: .medium)
+        dogButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
         catButton.setStyle(type: .medium)
+        catButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
         etcButton.setStyle(type: .medium)
+        etcButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
         
         // set Indice to caller buttons to specify data
         breedButton.tag = PickerName.BreedPicker.rawValue
