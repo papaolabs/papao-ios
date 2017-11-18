@@ -44,6 +44,7 @@
 		4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */; };
 		4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */; };
 		4ED371D81FBF25860061C4C6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */; };
+		4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */; };
 		4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6F3901FA5CC4D009E287C /* Breed.swift */; };
 		4ED6F3941FA5D0DE009E287C /* BreedList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3931FA5D0DE009E287C /* BreedList.plist */; };
 		4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3951FA5E004009E287C /* SpeciesList.plist */; };
@@ -133,6 +134,7 @@
 		4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPreivewViewController.swift; sourceTree = "<group>"; };
 		4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4ED6F3901FA5CC4D009E287C /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
 		4ED6F3931FA5D0DE009E287C /* BreedList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BreedList.plist; sourceTree = "<group>"; };
 		4ED6F3951FA5E004009E287C /* SpeciesList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SpeciesList.plist; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
 				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
 				4EE6B3E71FBB32C30017037D /* HomeViewController.swift */,
+				4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */,
 				4EF282FB1FB94D1600731679 /* NotificationViewController.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4E7060D41FA612FE00B88F92 /* Main.storyboard */,
@@ -603,6 +606,7 @@
 				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */,
 				4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */,
+				4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */,
 				4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
 				4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */,
