@@ -32,7 +32,7 @@ struct Filter {
         if let breed = breed {
             dict["kindCode"] = "\(breed.code)" as AnyObject
         }
-        if let genderType = genderType {
+        if let genderType = genderType, genderType != .A {
             dict["genderType"] = "\(genderType.rawValue)" as AnyObject
         }
         let formatter = DateFormatter()
