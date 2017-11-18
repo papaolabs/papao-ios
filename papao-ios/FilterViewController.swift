@@ -9,7 +9,18 @@
 import UIKit
 
 class FilterViewController: UIViewController {
+    var regionList: [PublicDataProtocol]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // create species list
+        if let path = Bundle.main.path(forResource: "RegionList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let regions: [AnyObject] = dict["Region"] as? [AnyObject] {
+                self.regionList = regions.map({ (dict) -> Sido in
+                    return Sido(dict: dict as! [String: AnyObject])
+                })
+            }
+        }
     }
 }
