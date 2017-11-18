@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum PushType: String {
+    case GUEST = "GUEST"
+    case USER = "USER"
+}
+
 struct User {
     var id: String
     var nickName: String

@@ -10,46 +10,22 @@ import UIKit
 import CoreData
 import GoogleMaps
 import UserNotifications
+import AccountKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
+    let defaults = UserDefaults.standard
+    fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let googleMapAPIKey = valueForAPIKey(keyname: "GOOGLE_MAP_API_KEY")
         GMSServices.provideAPIKey(googleMapAPIKey)
         
-        // Override point for customization after application launch.
-        /**************************** Push service start *****************************/
-        // iOS 11 support
-        if #available(iOS 11, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
-            application.registerForRemoteNotifications()
-        }
-        // iOS 10 support
-        else if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
-            application.registerForRemoteNotifications()
-        }
-            // iOS 9 support
-        else if #available(iOS 9, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-            // iOS 8 support
-        else if #available(iOS 8, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-            // iOS 7 support
-        else {
-            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
-        }
-        /***************************** Push service end ******************************/
-        
+        // register push
+        registerPushNotification(application)
+
         return true
     }
 
@@ -124,6 +100,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Push Notification
     
+    func registerPushNotification(_ application: UIApplication) {
+        // iOS 11 support
+        if #available(iOS 11, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+            // iOS 10 support
+        else if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+            // iOS 9 support
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 8 support
+        else if #available(iOS 8, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 7 support
+        else {
+            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+        }
+    }
+    
     // Called when APNs has assigned the device a unique token
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Convert token to string
@@ -132,25 +135,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         
-        // popup token on the screen
-        let topWindow = UIWindow(frame: UIScreen.main.bounds)
-        topWindow.rootViewController = UIViewController()
-        topWindow.windowLevel = UIWindowLevelAlert + 1
-        let alert = UIAlertController(title: "Push Notification Token", message: "\(deviceTokenString)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-            // continue your work
-            // important to hide the window after work completed.
-            // this also keeps a reference to the window until the action is invoked.
-            topWindow.isHidden = true
-        }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("복사", comment: "copy"), style: .default, handler: {(_ action: UIAlertAction) -> Void in
-            let pasteboard = UIPasteboard.general
-            pasteboard.string = "\(deviceTokenString)"
-        }))
-        topWindow.makeKeyAndVisible()
-        topWindow.rootViewController?.present(alert, animated: true)
-        
-        // Persist it in your backend in case it's new
+        // 로컬에 디바이스토큰이 존재하지 않거나 현재 디바이스토큰과 다른 경우 저장 & 서버에 전송
+        if let storedDeviceToken = defaults.object(forKey: UserDefaultsKeys.deviceToken.rawValue) {
+            if deviceTokenString != storedDeviceToken as! String {
+                storeDeviceToken(deviceTokenString)
+                sendDeviceToken(deviceTokenString)
+            }
+        } else {
+            storeDeviceToken(deviceTokenString)
+            sendDeviceToken(deviceTokenString)
+        }
     }
     
     // Called when APNs failed to register the device for push notifications
@@ -164,6 +158,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print notification payload data
         print("Push notification received: \(data)")
     }
+    
+    fileprivate func storeDeviceToken(_ deviceToken: String) {
+        defaults.set(deviceToken, forKey: UserDefaultsKeys.deviceToken.rawValue)
+    }
 
+    fileprivate func sendDeviceToken(_ deviceToken: String) {
+        let api = HttpHelper.init()
+        var parameters = ["deviceId": deviceToken, "type": PushType.GUEST.rawValue]
+        
+        accountKit.requestAccount { (account, error) in
+            if let error = error {
+                // 문제가 있거나 비회원일 때
+                print(error)
+            } else {
+                if let accountId = account?.accountID {
+                    // 회원일 때, 파라미터의 userId와 type을 변경해준다.
+                    parameters["userId"] = accountId
+                    parameters["type"] = PushType.USER.rawValue
+                }
+            }
+            // api call
+            api.setPush(parameters: parameters as [String: AnyObject], completion: { (result) in
+                do {
+                    let result = try result.unwrap()
+                    print(result)
+                } catch {
+                    print(error)
+                }
+            })
+        }
+        
+        // 회원일 때
+    }
 }
 
