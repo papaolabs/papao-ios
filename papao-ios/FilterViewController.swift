@@ -16,6 +16,8 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var sidoButton: PPOPickerButton!
     @IBOutlet weak var gunguButton: PPOPickerButton!
     @IBOutlet weak var genderSegment: UISegmentedControl!
+    @IBOutlet weak var beginDateTextField: UITextField!
+    @IBOutlet weak var endDateTextField: UITextField!
     
     var filter = Filter.init()
     var genderList: [Gender] = [Gender.M, Gender.F, Gender.A]
@@ -23,10 +25,19 @@ class FilterViewController: UIViewController {
     var sidoList: [PublicDataProtocol]!
     var currentSido: Sido?
     
+    // for input the date
+    var comp = NSDateComponents()
+    private let beginDatePicker = UIDatePicker()
+    private let endDatePicker = UIDatePicker()
+    
     fileprivate var picker: PPOPicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set date pickers
+        setBeginDatePicker()
+        setEndDatePicker()
         
         // customizing some buttons
         dogButton.setStyle(type: .medium)
@@ -123,6 +134,79 @@ class FilterViewController: UIViewController {
     fileprivate func clearGungu() {
         filter.gunguCode = ""
         gunguButton.setTitle("전체", for: .normal)
+    }
+    
+    fileprivate func setBeginDatePicker() {
+        //Formate Date
+        beginDatePicker.datePickerMode = .date
+        beginDatePicker.calendar = Calendar.autoupdatingCurrent
+        beginDatePicker.locale = Locale.init(identifier: "kr_KR")
+        
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        
+        //done button & cancel button
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneBeginDatePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelDatePicker))
+        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        
+        beginDateTextField.inputAccessoryView = toolbar
+        beginDateTextField.inputView = beginDatePicker
+    }
+    
+    @objc func doneBeginDatePicker() {
+        //For date formate
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        beginDateTextField.text = formatter.string(from: beginDatePicker.date)
+        
+        // set date for Post instance
+        formatter.dateFormat = "yyyyMMdd"
+        filter.beginDate = formatter.string(from: beginDatePicker.date)
+        
+        //dismiss date picker dialog
+        self.view.endEditing(true)
+    }
+    
+    fileprivate func setEndDatePicker() {
+        //Formate Date
+        endDatePicker.datePickerMode = .date
+        endDatePicker.calendar = Calendar.autoupdatingCurrent
+        endDatePicker.locale = Locale.init(identifier: "kr_KR")
+        
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        
+        //done button & cancel button
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneEndDatePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelDatePicker))
+        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        
+        endDateTextField.inputAccessoryView = toolbar
+        endDateTextField.inputView = endDatePicker
+    }
+    
+    @objc func doneEndDatePicker() {
+        //For date formate
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        endDateTextField.text = formatter.string(from: endDatePicker.date)
+        
+        // set date for Post instance
+        formatter.dateFormat = "yyyyMMdd"
+        filter.endDate = formatter.string(from: endDatePicker.date)
+        
+        //dismiss date picker dialog
+        self.view.endEditing(true)
+    }
+    
+    @objc func cancelDatePicker() {
+        //cancel button dismiss datepicker dialog
+        self.view.endEditing(true)
     }
 }
 
