@@ -13,7 +13,8 @@ final class LoginViewController: UIViewController {
     fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
     fileprivate var pendingLoginViewController: AKFViewController? = nil
     fileprivate var showAccountOnAppear = false
-    
+    fileprivate let api = HttpHelper.init()
+
     // MARK: - view management
     
     override func viewDidLoad() {
@@ -73,15 +74,19 @@ extension LoginViewController: AKFViewControllerDelegate {
                 self?.alert(message: "사용자 데이터를 받는데 실패하였습니다. 다시 시도해주세요.")
             } else {
                 if let phoneNumber = account?.phoneNumber?.phoneNumber {
-                    let api = HttpHelper.init()
                     let parameter = ["phone": phoneNumber, "userId": accessToken.accountID, "userToken": accessToken.tokenString] as [String: AnyObject]
-                    api.join(parameters: parameter, completion: { (result) in
+                    self?.api.join(parameters: parameter, completion: { (result) in
                         do {
                             // Todo: - 앱에 사용자 정보를 저장해야하나?
                             let user = try result.unwrap()
                             print(user)
-                            DispatchQueue.main.async(execute: {
-                                self?.dismiss(animated: true, completion: nil)
+                            
+                            // 디바이스토큰이 있으면 함께 전송
+                            self?.sendDeviceToken(userId: accessToken.accountID, callback: {
+                                // 로그인창 닫기
+                                DispatchQueue.main.async(execute: {
+                                    self?.dismiss(animated: true, completion: nil)
+                                })
                             })
                         } catch {
                             print(error)
@@ -94,5 +99,24 @@ extension LoginViewController: AKFViewControllerDelegate {
     
     func viewController(_ viewController: (UIViewController & AKFViewController)!, didFailWithError error: Error!) {
         print("\(viewController) did fail with error: \(error)")
+    }
+    
+    fileprivate func sendDeviceToken(userId: String, callback: @escaping () -> Void) {
+        guard let storedDeviceToken = UserDefaults.standard.object(forKey: UserDefaultsKeys.deviceToken.rawValue) else {
+            return
+        }
+        
+        let parameters = ["deviceId": storedDeviceToken, "type": PushType.USER.rawValue, "userId": userId]
+
+        self.api.setPush(parameters: parameters as [String: AnyObject], completion: { (result) in
+            do {
+                let result = try result.unwrap()
+                print(result)
+                callback()
+            } catch {
+                print(error)
+                callback()
+            }
+        })
     }
 }

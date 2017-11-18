@@ -135,17 +135,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         
-        // 로컬에 저장된 디바이스토큰과 비교
+        // 로컬에 디바이스토큰이 존재하지 않거나 현재 디바이스토큰과 다른 경우 저장 & 서버에 전송
         if let storedDeviceToken = defaults.object(forKey: UserDefaultsKeys.deviceToken.rawValue) {
             if deviceTokenString != storedDeviceToken as! String {
-                // Store Device Token to userDefaults
-                defaults.set(deviceTokenString, forKey: UserDefaultsKeys.deviceToken.rawValue)
-            
-                // send to backend
+                storeDeviceToken(deviceTokenString)
                 sendDeviceToken(deviceTokenString)
             }
+        } else {
+            storeDeviceToken(deviceTokenString)
+            sendDeviceToken(deviceTokenString)
         }
-        
     }
     
     // Called when APNs failed to register the device for push notifications
@@ -158,6 +157,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
         // Print notification payload data
         print("Push notification received: \(data)")
+    }
+    
+    fileprivate func storeDeviceToken(_ deviceToken: String) {
+        defaults.set(deviceToken, forKey: UserDefaultsKeys.deviceToken.rawValue)
     }
 
     fileprivate func sendDeviceToken(_ deviceToken: String) {
