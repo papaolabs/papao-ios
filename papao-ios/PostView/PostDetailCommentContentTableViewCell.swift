@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import DateToolsSwift
 
 class PostDetailCommentContentTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
@@ -29,9 +30,10 @@ class PostDetailCommentContentTableViewCell: UITableViewCell {
         if let content = content {
             nicknameLabel.text = content.userId
             contentLabel.text = content.text
-            // Todo: 상대시간 표시
-            relativeTimeLabel.text = content.createdDate
 
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyyMMdd"
+            relativeTimeLabel.text = formatter.date(from: content.createdDate)?.timeAgoSinceNow
             Alamofire.request(content.profileUrl).responseData { response in
                 if let data = response.result.value {
                     let image = UIImage(data: data)
