@@ -237,11 +237,11 @@
             <objects>
                 <viewController storyboardIdentifier="PostDetail" id="9Kx-qY-ef7" customClass="PostDetailViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9EN-uX-680">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1050"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1090"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rk9-Wx-9O5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1050"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1090"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" name="backgroundGray"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="chJ-eb-AXX" userLabel="Header View">
@@ -944,6 +944,72 @@
                                             <outlet property="thumbnailImageView" destination="Ld0-xG-xJI" id="3Oi-Ny-LMP"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postDetailCommentWritingCell" rowHeight="48" id="JI9-eE-Mxw" customClass="PostDetailCommentWritingTableViewCell" customModule="papao_ios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="925" width="375" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JI9-eE-Mxw" id="bhB-Yu-ElG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78v-fF-cJw" userLabel="Background View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0NM-yD-y2p" userLabel="Content View">
+                                                            <rect key="frame" x="8" y="0.0" width="359" height="39.5"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="댓글을 입력해주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MfO-tq-VKP">
+                                                                    <rect key="frame" x="12" y="10" width="289" height="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                </textField>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcK-A2-JIy">
+                                                                    <rect key="frame" x="317" y="10" width="26" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="26" id="1Y4-sW-Ga5"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="3Eu-HM-OA2"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                                    <state key="normal" title="등록"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstItem="MfO-tq-VKP" firstAttribute="leading" secondItem="0NM-yD-y2p" secondAttribute="leading" constant="12" id="2mi-MV-IQS"/>
+                                                                <constraint firstAttribute="bottom" secondItem="MfO-tq-VKP" secondAttribute="bottom" constant="9.5" id="BUO-eu-qPs"/>
+                                                                <constraint firstItem="WcK-A2-JIy" firstAttribute="leading" secondItem="MfO-tq-VKP" secondAttribute="trailing" constant="16" id="HbH-jo-71v"/>
+                                                                <constraint firstAttribute="bottom" secondItem="WcK-A2-JIy" secondAttribute="bottom" constant="9.5" id="XIT-4Q-udc"/>
+                                                                <constraint firstItem="MfO-tq-VKP" firstAttribute="top" secondItem="0NM-yD-y2p" secondAttribute="top" constant="10" id="YSl-ke-4DK"/>
+                                                                <constraint firstAttribute="trailing" secondItem="WcK-A2-JIy" secondAttribute="trailing" constant="16" id="bKp-QM-pcc"/>
+                                                                <constraint firstItem="WcK-A2-JIy" firstAttribute="top" secondItem="0NM-yD-y2p" secondAttribute="top" constant="10" id="bX7-Zk-c8a"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="backgroundGray"/>
+                                                    <constraints>
+                                                        <constraint firstItem="0NM-yD-y2p" firstAttribute="leading" secondItem="78v-fF-cJw" secondAttribute="leading" constant="8" id="FWE-SE-9VD"/>
+                                                        <constraint firstItem="0NM-yD-y2p" firstAttribute="top" secondItem="78v-fF-cJw" secondAttribute="top" id="IVC-M2-Gw6"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0NM-yD-y2p" secondAttribute="trailing" constant="8" id="c5d-Ll-2XD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0NM-yD-y2p" secondAttribute="trailing" constant="8" id="fTX-8f-E2H"/>
+                                                        <constraint firstItem="0NM-yD-y2p" firstAttribute="leading" secondItem="78v-fF-cJw" secondAttribute="leading" constant="8" id="mDg-Zu-uBd"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0NM-yD-y2p" secondAttribute="bottom" constant="8" id="nzr-R8-Ai3"/>
+                                                        <constraint firstItem="0NM-yD-y2p" firstAttribute="top" secondItem="78v-fF-cJw" secondAttribute="top" id="zex-dL-504"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="78v-fF-cJw" secondAttribute="bottom" id="0w6-Bj-oVi"/>
+                                                <constraint firstItem="78v-fF-cJw" firstAttribute="leading" secondItem="bhB-Yu-ElG" secondAttribute="leading" id="JZo-qk-Yde"/>
+                                                <constraint firstItem="78v-fF-cJw" firstAttribute="top" secondItem="bhB-Yu-ElG" secondAttribute="top" id="Xxw-PY-H4i"/>
+                                                <constraint firstAttribute="trailing" secondItem="78v-fF-cJw" secondAttribute="trailing" id="dlR-TP-jAv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="innerContentView" destination="0NM-yD-y2p" id="nVK-Gs-dF3"/>
+                                            <outlet property="sendButton" destination="WcK-A2-JIy" id="K0d-3q-27v"/>
+                                            <outlet property="textField" destination="MfO-tq-VKP" id="tav-9l-2pm"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="9Kx-qY-ef7" id="jeg-1W-mkO"/>
@@ -955,7 +1021,7 @@
                         <viewLayoutGuide key="safeArea" id="wBh-h6-mdO"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="1050"/>
+                    <size key="freeformSize" width="375" height="1090"/>
                     <connections>
                         <outlet property="breedLabel" destination="bx3-aM-W4b" id="nhx-po-644"/>
                         <outlet property="commentLabel" destination="HKP-0K-LpS" id="B7e-ty-sgY"/>
@@ -3117,22 +3183,16 @@
         <image name="iconViewDetail" width="19" height="14"/>
         <image name="sampleDog" width="606" height="869"/>
         <namedColor name="backgroundGray">
-            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="backgroundGray">
             <color red="0.94900000100000004" green="0.94900000100000004" blue="0.94900000100000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="borderBlack">
-            <color red="0.59200000762939453" green="0.59200000762939453" blue="0.59200000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="backgroundGray">
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="borderBlack">
             <color red="0.59200000762939453" green="0.59200000762939453" blue="0.59200000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="borderColor">
             <color red="0.875" green="0.86299997568130493" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="borderGray">
-            <color red="0.60799998044967651" green="0.60799998044967651" blue="0.60799998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="borderGray">
             <color red="0.60799998044967651" green="0.60799998044967651" blue="0.60799998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

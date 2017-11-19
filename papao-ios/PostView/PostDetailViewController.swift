@@ -15,8 +15,9 @@ enum PostDetailSection: Int {
     case description
     case comment
     case commentContent
+    case commentWriting
     
-    static var count: Int { return PostDetailSection.commentContent.hashValue + 1}
+    static var count: Int { return PostDetailSection.commentWriting.hashValue + 1}
 }
 
 class PostDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -134,6 +135,10 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.setContent(contents[row])
             }
             return cell
+        case PostDetailSection.commentWriting.hashValue:
+            let cell: PostDetailCommentWritingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentWritingCell",
+                                                                                            for: indexPath) as! PostDetailCommentWritingTableViewCell
+            return cell
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
@@ -154,6 +159,8 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return 244
         case PostDetailSection.commentContent.rawValue:
             return UITableViewAutomaticDimension
+        case PostDetailSection.commentWriting.rawValue:
+            return 48
         default:
             return 40
         }
@@ -168,6 +175,8 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return 244
         case PostDetailSection.commentContent.rawValue:
             return UITableViewAutomaticDimension
+        case PostDetailSection.commentWriting.rawValue:
+            return 48
         default:
             return 40
         }
