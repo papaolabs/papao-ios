@@ -29,6 +29,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var postId: Int?
     private var postDetail: PostDetail?
+    private var comment: Comment?
     let api = HttpHelper.init()
 
     override func viewDidLoad() {
@@ -52,7 +53,6 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
                 self.breedLabel.text = postDetail.kindName
-                self.commentLabel.text = "\(postDetail.commentCount ?? 0)"
                 self.hitCountLabel.text = "\(postDetail.hitCount ?? 0)"
                 
                 self.tableView.reloadData()
@@ -63,7 +63,11 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         api.readComments(postId: "\(postId)") { (result) in
             do {
                 let comment = try result.unwrap()
-                print(comment)
+                self.comment = comment
+                self.commentLabel.text = "\(comment.count)"
+                
+                // 댓글 섹션만 리로드
+                self.tableView.reloadSections(IndexSet(integer: PostDetailSection.comment.hashValue), with: .none)
             } catch {
                 print(error)
             }
@@ -115,7 +119,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case PostDetailSection.comment.hashValue:
             let cell: PostDetailCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentCell",
                                                                               for: indexPath) as! PostDetailCommentTableViewCell
-            cell.setPostDetail(postDetail)
+            cell.setComment(comment)
             return cell
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)

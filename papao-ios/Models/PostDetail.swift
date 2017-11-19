@@ -164,8 +164,7 @@ struct PostDetail {
         return String(describing: "\(ageYear) 살")
     }
     var weight: Float?              // 몸무게 Float
-    
-    var commentCount: Int?          // 댓글 수
+
     var hitCount: Int?              // 조회수
     var createdDate: String?        // 등록 날짜
     var updatedDate: String?        // 수정 날짜
@@ -233,12 +232,6 @@ struct PostDetail {
             self.weight = weight
         } else if let weightString = json["weight"] as? String {
             self.weight = Float(weightString)
-        }
-        
-        if let commentCount = json["commentCount"] as? Int {
-            self.commentCount = commentCount
-        } else if let commentCountString = json["commentCount"] as? String {
-            self.commentCount = Int(commentCountString)
         }
 
         if let hitCount = json["hitCount"] as? Int {
