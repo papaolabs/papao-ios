@@ -14,8 +14,9 @@ enum PostDetailSection: Int {
     case menu
     case description
     case comment
+    case commentContent
     
-    static var count: Int { return PostDetailSection.comment.hashValue + 1}
+    static var count: Int { return PostDetailSection.commentContent.hashValue + 1}
 }
 
 class PostDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -67,7 +68,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.commentLabel.text = "\(comment.count)"
                 
                 // 댓글 섹션만 리로드
-                self.tableView.reloadSections(IndexSet(integer: PostDetailSection.comment.hashValue), with: .none)
+                self.tableView.reloadData()
             } catch {
                 print(error)
             }
@@ -93,6 +94,9 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == PostDetailSection.commentContent.hashValue) {
+            return self.comment?.count ?? 0
+        }
         return 1
     }
     
@@ -121,6 +125,15 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                                                                               for: indexPath) as! PostDetailCommentTableViewCell
             cell.setComment(comment)
             return cell
+        case PostDetailSection.commentContent.hashValue:
+            let row = indexPath.row
+            let cell: PostDetailCommentContentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentContentCell",
+                                                                                     for: indexPath) as! PostDetailCommentContentTableViewCell
+            cell.separatorInset = .init(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude)
+            if let contents = self.comment?.contents {
+                cell.setContent(contents[row])
+            }
+            return cell
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
@@ -139,6 +152,22 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return 421
         case PostDetailSection.description.rawValue:
             return 244
+        case PostDetailSection.commentContent.rawValue:
+            return UITableViewAutomaticDimension
+        default:
+            return 40
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        switch section {
+        case PostDetailSection.image.rawValue:
+            return 421
+        case PostDetailSection.description.rawValue:
+            return 244
+        case PostDetailSection.commentContent.rawValue:
+            return UITableViewAutomaticDimension
         default:
             return 40
         }

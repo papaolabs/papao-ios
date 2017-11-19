@@ -23,7 +23,7 @@ class PostDetailCommentContentTableViewCell: UITableViewCell {
         thumbnailImageView.setBorder(color: UIColor.init(named: "placeholderGray") ?? .gray)
     }
     
-    func setComment(_ content: Content?) {
+    func setContent(_ content: Content?) {
         if let content = content {
             // Todo: 썸네일 표시
             nicknameLabel.text = content.userId
