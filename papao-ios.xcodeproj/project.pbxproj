@@ -24,6 +24,7 @@
 		4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */; };
 		4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */; };
 		4E63D42D1FC13EAB00F61446 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63D42C1FC13EAB00F61446 /* Comment.swift */; };
+		4E63D42F1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63D42E1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift */; };
 		4E6423B41FADD44E0099A4C7 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6423B31FADD44E0099A4C7 /* Weight.swift */; };
 		4E6423B61FADD48B0099A4C7 /* WeightList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B51FADD48B0099A4C7 /* WeightList.plist */; };
 		4E6423BA1FADD4A20099A4C7 /* AgeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B91FADD4A20099A4C7 /* AgeList.plist */; };
@@ -113,6 +114,7 @@
 		4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTableViewController.swift; sourceTree = "<group>"; };
 		4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTypePostTableViewCell.swift; sourceTree = "<group>"; };
 		4E63D42C1FC13EAB00F61446 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		4E63D42E1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCommentContentTableViewCell.swift; sourceTree = "<group>"; };
 		4E6423B31FADD44E0099A4C7 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		4E6423B51FADD48B0099A4C7 /* WeightList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeightList.plist; sourceTree = "<group>"; };
 		4E6423B91FADD4A20099A4C7 /* AgeList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgeList.plist; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */,
 				4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */,
 				4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */,
+				4E63D42E1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				4EA9CA051FA7674C00115784 /* ReportDetectionInfoViewController.swift in Sources */,
 				4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */,
 				4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */,
+				4E63D42F1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift in Sources */,
 				4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */,
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
 				4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */,

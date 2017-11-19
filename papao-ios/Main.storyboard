@@ -856,7 +856,7 @@
                                             <outlet property="commentButton" destination="eXc-rH-kGy" id="dor-kw-LuT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="64" id="i0w-al-ytf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postDetailCommentContentCell" rowHeight="64" id="i0w-al-ytf" customClass="PostDetailCommentContentTableViewCell" customModule="papao_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="861" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i0w-al-ytf" id="NHX-Fd-GEZ">
@@ -936,6 +936,12 @@
                                                 <constraint firstItem="aZC-0E-QyO" firstAttribute="top" secondItem="NHX-Fd-GEZ" secondAttribute="top" id="vmK-Rg-Jxa"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="yYb-2k-yaH" id="FeH-Bp-F3w"/>
+                                            <outlet property="nicknameLabel" destination="E6b-Ie-eqx" id="MXI-uu-bQ9"/>
+                                            <outlet property="relativeTimeLabel" destination="m63-By-T9X" id="pEX-vc-PFY"/>
+                                            <outlet property="thumbnailImageView" destination="Ld0-xG-xJI" id="3Oi-Ny-LMP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
