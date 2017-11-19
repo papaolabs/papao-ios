@@ -47,7 +47,7 @@ enum Router: URLRequestConvertible {
     case checkBookmark(postId: String)
     case countBookmark(postId: String)
     case readComments(postId: String)
-    case createComment(postId: String)
+    case createComment(postId: String, parameters: Parameters)
     case setStatus(postId: String)
     
     // User
@@ -97,7 +97,7 @@ enum Router: URLRequestConvertible {
             return "posts/\(postId)/bookmarks/check"
         case .countBookmark(let postId):
             return "posts/\(postId)/bookmarks/count"
-        case .readComments(let postId), .createComment(let postId):
+        case .readComments(let postId), .createComment(let postId, _):
             return "posts/\(postId)/comments"
         case .setStatus(let postId):
             return "posts/\(postId)/state"
@@ -117,7 +117,7 @@ enum Router: URLRequestConvertible {
         
         switch self {
         case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_), .cancelBookmark(_),
-             .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_), .setStatus(_):
+             .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_, _), .setStatus(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
@@ -158,6 +158,17 @@ final class HttpHelper {
         }
     }
     
+    func createPost(postRequest: PostRequest, completion: @escaping (ApiResult<PostDetail>) -> Void) {
+        manager.request(Router.createPost(parameters: postRequest.toDict())).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
+                completion(ApiResult{ return postDetail })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
+    // Comment
     func readComments(postId: String, completion: @escaping (ApiResult<Comment>) -> Void) {
         manager.request(Router.readComments(postId: postId)).responseString { response in
             if let dict = response.value?.dictionaryFromJSON(), let comment = Comment(json: dict) {
@@ -168,12 +179,16 @@ final class HttpHelper {
         }
     }
     
-    func createPost(postRequest: PostRequest, completion: @escaping (ApiResult<PostDetail>) -> Void) {
-        manager.request(Router.createPost(parameters: postRequest.toDict())).responseString { response in
-            if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
-                completion(ApiResult{ return postDetail })
-            } else {
-                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+    func postComment(postId: String, parameters: [String: AnyObject], completion: @escaping (ApiResult<[String: Any]>) -> Void) {
+        let router = Router.createComment(postId: postId, parameters: parameters)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+                if let value = response.result.value {
+                    let userJson = JSON(value)
+                    completion(ApiResult{ return userJson.dictionaryObject! })
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
             }
         }
     }

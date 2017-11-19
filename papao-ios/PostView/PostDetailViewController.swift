@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AccountKit
 
 enum PostDetailSection: Int {
     case image = 0
@@ -15,11 +16,12 @@ enum PostDetailSection: Int {
     case description
     case comment
     case commentContent
+    case commentWriting
     
-    static var count: Int { return PostDetailSection.commentContent.hashValue + 1}
+    static var count: Int { return PostDetailSection.commentWriting.hashValue + 1}
 }
 
-class PostDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PostDetailViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var speciesLabel: PPOBadge!
@@ -36,6 +38,12 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // keyboard event
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+
+        
         speciesLabel.setStyle(type: .medium)
         
         let footer = UIView.init(frame: CGRect.zero)
@@ -43,6 +51,7 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if let postId = postId {
             getPostDetail(postId: postId)
+            getComments(postId: postId)
         }
     }
     
@@ -61,6 +70,9 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 print(error)
             }
         })
+    }
+    
+    func getComments(postId: Int) {
         api.readComments(postId: "\(postId)") { (result) in
             do {
                 let comment = try result.unwrap()
@@ -86,7 +98,60 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let button = sender as! UIButton
         button.tintColor = UIColor.gray
     }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        let userInfo = notification.userInfo!
+        
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == Notification.Name.UIKeyboardWillHide {
+            tableView.contentInset = UIEdgeInsets.zero
+        } else {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        tableView.scrollIndicatorInsets = tableView.contentInset
+    }
+    
+    func sendComment(text: String) {
+        let accountKit = AKFAccountKit(responseType: .accessToken)
+        accountKit.requestAccount { [weak self] (account, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let accountId = account?.accountID, let postId = self?.postId {
+                    let parameters = [
+                        "userId": accountId,
+                        "text": text
+                    ]
+                    // Todo: - postId 강제 캐스팅 처리
+                    self?.api.postComment(postId: String(describing: postId), parameters: parameters as [String : AnyObject]) { (result) in
+                        do {
+                            let _ = try result.unwrap()
+                            self?.getComments(postId: postId)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
+extension PostDetailViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+}
+
+extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         // Image, Menu, Description, Comment 세가지
@@ -134,6 +199,16 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.setContent(contents[row])
             }
             return cell
+        case PostDetailSection.commentWriting.hashValue:
+            let cell: PostDetailCommentWritingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentWritingCell",
+                                                                                            for: indexPath) as! PostDetailCommentWritingTableViewCell
+            cell.textField.delegate = self
+            cell.onSendPressed = { (text) in
+                if let text = text, text != "" {
+                    self.sendComment(text: text)
+                }
+            }
+            return cell
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
@@ -154,6 +229,8 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return 244
         case PostDetailSection.commentContent.rawValue:
             return UITableViewAutomaticDimension
+        case PostDetailSection.commentWriting.rawValue:
+            return 48
         default:
             return 40
         }
@@ -168,6 +245,8 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return 244
         case PostDetailSection.commentContent.rawValue:
             return UITableViewAutomaticDimension
+        case PostDetailSection.commentWriting.rawValue:
+            return 48
         default:
             return 40
         }

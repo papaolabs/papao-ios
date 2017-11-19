@@ -28,12 +28,13 @@ class PostDetailCommentContentTableViewCell: UITableViewCell {
     
     func setContent(_ content: Content?) {
         if let content = content {
-            nicknameLabel.text = content.userId
+            nicknameLabel.text = content.nickname
             contentLabel.text = content.text
 
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyyMMdd"
-            relativeTimeLabel.text = formatter.date(from: content.createdDate)?.timeAgoSinceNow
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let relativeTime = formatter.date(from: content.createdDate)?.timeAgoSinceNow
+            relativeTimeLabel.text = relativeTime
             Alamofire.request(content.profileUrl).responseData { response in
                 if let data = response.result.value {
                     let image = UIImage(data: data)

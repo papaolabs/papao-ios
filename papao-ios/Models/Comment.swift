@@ -37,6 +37,7 @@ struct Comment {
 struct Content {
     var id: Int
     var userId: String
+    var nickname: String
     var text: String
     var createdDate: String
     var lastModifiedDate: String
@@ -52,6 +53,11 @@ struct Content {
             self.userId = userId
         } else {
             self.userId = ""
+        }
+        if let nickname = json["nickname"] as? String {
+            self.nickname = nickname
+        } else {
+            self.nickname = ""
         }
         if let profileUrl = json["profileUrl"] as? String {
             self.profileUrl = profileUrl
