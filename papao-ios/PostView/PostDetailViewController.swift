@@ -29,7 +29,8 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var postId: Int?
     private var postDetail: PostDetail?
-    
+    let api = HttpHelper.init()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +45,6 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getPostDetail(postId: Int) {
-        let api = HttpHelper.init()
         api.readPost(postId: postId, completion: { (result) in
             do {
                 let postDetail = try result.unwrap()
@@ -60,6 +60,14 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 print(error)
             }
         })
+        api.readComments(postId: "\(postId)") { (result) in
+            do {
+                let comment = try result.unwrap()
+                print(comment)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     // MARK: - IBAction

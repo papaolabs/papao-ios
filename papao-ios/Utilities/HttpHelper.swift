@@ -164,6 +164,16 @@ final class HttpHelper {
         }
     }
     
+    func readComments(postId: String, completion: @escaping (ApiResult<Comment>) -> Void) {
+        manager.request(Router.readComments(postId: postId)).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON(), let comment = Comment(json: dict) {
+                completion(ApiResult{ return comment })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
     func createPost(postRequest: PostRequest, completion: @escaping (ApiResult<PostDetail>) -> Void) {
         manager.request(Router.createPost(parameters: postRequest.toDict())).responseString { response in
             if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
