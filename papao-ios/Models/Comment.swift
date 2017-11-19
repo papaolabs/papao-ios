@@ -40,6 +40,7 @@ struct Content {
     var text: String
     var createdDate: String
     var lastModifiedDate: String
+    var profileUrl: String
     
     init(json: [String: Any]) {
         if let id = json["id"] as? Int {
@@ -51,6 +52,11 @@ struct Content {
             self.userId = userId
         } else {
             self.userId = ""
+        }
+        if let profileUrl = json["profileUrl"] as? String {
+            self.profileUrl = profileUrl
+        } else {
+            self.profileUrl = ""
         }
         if let text = json["text"] as? String {
             self.text = text

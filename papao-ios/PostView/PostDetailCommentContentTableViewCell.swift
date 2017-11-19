@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PostDetailCommentContentTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
@@ -20,16 +21,23 @@ class PostDetailCommentContentTableViewCell: UITableViewCell {
     
     func initialize() {
         thumbnailImageView.setRadius(radius: thumbnailImageView.frame.size.width/2)
-        thumbnailImageView.setBorder(color: UIColor.init(named: "placeholderGray") ?? .gray)
+        thumbnailImageView.setBorder(color: UIColor.init(named: "placeholderGray") ?? .gray, width: 0.4)
+        // Todo: - placeholder image 설정
     }
     
     func setContent(_ content: Content?) {
         if let content = content {
-            // Todo: 썸네일 표시
             nicknameLabel.text = content.userId
             contentLabel.text = content.text
             // Todo: 상대시간 표시
             relativeTimeLabel.text = content.createdDate
+
+            Alamofire.request(content.profileUrl).responseData { response in
+                if let data = response.result.value {
+                    let image = UIImage(data: data)
+                    self.thumbnailImageView.image = image
+                }
+            }
         }
         
     }
