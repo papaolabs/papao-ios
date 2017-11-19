@@ -20,7 +20,7 @@ enum PostDetailSection: Int {
     static var count: Int { return PostDetailSection.commentWriting.hashValue + 1}
 }
 
-class PostDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PostDetailViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var speciesLabel: PPOBadge!
@@ -36,6 +36,12 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // keyboard event
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+
         
         speciesLabel.setStyle(type: .medium)
         
@@ -87,7 +93,39 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let button = sender as! UIButton
         button.tintColor = UIColor.gray
     }
+    
+    @objc func sendComment(_ sender: Any) {
+        
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        let userInfo = notification.userInfo!
+        
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == Notification.Name.UIKeyboardWillHide {
+            tableView.contentInset = UIEdgeInsets.zero
+        } else {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        tableView.scrollIndicatorInsets = tableView.contentInset
+    }
+}
 
+extension PostDetailViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+}
+
+extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         // Image, Menu, Description, Comment 세가지
@@ -138,6 +176,10 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case PostDetailSection.commentWriting.hashValue:
             let cell: PostDetailCommentWritingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentWritingCell",
                                                                                             for: indexPath) as! PostDetailCommentWritingTableViewCell
+            cell.textField.delegate = self
+            cell.onSendPressed = { (text) in
+                print(text)
+            }
             return cell
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
