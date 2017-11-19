@@ -877,7 +877,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6b-Ie-eqx">
-                                                                    <rect key="frame" x="54" y="12" width="228" height="20"/>
+                                                                    <rect key="frame" x="54" y="12" width="208" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Mjf-Ym-rkY"/>
                                                                     </constraints>
@@ -885,10 +885,10 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="방금 전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m63-By-T9X">
-                                                                    <rect key="frame" x="307" y="12" width="40" height="20"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23시간 전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m63-By-T9X">
+                                                                    <rect key="frame" x="287" y="12" width="60" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="40" id="3RE-Zg-2DQ"/>
+                                                                        <constraint firstAttribute="width" constant="60" id="3RE-Zg-2DQ"/>
                                                                         <constraint firstAttribute="height" constant="20" id="OBc-7B-As1"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -896,7 +896,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="댓글" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYb-2k-yaH">
-                                                                    <rect key="frame" x="54" y="32" width="228" height="20"/>
+                                                                    <rect key="frame" x="54" y="32" width="208" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="vac-An-whI"/>
                                                                     </constraints>
