@@ -14,8 +14,9 @@ enum PostDetailSection: Int {
     case menu
     case description
     case comment
+    case commentContent
     
-    static var count: Int { return PostDetailSection.comment.hashValue + 1}
+    static var count: Int { return PostDetailSection.commentContent.hashValue + 1}
 }
 
 class PostDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -29,7 +30,9 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var postId: Int?
     private var postDetail: PostDetail?
-    
+    private var comment: Comment?
+    let api = HttpHelper.init()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +47,6 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getPostDetail(postId: Int) {
-        let api = HttpHelper.init()
         api.readPost(postId: postId, completion: { (result) in
             do {
                 let postDetail = try result.unwrap()
@@ -52,7 +54,6 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
                 self.breedLabel.text = postDetail.kindName
-                self.commentLabel.text = "\(postDetail.commentCount ?? 0)"
                 self.hitCountLabel.text = "\(postDetail.hitCount ?? 0)"
                 
                 self.tableView.reloadData()
@@ -60,6 +61,18 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 print(error)
             }
         })
+        api.readComments(postId: "\(postId)") { (result) in
+            do {
+                let comment = try result.unwrap()
+                self.comment = comment
+                self.commentLabel.text = "\(comment.count)"
+                
+                // 댓글 섹션만 리로드
+                self.tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     // MARK: - IBAction
@@ -81,6 +94,9 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == PostDetailSection.commentContent.hashValue) {
+            return self.comment?.count ?? 0
+        }
         return 1
     }
     
@@ -107,7 +123,16 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case PostDetailSection.comment.hashValue:
             let cell: PostDetailCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentCell",
                                                                               for: indexPath) as! PostDetailCommentTableViewCell
-            cell.setPostDetail(postDetail)
+            cell.setComment(comment)
+            return cell
+        case PostDetailSection.commentContent.hashValue:
+            let row = indexPath.row
+            let cell: PostDetailCommentContentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentContentCell",
+                                                                                     for: indexPath) as! PostDetailCommentContentTableViewCell
+            cell.separatorInset = .init(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude)
+            if let contents = self.comment?.contents {
+                cell.setContent(contents[row])
+            }
             return cell
         default:
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -127,6 +152,22 @@ class PostDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return 421
         case PostDetailSection.description.rawValue:
             return 244
+        case PostDetailSection.commentContent.rawValue:
+            return UITableViewAutomaticDimension
+        default:
+            return 40
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        switch section {
+        case PostDetailSection.image.rawValue:
+            return 421
+        case PostDetailSection.description.rawValue:
+            return 244
+        case PostDetailSection.commentContent.rawValue:
+            return UITableViewAutomaticDimension
         default:
             return 40
         }

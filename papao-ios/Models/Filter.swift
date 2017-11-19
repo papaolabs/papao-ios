@@ -20,6 +20,11 @@ struct Filter {
     
     init(postTypes: [PostType]) {
         self.postTypes = postTypes
+        
+        // 날짜세팅 기본 값(일주일 전 - 오늘)
+        let lastWeek = Calendar.current.date(byAdding: .weekday, value: -7, to: Date())
+        self.beginDate = lastWeek
+        self.endDate = Date()
     }
     
     func toDict() -> [String: AnyObject] {

@@ -11,7 +11,7 @@ import Alamofire
 
 class MissingTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
-    var posts: [Post] = []
+    var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.MISSING])
     let api = HttpHelper.init()
 
@@ -31,7 +31,7 @@ class MissingTableViewController: UIViewController {
         api.readPosts(filter: filter, completion: { (result) in
             // Todo: - PROTECTING, ROADREPORT 둘다 받아서 보여줘야함
             do {
-                self.posts = try result.unwrap()
+                self.postResponse = try result.unwrap()
                 self.tableView.reloadData()
             } catch {
                 print(error)
@@ -62,14 +62,16 @@ class MissingTableViewController: UIViewController {
 extension MissingTableViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return postResponse?.totalElements ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postCellIdentifier",
                                                                     for: indexPath) as! PostTableViewCell
         let row = indexPath.row;
-        let post = posts[row]
+        guard let post = postResponse?.elements[row] else {
+            return cell
+        }
         
         cell.setPost(post: post)
         cell.kindLabel.text = post.kindName
@@ -102,12 +104,12 @@ extension MissingTableViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let row = self.posts[indexPath.row]
+        let row = self.postResponse?.elements[indexPath.row]
         guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
             return
         }
         
-        postDetailViewController.postId = row.id
+        postDetailViewController.postId = row?.id
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }

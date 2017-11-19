@@ -7,5 +7,6 @@ target 'papao-ios' do
   pod 'GoogleMaps', '~> 2.4'
   pod 'BSImagePicker', '~> 2.7'
   pod 'AccountKit', '~> 4.26'
+  pod 'DateToolsSwift', '~> 2.0'
 end
 

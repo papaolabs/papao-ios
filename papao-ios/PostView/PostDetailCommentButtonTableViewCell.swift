@@ -11,8 +11,8 @@ import UIKit
 class PostDetailCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentButton: UIButton!
     
-    func setPostDetail(_ postDetail: PostDetail?) {
-        if let commentCount = postDetail?.commentCount {
+    func setComment(_ comment: Comment?) {
+        if let commentCount = comment?.count {
             self.commentButton.setTitle("댓글 \(commentCount)개", for: .normal)
         } else {
             self.commentButton.setTitle("댓글 0개", for: .normal)

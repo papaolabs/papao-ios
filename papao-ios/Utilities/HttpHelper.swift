@@ -37,7 +37,6 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     // Post
-    case readPosts()
     case createPost(parameters: Parameters)
     case deleteComment(commentId: String)
     case readPostsByPage(parameters: Parameters)
@@ -59,8 +58,7 @@ enum Router: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .readPosts,
-             .readPostsByPage,
+        case .readPostsByPage,
              .readPost,
              .checkBookmark,
              .countBookmark,
@@ -83,7 +81,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .readPost(let postId):
             return "posts/\(postId)"
-        case .readPosts(), .createPost(_):
+        case .createPost(_):
             return "posts"
         case .deletePost(let postId):
             return "posts/\(postId)"
@@ -118,7 +116,7 @@ enum Router: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .readPost(_), .readPosts(), .deletePost(_), .deleteComment(_), .registerBookmark(_), .cancelBookmark(_),
+        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_), .cancelBookmark(_),
              .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_), .setStatus(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters):
@@ -149,15 +147,21 @@ final class HttpHelper {
         }
     }
     
-    func readPosts(filter: Filter, completion: @escaping (ApiResult<[Post]>) -> Void) {
-        manager.request(Router.readPostsByPage(parameters: filter.toDict())).responseJSON { response in
-            if let value = response.result.value {
-                let postJsonList = JSON(value)
-                let posts = postJsonList.arrayValue.flatMap({ (json) -> Post? in
-                    // Todo: - 강제 옵셔널 캐스팅 처리
-                    return Post.init(json: json.dictionaryObject!)!
-                })
-                completion(ApiResult{ return posts })
+    func readPosts(filter: Filter, completion: @escaping (ApiResult<PostResponse>) -> Void) {
+        manager.request(Router.readPostsByPage(parameters: filter.toDict())).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON() {
+                let postResponse = PostResponse(json: dict)
+                completion(ApiResult{ return postResponse })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
+    func readComments(postId: String, completion: @escaping (ApiResult<Comment>) -> Void) {
+        manager.request(Router.readComments(postId: postId)).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON(), let comment = Comment(json: dict) {
+                completion(ApiResult{ return comment })
             } else {
                 completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
             }
