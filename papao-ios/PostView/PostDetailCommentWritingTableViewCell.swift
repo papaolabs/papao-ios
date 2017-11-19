@@ -22,6 +22,8 @@ class PostDetailCommentWritingTableViewCell: UITableViewCell {
     @IBAction func sendButtonPressed(sender: UIButton) {
         if let onSendPressed = self.onSendPressed {
             onSendPressed(self.textField.text)
+            // Todo: api 성공 했을 때만 text 초기화
+            textField.text = ""
         }
     }
 }

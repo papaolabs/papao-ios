@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AccountKit
 
 enum PostDetailSection: Int {
     case image = 0
@@ -50,6 +51,7 @@ class PostDetailViewController: UIViewController {
         
         if let postId = postId {
             getPostDetail(postId: postId)
+            getComments(postId: postId)
         }
     }
     
@@ -68,6 +70,9 @@ class PostDetailViewController: UIViewController {
                 print(error)
             }
         })
+    }
+    
+    func getComments(postId: Int) {
         api.readComments(postId: "\(postId)") { (result) in
             do {
                 let comment = try result.unwrap()
@@ -94,10 +99,6 @@ class PostDetailViewController: UIViewController {
         button.tintColor = UIColor.gray
     }
     
-    @objc func sendComment(_ sender: Any) {
-        
-    }
-    
     @objc func adjustForKeyboard(notification: Notification) {
         let userInfo = notification.userInfo!
         
@@ -111,6 +112,31 @@ class PostDetailViewController: UIViewController {
         }
         
         tableView.scrollIndicatorInsets = tableView.contentInset
+    }
+    
+    func sendComment(text: String) {
+        let accountKit = AKFAccountKit(responseType: .accessToken)
+        accountKit.requestAccount { [weak self] (account, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let accountId = account?.accountID, let postId = self?.postId {
+                    let parameters = [
+                        "userId": accountId,
+                        "text": text
+                    ]
+                    // Todo: - postId 강제 캐스팅 처리
+                    self?.api.postComment(postId: String(describing: postId), parameters: parameters as [String : AnyObject]) { (result) in
+                        do {
+                            let _ = try result.unwrap()
+                            self?.getComments(postId: postId)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -178,7 +204,9 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
                                                                                             for: indexPath) as! PostDetailCommentWritingTableViewCell
             cell.textField.delegate = self
             cell.onSendPressed = { (text) in
-                print(text)
+                if let text = text, text != "" {
+                    self.sendComment(text: text)
+                }
             }
             return cell
         default:
