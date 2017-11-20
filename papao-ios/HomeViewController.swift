@@ -22,48 +22,58 @@ class HomeViewController: UIViewController {
         
         horizontalScrollView.defaultMarginSettings = MarginSettings(leftMargin: 15, miniMarginBetweenItems: 8, miniAppearWidthOfLastItem: 24)
         horizontalScrollView.uniformItemSize = CGSize(width: 328, height: 184)
-        //this must be called after changing any size or margin property of this class to get acurrate margin
+        // this must be called after changing any size or margin property of this class to get acurrate margin
         horizontalScrollView.setItemsMarginOnce()
-        for _ in 0...3{
-            let view = UIView(frame: CGRect.zero)
-            view.backgroundColor = UIColor.purple
-            view.setRadius(radius: 8)
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy.MM.dd"
-            let title = "\(formatter.string(from: Date())) 업데이트 기준"
-            let titleLabel = UILabel.init(frame: CGRect.init(x: 18, y: 8, width: 150, height: 16))
-            titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-            titleLabel.textColor = .white
-            titleLabel.text = title
-            view.addSubview(titleLabel)
-            
-            let pieLayer = PieLayer()
-            pieLayer.cornerRadius = 107/2
-            pieLayer.masksToBounds = true
-            pieLayer.frame = CGRect.init(x: 33, y: 46, width: 107, height: 107)
-            pieLayer.addValues([PieElement(value: 8.0, color: UIColor.init(named: "darkishPink") ?? UIColor.purple),
-                                PieElement(value: 2.0, color: UIColor.init(named: "lightPink") ?? UIColor.magenta)], animated: true)
-            view.layer.addSublayer(pieLayer)
-            
-            formatter.dateFormat = "yyyy년 MM월 dd일"
-            // Todo: 날짜 변경
-            let dateString = "\(formatter.string(from: Date()))"
-            let dateLabel = UILabel.init(frame: CGRect.init(x: 178, y: 106, width: 150, height: 22))
-            dateLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-            dateLabel.textColor = .white
-            dateLabel.text = dateString
-            view.addSubview(dateLabel)
-            
-            let adoptionString = "입양률 14%"
-            let adoptionLabel = UILabel.init(frame: CGRect.init(x: 178, y: 128, width: 125, height: 30))
-            adoptionLabel.font = UIFont.systemFont(ofSize: 22, weight: .heavy)
-            adoptionLabel.textColor = .white
-            adoptionLabel.text = adoptionString
-            view.addSubview(adoptionLabel)
-            
-            horizontalScrollView.addItem(view)
-        }
+        
+        // Todo: API 연동
+        let adoptionInfoView = infoView(statisticsType: .adoption, rate: 23, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
+        horizontalScrollView.addItem(adoptionInfoView)
+        let euthanasiaInfoView = infoView(statisticsType: .euthanasia, rate: 30, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
+        horizontalScrollView.addItem(euthanasiaInfoView)
+        let naturalDeathInfoView = infoView(statisticsType: .naturalDeath, rate: 12, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
+        horizontalScrollView.addItem(naturalDeathInfoView)
+        let returnPetInfoView = infoView(statisticsType: .returnPet, rate: 45, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
+        horizontalScrollView.addItem(returnPetInfoView)
+        
+    }
+    
+    func infoView(statisticsType: StatisticsType, rate: Int, updateDate: Date) -> UIView {
+        let view = UIView(frame: CGRect.zero)
+        view.backgroundColor = UIColor.init(named: statisticsType.backgroundColorString) ?? .purple
+        view.setRadius(radius: 8)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let title = "\(formatter.string(from: Date())) 업데이트 기준"
+        let titleLabel = UILabel.init(frame: CGRect.init(x: 18, y: 8, width: 150, height: 16))
+        titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        titleLabel.textColor = .white
+        titleLabel.text = title
+        view.addSubview(titleLabel)
+        
+        let pieLayer = PieLayer()
+        pieLayer.cornerRadius = 107/2
+        pieLayer.masksToBounds = true
+        pieLayer.frame = CGRect.init(x: 33, y: 46, width: 107, height: 107)
+        pieLayer.addValues([PieElement(value: Float(100-rate), color: UIColor.init(named: statisticsType.chartColorString.0) ?? UIColor.purple),
+                            PieElement(value: Float(rate), color: UIColor.init(named: statisticsType.chartColorString.1) ?? UIColor.magenta)], animated: true)
+        view.layer.addSublayer(pieLayer)
+        
+        let dateString = "최근 3개월 간"
+        let dateLabel = UILabel.init(frame: CGRect.init(x: 178, y: 106, width: 150, height: 22))
+        dateLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        dateLabel.textColor = .white
+        dateLabel.text = dateString
+        view.addSubview(dateLabel)
+        
+        let rateInfoString = "\(statisticsType.description) \(String(describing: rate))%"
+        let rateInfoLabel = UILabel.init(frame: CGRect.init(x: 178, y: 128, width: 150, height: 30))
+        rateInfoLabel.font = UIFont.systemFont(ofSize: 22, weight: .heavy)
+        rateInfoLabel.textColor = .white
+        rateInfoLabel.text = rateInfoString
+        view.addSubview(rateInfoLabel)
+        
+        return view
     }
 }
 

@@ -65,6 +65,7 @@
 		4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617961FB86EE000DADA27 /* HttpHelper.swift */; };
 		4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */; };
 		4EF9C3BF1FC28D940075716F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */; };
+		4EF9C3C11FC327CC0075716F /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9C3C01FC327CC0075716F /* Statistics.swift */; };
 		4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
@@ -164,6 +165,7 @@
 		4EF617961FB86EE000DADA27 /* HttpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		4EF9C3C01FC327CC0075716F /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOPickerButton.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				4ED371DB1FC0376E0061C4C6 /* Filter.swift */,
 				4ED371DF1FC051C10061C4C6 /* Region.swift */,
 				4E63D42C1FC13EAB00F61446 /* Comment.swift */,
+				4EF9C3C01FC327CC0075716F /* Statistics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */,
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
 				4E63D4331FC1A5AA00F61446 /* PostDetailCommentWritingTableViewCell.swift in Sources */,
+				4EF9C3C11FC327CC0075716F /* Statistics.swift in Sources */,
 				4EDDBC191FBDC397009F9001 /* User.swift in Sources */,
 				4E6423BC1FADD75E0099A4C7 /* Age.swift in Sources */,
 				4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */,
