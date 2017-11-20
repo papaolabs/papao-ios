@@ -64,6 +64,7 @@
 		4EF282FC1FB94D1600731679 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF282FB1FB94D1600731679 /* NotificationViewController.swift */; };
 		4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617961FB86EE000DADA27 /* HttpHelper.swift */; };
 		4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */; };
+		4EF9C3BF1FC28D940075716F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */; };
 		4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
@@ -162,6 +163,7 @@
 		4EF617951FB801A800DADA27 /* papao-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "papao-ios.entitlements"; sourceTree = "<group>"; };
 		4EF617961FB86EE000DADA27 /* HttpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOPickerButton.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				4EF617951FB801A800DADA27 /* papao-ios.entitlements */,
+				4EF9C3BD1FC28D760075716F /* HomeView */,
 				4E326A811FA1FEDA006325B4 /* PostView */,
 				4E326A801FA1FE9B006325B4 /* ReportView */,
 				4E5F80061FBC7A45001A23BE /* MissingView */,
@@ -369,6 +372,14 @@
 				4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */,
 			);
 			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		4EF9C3BD1FC28D760075716F /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 		EF54A41229C9B6A69EFEEEAE /* Frameworks */ = {
@@ -531,6 +542,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ASHorizontalScrollView/ASHorizontalScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
@@ -540,6 +552,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ASHorizontalScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
@@ -634,6 +647,7 @@
 				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
 				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */,
+				4EF9C3BF1FC28D940075716F /* HomeTableViewCell.swift in Sources */,
 				4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */,
 				4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */,
 				4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */,

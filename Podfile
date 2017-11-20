@@ -8,5 +8,6 @@ target 'papao-ios' do
   pod 'BSImagePicker', '~> 2.7'
   pod 'AccountKit', '~> 4.26'
   pod 'DateToolsSwift', '~> 2.0'
+  pod 'ASHorizontalScrollView', '~> 1.5.1'
 end
 
