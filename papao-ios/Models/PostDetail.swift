@@ -10,9 +10,9 @@ import UIKit
 
 enum PostType: String {
     case SYSTEM = "SYSTEM"
-    case PROTECTING = "PROTECTING"
-    case ROADREPORT = "ROADREPORT"
     case MISSING = "MISSING"
+    case ROADREPORT = "ROADREPORT"
+    case PROTECTING = "PROTECTING"
 
     var keyName: String {
         get { return String(describing: self) }
@@ -22,13 +22,43 @@ enum PostType: String {
         switch self {
         case .SYSTEM:
             return "보호소"
-        case .PROTECTING:
-            return "임시보호"
-        case .ROADREPORT:
-            return "길거리 제보"
         case .MISSING:
             return "실종"
+        case .ROADREPORT:
+            return "길거리 제보"
+        case .PROTECTING:
+            return "임시보호"
         }
+    }
+    
+    var detailDescription: String {
+        switch self {
+        case .SYSTEM:
+            return "보호소"
+        case .MISSING:
+            return "실종, 찾아주세요"
+        case .ROADREPORT:
+            return "유기동물 제보"
+        case .PROTECTING:
+            return "임시보호 중"
+        }
+    }
+    
+    var index: Int {
+        switch self {
+        case .SYSTEM:
+            return 0
+        case .MISSING:
+            return 1
+        case .ROADREPORT:
+            return 2
+        case .PROTECTING:
+            return 3
+        }
+    }
+    
+    static var count: Int {
+        return 4
     }
 }
 

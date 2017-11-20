@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var postTypeImageView: UIImageView!
@@ -20,6 +21,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func initialize() {
+        postTypeImageView.setRadius(radius: postTypeImageView.frame.size.width/2)
     }
 }
 
@@ -30,4 +32,32 @@ class HomePostView: UIView {
     @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    
+    override func awakeFromNib() {
+        initialize()
+    }
+    
+    func initialize() {
+        thumbImageView.setRadius(radius: 8)
+    }
+    
+    func setPost(_ post: Post) {
+        breedLabel.text = post.kindName
+        genderLabel.text = post.genderType.description
+        dateLabel.text = post.happenDate
+        hitCountLabel.text = String(describing:post.hitCount ?? 0)
+        commentCountLabel.text = String(describing:post.commentCount ?? 0)
+        
+        // set represent image
+        if post.imageUrls.count > 0 {
+            if let url = post.imageUrls[0]["url"] as? String {
+                Alamofire.request(url).responseData { response in
+                    if let data = response.result.value {
+                        let image = UIImage(data: data)
+                        self.thumbImageView.image = image
+                    }
+                }
+            }
+        }
+    }
 }
