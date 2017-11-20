@@ -9,5 +9,6 @@ target 'papao-ios' do
   pod 'AccountKit', '~> 4.26'
   pod 'DateToolsSwift', '~> 2.0'
   pod 'ASHorizontalScrollView', '~> 1.5.1'
+  pod 'MagicPie', '~> 1.1'
 end
 
