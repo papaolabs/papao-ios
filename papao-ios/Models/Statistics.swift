@@ -128,18 +128,18 @@ struct Statistics {
     }
     
     func getRate(statisticsType: StatisticsType) -> Int {
-        guard totalCount <= 0 else {
+        guard totalCount > 0 else {
             return 0
         }
         switch statisticsType {
         case .adoption:
-            return adoptionCount / totalCount
+            return 100 * adoptionCount / totalCount
         case .euthanasia:
-            return euthanasiaCount / totalCount
+            return 100 * euthanasiaCount / totalCount
         case .naturalDeath:
-            return naturalDeathCount / totalCount
+            return 100 * naturalDeathCount / totalCount
         case .returnPet:
-            return returnCount / totalCount
+            return 100 * returnCount / totalCount
         }
     }
 }

@@ -14,27 +14,56 @@ import MagicPie
 class HomeViewController: UIViewController {
     @IBOutlet weak var updateCountLabel: UILabel!
     @IBOutlet var horizontalScrollView: ASHorizontalScrollView!
+    
+    var statistics: Statistics?
 
     fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // initialize scrollView
         horizontalScrollView.defaultMarginSettings = MarginSettings(leftMargin: 15, miniMarginBetweenItems: 8, miniAppearWidthOfLastItem: 24)
         horizontalScrollView.uniformItemSize = CGSize(width: 328, height: 184)
         // this must be called after changing any size or margin property of this class to get acurrate margin
         horizontalScrollView.setItemsMarginOnce()
         
-        // Todo: API 연동
-        let adoptionInfoView = infoView(statisticsType: .adoption, rate: 23, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
-        horizontalScrollView.addItem(adoptionInfoView)
-        let euthanasiaInfoView = infoView(statisticsType: .euthanasia, rate: 30, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
-        horizontalScrollView.addItem(euthanasiaInfoView)
-        let naturalDeathInfoView = infoView(statisticsType: .naturalDeath, rate: 12, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
-        horizontalScrollView.addItem(naturalDeathInfoView)
-        let returnPetInfoView = infoView(statisticsType: .returnPet, rate: 45, updateDate: Calendar.current.date(byAdding: .weekday, value: -1, to: Date())!)
-        horizontalScrollView.addItem(returnPetInfoView)
+        // get date of 3 month ago
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let beginDate = Calendar.current.date(byAdding: .month, value: -3, to: Date()) ?? Date()
+        let endDate = Date()
+        let parameters = ["beginDate": formatter.string(from: beginDate), "endDate": formatter.string(from: endDate)]
         
+        let api = HttpHelper.init()
+        
+        api.stats(parameters: parameters) { (result) in
+            do {
+                let statistics = try result.unwrap()
+                self.createStatView(statistics: statistics)
+                print(statistics)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func createStatView(statistics: Statistics) {
+        updateCountLabel.text = String(describing: statistics.saveCount)
+        
+        let adoptionRate = statistics.getRate(statisticsType: .adoption)
+        let euthanasiaRate = statistics.getRate(statisticsType: .euthanasia)
+        let naturalDeathRate = statistics.getRate(statisticsType: .naturalDeath)
+        let returnRate = statistics.getRate(statisticsType: .returnPet)
+        
+        let adoptionInfoView = infoView(statisticsType: .adoption, rate: adoptionRate, updateDate: statistics.endDate)
+        horizontalScrollView.addItem(adoptionInfoView)
+        let euthanasiaInfoView = infoView(statisticsType: .euthanasia, rate: euthanasiaRate, updateDate: statistics.endDate)
+        horizontalScrollView.addItem(euthanasiaInfoView)
+        let naturalDeathInfoView = infoView(statisticsType: .naturalDeath, rate: naturalDeathRate, updateDate: statistics.endDate)
+        horizontalScrollView.addItem(naturalDeathInfoView)
+        let returnPetInfoView = infoView(statisticsType: .returnPet, rate: returnRate, updateDate: statistics.endDate)
+        horizontalScrollView.addItem(returnPetInfoView)
     }
     
     func infoView(statisticsType: StatisticsType, rate: Int, updateDate: Date) -> UIView {
