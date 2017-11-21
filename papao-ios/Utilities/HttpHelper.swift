@@ -53,6 +53,10 @@ enum Router: URLRequestConvertible {
     // User
     case join(parameters: Parameters)
     case setPush(parameters: Parameters)
+    
+    // Stat
+    case stats(parameters: Parameters)
+    case postRanking(parameters: Parameters)
 
     static let baseURLString = "\(valueForAPIKey(keyname: "API_BASE_URL"))api/v1/"
     
@@ -62,7 +66,9 @@ enum Router: URLRequestConvertible {
              .readPost,
              .checkBookmark,
              .countBookmark,
-             .readComments:
+             .readComments,
+             .stats,
+             .postRanking:
             return .get
         case .createPost,
              .deleteComment,
@@ -105,6 +111,10 @@ enum Router: URLRequestConvertible {
             return "users/join"
         case .setPush(_):
             return "users/push"
+        case .stats(_):
+            return "stats"
+        case .postRanking(_):
+            return "stats/posts"
         }
     }
     
@@ -121,7 +131,7 @@ enum Router: URLRequestConvertible {
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .readPostsByPage(let parameters):
+        case .readPostsByPage(let parameters), .stats(let parameters), .postRanking(let parameters):
             urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
         }
         
@@ -219,6 +229,18 @@ final class HttpHelper {
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }
+            }
+        }
+    }
+    
+    // Stat
+    func stats(parameters: Parameters, completion: @escaping (ApiResult<Statistics>) -> Void) {
+        manager.request(Router.stats(parameters: parameters)).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON() {
+                let statistics = Statistics(json: dict)
+                completion(ApiResult{ return statistics })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
             }
         }
     }
