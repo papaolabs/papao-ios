@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     let api = HttpHelper.init()
 
     var statistics: Statistics?
-    var postSeries: [String: [Post]] = [:]
+    var postSeries: [String: [Post]?] = [:]
 
     fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
 
@@ -156,19 +156,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch row {
         case PostType.SYSTEM.index:
             cell.postTypeLabel.text = PostType.SYSTEM.description
-            cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? [])
+            cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? nil)
         case PostType.PROTECTING.index:
             cell.postTypeLabel.text = PostType.PROTECTING.description
-            cell.setPosts(posts: postSeries[PostType.PROTECTING.rawValue] ?? [])
+            cell.setPosts(posts: postSeries[PostType.PROTECTING.rawValue] ?? nil)
         case PostType.ROADREPORT.index:
             cell.postTypeLabel.text = PostType.ROADREPORT.description
-            cell.setPosts(posts: postSeries[PostType.ROADREPORT.rawValue] ?? [])
+            cell.setPosts(posts: postSeries[PostType.ROADREPORT.rawValue] ?? nil)
         case PostType.MISSING.index:
             cell.postTypeLabel.text = PostType.MISSING.description
-            cell.setPosts(posts: postSeries[PostType.MISSING.rawValue] ?? [])
+            cell.setPosts(posts: postSeries[PostType.MISSING.rawValue] ?? nil)
         default:
             cell.postTypeLabel.text = PostType.SYSTEM.description
-            cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? [])
+            cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? nil)
         }
         
 //        cell.setPost(post: post)

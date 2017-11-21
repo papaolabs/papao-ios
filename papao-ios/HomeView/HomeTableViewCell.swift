@@ -27,9 +27,9 @@ class HomeTableViewCell: UITableViewCell {
         postViews = [homePostView1, homePostView2, homePostView3]
     }
     
-    func setPosts(posts: [Post]) {
+    func setPosts(posts: [Post]?) {
         for (index, _) in postViews.enumerated() {
-            if posts.indices.contains(index) {
+            if let posts = posts, posts.indices.contains(index) {
                 let postView = postViews[index]
                 postView.setPost(posts[index])
             } else {
