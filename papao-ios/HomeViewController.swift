@@ -12,10 +12,14 @@ import ASHorizontalScrollView
 import MagicPie
 
 class HomeViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var updateCountLabel: UILabel!
     @IBOutlet var horizontalScrollView: ASHorizontalScrollView!
-    
+
+    let api = HttpHelper.init()
+
     var statistics: Statistics?
+    var postSeries: [String: [Post]] = [:]
 
     fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
 
@@ -28,14 +32,20 @@ class HomeViewController: UIViewController {
         // this must be called after changing any size or margin property of this class to get acurrate margin
         horizontalScrollView.setItemsMarginOnce()
         
+        loadStat()
+        loadPosts(postType: .SYSTEM)
+        loadPosts(postType: .MISSING)
+        loadPosts(postType: .ROADREPORT)
+        loadPosts(postType: .PROTECTING)
+    }
+    
+    func loadStat() {
         // get date of 3 month ago
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
         let beginDate = Calendar.current.date(byAdding: .month, value: -3, to: Date()) ?? Date()
         let endDate = Date()
         let parameters = ["beginDate": formatter.string(from: beginDate), "endDate": formatter.string(from: endDate)]
-        
-        let api = HttpHelper.init()
         
         api.stats(parameters: parameters) { (result) in
             do {
@@ -46,6 +56,30 @@ class HomeViewController: UIViewController {
                 print(error)
             }
         }
+    }
+    
+    func loadPosts(postType: PostType) {
+        let filter = Filter.init(postTypes: [postType])
+        api.readPosts(filter: filter, completion: { (result) in
+            do {
+                let postResponse = try result.unwrap()
+                let sortedPosts = postResponse.elements.sorted(by: { (post1, post2) -> Bool in
+                    if let post1 = post1?.hitCount, let post2 = post2?.hitCount {
+                        return post1 >= post2
+                    } else {
+                        return true
+                    }
+                }).flatMap { $0 }
+                print(postType.description)
+                print(sortedPosts)
+                // assign posts to dictionary
+                self.postSeries[postType.rawValue] = sortedPosts  // 3개 이하인 경우처리?
+                // reload table
+                self.tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        })
     }
     
     func createStatView(statistics: Statistics) {
@@ -121,15 +155,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row;
         switch row {
         case PostType.SYSTEM.index:
-            cell.postTypeLabel.text = PostType.SYSTEM.detailDescription
+            cell.postTypeLabel.text = PostType.SYSTEM.description
+            cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? [])
         case PostType.PROTECTING.index:
-            cell.postTypeLabel.text = PostType.PROTECTING.detailDescription
+            cell.postTypeLabel.text = PostType.PROTECTING.description
+            cell.setPosts(posts: postSeries[PostType.PROTECTING.rawValue] ?? [])
         case PostType.ROADREPORT.index:
-            cell.postTypeLabel.text = PostType.ROADREPORT.detailDescription
+            cell.postTypeLabel.text = PostType.ROADREPORT.description
+            cell.setPosts(posts: postSeries[PostType.ROADREPORT.rawValue] ?? [])
         case PostType.MISSING.index:
-            cell.postTypeLabel.text = PostType.MISSING.detailDescription
+            cell.postTypeLabel.text = PostType.MISSING.description
+            cell.setPosts(posts: postSeries[PostType.MISSING.rawValue] ?? [])
         default:
-            cell.postTypeLabel.text = PostType.SYSTEM.detailDescription
+            cell.postTypeLabel.text = PostType.SYSTEM.description
+            cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? [])
         }
         
 //        cell.setPost(post: post)

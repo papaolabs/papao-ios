@@ -15,6 +15,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var homePostView1: HomePostView!
     @IBOutlet weak var homePostView2: HomePostView!
     @IBOutlet weak var homePostView3: HomePostView!
+    var postViews: [HomePostView]!
     
     override func awakeFromNib() {
         initialize()
@@ -22,6 +23,19 @@ class HomeTableViewCell: UITableViewCell {
     
     func initialize() {
         postTypeImageView.setRadius(radius: postTypeImageView.frame.size.width/2)
+        
+        postViews = [homePostView1, homePostView2, homePostView3]
+    }
+    
+    func setPosts(posts: [Post]) {
+        for (index, _) in postViews.enumerated() {
+            if posts.indices.contains(index) {
+                let postView = postViews[index]
+                postView.setPost(posts[index])
+            } else {
+                break
+            }
+        }
     }
 }
 
@@ -39,12 +53,19 @@ class HomePostView: UIView {
     
     func initialize() {
         thumbImageView.setRadius(radius: 8)
+        thumbImageView.layer.masksToBounds = true
     }
     
     func setPost(_ post: Post) {
         breedLabel.text = post.kindName
         genderLabel.text = post.genderType.description
-        dateLabel.text = post.happenDate
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let formattedDate = formatter.date(from: post.happenDate)
+        formatter.dateFormat = "yyyy.MM.dd"
+        dateLabel.text = formatter.string(from: formattedDate ?? Date())
+
         hitCountLabel.text = String(describing:post.hitCount ?? 0)
         commentCountLabel.text = String(describing:post.commentCount ?? 0)
         
