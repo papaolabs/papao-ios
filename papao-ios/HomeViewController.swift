@@ -178,5 +178,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let row = indexPath.row;
+        switch row {
+        case PostType.SYSTEM.index:
+            self.tabBarController?.selectedIndex = PostType.SYSTEM.index+1
+        case PostType.PROTECTING.index, PostType.ROADREPORT.index:
+            self.tabBarController?.selectedIndex = PostType.ROADREPORT.index+1
+        case PostType.MISSING.index:
+            self.tabBarController?.selectedIndex = PostType.MISSING.index+1
+        default:
+            self.tabBarController?.selectedIndex = PostType.SYSTEM.index+1
+        }
     }
 }
