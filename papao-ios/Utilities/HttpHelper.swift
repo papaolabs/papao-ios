@@ -43,7 +43,7 @@ enum Router: URLRequestConvertible {
     case readPost(postId: String)
     case deletePost(postId: String)
     case registerBookmark(postId: String, userId: String)
-    case cancelBookmark(postId: String)
+    case cancelBookmark(postId: String, userId: String)
     case checkBookmark(postId: String)
     case countBookmark(postId: String)
     case readComments(postId: String)
@@ -130,7 +130,7 @@ enum Router: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_),
+        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _),
              .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_, _), .setStatus(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters), .getPushHistory(let parameters):
@@ -185,6 +185,20 @@ final class HttpHelper {
     // Bookmark
     func registerBookmark(postId: String, userId: String, completion: @escaping (ApiResult<Bool>) -> Void) {
         let router = Router.registerBookmark(postId: postId, userId: userId)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: [:], encoding: userId).responseJSON { response in
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    completion(ApiResult{ return json.boolValue })
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
+            }
+        }
+    }
+    
+    func cancelBookmark(postId: String, userId: String, completion: @escaping (ApiResult<Bool>) -> Void) {
+        let router = Router.cancelBookmark(postId: postId, userId: userId)
         if let url = router.urlRequest?.url {
             manager.request(url, method:router.method, parameters: [:], encoding: userId).responseJSON { response in
                 if let value = response.result.value {
