@@ -42,7 +42,7 @@ enum Router: URLRequestConvertible {
     case readPostsByPage(parameters: Parameters)
     case readPost(postId: String)
     case deletePost(postId: String)
-    case registerBookmark(postId: Int, userId: Int)
+    case registerBookmark(postId: String, userId: String)
     case cancelBookmark(postId: String)
     case checkBookmark(postId: String)
     case countBookmark(postId: String)
@@ -183,14 +183,13 @@ final class HttpHelper {
     }
     
     // Bookmark
-    func registerBookmark(postId: Int, userId: Int, completion: @escaping (ApiResult<Bool>) -> Void) {
+    func registerBookmark(postId: String, userId: String, completion: @escaping (ApiResult<Bool>) -> Void) {
         let router = Router.registerBookmark(postId: postId, userId: userId)
-        let parameters = ["postId": "\(postId)", "userId": "\(userId)"] as [String: AnyObject]
         if let url = router.urlRequest?.url {
-            manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            manager.request(url, method:router.method, parameters: [:], encoding: userId).responseJSON { response in
                 if let value = response.result.value {
-                    let userJson = JSON(value)
-                    completion(ApiResult{ return userJson.boolValue })
+                    let json = JSON(value)
+                    completion(ApiResult{ return json.boolValue })
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }
