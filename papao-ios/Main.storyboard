@@ -295,6 +295,7 @@
                     <navigationItem key="navigationItem" title="알림" id="zb0-4V-prE"/>
                     <connections>
                         <outlet property="tableView" destination="qVm-Kp-pau" id="Enf-wv-ZxC"/>
+                        <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="slC-1q-qcd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csY-UK-prE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3715,7 +3716,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jQc-9Y-PAu"/>
-        <segue reference="fX6-tz-dqg"/>
+        <segue reference="slC-1q-qcd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>

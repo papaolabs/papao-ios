@@ -61,7 +61,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NotificationTableViewCell = tableView.dequeueReusableCell(withIdentifier: "historyCell",
                                                                     for: indexPath) as! NotificationTableViewCell
-        let row = indexPath.row;
+        let row = indexPath.row
         if let pushLog = history?.pushLogs[row] {
             cell.setPushLog(pushLog)
         }
@@ -70,5 +70,13 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let pushLog = self.history?.pushLogs[indexPath.row]
+        guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
+            return
+        }
+        
+        postDetailViewController.postId = pushLog?.postId
+        self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }
