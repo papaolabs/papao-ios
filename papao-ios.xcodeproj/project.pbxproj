@@ -14,6 +14,8 @@
 		4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */; };
 		4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */; };
 		4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */; };
+		4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */; };
+		4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D41FC4A09F00967596 /* NotificationHistory.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
@@ -108,6 +110,8 @@
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
 		4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageUploadViewController.swift; sourceTree = "<group>"; };
 		4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ruler.swift"; sourceTree = "<group>"; };
+		4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		4E3490D41FC4A09F00967596 /* NotificationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistory.swift; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -247,6 +251,15 @@
 			path = "papao-ios/Extension";
 			sourceTree = SOURCE_ROOT;
 		};
+		4E3490D31FC49A6500967596 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				4EF282FB1FB94D1600731679 /* NotificationViewController.swift */,
+				4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */,
+			);
+			path = NotificationView;
+			sourceTree = "<group>";
+		};
 		4E4CA5FE1F9E10F20041A680 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +296,7 @@
 				4ED371DF1FC051C10061C4C6 /* Region.swift */,
 				4E63D42C1FC13EAB00F61446 /* Comment.swift */,
 				4EF9C3C01FC327CC0075716F /* Statistics.swift */,
+				4E3490D41FC4A09F00967596 /* NotificationHistory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -318,6 +332,7 @@
 				4E326A811FA1FEDA006325B4 /* PostView */,
 				4E326A801FA1FE9B006325B4 /* ReportView */,
 				4E5F80061FBC7A45001A23BE /* MissingView */,
+				4E3490D31FC49A6500967596 /* NotificationView */,
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
 				4E326A851FA2049C006325B4 /* Extension */,
@@ -327,7 +342,6 @@
 				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
 				4EE6B3E71FBB32C30017037D /* HomeViewController.swift */,
 				4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */,
-				4EF282FB1FB94D1600731679 /* NotificationViewController.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4E7060D41FA612FE00B88F92 /* Main.storyboard */,
 				4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */,
@@ -628,7 +642,9 @@
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
+				4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
+				4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */,
 				4E177B921FB6FCB200A10017 /* Post.swift in Sources */,
 				4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
