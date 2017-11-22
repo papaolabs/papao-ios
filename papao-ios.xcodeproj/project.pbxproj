@@ -16,6 +16,7 @@
 		4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */; };
 		4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */; };
 		4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D41FC4A09F00967596 /* NotificationHistory.swift */; };
+		4E3490D71FC5A5DA00967596 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
@@ -112,6 +113,7 @@
 		4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ruler.swift"; sourceTree = "<group>"; };
 		4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		4E3490D41FC4A09F00967596 /* NotificationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistory.swift; sourceTree = "<group>"; };
+		4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				4EDC3C711FAF2551004F3406 /* CustomUI */,
 				4ED6F3921FA5D0B7009E287C /* Resources */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
+				4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */,
 				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
 				4EE6B3E71FBB32C30017037D /* HomeViewController.swift */,
 				4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */,
@@ -645,6 +648,7 @@
 				4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */,
+				4E3490D71FC5A5DA00967596 /* BookmarkViewController.swift in Sources */,
 				4E177B921FB6FCB200A10017 /* Post.swift in Sources */,
 				4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
