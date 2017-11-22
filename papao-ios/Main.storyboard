@@ -516,7 +516,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5AK-5f-iVt" userLabel="Content View">
                                                             <rect key="frame" x="8" y="0.0" width="359" height="39.5"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiF-W3-kWl">
+                                                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiF-W3-kWl" customClass="PPOBookmarkButton" customModule="papao_ios" customModuleProvider="target">
                                                                     <rect key="frame" x="12" y="8" width="66" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="66" id="ega-6J-rjH"/>
@@ -572,8 +572,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="bookmarkButton" destination="tiF-W3-kWl" id="ADL-Xl-wM8"/>
                                             <outlet property="etcButton" destination="Nca-xO-bcm" id="aqr-y1-SrZ"/>
-                                            <outlet property="favoriteButton" destination="tiF-W3-kWl" id="KYY-c1-Ntv"/>
                                             <outlet property="shareButton" destination="jnO-q8-JpZ" id="j67-NS-fOr"/>
                                         </connections>
                                     </tableViewCell>

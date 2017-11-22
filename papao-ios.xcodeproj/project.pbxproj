@@ -17,6 +17,7 @@
 		4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */; };
 		4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D41FC4A09F00967596 /* NotificationHistory.swift */; };
 		4E3490D71FC5A5DA00967596 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */; };
+		4E3490DA1FC5BDB100967596 /* PPOBookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
@@ -114,6 +115,7 @@
 		4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		4E3490D41FC4A09F00967596 /* NotificationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistory.swift; sourceTree = "<group>"; };
 		4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBookmarkButton.swift; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				4E7060CE1FA5FEE300B88F92 /* PPOPicker.swift */,
 				4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */,
 				4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */,
+				4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				4E63D42F1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift in Sources */,
 				4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */,
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
+				4E3490DA1FC5BDB100967596 /* PPOBookmarkButton.swift in Sources */,
 				4E63D4311FC18B4C00F61446 /* PostResponse.swift in Sources */,
 				4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */,
 				4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */,
