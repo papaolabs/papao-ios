@@ -51,7 +51,6 @@ class HomeViewController: UIViewController {
             do {
                 let statistics = try result.unwrap()
                 self.createStatView(statistics: statistics)
-                print(statistics)
             } catch {
                 print(error)
             }
@@ -70,8 +69,6 @@ class HomeViewController: UIViewController {
                         return true
                     }
                 }).flatMap { $0 }
-                print(postType.description)
-                print(sortedPosts)
                 // assign posts to dictionary
                 self.postSeries[postType.rawValue] = sortedPosts  // 3개 이하인 경우처리?
                 // reload table
