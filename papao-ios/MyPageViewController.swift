@@ -27,7 +27,9 @@ class MyPageViewController: UITableViewController {
         profileImageView.setRadius(radius: profileImageView.frame.width/2)
 
         // remove extra empty cells
-        tableView.tableFooterView = UIView()
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .clear
+        tableView.tableFooterView = backgroundView
 
         loadMyInfo()
     }
@@ -44,6 +46,7 @@ class MyPageViewController: UITableViewController {
                     api.profile(userId: "9999", completion: { (result) in
                         do {
                             let user = try result.unwrap()
+                            self.user = user
                             self.setProfile(user: user)
                         } catch {
                             print(error)
@@ -56,6 +59,7 @@ class MyPageViewController: UITableViewController {
     
     func setProfile(user: User?) {
         if let user = user {
+            phoneNumberLabel.isHidden = false
             phoneNumberLabel.text = user.phone
             nicknameLabel.text = user.nickName
             
@@ -67,13 +71,42 @@ class MyPageViewController: UITableViewController {
                         self.profileImageView.image = image
                     }
                 }
-            } else {
-                self.profileImageView.image = UIImage.init(named: "dog_03")
             }
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.00001
+    private func presentLoginAlert() {
+        let alert = UIAlertController(title: nil, message: "로그인 하시겠어요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            self.present(loginViewController, animated: true, completion: {
+                // Todo: 로그인 처리
+                self.loadMyInfo()
+            })
+        }
+        alert.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "아니오", style: .default) { (_) in
+        }
+        alert.addAction(cancelAction)
+        self.present(alert, animated: false)
+    }
+    
+    // MARK: - TableView Delegate
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        return 16
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let section = indexPath.section
+        if section == 0 && self.user == nil {
+            // 로그인 안된 사용자 클릭 시
+            presentLoginAlert()
+        }
     }
 }
