@@ -221,6 +221,17 @@ final class HttpHelper {
             }
         }
     }
+    
+    func countBookmark(postId: String, completion: @escaping (ApiResult<Int>) -> Void) {
+        manager.request(Router.countBookmark(postId: postId)).responseJSON { response in
+            if let value = response.result.value {
+                let json = JSON(value)
+                completion(ApiResult{ return json.intValue })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
 
     // Comment
     func readComments(postId: String, completion: @escaping (ApiResult<Comment>) -> Void) {
