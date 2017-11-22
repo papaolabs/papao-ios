@@ -10,6 +10,8 @@ import UIKit
 import AccountKit
 
 class NotificationViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+
     fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
     fileprivate var showLoginViewOnAppear = false
     var history: NotificationHistory?
@@ -35,10 +37,38 @@ class NotificationViewController: UIViewController {
         api.getPushHistory(userId: userId) { (result) in
             do {
                 self.history = try result.unwrap()
-                print(self.history)
+                self.tableView.reloadData()
             } catch {
                 print(error)
             }
         }
+    }
+}
+
+extension NotificationViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.history?.pushLogs.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: NotificationTableViewCell = tableView.dequeueReusableCell(withIdentifier: "historyCell",
+                                                                    for: indexPath) as! NotificationTableViewCell
+        let row = indexPath.row;
+        if let pushLog = history?.pushLogs[row] {
+            cell.setPushLog(pushLog)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

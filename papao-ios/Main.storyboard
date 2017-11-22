@@ -228,7 +228,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="90" id="0ba-xU-R6B" customClass="NotificationTableViewCell" customModule="papao_ios" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="90" id="0ba-xU-R6B" customClass="NotificationTableViewCell" customModule="papao_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0ba-xU-R6B" id="buy-f4-4uA">
@@ -236,7 +236,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ghn-ho-a4j">
-                                                    <rect key="frame" x="15" y="26" width="40" height="40"/>
+                                                    <rect key="frame" x="15" y="25" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="cFl-xd-J1Y"/>
                                                         <constraint firstAttribute="width" constant="40" id="tUG-OL-8be"/>
@@ -260,12 +260,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ghn-ho-a4j" firstAttribute="leading" secondItem="buy-f4-4uA" secondAttribute="leading" constant="15" id="3ZU-hn-n4K"/>
-                                                <constraint firstItem="ghn-ho-a4j" firstAttribute="top" secondItem="buy-f4-4uA" secondAttribute="top" constant="26" id="4lI-3b-JUX"/>
                                                 <constraint firstAttribute="trailing" secondItem="EAQ-4n-WXB" secondAttribute="trailing" constant="8" id="7RM-ls-EeH"/>
                                                 <constraint firstItem="EAQ-4n-WXB" firstAttribute="leading" secondItem="ghn-ho-a4j" secondAttribute="trailing" constant="15" id="DYD-Jp-0zD"/>
                                                 <constraint firstAttribute="trailing" secondItem="5uO-iN-Gjk" secondAttribute="trailing" id="GXx-Rc-X1v"/>
                                                 <constraint firstAttribute="bottom" secondItem="EAQ-4n-WXB" secondAttribute="bottom" constant="14.5" id="L9a-cn-zwl"/>
                                                 <constraint firstItem="EAQ-4n-WXB" firstAttribute="top" secondItem="5uO-iN-Gjk" secondAttribute="bottom" constant="1" id="Qp7-TI-wI0"/>
+                                                <constraint firstItem="ghn-ho-a4j" firstAttribute="centerY" secondItem="buy-f4-4uA" secondAttribute="centerY" id="UQw-XG-vBO"/>
                                                 <constraint firstItem="5uO-iN-Gjk" firstAttribute="top" secondItem="buy-f4-4uA" secondAttribute="top" constant="14" id="hld-Ou-Sfg"/>
                                                 <constraint firstItem="5uO-iN-Gjk" firstAttribute="leading" secondItem="ghn-ho-a4j" secondAttribute="trailing" constant="15" id="hr4-D4-vRT"/>
                                             </constraints>
@@ -277,6 +277,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="A4K-rz-oCB" id="ZRj-gY-H1X"/>
+                                    <outlet property="delegate" destination="A4K-rz-oCB" id="zcd-0A-4FF"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -289,6 +293,9 @@
                         <viewLayoutGuide key="safeArea" id="N2g-4g-KPX"/>
                     </view>
                     <navigationItem key="navigationItem" title="알림" id="zb0-4V-prE"/>
+                    <connections>
+                        <outlet property="tableView" destination="qVm-Kp-pau" id="Enf-wv-ZxC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csY-UK-prE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
