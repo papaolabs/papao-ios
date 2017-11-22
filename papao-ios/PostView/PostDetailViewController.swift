@@ -87,18 +87,6 @@ class PostDetailViewController: UIViewController {
         }
     }
     
-    // MARK: - IBAction
-    @objc func favoriteButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: "즐겨찾기 되었습니다.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .cancel) { (_) in
-        }
-        alert.addAction(okAction)
-        self.present(alert, animated: false)
-        
-        let button = sender as! UIButton
-        button.tintColor = UIColor.gray
-    }
-    
     @objc func adjustForKeyboard(notification: Notification) {
         let userInfo = notification.userInfo!
         
@@ -178,7 +166,6 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: PostDetailButtonTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailButtonCell",
             for: indexPath) as! PostDetailButtonTableViewCell
             cell.setPostDetail(postDetail)
-            cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
             return cell
         case PostDetailSection.description.hashValue:
             let cell: PostDetailTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailTextCell",
