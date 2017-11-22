@@ -11,6 +11,7 @@ import Foundation
 enum MessageType: String {
     case search = "SEARCH"
     case alarm = "ALARM"
+    case bookmark = "BOOKMARK"
 }
 
 struct NotificationHistory {

@@ -53,6 +53,7 @@ enum Router: URLRequestConvertible {
     // User
     case join(parameters: Parameters)
     case setPush(parameters: Parameters)
+    case getPushHistory(parameters: Parameters)
     
     // Stat
     case stats(parameters: Parameters)
@@ -78,7 +79,8 @@ enum Router: URLRequestConvertible {
              .createComment,
              .setStatus,
              .join,
-             .setPush:
+             .setPush,
+             .getPushHistory:
             return .post
         }
     }
@@ -111,6 +113,8 @@ enum Router: URLRequestConvertible {
             return "users/join"
         case .setPush(_):
             return "users/push"
+        case .getPushHistory(_):
+            return "users/push/history"
         case .stats(_):
             return "stats"
         case .postRanking(_):
@@ -129,7 +133,7 @@ enum Router: URLRequestConvertible {
         case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_), .cancelBookmark(_),
              .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_, _), .setStatus(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .createPost(let parameters), .join(let parameters), .setPush(let parameters):
+        case .createPost(let parameters), .join(let parameters), .setPush(let parameters), .getPushHistory(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .readPostsByPage(let parameters), .stats(let parameters), .postRanking(let parameters):
             urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
@@ -233,6 +237,20 @@ final class HttpHelper {
         }
     }
     
+    func getPushHistory(userId: String, completion: @escaping (ApiResult<NotificationHistory>) -> Void) {
+        let router = Router.getPushHistory(parameters: [:])
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: [:], encoding: userId, headers: [:]).responseString { response in
+                if let dict = response.value?.dictionaryFromJSON() {
+                    let notificationHistory = NotificationHistory(json: dict)
+                    completion(ApiResult{ return notificationHistory })
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
+            }
+        }
+    }
+    
     // Stat
     func stats(parameters: Parameters, completion: @escaping (ApiResult<Statistics>) -> Void) {
         manager.request(Router.stats(parameters: parameters)).responseString { response in
@@ -246,3 +264,17 @@ final class HttpHelper {
     }
 }
 
+extension String: ParameterEncoding {
+    // 단일 스트링 json 파라미터를 위한 extension
+    public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+        var request = try urlRequest.asURLRequest()
+        request.httpBody = data(using: .utf8, allowLossyConversion: true)
+
+        if request.value(forHTTPHeaderField: "Content-Type") == nil {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+    
+        
+        return request
+    }
+}
