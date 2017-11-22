@@ -42,7 +42,7 @@ enum Router: URLRequestConvertible {
     case readPostsByPage(parameters: Parameters)
     case readPost(postId: String)
     case deletePost(postId: String)
-    case registerBookmark(postId: String)
+    case registerBookmark(postId: Int, userId: Int)
     case cancelBookmark(postId: String)
     case checkBookmark(postId: String)
     case countBookmark(postId: String)
@@ -97,7 +97,7 @@ enum Router: URLRequestConvertible {
             return "posts/comments/\(commentId)"
         case .readPostsByPage(_):
             return "posts/pages"
-        case .registerBookmark(let postId):
+        case .registerBookmark(let postId, _):
             return "posts/\(postId)/bookmarks"
         case .cancelBookmark(let postId):
             return "posts/\(postId)/bookmarks/cancel"
@@ -130,7 +130,7 @@ enum Router: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_), .cancelBookmark(_),
+        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_),
              .checkBookmark(_), .countBookmark(_), .readComments(_), .createComment(_, _), .setStatus(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters), .getPushHistory(let parameters):
@@ -178,6 +178,22 @@ final class HttpHelper {
                 completion(ApiResult{ return postDetail })
             } else {
                 completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
+    // Bookmark
+    func registerBookmark(postId: Int, userId: Int, completion: @escaping (ApiResult<Bool>) -> Void) {
+        let router = Router.registerBookmark(postId: postId, userId: userId)
+        let parameters = ["postId": "\(postId)", "userId": "\(userId)"] as [String: AnyObject]
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+                if let value = response.result.value {
+                    let userJson = JSON(value)
+                    completion(ApiResult{ return userJson.boolValue })
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
             }
         }
     }
