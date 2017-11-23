@@ -43,7 +43,7 @@ class MyPageViewController: UITableViewController {
             } else {
                 if let accountId = account?.accountID {
                     let api = HttpHelper.init()
-                    api.profile(userId: "9999", completion: { (result) in
+                    api.profile(userId: accountId, completion: { (result) in
                         do {
                             let user = try result.unwrap()
                             self.user = user

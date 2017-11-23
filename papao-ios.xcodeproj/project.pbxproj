@@ -25,6 +25,7 @@
 		4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */; };
 		4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FC1F9E10580041A680 /* keys.plist */; };
 		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
+		4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */; };
 		4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E579E7E1FB47E22002E5404 /* PostRequest.swift */; };
 		4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */; };
 		4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */; };
@@ -124,6 +125,7 @@
 		4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 		4E4CA5FC1F9E10580041A680 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
 		4E579E7E1FB47E22002E5404 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTableViewController.swift; sourceTree = "<group>"; };
 		4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTypePostTableViewCell.swift; sourceTree = "<group>"; };
@@ -276,6 +278,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		4E5130BE1FC686EB00589FB7 /* MyPageView */ = {
+			isa = PBXGroup;
+			children = (
+				4E3490DB1FC5C97200967596 /* MyPageViewController.swift */,
+				4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */,
+			);
+			path = MyPageView;
+			sourceTree = "<group>";
+		};
 		4E5F80061FBC7A45001A23BE /* MissingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +349,7 @@
 				4E326A811FA1FEDA006325B4 /* PostView */,
 				4E326A801FA1FE9B006325B4 /* ReportView */,
 				4E5F80061FBC7A45001A23BE /* MissingView */,
+				4E5130BE1FC686EB00589FB7 /* MyPageView */,
 				4E3490D31FC49A6500967596 /* NotificationView */,
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
@@ -349,7 +361,6 @@
 				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
 				4EE6B3E71FBB32C30017037D /* HomeViewController.swift */,
 				4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */,
-				4E3490DB1FC5C97200967596 /* MyPageViewController.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4E7060D41FA612FE00B88F92 /* Main.storyboard */,
 				4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */,
@@ -653,6 +664,7 @@
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
+				4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */,
 				4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */,
