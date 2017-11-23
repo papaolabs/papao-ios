@@ -36,17 +36,20 @@ class PostTableViewController: UIViewController {
         api.readPosts(filter: filter, completion: { (result) in
             do {
                 let newPostResponse = try result.unwrap()
-                if self.postResponse != nil {
+                if self.postResponse != nil, let previousCount = self.postResponse?.elements.count {
                     self.postResponse?.elements.append(contentsOf: newPostResponse.elements.flatMap{ $0 })
+                    
+                    // 자연스럽게 fetched 아이템이 그려지도록 contentOffset 미리 계산, animation 효과 없앰
+                    let contentOffset = self.tableView.contentOffset
+                    UIView.setAnimationsEnabled(false)
                     let indexPaths = (0..<newPostResponse.elements.count).map { IndexPath(row: $0, section: 0) }
                     self.tableView.insertRows(at: indexPaths, with: .none)
-                    
+                    self.tableView.setContentOffset(contentOffset, animated: false)
+                    UIView.setAnimationsEnabled(true)
                 } else {
                     self.postResponse = newPostResponse
                     self.tableView.reloadData()
                 }
-                
-//                self.tableView.reloadData()
             } catch {
                 print(error)
             }
@@ -99,6 +102,10 @@ extension PostTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     // MARK: - TableView Delegate
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
