@@ -42,10 +42,15 @@ enum Router: URLRequestConvertible {
     case readPostsByPage(parameters: Parameters)
     case readPost(postId: String)
     case deletePost(postId: String)
+    
+    // Bookmark
+    case readBookmarkByUserId(userId: String)
     case registerBookmark(postId: String, userId: String)
     case cancelBookmark(postId: String, userId: String)
     case checkBookmark(postId: String, parameters: Parameters)
     case countBookmark(postId: String)
+    
+    // Comment
     case readComments(postId: String)
     case createComment(postId: String, parameters: Parameters)
     case setStatus(postId: String)
@@ -66,6 +71,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .readPostsByPage,
              .readPost,
+             .readBookmarkByUserId,
              .checkBookmark,
              .countBookmark,
              .readComments,
@@ -99,6 +105,8 @@ enum Router: URLRequestConvertible {
             return "posts/comments/\(commentId)"
         case .readPostsByPage(_):
             return "posts/pages"
+        case .readBookmarkByUserId(let userId):
+            return "posts/users/\(userId)/bookmarks"
         case .registerBookmark(let postId, _):
             return "posts/\(postId)/bookmarks"
         case .cancelBookmark(let postId, _):
@@ -134,7 +142,7 @@ enum Router: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
+        case .readPost(_), .readBookmarkByUserId(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
              .readComments(_), .createComment(_, _), .setStatus(_), .profile(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters), .getPushHistory(let parameters):
@@ -187,6 +195,17 @@ final class HttpHelper {
     }
     
     // Bookmark
+    func readBookmarkByUserId(userId: String, completion: @escaping (ApiResult<PostResponse>) -> Void) {
+        manager.request(Router.readBookmarkByUserId(userId: userId)).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON() {
+                let postResponse = PostResponse(json: dict)
+                completion(ApiResult{ return postResponse })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
     func registerBookmark(postId: String, userId: String, completion: @escaping (ApiResult<Bool>) -> Void) {
         let router = Router.registerBookmark(postId: postId, userId: userId)
         if let url = router.urlRequest?.url {
