@@ -19,6 +19,9 @@ struct Filter {
     var gungu: Gungu?           // 군구
     var userId: String?         // userId
     
+    var index: String           // 인덱스(Int)
+    var size: String            // 개수(Int)
+    
     init(postTypes: [PostType]) {
         self.postTypes = postTypes
         
@@ -26,6 +29,10 @@ struct Filter {
         let lastWeek = Calendar.current.date(byAdding: .weekday, value: -7, to: Date())
         self.beginDate = lastWeek
         self.endDate = Date()
+        
+        // 인덱스, 사이즈 기본값 설정
+        self.index = "0"
+        self.size = "10"
     }
     
     func toDict() -> [String: AnyObject] {
@@ -58,6 +65,10 @@ struct Filter {
         if let userId = userId {
             dict["userId"] = "\(userId)" as AnyObject
         }
+
+        dict["index"] = "\(index)" as AnyObject
+        dict["size"] = "\(size)" as AnyObject
+        
         return dict
     }
 }
