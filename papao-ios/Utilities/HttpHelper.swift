@@ -52,6 +52,7 @@ enum Router: URLRequestConvertible {
     
     // User
     case join(parameters: Parameters)
+    case profile(userId: String)
     case setPush(parameters: Parameters)
     case getPushHistory(parameters: Parameters)
     
@@ -79,6 +80,7 @@ enum Router: URLRequestConvertible {
              .createComment,
              .setStatus,
              .join,
+             .profile,
              .setPush,
              .getPushHistory:
             return .post
@@ -111,6 +113,8 @@ enum Router: URLRequestConvertible {
             return "posts/\(postId)/state"
         case .join(_):
             return "users/join"
+        case .profile(_):
+            return "users/profile"
         case .setPush(_):
             return "users/push"
         case .getPushHistory(_):
@@ -131,7 +135,7 @@ enum Router: URLRequestConvertible {
         
         switch self {
         case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
-             .readComments(_), .createComment(_, _), .setStatus(_):
+             .readComments(_), .createComment(_, _), .setStatus(_), .profile(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters), .getPushHistory(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
@@ -267,6 +271,20 @@ final class HttpHelper {
                     let userJson = JSON(value)
                     let user = User.init(json: userJson.dictionaryObject!)!
                     completion(ApiResult{ return user })
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
+            }
+        }
+    }
+    
+    func profile(userId: String, completion: @escaping (ApiResult<User?>) -> Void) {
+        let router = Router.profile(userId: userId)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: [:], encoding: userId).responseJSON { response in
+                if let value = response.result.value {
+                    let userJson = JSON(value)
+                    completion(ApiResult{ return User.init(json: userJson.dictionaryObject) })
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }

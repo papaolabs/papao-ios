@@ -17,6 +17,7 @@ struct Filter {
     var endDate: Date?          // yyyyMMdd
     var sido: Sido?             // 시도
     var gungu: Gungu?           // 군구
+    var userId: String?         // userId
     
     init(postTypes: [PostType]) {
         self.postTypes = postTypes
@@ -53,6 +54,9 @@ struct Filter {
         }
         if let gungu = gungu {
             dict["gungu"] = "\(gungu.code)" as AnyObject
+        }
+        if let userId = userId {
+            dict["userId"] = "\(userId)" as AnyObject
         }
         return dict
     }

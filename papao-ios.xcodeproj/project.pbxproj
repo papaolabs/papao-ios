@@ -18,12 +18,14 @@
 		4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D41FC4A09F00967596 /* NotificationHistory.swift */; };
 		4E3490D71FC5A5DA00967596 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */; };
 		4E3490DA1FC5BDB100967596 /* PPOBookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */; };
+		4E3490DC1FC5C97200967596 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490DB1FC5C97200967596 /* MyPageViewController.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
 		4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */; };
 		4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FC1F9E10580041A680 /* keys.plist */; };
 		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
+		4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */; };
 		4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E579E7E1FB47E22002E5404 /* PostRequest.swift */; };
 		4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */; };
 		4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */; };
@@ -116,12 +118,14 @@
 		4E3490D41FC4A09F00967596 /* NotificationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistory.swift; sourceTree = "<group>"; };
 		4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBookmarkButton.swift; sourceTree = "<group>"; };
+		4E3490DB1FC5C97200967596 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
 		4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 		4E4CA5FC1F9E10580041A680 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
 		4E579E7E1FB47E22002E5404 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTableViewController.swift; sourceTree = "<group>"; };
 		4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTypePostTableViewCell.swift; sourceTree = "<group>"; };
@@ -274,6 +278,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		4E5130BE1FC686EB00589FB7 /* MyPageView */ = {
+			isa = PBXGroup;
+			children = (
+				4E3490DB1FC5C97200967596 /* MyPageViewController.swift */,
+				4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */,
+			);
+			path = MyPageView;
+			sourceTree = "<group>";
+		};
 		4E5F80061FBC7A45001A23BE /* MissingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +349,7 @@
 				4E326A811FA1FEDA006325B4 /* PostView */,
 				4E326A801FA1FE9B006325B4 /* ReportView */,
 				4E5F80061FBC7A45001A23BE /* MissingView */,
+				4E5130BE1FC686EB00589FB7 /* MyPageView */,
 				4E3490D31FC49A6500967596 /* NotificationView */,
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
@@ -646,9 +660,11 @@
 				4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */,
 				4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
+				4E3490DC1FC5C97200967596 /* MyPageViewController.swift in Sources */,
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
+				4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */,
 				4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
 				4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */,
