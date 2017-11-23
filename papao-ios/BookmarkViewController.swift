@@ -8,14 +8,37 @@
 
 import UIKit
 import Alamofire
+import AccountKit
 
 class BookmarkViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var postResponse: PostResponse?
+    var userId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let accountKit = AKFAccountKit(responseType: .accessToken)
+        userId = accountKit.currentAccessToken?.accountID
+
+        if let userId = userId {
+            loadBookmarks(userId: userId)
+        } else {
+            print("로그인에 문제가 있습니다.")
+        }
+    }
+    
+    func loadBookmarks(userId: String) {
+        let api = HttpHelper.init()
+        api.readBookmarkByUserId(userId: userId) { (result) in
+            do {
+                let postResponse = try result.unwrap()
+                self.postResponse = postResponse
+                self.tableView.reloadData()
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
