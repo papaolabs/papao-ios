@@ -92,6 +92,32 @@ class MyPageViewController: UITableViewController {
         self.present(alert, animated: false)
     }
     
+    private func presentLogoutAlert() {
+        let alert = UIAlertController(title: nil, message: "로그아웃 하시겠어요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .default) { (_) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            self.present(loginViewController, animated: true, completion: {
+                self.accountKit.logOut()
+                // Todo: - 로그아웃 이후 UI 처리
+            })
+        }
+        alert.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "아니오", style: .cancel) { (_) in
+        }
+        alert.addAction(cancelAction)
+        self.present(alert, animated: false)
+    }
+    
+    func goToMyPostView() {
+        guard let myPostViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyPostView") as? MyPostViewController else {
+            return
+        }
+        
+        myPostViewController.userId = user?.id
+        self.navigationController?.pushViewController(myPostViewController, animated: true)
+    }
+    
     // MARK: - TableView Delegate
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -104,9 +130,18 @@ class MyPageViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let section = indexPath.section
-        if section == 0 && self.user == nil {
+        if (section == 0 || section == 1) && self.user == nil {
             // 로그인 안된 사용자 클릭 시
             presentLoginAlert()
+            return
+        }
+        
+        switch section {
+        case 0:
+            presentLogoutAlert()
+        case 1:
+            goToMyPostView()
+        default: break
         }
     }
 }

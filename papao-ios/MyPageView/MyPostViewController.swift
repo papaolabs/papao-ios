@@ -11,7 +11,7 @@ import UIKit
 class MyPostViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var postResponse: PostResponse?
-    var userId: Int?
+    var userId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +20,7 @@ class MyPostViewController: UIViewController {
             var myPostOnlyfilter = Filter.init(postTypes: [.SYSTEM, .MISSING, .PROTECTING, .ROADREPORT])
             myPostOnlyfilter.beginDate = nil
             myPostOnlyfilter.endDate = nil
-//            myPostOnlyfilter.userId = "\(userId)"
-            myPostOnlyfilter.userId = "9999"
+            myPostOnlyfilter.userId = userId
             loadPosts(withFilter: myPostOnlyfilter)
         } else {
             // Todo: - 다시 로그인 처리

@@ -1198,9 +1198,6 @@
                                                 <constraint firstItem="zzF-Gl-Wo5" firstAttribute="centerY" secondItem="jit-e6-RdA" secondAttribute="centerY" id="ezc-LL-SbR"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="lqo-a6-ucJ" kind="show" id="Jqu-SS-389"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1312,6 +1309,7 @@
                         <outlet property="nicknameLabel" destination="gkH-dG-cGY" id="67g-P9-sPY"/>
                         <outlet property="phoneNumberLabel" destination="jtw-zl-RMg" id="pS7-xe-gcI"/>
                         <outlet property="profileImageView" destination="KZu-Pm-vyi" id="maM-2d-Wsq"/>
+                        <segue destination="lqo-a6-ucJ" kind="show" identifier="MyPostSegue" id="54q-0H-tKw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Er8-YP-pvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1321,7 +1319,7 @@
         <!--내가 쓴 글 확인하기-->
         <scene sceneID="ypG-1o-keD">
             <objects>
-                <viewController id="lqo-a6-ucJ" customClass="MyPostViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPostView" id="lqo-a6-ucJ" customClass="MyPostViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rvk-KB-6Cd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1529,6 +1527,7 @@
                     <navigationItem key="navigationItem" title="내가 쓴 글 확인하기" id="wnz-Uu-GcT"/>
                     <connections>
                         <outlet property="tableView" destination="GTp-Qr-37u" id="WIf-Yn-Xgb"/>
+                        <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="gFm-Sh-ara"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZM-sJ-tzi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4373,7 +4372,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6Ah-ec-oni"/>
-        <segue reference="u00-w1-cI0"/>
+        <segue reference="gFm-Sh-ara"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>
