@@ -155,6 +155,39 @@ enum Router: URLRequestConvertible {
     }
 }
 
+enum ImageRouter: URLRequestConvertible {
+    case upload(parameters: Parameters)
+    
+    static let baseURLString = "\(valueForAPIKey(keyname: "IMG_API_BASE_URL"))v1/"
+    
+    var method: HTTPMethod {
+        switch self {
+        case .upload(_):
+            return .post
+        }
+    }
+    
+    var path: String {
+        switch self {
+        case .upload(_):
+            return "upload"
+        }
+    }
+
+    func asURLRequest() throws -> URLRequest {
+        let url = try ImageRouter.baseURLString.asURL()
+        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        urlRequest.httpMethod = method.rawValue
+        
+        switch self {
+        case .upload(let parameters):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        }
+
+        return urlRequest
+    }
+}
+
 final class HttpHelper {
     private let manager: SessionManager
     
@@ -345,6 +378,19 @@ final class HttpHelper {
             if let dict = response.value?.dictionaryFromJSON() {
                 let statistics = Statistics(json: dict)
                 completion(ApiResult{ return statistics })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
+        }
+    }
+    
+    // Image
+    func uploadImages(parameters: Parameters, completion: @escaping (ApiResult<ImageResponse>) -> Void) {
+        manager.request(ImageRouter.upload(parameters: parameters)).responseJSON { response in
+            if let value = response.result.value {
+                let imageResponseJson = JSON(value)
+                let imageResponse = ImageResponse.init(json: imageResponseJson.dictionaryObject!)
+                completion(ApiResult{ return imageResponse })
             } else {
                 completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
             }

@@ -19,6 +19,8 @@
 		4E3490D71FC5A5DA00967596 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */; };
 		4E3490DA1FC5BDB100967596 /* PPOBookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */; };
 		4E3490DC1FC5C97200967596 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490DB1FC5C97200967596 /* MyPageViewController.swift */; };
+		4E36059B1FC85D4800748989 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36059A1FC85D4800748989 /* ImageRequest.swift */; };
+		4E36059D1FC85D5A00748989 /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36059C1FC85D5A00748989 /* ImageResponse.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
@@ -119,6 +121,8 @@
 		4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBookmarkButton.swift; sourceTree = "<group>"; };
 		4E3490DB1FC5C97200967596 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		4E36059A1FC85D4800748989 /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		4E36059C1FC85D5A00748989 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -314,6 +318,8 @@
 				4E63D42C1FC13EAB00F61446 /* Comment.swift */,
 				4EF9C3C01FC327CC0075716F /* Statistics.swift */,
 				4E3490D41FC4A09F00967596 /* NotificationHistory.swift */,
+				4E36059A1FC85D4800748989 /* ImageRequest.swift */,
+				4E36059C1FC85D5A00748989 /* ImageResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -666,6 +672,7 @@
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
+				4E36059D1FC85D5A00748989 /* ImageResponse.swift in Sources */,
 				4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */,
 				4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
@@ -684,6 +691,7 @@
 				4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */,
 				4E7060CF1FA5FEE300B88F92 /* PPOPicker.swift in Sources */,
 				4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */,
+				4E36059B1FC85D4800748989 /* ImageRequest.swift in Sources */,
 				4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */,
 				4E6423B41FADD44E0099A4C7 /* Weight.swift in Sources */,
 				4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */,
