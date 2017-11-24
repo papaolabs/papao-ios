@@ -44,7 +44,7 @@ enum Router: URLRequestConvertible {
     case deletePost(postId: String)
     
     // Bookmark
-    case readBookmarkByUserId(userId: String)
+    case readBookmarkByUserId(userId: String, parameters: Parameters)
     case registerBookmark(postId: String, userId: String)
     case cancelBookmark(postId: String, userId: String)
     case checkBookmark(postId: String, parameters: Parameters)
@@ -105,7 +105,7 @@ enum Router: URLRequestConvertible {
             return "posts/comments/\(commentId)"
         case .readPostsByPage(_):
             return "posts/pages"
-        case .readBookmarkByUserId(let userId):
+        case .readBookmarkByUserId(let userId, _):
             return "posts/users/\(userId)/bookmarks"
         case .registerBookmark(let postId, _):
             return "posts/\(postId)/bookmarks"
@@ -142,12 +142,12 @@ enum Router: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .readPost(_), .readBookmarkByUserId(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
+        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
              .readComments(_), .createComment(_, _), .setStatus(_), .profile(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .createPost(let parameters), .join(let parameters), .setPush(let parameters), .getPushHistory(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .readPostsByPage(let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters):
+        case .readPostsByPage(let parameters), .readBookmarkByUserId(_, let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters):
             urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
         }
         
@@ -195,8 +195,8 @@ final class HttpHelper {
     }
     
     // Bookmark
-    func readBookmarkByUserId(userId: String, completion: @escaping (ApiResult<PostResponse>) -> Void) {
-        manager.request(Router.readBookmarkByUserId(userId: userId)).responseString { response in
+    func readBookmarkByUserId(userId: String, parameters: Parameters, completion: @escaping (ApiResult<PostResponse>) -> Void) {
+        manager.request(Router.readBookmarkByUserId(userId: userId, parameters: parameters)).responseString { response in
             if let dict = response.value?.dictionaryFromJSON() {
                 let postResponse = PostResponse(json: dict)
                 completion(ApiResult{ return postResponse })
