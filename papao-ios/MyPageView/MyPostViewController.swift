@@ -19,6 +19,8 @@ class MyPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setPullToRefresh()
+
         if let userId = userId {
             myPostOnlyfilter.beginDate = nil
             myPostOnlyfilter.endDate = nil
@@ -28,6 +30,26 @@ class MyPostViewController: UIViewController {
             // Todo: - 다시 로그인 처리
             print("로그인에 문제가 있습니다")
         }
+    }
+    
+    func setPullToRefresh() {
+        if #available(iOS 10.0, *) {
+            let refreshControl = UIRefreshControl()
+            let title = "당겨서 새로고침"
+            refreshControl.attributedTitle = NSAttributedString(string: title)
+            refreshControl.addTarget(self,
+                                     action: #selector(refreshOptions(sender:)),
+                                     for: .valueChanged)
+            tableView.refreshControl = refreshControl
+        }
+    }
+    
+    @objc private func refreshOptions(sender: UIRefreshControl) {
+        // index 초기화
+        myPostOnlyfilter.index = "0"
+        // 데이터 새로고침
+        loadPostData()
+        sender.endRefreshing()
     }
 
     fileprivate func loadPostData(index: String? = nil) {
