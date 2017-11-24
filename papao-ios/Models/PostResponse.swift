@@ -27,9 +27,10 @@ struct PostResponse {
         }
         
         if let elements = json["elements"] as? [[String: Any]] {
-            self.elements = elements.map({ (item) -> Post? in
+            let postElements = elements.map({ (item) -> Post? in
                 return Post.init(json: item)
             })
+            self.elements = postElements.flatMap{ $0 } as [Post]
         } else {
             self.elements = []
         }

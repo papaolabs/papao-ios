@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
                     } else {
                         return true
                     }
-                }).flatMap { $0 }
+                }).flatMap{ $0 }
                 // assign posts to dictionary
                 self.postSeries[postType.rawValue] = sortedPosts  // 3개 이하인 경우처리?
                 // reload table

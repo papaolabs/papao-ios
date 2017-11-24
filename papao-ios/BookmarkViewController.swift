@@ -14,6 +14,8 @@ class BookmarkViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var postResponse: PostResponse?
     var userId: String?
+    let api = HttpHelper.init()
+    let sizeOfPostPerPage = "20"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,23 +23,43 @@ class BookmarkViewController: UIViewController {
         let accountKit = AKFAccountKit(responseType: .accessToken)
         userId = accountKit.currentAccessToken?.accountID
 
-        if let userId = userId {
-            loadBookmarks(userId: userId)
-        } else {
-            print("로그인에 문제가 있습니다.")
-        }
+        loadBookmarks()
     }
     
-    func loadBookmarks(userId: String) {
-        let api = HttpHelper.init()
-        api.readBookmarkByUserId(userId: userId) { (result) in
-            do {
-                let postResponse = try result.unwrap()
-                self.postResponse = postResponse
-                self.tableView.reloadData()
-            } catch {
-                print(error)
+    func loadBookmarks(index: String? = nil) {
+        if let userId = self.userId {
+            if let index = index {
+                let parameters = ["index": index, "size": sizeOfPostPerPage] as [String : AnyObject]
+                api.readBookmarkByUserId(userId: "9999", parameters: parameters, completion: { (result) in
+                    do {
+                        let newPostResponse = try result.unwrap()
+                        if self.postResponse != nil {
+                            // 기존에 post 목록 데이터가 있으면 elements에 추가
+                            self.postResponse?.elements.append(contentsOf: newPostResponse.elements.flatMap{ $0 })
+                        } else {
+                            // 기존에 post 목록 데이터 없으면 (처음 요청인 경우)
+                            self.postResponse = newPostResponse
+                        }
+                        self.tableView.reloadData()
+                    } catch {
+                        print(error)
+                    }
+                })
+            } else {
+                // 처음 api 요청
+                let parameters = ["index": 0, "size": sizeOfPostPerPage] as [String : AnyObject]
+                api.readBookmarkByUserId(userId: userId, parameters: parameters, completion: { (result) in
+                    do {
+                        let newPostResponse = try result.unwrap()
+                        self.postResponse = newPostResponse
+                        self.tableView.reloadData()
+                    } catch {
+                        print(error)
+                    }
+                })
             }
+        } else {
+            print("로그인에 문제가 있습니다.")
         }
     }
 }
@@ -63,6 +85,17 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 158
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let count = postResponse?.elements.count, indexPath.row == count - 1 {
+            if let size = Int(sizeOfPostPerPage) {
+                let nextIndex = indexPath.row/size + 1
+                loadBookmarks(index: "\(nextIndex)")
+            } else {
+                print("pagination에 문제가 있습니다")
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
