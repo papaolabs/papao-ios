@@ -12,32 +12,55 @@ class MyPostViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var postResponse: PostResponse?
     var userId: String?
+    var myPostOnlyfilter: Filter = Filter.init(postTypes: [.SYSTEM, .MISSING, .PROTECTING, .ROADREPORT])
+    
+    let api = HttpHelper.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let userId = userId {
-            var myPostOnlyfilter = Filter.init(postTypes: [.SYSTEM, .MISSING, .PROTECTING, .ROADREPORT])
             myPostOnlyfilter.beginDate = nil
             myPostOnlyfilter.endDate = nil
             myPostOnlyfilter.userId = userId
-            loadPosts(withFilter: myPostOnlyfilter)
+            loadPostData()
         } else {
             // Todo: - 다시 로그인 처리
             print("로그인에 문제가 있습니다")
         }
     }
-    
-    func loadPosts(withFilter filter: Filter) {
-        let api = HttpHelper.init()
-        api.readPosts(filter: filter) { (result) in
-            do {
-                let postResponse = try result.unwrap()
-                self.postResponse = postResponse
-                self.tableView.reloadData()
-            } catch {
-                print(error)
-            }
+
+    fileprivate func loadPostData(index: String? = nil) {
+        if let index = index {
+            // 필터에 새 인덱스로 변경
+            myPostOnlyfilter.index = index
+            
+            api.readPosts(filter: myPostOnlyfilter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    if self.postResponse != nil {
+                        // 기존에 post 목록 데이터가 있으면 elements에 추가
+                        self.postResponse?.elements.append(contentsOf: newPostResponse.elements.flatMap{ $0 })
+                    } else {
+                        // 기존에 post 목록 데이터 없으면 (처음 요청인 경우)
+                        self.postResponse = newPostResponse
+                    }
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
+        } else {
+            // 처음 api 요청
+            api.readPosts(filter: myPostOnlyfilter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    self.postResponse = newPostResponse
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
         }
     }
 }
@@ -63,6 +86,14 @@ extension MyPostViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 158
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let count = postResponse?.elements.count, indexPath.row == count-1 {
+            //you might decide to load sooner than -1 I guess...
+            //load more into data here
+            loadPostData(index: "\(count)")
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
