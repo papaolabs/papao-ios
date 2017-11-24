@@ -27,16 +27,38 @@ class MissingTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func loadPostData() {
-        api.readPosts(filter: filter, completion: { (result) in
-            // Todo: - PROTECTING, ROADREPORT 둘다 받아서 보여줘야함
-            do {
-                self.postResponse = try result.unwrap()
-                self.tableView.reloadData()
-            } catch {
-                print(error)
-            }
-        })
+    fileprivate func loadPostData(index: String? = nil) {
+        if let index = index {
+            // 필터에 새 인덱스로 변경
+            filter.index = index
+            
+            api.readPosts(filter: filter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    if self.postResponse != nil {
+                        // 기존에 post 목록 데이터가 있으면 elements에 추가
+                        self.postResponse?.elements.append(contentsOf: newPostResponse.elements.flatMap{ $0 })
+                    } else {
+                        // 기존에 post 목록 데이터 없으면 (처음 요청인 경우)
+                        self.postResponse = newPostResponse
+                    }
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
+        } else {
+            // 처음 api 요청
+            api.readPosts(filter: filter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    self.postResponse = newPostResponse
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
+        }
     }
     
     // MARK: - Segue
@@ -74,31 +96,21 @@ extension MissingTableViewController: UITableViewDelegate, UITableViewDataSource
         }
         
         cell.setPost(post: post)
-        cell.kindLabel.text = post.kindName
-        cell.happenDateLabel.text = post.happenDate
-        cell.happenPlaceLabel.text = post.happenPlace
-        
-        if post.imageUrls.count > 0 {
-            if let url = post.imageUrls[0]["url"] as? String {
-                Alamofire.request(url).responseData { response in
-                    if let data = response.result.value {
-                        let image = UIImage(data: data)
-                        cell.postImageView.image = image
-                    }
-                }
-            }
-        }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
     }
     
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let count = postResponse?.elements.count, indexPath.row == count-1 {
+            //you might decide to load sooner than -1 I guess...
+            //load more into data here
+            loadPostData(index: "\(count)")
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
