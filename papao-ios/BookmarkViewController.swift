@@ -20,17 +20,37 @@ class BookmarkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setPullToRefresh()
+
         let accountKit = AKFAccountKit(responseType: .accessToken)
         userId = accountKit.currentAccessToken?.accountID
 
         loadBookmarks()
     }
     
+    func setPullToRefresh() {
+        if #available(iOS 10.0, *) {
+            let refreshControl = UIRefreshControl()
+            let title = "당겨서 새로고침"
+            refreshControl.attributedTitle = NSAttributedString(string: title)
+            refreshControl.addTarget(self,
+                                     action: #selector(refreshOptions(sender:)),
+                                     for: .valueChanged)
+            tableView.refreshControl = refreshControl
+        }
+    }
+    
+    @objc private func refreshOptions(sender: UIRefreshControl) {
+        // 데이터 새로고침
+        loadBookmarks()
+        sender.endRefreshing()
+    }
+    
     func loadBookmarks(index: String? = nil) {
         if let userId = self.userId {
             if let index = index {
                 let parameters = ["index": index, "size": sizeOfPostPerPage] as [String : AnyObject]
-                api.readBookmarkByUserId(userId: "9999", parameters: parameters, completion: { (result) in
+                api.readBookmarkByUserId(userId: userId, parameters: parameters, completion: { (result) in
                     do {
                         let newPostResponse = try result.unwrap()
                         if self.postResponse != nil {
