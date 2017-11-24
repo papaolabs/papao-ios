@@ -29,25 +29,36 @@ class PostTableViewController: UIViewController {
     
     fileprivate func loadPostData(index: String? = nil) {
         if let index = index {
-            // 인덱스가 있으면 갱신
-            // Todo: - 테이블 전체 새로고침 시 filter.index 초기화
+            // 필터에 새 인덱스로 변경
             filter.index = index
-        }
-        api.readPosts(filter: filter, completion: { (result) in
-            do {
-                let newPostResponse = try result.unwrap()
-                if self.postResponse != nil {
-                    // 기존에 post 목록 데이터가 있으면 elements에 추가
-                    self.postResponse?.elements.append(contentsOf: newPostResponse.elements.flatMap{ $0 })
-                } else {
-                    // 기존에 post 목록 데이터 없으면 (처음 요청인 경우)
-                    self.postResponse = newPostResponse
+            
+            api.readPosts(filter: filter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    if self.postResponse != nil {
+                        // 기존에 post 목록 데이터가 있으면 elements에 추가
+                        self.postResponse?.elements.append(contentsOf: newPostResponse.elements.flatMap{ $0 })
+                    } else {
+                        // 기존에 post 목록 데이터 없으면 (처음 요청인 경우)
+                        self.postResponse = newPostResponse
+                    }
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
                 }
-                self.tableView.reloadData()
-            } catch {
-                print(error)
-            }
-        })
+            })
+        } else {
+            // 처음 api 요청
+            api.readPosts(filter: filter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    self.postResponse = newPostResponse
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
+        }
     }
     
     // MARK: - Segue
@@ -63,6 +74,9 @@ class PostTableViewController: UIViewController {
     @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
             self.filter = filter
+            
+            // filter 적용 후 데이터 다시 로드
+            loadPostData()
         }
     }
 }
