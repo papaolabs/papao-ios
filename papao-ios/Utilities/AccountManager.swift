@@ -14,9 +14,10 @@ final class AccountManager {
     
     private var accountKit = AKFAccountKit(responseType: .accessToken)
     private let defaults = UserDefaults.standard
+    private let api = HttpHelper.init()
 
     private init() {}
-    
+
     func setLoggedUser(_ user: User) {
         defaults.set(user, forKey: UserDefaultsKeys.loggedUser.rawValue)
     }
@@ -68,5 +69,32 @@ final class AccountManager {
     
     private func removeUserFromDefaults() {
         defaults.removeObject(forKey: UserDefaultsKeys.loggedUser.rawValue)
+    }
+    
+    private func postUserToServer(parameters: [String: AnyObject], callback: @escaping (User?) -> Void) {
+        api.join(parameters: parameters) { (result) in
+            do {
+                let user = try result.unwrap()
+                // 로컬에 새로운 유저 데이터 저장
+                self.setLoggedUser(user)
+                callback(user)
+            } catch {
+                print(error)
+                callback(nil)
+            }
+        }
+    }
+    
+    private func getUserFromServer(userId: String, callback: @escaping (User?) -> Void) {
+        // 서버에 저장된 유저 데이터 조회
+        api.profile(userId: userId) { (result) in
+            do {
+                let user = try result.unwrap()
+                callback(user)
+            } catch {
+                print(error)
+                callback(nil)
+            }
+        }
     }
 }
