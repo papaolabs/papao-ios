@@ -83,14 +83,8 @@ final class AccountManager {
         }
         
         // access token이 유효하지 않으면 false
-        guard let currentAccessToken = accountKit.currentAccessToken else {
+        guard accountKit.currentAccessToken != nil else {
             // 로컬에 저장된 user 삭제 (더이상 유효하지 않음)
-            removeUserFromDefaults()
-            return false
-        }
-        
-        guard let getUserInDefaults = getLoggedUser(), getUserInDefaults.id == currentAccessToken.accountID else {
-            // 현재 AccountKit의 AccessToken의 id와 저장된 id가 다르면 false
             removeUserFromDefaults()
             return false
         }
