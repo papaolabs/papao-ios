@@ -10,6 +10,8 @@ import UIKit
 import AccountKit
 
 final class LoginViewController: UIViewController {
+    @IBOutlet weak var loginButton: PPOBadge!
+    
     fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
     fileprivate var pendingLoginViewController: AKFViewController? = nil
     fileprivate var showAccountOnAppear = false
@@ -19,6 +21,10 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginButton.setBackgroundColor(color: UIColor.init(named: "warmPink") ?? .purple)
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.setRadius(radius: 24)
         
         showAccountOnAppear = accountKit.currentAccessToken != nil
         pendingLoginViewController = accountKit.viewControllerForLoginResume()
@@ -42,6 +48,9 @@ final class LoginViewController: UIViewController {
     }
     
     // MARK: - actions
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func loginWithPhone(_ sender: AnyObject) {
         let viewController = accountKit.viewControllerForPhoneLogin(with: nil, state: nil)
