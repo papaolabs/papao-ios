@@ -79,7 +79,7 @@ enum Router: URLRequestConvertible {
     case join(parameters: Parameters)
     case profile(userId: String)
     case setPush(parameters: Parameters)
-    case getPushHistory(parameters: Parameters)
+    case getPushHistory(userId: String, parameters: Parameters)
     
     // Stat
     case stats(parameters: Parameters)
@@ -165,9 +165,9 @@ enum Router: URLRequestConvertible {
         case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
              .readComments(_), .createComment(_, _), .setStatus(_), .profile(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .createPost(let parameters), .join(let parameters), .setPush(let parameters), .getPushHistory(let parameters):
+        case .createPost(let parameters), .join(let parameters), .setPush(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .readPostsByPage(let parameters), .readBookmarkByUserId(_, let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters):
+        case .readPostsByPage(let parameters), .readBookmarkByUserId(_, let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters), .getPushHistory(_, let parameters):
             urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
         }
         
@@ -320,13 +320,17 @@ final class HttpHelper {
         }
     }
     
-    func postComment(postId: String, parameters: [String: AnyObject], completion: @escaping (ApiResult<[String: Any]>) -> Void) {
+    func postComment(postId: String, parameters: [String: AnyObject], completion: @escaping (ApiResult<CUDResult>) -> Void) {
         let router = Router.createComment(postId: postId, parameters: parameters)
         if let url = router.urlRequest?.url {
             manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
                 if let value = response.result.value {
-                    let userJson = JSON(value)
-                    completion(ApiResult{ return userJson.dictionaryObject! })
+                    let json = JSON(value)
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }
@@ -381,10 +385,10 @@ final class HttpHelper {
         }
     }
     
-    func getPushHistory(userId: String, completion: @escaping (ApiResult<NotificationHistory>) -> Void) {
-        let router = Router.getPushHistory(parameters: [:])
+    func getPushHistory(userId: String, parameters: [String:AnyObject], completion: @escaping (ApiResult<NotificationHistory>) -> Void) {
+        let router = Router.getPushHistory(userId: userId, parameters: parameters)
         if let url = router.urlRequest?.url {
-            manager.request(url, method:router.method, parameters: [:], encoding: userId, headers: [:]).responseString { response in
+            manager.request(url, method:router.method, parameters: parameters, encoding: userId).responseString { response in
                 if let dict = response.value?.dictionaryFromJSON() {
                     let notificationHistory = NotificationHistory(json: dict)
                     completion(ApiResult{ return notificationHistory })
