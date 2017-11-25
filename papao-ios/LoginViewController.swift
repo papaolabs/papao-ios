@@ -62,6 +62,7 @@ final class LoginViewController: UIViewController {
     
     fileprivate func prepareLoginViewController(_ loginViewController: AKFViewController) {
         loginViewController.delegate = self
+        loginViewController.enableSendToFacebook = true
     }
     
     
@@ -78,30 +79,18 @@ final class LoginViewController: UIViewController {
 
 extension LoginViewController: AKFViewControllerDelegate {
     func viewController(_ viewController: (UIViewController & AKFViewController)!, didCompleteLoginWith accessToken: AKFAccessToken!, state: String!) {
-        accountKit.requestAccount { [weak self] (account, error) in
-            if let error = error {
-                self?.alert(message: "사용자 데이터를 받는데 실패하였습니다. 다시 시도해주세요.")
+        AccountManager.sharedInstance.loginIfNotLogged { (isSuccess) -> (Void) in
+            if isSuccess {
+                // 저장된 푸시디바이스토큰이 있으면 서버로 전송
+                AccountManager.sharedInstance.setDeviceToken()
+                
+                // 로그인창 닫기
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: true, completion: nil)
+                })
             } else {
-                if let phoneNumber = account?.phoneNumber?.phoneNumber {
-                    let parameter = ["phone": phoneNumber, "userId": accessToken.accountID, "userToken": accessToken.tokenString] as [String: AnyObject]
-                    self?.api.join(parameters: parameter, completion: { (result) in
-                        do {
-                            // Todo: - 앱에 사용자 정보를 저장해야하나?
-                            let user = try result.unwrap()
-                            print(user)
-                            
-                            // 디바이스토큰이 있으면 함께 전송
-                            self?.sendDeviceToken(userId: accessToken.accountID, callback: {
-                                // 로그인창 닫기
-                                DispatchQueue.main.async(execute: {
-                                    self?.dismiss(animated: true, completion: nil)
-                                })
-                            })
-                        } catch {
-                            print(error)
-                        }
-                    })
-                }
+                print("로그인 실패")
+                // Todo: - 로그인 재시도 안내 팝업
             }
         }
     }
