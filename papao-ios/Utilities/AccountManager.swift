@@ -17,25 +17,26 @@ final class AccountManager {
     private let api = HttpHelper.init()
 
     private init() {}
-
-    func setLoggedUser(_ user: User) {
-        defaults.set(user, forKey: UserDefaultsKeys.loggedUser.rawValue)
+    
+    // User
+    func loginIfNotLogged() {
+        if isLoggedUserValid() {
+            // Todo: - 로그인 컨트롤러 팝업
+        } else {
+            // 새로 로그인
+            accountKit.requestAccount({ (account, error) in
+                if let phoneNumber = account?.phoneNumber?.phoneNumber, let userId = account?.accountID, let token = self.accountKit.currentAccessToken?.tokenString {
+                    let parameter = ["phone": phoneNumber, "userId": userId, "userToken": token] as [String: AnyObject]
+                    self.postUserToServer(parameters: parameter, callback: { (user) in
+                        
+                    })
+                }
+            })
+        }
     }
     
-    func setDeviceToken(_ token: String) {
-        if isLoggedUserValid() {
-            // 로그인 유저 정보가 있으면 user 인스턴스에 deviceToken 추가
-            if var user = getLoggedUser() {
-                user.devicesToken.append(token)
-                // 중복 제거
-                user.devicesToken = Array(Set(user.devicesToken))
-                
-                // 다시 저장
-                setLoggedUser(user)
-            }
-        }
-        // 유저 인스턴스에 저장과 별개로 디바이스 토큰 로컬에 저장 (for 비회원)
-        defaults.set(token, forKey: UserDefaultsKeys.deviceToken.rawValue)
+    func setLoggedUser(_ user: User) {
+        defaults.set(user, forKey: UserDefaultsKeys.loggedUser.rawValue)
     }
     
     func getLoggedUser() -> User? {
@@ -71,6 +72,42 @@ final class AccountManager {
         defaults.removeObject(forKey: UserDefaultsKeys.loggedUser.rawValue)
     }
     
+    // Device Token
+    func setDeviceToken(_ token: String) {
+        if isLoggedUserValid() {
+            // 로그인 유저 정보가 있으면 user 인스턴스에 deviceToken 추가
+            if var user = getLoggedUser() {
+                user.devicesToken.append(token)
+                // 중복 제거
+                user.devicesToken = Array(Set(user.devicesToken))
+                
+                // 다시 저장
+                setLoggedUser(user)
+            }
+        } else {
+            // 비회원
+        }
+        // 로컬에 저장
+        setDeviceTokenInDefaults(token)
+        
+        // 서버에 전송
+        postDeviceTokenToServer(token: token, callback: { (result) in
+            guard let result = result else {
+                print("post device token error")
+                return
+            }
+            print(result)
+        })
+    }
+    
+    private func setDeviceTokenInDefaults(_ token: String) {
+        defaults.set(token, forKey: UserDefaultsKeys.deviceToken.rawValue)
+    }
+    
+    func getDeviceToken() -> String? {
+        return defaults.object(forKey: UserDefaultsKeys.deviceToken.rawValue) as? String
+    }
+
     private func postUserToServer(parameters: [String: AnyObject], callback: @escaping (User?) -> Void) {
         api.join(parameters: parameters) { (result) in
             do {
@@ -96,5 +133,29 @@ final class AccountManager {
                 callback(nil)
             }
         }
+    }
+    
+    private func postDeviceTokenToServer(token: String, callback: @escaping ([String: Any]?) -> Void) {
+        var parameters = ["deviceId": token]
+        
+        if let user = getLoggedUser() {
+            // 로그인된 유저인 경우
+            parameters["type"] = PushType.USER.rawValue
+            parameters["userId"] = user.id
+        } else {
+            // 비회원
+            parameters["type"] = PushType.GUEST.rawValue
+        }
+        
+        api.setPush(parameters: parameters as [String: AnyObject], completion: { (result) in
+            do {
+                let result = try result.unwrap()
+                print(result)
+                callback(result)
+            } catch {
+                print(error)
+                callback(nil)
+            }
+        })
     }
 }
