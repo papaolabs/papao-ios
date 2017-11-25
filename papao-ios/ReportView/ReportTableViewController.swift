@@ -83,6 +83,45 @@ class ReportTableViewController: UIViewController {
         }
     }
     
+    @IBAction func quickReportButtonPressed(_ sender: Any) {
+        guard AccountManager.sharedInstance.getLoggedUser() != nil else {
+            alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                self.goToLoginView()
+            })
+            return
+        }
+        
+        performSegue(withIdentifier: "quickReportSegue", sender: nil)
+    }
+    
+    @IBAction func normalReportButtonPressed(_ sender: Any) {
+        guard AccountManager.sharedInstance.getLoggedUser() != nil else {
+            alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                self.goToLoginView()
+            })
+            return
+        }
+
+        performSegue(withIdentifier: "normalReportSegue", sender: nil)
+    }
+
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
+    }
+    
+    fileprivate func goToLoginView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        present(loginViewController, animated: true, completion: nil)
+    }
+
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FilterSegue" {
