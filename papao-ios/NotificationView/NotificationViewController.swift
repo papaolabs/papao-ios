@@ -11,16 +11,12 @@ import AccountKit
 
 class NotificationViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-
-    fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
-    fileprivate var showLoginViewOnAppear = false
     var history: NotificationHistory?
     
     override func viewDidLoad() {
-        showLoginViewOnAppear = accountKit.currentAccessToken != nil
-        if showLoginViewOnAppear {
-            showLoginViewOnAppear = false
-            if let userId = accountKit.currentAccessToken?.accountID {
+        if AccountManager.sharedInstance.isLoggedUserValid() {
+            let user = AccountManager.sharedInstance.getLoggedUser()
+            if let userId = user?.id {
                 loadNotificationHistory(userId: userId)
             } else {
                 print("로그인에 문제가 있습니다.")

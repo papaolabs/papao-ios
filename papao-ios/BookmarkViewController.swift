@@ -22,8 +22,8 @@ class BookmarkViewController: UIViewController {
         
         setPullToRefresh()
 
-        let accountKit = AKFAccountKit(responseType: .accessToken)
-        userId = accountKit.currentAccessToken?.accountID
+        let user = AccountManager.sharedInstance.getLoggedUser()
+        userId = user?.id
 
         loadBookmarks()
     }
