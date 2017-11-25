@@ -16,7 +16,6 @@ class MyPageViewController: UITableViewController {
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var nicknameGeneratorButton: UIButton!
 
-    fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
     var user: User?
     
     override func viewDidLoad() {
@@ -34,44 +33,30 @@ class MyPageViewController: UITableViewController {
         loadMyInfo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadMyInfo()
+    }
+    
     func loadMyInfo() {
-        // user id 필요한 내용
-        accountKit.requestAccount { (account, error) in
-            if let error = error {
-                // 문제가 있거나 비회원일 때
-                print(error)
-            } else {
-                if let accountId = account?.accountID {
-                    let api = HttpHelper.init()
-                    api.profile(userId: accountId, completion: { (result) in
-                        do {
-                            let user = try result.unwrap()
-                            self.user = user
-                            self.setProfile(user: user)
-                        } catch {
-                            print(error)
-                        }
-                    })
-                }
-            }
-        }
+        user = AccountManager.sharedInstance.getLoggedUser()
+        setProfile(user: user)
     }
     
     func setProfile(user: User?) {
         if let user = user {
             phoneNumberLabel.isHidden = false
             phoneNumberLabel.text = user.phone
-            nicknameLabel.text = user.nickName
+            nicknameLabel.text = user.nickname
             
             // set images
             if let url = user.profileUrl {
-                Alamofire.request(url).responseData { response in
-                    if let data = response.result.value {
-                        let image = UIImage(data: data)
-                        self.profileImageView.image = image
-                    }
-                }
+                let placeholderImage = UIImage(named: "placeholder")!
+                profileImageView.af_setImage(withURL: URL(string: url)!, placeholderImage: placeholderImage)
             }
+        } else {
+            phoneNumberLabel.isHidden = true
+            nicknameLabel.text = "로그인 해주세요"
+            profileImageView.image = UIImage.init(named: "dog_03")
         }
     }
     
@@ -80,10 +65,7 @@ class MyPageViewController: UITableViewController {
         let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            self.present(loginViewController, animated: true, completion: {
-                // Todo: 로그인 처리
-                self.loadMyInfo()
-            })
+            self.present(loginViewController, animated: true, completion: nil)
         }
         alert.addAction(okAction)
         let cancelAction = UIAlertAction(title: "아니오", style: .default) { (_) in
@@ -95,12 +77,9 @@ class MyPageViewController: UITableViewController {
     private func presentLogoutAlert() {
         let alert = UIAlertController(title: nil, message: "로그아웃 하시겠어요?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "네", style: .default) { (_) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            self.present(loginViewController, animated: true, completion: {
-                self.accountKit.logOut()
-                // Todo: - 로그아웃 이후 UI 처리
-            })
+            AccountManager.sharedInstance.logout()
+            self.user = nil
+            self.loadMyInfo()
         }
         alert.addAction(okAction)
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel) { (_) in

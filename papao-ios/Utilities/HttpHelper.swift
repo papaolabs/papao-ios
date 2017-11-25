@@ -10,6 +10,26 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+enum CUDResult: Int {
+    case success = 100
+    case fail = -100
+    case duplicated = -101
+    case notFound = -102
+    case unknown = 0
+
+    var keyName: String {
+        get { return String(describing: self).uppercased() }
+    }
+    
+    init?(json: [String: Any]?) {
+        guard let json = json,
+            let code = json["code"] as? Int else {
+            return nil
+        }
+        self.init(rawValue: code)
+    }
+}
+
 enum ApiResult<Value> {
     case Success(value: Value)
     case Failure(error: NSError)
@@ -315,14 +335,17 @@ final class HttpHelper {
     }
     
     // User
-    func join(parameters: [String:AnyObject], completion: @escaping (ApiResult<User>) -> Void) {
+    func join(parameters: [String:AnyObject], completion: @escaping (ApiResult<CUDResult>) -> Void) {
         let router = Router.join(parameters: parameters)
         if let url = router.urlRequest?.url {
             manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
                 if let value = response.result.value {
-                    let userJson = JSON(value)
-                    let user = User.init(json: userJson.dictionaryObject!)!
-                    completion(ApiResult{ return user })
+                    let json = JSON(value)
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }
