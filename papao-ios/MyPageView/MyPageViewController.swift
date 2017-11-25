@@ -33,15 +33,20 @@ class MyPageViewController: UITableViewController {
         loadMyInfo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadMyInfo()
+    }
+    
     func loadMyInfo() {
-        setProfile(user: AccountManager.sharedInstance.getLoggedUser())
+        user = AccountManager.sharedInstance.getLoggedUser()
+        setProfile(user: user)
     }
     
     func setProfile(user: User?) {
         if let user = user {
             phoneNumberLabel.isHidden = false
             phoneNumberLabel.text = user.phone
-            nicknameLabel.text = user.nickName
+            nicknameLabel.text = user.nickname
             
             // set images
             if let url = user.profileUrl {
@@ -60,9 +65,7 @@ class MyPageViewController: UITableViewController {
         let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            self.present(loginViewController, animated: true, completion: {
-                self.loadMyInfo()
-            })
+            self.present(loginViewController, animated: true, completion: nil)
         }
         alert.addAction(okAction)
         let cancelAction = UIAlertAction(title: "아니오", style: .default) { (_) in

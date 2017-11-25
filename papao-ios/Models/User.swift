@@ -13,9 +13,9 @@ enum PushType: String {
     case USER = "USER"
 }
 
-struct User {
+class User: NSObject, NSCoding {
     var id: String
-    var nickName: String
+    var nickname: String
     var phone: String
     var profileUrl: String?
     var devicesToken: [String]
@@ -29,9 +29,9 @@ struct User {
         
         self.id = id
         if let nickName = json["nickname"] as? String {
-            self.nickName = nickName
+            self.nickname = nickName
         } else {
-            self.nickName = "말많은 프렌치불독"
+            self.nickname = "말많은 프렌치불독"
         }
 
         self.phone = phone
@@ -46,4 +46,21 @@ struct User {
             self.profileUrl = profileUrl
         }
     }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(nickname, forKey: "nickname")
+        aCoder.encode(phone, forKey: "phone")
+        aCoder.encode(profileUrl, forKey: "profileUrl")
+        aCoder.encode(devicesToken, forKey: "devicesToken")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        id = aDecoder.decodeObject(forKey: "id") as? String ?? ""
+        nickname = aDecoder.decodeObject(forKey: "nickname") as? String ?? ""
+        phone = aDecoder.decodeObject(forKey: "phone") as? String ?? ""
+        profileUrl = aDecoder.decodeObject(forKey: "profileUrl") as? String ?? ""
+        devicesToken = aDecoder.decodeObject(forKey: "devicesToken") as? [String] ?? []
+    }
 }
+

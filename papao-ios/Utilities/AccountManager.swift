@@ -61,7 +61,8 @@ final class AccountManager {
     }
     
     func setLoggedUser(_ user: User) {
-        defaults.set(user, forKey: UserDefaultsKeys.loggedUser.rawValue)
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
+        defaults.set(encodedData, forKey: UserDefaultsKeys.loggedUser.rawValue)
     }
     
     func getLoggedUser() -> User? {
@@ -69,7 +70,10 @@ final class AccountManager {
             return nil
         }
         
-        return defaults.object(forKey: UserDefaultsKeys.loggedUser.rawValue) as? User
+        guard let decodedData: Data = defaults.object(forKey: UserDefaultsKeys.loggedUser.rawValue) as? Data else {
+            return nil
+        }
+        return NSKeyedUnarchiver.unarchiveObject(with: decodedData) as? User
     }
     
     func isLoggedUserValid() -> Bool {
