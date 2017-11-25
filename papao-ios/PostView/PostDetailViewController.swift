@@ -195,6 +195,8 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: PostDetailButtonTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailButtonCell",
             for: indexPath) as! PostDetailButtonTableViewCell
             cell.setPostDetail(postDetail)
+            // Todo: - 다른 로직으로 개선 필요
+            cell.parentViewController = self
             return cell
         case PostDetailSection.description.hashValue:
             let cell: PostDetailTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailTextCell",
