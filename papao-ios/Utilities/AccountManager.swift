@@ -19,16 +19,33 @@ final class AccountManager {
     private init() {}
     
     // User
-    func loginIfNotLogged() {
+    func loginIfNotLogged(successCallback: @escaping (Bool) -> (Void)) {
         if isLoggedUserValid() {
-            // Todo: - 로그인 컨트롤러 팝업
+            successCallback(true)
         } else {
             // 새로 로그인
             accountKit.requestAccount({ (account, error) in
-                if let phoneNumber = account?.phoneNumber?.phoneNumber, let userId = account?.accountID, let token = self.accountKit.currentAccessToken?.tokenString {
-                    let parameter = ["phone": phoneNumber, "userId": userId, "userToken": token] as [String: AnyObject]
-                    self.postUserToServer(parameters: parameter, callback: { (user) in
-                        
+                if let phoneNumber = account?.phoneNumber?.phoneNumber,
+                    let userId = account?.accountID,
+                    let token = self.accountKit.currentAccessToken?.tokenString {
+                    
+                    self.getUserFromServer(userId: userId, callback: { (user) in
+                        if let alreadySignedUser = user {
+                            // 이미 가입되어있는 유저인 경우 로컬에 저장만 수행
+                            self.setLoggedUser(alreadySignedUser)
+                            successCallback(true)
+                        } else {
+                            // 처음 가입한 유저는 서버에 전송
+                            let parameter = ["phone": phoneNumber, "userId": userId, "userToken": token] as [String: AnyObject]
+                            self.postUserToServer(parameters: parameter, callback: { (user) in
+                                if user != nil {
+                                    print("post user success")
+                                    successCallback(true)
+                                } else {
+                                    successCallback(false)
+                                }
+                            })
+                        }
                     })
                 }
             })
@@ -73,11 +90,34 @@ final class AccountManager {
     }
     
     // Device Token
-    func setDeviceToken(_ token: String) {
+    func setDeviceToken(_ token: String? = nil) {
+        // 기존 토큰도 새 토큰도 nil이면 리턴
+        let currentToken = getDeviceToken()
+        if currentToken == nil && token == nil {
+            return
+        }
+
+        // 전송할 token 변수
+        var tokenToPost: String
+        if let newToken = token {
+            // 새 토큰이 존재하는 경우
+            if let currentToken = currentToken, currentToken == newToken {
+                // 기존 토큰이 존재하고 새 토큰과 같으면 더이상 진행하지 않고 리턴
+                return
+            } else {
+                // 새 토큰 전송
+                tokenToPost = token!
+            }
+        } else {
+            // 새 토큰이 없는 경우: - 기존 토큰 전송
+            tokenToPost = currentToken!
+        }
+        
+        // 기존 토큰 서버에 푸시
         if isLoggedUserValid() {
             // 로그인 유저 정보가 있으면 user 인스턴스에 deviceToken 추가
             if var user = getLoggedUser() {
-                user.devicesToken.append(token)
+                user.devicesToken.append(tokenToPost)
                 // 중복 제거
                 user.devicesToken = Array(Set(user.devicesToken))
                 
@@ -88,10 +128,10 @@ final class AccountManager {
             // 비회원
         }
         // 로컬에 저장
-        setDeviceTokenInDefaults(token)
+        setDeviceTokenInDefaults(tokenToPost)
         
         // 서버에 전송
-        postDeviceTokenToServer(token: token, callback: { (result) in
+        postDeviceTokenToServer(token: tokenToPost, callback: { (result) in
             guard let result = result else {
                 print("post device token error")
                 return
@@ -111,10 +151,13 @@ final class AccountManager {
     private func postUserToServer(parameters: [String: AnyObject], callback: @escaping (User?) -> Void) {
         api.join(parameters: parameters) { (result) in
             do {
-                let user = try result.unwrap()
-                // 로컬에 새로운 유저 데이터 저장
-                self.setLoggedUser(user)
-                callback(user)
+                if let user = try result.unwrap() {
+                    // 로컬에 새로운 유저 데이터 저장
+                    self.setLoggedUser(user)
+                    callback(user)
+                } else {
+                    callback(nil)
+                }
             } catch {
                 print(error)
                 callback(nil)
