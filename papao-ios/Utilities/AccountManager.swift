@@ -81,6 +81,12 @@ final class AccountManager {
         return true
     }
     
+    func logout() {
+        accountKit.logOut()
+        removeUserFromDefaults()
+        // Todo: - 서버에 userId로 들어간 디바이스토큰 삭제 요청
+    }
+    
     private func isUserExistInDefaults() -> Bool {
         return defaults.object(forKey: UserDefaultsKeys.loggedUser.rawValue) != nil
     }
