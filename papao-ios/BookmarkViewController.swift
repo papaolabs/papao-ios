@@ -28,6 +28,11 @@ class BookmarkViewController: UIViewController {
         loadBookmarks()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadBookmarks()
+    }
+    
     func setPullToRefresh() {
         if #available(iOS 10.0, *) {
             let refreshControl = UIRefreshControl()
@@ -79,8 +84,27 @@ class BookmarkViewController: UIViewController {
                 })
             }
         } else {
-            print("로그인에 문제가 있습니다.")
+            alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                self.goToLoginView()
+            })
         }
+    }
+    
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
+    }
+    
+    fileprivate func goToLoginView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        present(loginViewController, animated: true, completion: nil)
     }
 }
 
