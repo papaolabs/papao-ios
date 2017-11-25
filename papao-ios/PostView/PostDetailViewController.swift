@@ -103,32 +103,61 @@ class PostDetailViewController: UIViewController {
     }
     
     func sendComment(text: String) {
-        let accountKit = AKFAccountKit(responseType: .accessToken)
-        accountKit.requestAccount { [weak self] (account, error) in
-            if let error = error {
-                print(error)
-            } else {
-                if let accountId = account?.accountID, let postId = self?.postId {
-                    let parameters = [
-                        "userId": accountId,
-                        "text": text
-                    ]
-                    // Todo: - postId 강제 캐스팅 처리
-                    self?.api.postComment(postId: String(describing: postId), parameters: parameters as [String : AnyObject]) { (result) in
-                        do {
-                            let _ = try result.unwrap()
-                            self?.getComments(postId: postId)
-                        } catch {
-                            print(error)
-                        }
+        let user = AccountManager.sharedInstance.getLoggedUser()
+        if let userId = user?.id, let postId = self.postId {
+            let parameters = [
+                "userId": userId,
+                "text": text
+            ]
+            self.api.postComment(postId: String(describing: postId), parameters: parameters as [String : AnyObject]) { (result) in
+                do {
+                    let cudResult: CUDResult = try result.unwrap()
+                    if cudResult == .success {
+                        self.getComments(postId: postId)
+                    } else {
+                        self.alert(message: "댓글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
                     }
+                } catch {
+                    print(error)
                 }
             }
+        } else {
+            alert(message: "로그인 후 댓글 작성이 가능합니다. 로그인하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                self.goToLoginView()
+            })
         }
+    }
+    
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
+    }
+    
+    fileprivate func goToLoginView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        present(loginViewController, animated: true, completion: nil)
     }
 }
 
 extension PostDetailViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        guard AccountManager.sharedInstance.isLoggedUserValid() else {
+            alert(message: "로그인 후 댓글 작성이 가능합니다. 로그인하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                self.goToLoginView()
+            })
+            return false
+        }
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.view.endEditing(true)
     }
