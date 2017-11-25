@@ -6,15 +6,18 @@
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct ImageRequest {
-    var file: [Data]!
+    var file: [UIImage]!
     var postType: PostType
     
     func toDict() -> [String: AnyObject] {
+        let dataList = file.map { (image) -> Data in
+            return UIImagePNGRepresentation(image)!
+        }
         return [
-            "file": file as AnyObject,
+            "file": dataList as AnyObject,
             "post_type": postType.rawValue as AnyObject
         ]
     }
