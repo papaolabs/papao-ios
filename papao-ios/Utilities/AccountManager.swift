@@ -22,6 +22,35 @@ final class AccountManager {
     }
     
     func getLoggedUser() -> User? {
+        guard isLoggedUserValid() else {
+            return nil
+        }
+        
         return defaults.object(forKey: UserDefaultsKeys.loggedUser.rawValue) as? User
+    }
+    
+    func isLoggedUserValid() -> Bool {
+        // 로컬에 유저가 없으면 false
+        guard isUserExistInDefaults() else {
+            return false
+        }
+        
+        // access token이 유효하지 않으면 false
+        guard accountKit.currentAccessToken != nil else {
+            // 로컬에 저장된 user 삭제 (더이상 유효하지 않음)
+            removeUserFromDefaults()
+            
+            return false
+        }
+
+        return true
+    }
+    
+    private func isUserExistInDefaults() -> Bool {
+        return defaults.object(forKey: UserDefaultsKeys.loggedUser.rawValue) != nil
+    }
+    
+    private func removeUserFromDefaults() {
+        defaults.removeObject(forKey: UserDefaultsKeys.loggedUser.rawValue)
     }
 }
