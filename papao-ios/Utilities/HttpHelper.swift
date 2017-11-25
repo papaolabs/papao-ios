@@ -320,13 +320,17 @@ final class HttpHelper {
         }
     }
     
-    func postComment(postId: String, parameters: [String: AnyObject], completion: @escaping (ApiResult<[String: Any]>) -> Void) {
+    func postComment(postId: String, parameters: [String: AnyObject], completion: @escaping (ApiResult<CUDResult>) -> Void) {
         let router = Router.createComment(postId: postId, parameters: parameters)
         if let url = router.urlRequest?.url {
             manager.request(url, method:router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
                 if let value = response.result.value {
-                    let userJson = JSON(value)
-                    completion(ApiResult{ return userJson.dictionaryObject! })
+                    let json = JSON(value)
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }
