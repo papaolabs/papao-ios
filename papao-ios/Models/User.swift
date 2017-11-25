@@ -22,13 +22,13 @@ struct User {
     
     init?(json: [String: Any]?) {
         guard let json = json,
-            let id = json["id"] as? String,
+            let id = json["userId"] as? String,
             let phone = json["phone"] as? String else {
                 return nil
         }
         
         self.id = id
-        if let nickName = json["nickName"] as? String {
+        if let nickName = json["nickname"] as? String {
             self.nickName = nickName
         } else {
             self.nickName = "말많은 프렌치불독"
@@ -36,7 +36,7 @@ struct User {
 
         self.phone = phone
         
-        if let devicesToken = json["push"] as? [String] {
+        if let devicesToken = json["devicesToken"] as? [String] {
             self.devicesToken = devicesToken
         } else {
             self.devicesToken = []

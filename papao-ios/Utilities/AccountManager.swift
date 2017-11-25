@@ -37,11 +37,19 @@ final class AccountManager {
                         } else {
                             // 처음 가입한 유저는 서버에 전송
                             let parameter = ["phone": phoneNumber, "userId": userId, "userToken": token] as [String: AnyObject]
-                            self.postUserToServer(parameters: parameter, callback: { (user) in
-                                if user != nil {
-                                    print("post user success")
-                                    successCallback(true)
-                                } else {
+                            self.postUserToServer(parameters: parameter, callback: { (cudResult) in
+                                switch cudResult.rawValue {
+                                case let code where code > 0:
+                                    // 유저데이터 다시 받아서 저장
+                                    self.getUserFromServer(userId: userId, callback: { (user) in
+                                        if let newUser = user {
+                                            self.setLoggedUser(newUser)
+                                            successCallback(true)
+                                        } else {
+                                            successCallback(false)
+                                        }
+                                    })
+                                default:
                                     successCallback(false)
                                 }
                             })
@@ -154,19 +162,14 @@ final class AccountManager {
         return defaults.object(forKey: UserDefaultsKeys.deviceToken.rawValue) as? String
     }
 
-    private func postUserToServer(parameters: [String: AnyObject], callback: @escaping (User?) -> Void) {
+    private func postUserToServer(parameters: [String: AnyObject], callback: @escaping (CUDResult) -> Void) {
         api.join(parameters: parameters) { (result) in
             do {
-                if let user = try result.unwrap() {
-                    // 로컬에 새로운 유저 데이터 저장
-                    self.setLoggedUser(user)
-                    callback(user)
-                } else {
-                    callback(nil)
-                }
+                let cudResult = try result.unwrap()
+                callback(cudResult)
             } catch {
                 print(error)
-                callback(nil)
+                callback(.unknown)
             }
         }
     }
