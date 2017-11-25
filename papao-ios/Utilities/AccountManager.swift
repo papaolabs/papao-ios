@@ -21,6 +21,22 @@ final class AccountManager {
         defaults.set(user, forKey: UserDefaultsKeys.loggedUser.rawValue)
     }
     
+    func setDeviceToken(_ token: String) {
+        if isLoggedUserValid() {
+            // 로그인 유저 정보가 있으면 user 인스턴스에 deviceToken 추가
+            if var user = getLoggedUser() {
+                user.devicesToken.append(token)
+                // 중복 제거
+                user.devicesToken = Array(Set(user.devicesToken))
+                
+                // 다시 저장
+                setLoggedUser(user)
+            }
+        }
+        // 유저 인스턴스에 저장과 별개로 디바이스 토큰 로컬에 저장 (for 비회원)
+        defaults.set(token, forKey: UserDefaultsKeys.deviceToken.rawValue)
+    }
+    
     func getLoggedUser() -> User? {
         guard isLoggedUserValid() else {
             return nil

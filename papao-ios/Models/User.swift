@@ -18,7 +18,7 @@ struct User {
     var nickName: String
     var phone: String
     var profileUrl: String?
-    var devicesToken: [String]?
+    var devicesToken: [String]
     
     init?(json: [String: Any]?) {
         guard let json = json,
@@ -38,6 +38,8 @@ struct User {
         
         if let devicesToken = json["devicesToken"] as? [String] {
             self.devicesToken = devicesToken
+        } else {
+            self.devicesToken = []
         }
         
         if let profileUrl = json["profileUrl"] as? String {
