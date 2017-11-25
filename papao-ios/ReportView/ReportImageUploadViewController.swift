@@ -116,12 +116,15 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     }
 
     @IBAction func nextButtonPressed(_ sender: Any) {
-        if self.selectedImages == nil || self.selectedImages.isEmpty {
+        if selectedImages == nil || selectedImages.isEmpty {
             let alert = UIAlertController(title: nil, message: "사진은 반드시 한장 이상 등록해주세요.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
             }
             alert.addAction(okAction)
             self.present(alert, animated: false)
+        } else {
+            // 이미지 업로드
+            uploadImages(selectedImages)
         }
     }
     
@@ -170,6 +173,25 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         })
     }
     
+    func uploadImages(_ images: [UIImage]) {
+        let api = HttpHelper.init()
+        // Todo: 포스트 타입 지정
+        let imageRequest = ImageRequest.init(file: images, postType: .ROADREPORT)
+        api.uploadImages(imageRequest: imageRequest) { (result) in
+            do {
+                let imageResponse = try result.unwrap()
+                // post에 url과 이미지를 저장
+                self.post.imageUrls = imageResponse.imageUrls
+                self.post.images = self.selectedImages
+                
+                // 다음 뷰로 이동
+                self.performSegue(withIdentifier: "AnimalInfoSegue", sender: nil)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     // MARK: - UIScrollView Delegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
@@ -191,22 +213,8 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // 다음 페이지 넘어가기전 vaildation
-        if self.selectedImages == nil || self.selectedImages.isEmpty {
-            let alert = UIAlertController(title: nil, message: "사진은 반드시 한장 이상 등록해주세요.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
-            }
-            alert.addAction(okAction)
-            self.present(alert, animated: false)
-            
-            return
-        }
-
         if segue.identifier == "AnimalInfoSegue" {
             if let viewController = segue.destination as? ReportAnimalInfoViewController {
-                // set images of post to selectedImages
-                self.post.images = selectedImages
-
                 // pass data to next viewController
                 viewController.post = post
             }

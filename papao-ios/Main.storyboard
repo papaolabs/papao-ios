@@ -2695,7 +2695,6 @@
                         <barButtonItem key="rightBarButtonItem" title="다음" id="AeG-AN-G5Y">
                             <connections>
                                 <action selector="nextButtonPressed:" destination="VVA-Yn-yd4" id="s8A-ev-Qoc"/>
-                                <segue destination="dOE-c2-VuM" kind="show" identifier="AnimalInfoSegue" id="axk-Dz-zXZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2705,6 +2704,7 @@
                         <outlet property="pageControl" destination="CJO-J0-eTA" id="mdZ-kv-cEX"/>
                         <outlet property="stepLabel2" destination="MPh-O6-Gcn" id="aFi-hl-Rux"/>
                         <outlet property="stepLabel3" destination="xqd-Xx-7Xh" id="1T7-ZI-zLl"/>
+                        <segue destination="dOE-c2-VuM" kind="show" identifier="AnimalInfoSegue" id="vhg-Ak-DQf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kZ-a2-5pB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4366,8 +4366,8 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Ah-ec-oni"/>
-        <segue reference="u00-w1-cI0"/>
+        <segue reference="8mm-yr-yuE"/>
+        <segue reference="U77-ID-9rx"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>

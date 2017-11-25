@@ -13,7 +13,7 @@ struct PostRequest {
     var happenDate: String                      // 발견날짜 (yyyyMMdd)
     var happenPlace: String                     // 발견장소 (주소 문자열)
     var uid : Int                               // Post ID
-    var imageUrls: [String: AnyObject] = [:]    // 사진 URL
+    var imageUrls: [String]    // 사진 URL
     var postType: String                        // Post 타입
     
     // Optional
@@ -38,6 +38,7 @@ struct PostRequest {
         happenPlace = ""
         uid = -1
         postType = PostType.ROADREPORT.rawValue
+        imageUrls = []
     }
 
     func toDict() -> [String: AnyObject] {
