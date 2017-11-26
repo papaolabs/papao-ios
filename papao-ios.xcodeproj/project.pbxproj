@@ -303,10 +303,10 @@
 		4E835EFD1F92307900BFA6BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4E579E7E1FB47E22002E5404 /* PostRequest.swift */,
 				4E63D4301FC18B4C00F61446 /* PostResponse.swift */,
 				4E177B911FB6FCB200A10017 /* Post.swift */,
 				4E835F001F9230A700BFA6BD /* PostDetail.swift */,
-				4E579E7E1FB47E22002E5404 /* PostRequest.swift */,
 				4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */,
 				4ED6F3901FA5CC4D009E287C /* Breed.swift */,
 				4ED6F3971FA5E1C7009E287C /* Species.swift */,

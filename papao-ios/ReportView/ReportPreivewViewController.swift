@@ -65,7 +65,7 @@ class ReportPreviewViewController: UIViewController {
         if let species = post?.species {
             speciesLabel.setTitle(species.name, for: .normal)
             breedLabel.text = String(describing:post?.breed?.name)
-            genderLabel.text = post?.genderType ?? "모름"
+            genderLabel.text = post?.genderType?.description
         }
     }
 
@@ -86,7 +86,7 @@ class ReportPreviewViewController: UIViewController {
         weightLabel.text = String(describing:post?.weight)
         neuterLabel.text = String(describing:post?.neuterType)
         ageLabel.text = String(describing:post?.age)
-        genderDescriptionLabel.text = post?.genderType ?? Gender.Q.description
+        genderDescriptionLabel.text = post?.genderType?.description ?? Gender.Q.description
     }
     
     func setDetectionInfo() {

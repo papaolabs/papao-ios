@@ -22,7 +22,7 @@ class ReportTableViewController: UIViewController {
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.ROADREPORT, PostType.PROTECTING])
     let api = HttpHelper.init()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -51,7 +51,7 @@ class ReportTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         writeRoadButtonView.isHidden = true
         writeRoadButtonView.alpha = 0
         writeRoadButtonView.frame.origin = CGPoint(x: writeRoadButtonView.frame.origin.x, y: view.frame.height - 74)
@@ -124,7 +124,7 @@ class ReportTableViewController: UIViewController {
             })
         }
     }
-
+    
     @IBAction func writeButtonPressed(_ sender: Any) {
         guard AccountManager.sharedInstance.getLoggedUser() != nil else {
             alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
@@ -176,7 +176,7 @@ class ReportTableViewController: UIViewController {
     @IBAction func protectionReportButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "ProtectionReportSegue", sender: nil)
     }
-
+    
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
@@ -193,7 +193,7 @@ class ReportTableViewController: UIViewController {
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         present(loginViewController, animated: true, completion: nil)
     }
-
+    
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FilterSegue" {
@@ -202,12 +202,24 @@ class ReportTableViewController: UIViewController {
                 viewController.filter = filter
             }
         } else if segue.identifier == "ProtectionReportSegue" {
-            if let viewController = segue.destination as? ReportImageUploadViewController {
+            if let viewController = segue.destination as? ReportImageUploadViewController,
+                let user = AccountManager.sharedInstance.getLoggedUser() {
                 viewController.post.postType = .PROTECTING
+                viewController.post.uid = user.id
+            } else {
+                alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                    self.goToLoginView()
+                })
             }
         } else if segue.identifier == "RoadReportSegue" {
-            if let viewController = segue.destination as? ReportUploadViewController {
+            if let viewController = segue.destination as? ReportUploadViewController,
+                let user = AccountManager.sharedInstance.getLoggedUser() {
                 viewController.post.postType = .ROADREPORT
+                viewController.post.uid = user.id
+            } else {
+                alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                    self.goToLoginView()
+                })
             }
         }
     }
@@ -245,7 +257,7 @@ extension ReportTableViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
-
+    
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 158

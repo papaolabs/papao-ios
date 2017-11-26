@@ -29,7 +29,7 @@ class PostDetailTextTableViewCell: UITableViewCell {
         }
         
         genderLabel.text = postDetail.genderType.description
-        ageLabel.text = postDetail.ageDesc
+        ageLabel.text = postDetail.age?.description
         
         if let weight = postDetail.weight {
             weightLabel.text = "\(weight) kg"

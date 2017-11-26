@@ -130,12 +130,12 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     }
     
     @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
-        post?.genderType = genderList[sender.selectedSegmentIndex].keyName
+        post?.genderType = genderList[sender.selectedSegmentIndex]
         print(String(describing: post))
     }
     
     @IBAction func neuterValueChanged(_ sender: UISegmentedControl) {
-        post?.neuterType = neuterList[sender.selectedSegmentIndex].keyName
+        post?.neuterType = neuterList[sender.selectedSegmentIndex]
         print(String(describing: post))
     }
     
@@ -173,7 +173,8 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
                 }
             case PickerName.AgePicker.rawValue:
                 if let age = selectedPublicData as? Age {
-                    post?.age = Int(age.name)
+                    post?.age = age
+                    callerView.setTitle(age.description, for: .normal)
                 }
             case PickerName.WeightPicker.rawValue:
                 if let weight = selectedPublicData as? Weight {
