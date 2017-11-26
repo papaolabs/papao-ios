@@ -11,6 +11,7 @@ import Alamofire
 
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var emptyView: UIView!
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.ROADREPORT, PostType.PROTECTING])
     let api = HttpHelper.init()
@@ -19,6 +20,7 @@ class ReportTableViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        tableView.backgroundView = emptyView
         setPullToRefresh()
         
         loadPostData()

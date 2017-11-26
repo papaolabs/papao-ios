@@ -11,6 +11,7 @@ import Alamofire
 
 class PostTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var emptyView: UIView!
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.SYSTEM])
     let api = HttpHelper.init()
@@ -19,6 +20,7 @@ class PostTableViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        tableView.backgroundView = emptyView
         setPullToRefresh()
         
         loadPostData()
