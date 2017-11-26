@@ -22,7 +22,10 @@ class MyPostViewController: UIViewController {
         
         tableView.backgroundView = emptyView
         setPullToRefresh()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let userId = userId {
             myPostOnlyfilter.beginDate = nil
             myPostOnlyfilter.endDate = nil

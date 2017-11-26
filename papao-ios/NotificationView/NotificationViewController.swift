@@ -22,13 +22,12 @@ class NotificationViewController: UIViewController {
         
         tableView.backgroundView = emptyView
         setPullToRefresh()
-        
-        userId = AccountManager.sharedInstance.getLoggedUser()?.id
-        loadNotificationHistory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        userId = AccountManager.sharedInstance.getLoggedUser()?.id
         loadNotificationHistory()
     }
     

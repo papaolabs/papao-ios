@@ -23,15 +23,11 @@ class BookmarkViewController: UIViewController {
         
         tableView.backgroundView = emptyView
         setPullToRefresh()
-
-        let user = AccountManager.sharedInstance.getLoggedUser()
-        userId = user?.id
-
-        loadBookmarks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        userId = AccountManager.sharedInstance.getLoggedUser()?.id
         loadBookmarks()
     }
     
