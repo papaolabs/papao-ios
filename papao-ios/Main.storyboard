@@ -2517,7 +2517,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="aYH-uE-ZMi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TaB-Pe-tml" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="보호소" id="ZcN-vj-OkA"/>
+                    <tabBarItem key="tabBarItem" title="보호소" image="iconShelter" id="ZcN-vj-OkA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wl7-QP-npm">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -4708,7 +4708,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="1Ci-MK-2D0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="40W-xx-EqJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="제보" id="CVZ-2x-PxY"/>
+                    <tabBarItem key="tabBarItem" title="제보" image="iconReport" id="CVZ-2x-PxY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cfx-g5-Fqt">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -4727,7 +4727,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="BOu-9a-vLF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HNg-48-auV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" id="Xfl-a4-Xi2"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="iconHome" id="Xfl-a4-Xi2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hkT-GD-xxn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -4746,7 +4746,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="lzL-Je-TV9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B2J-SQ-NgE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="실종" id="Fi0-1B-waJ"/>
+                    <tabBarItem key="tabBarItem" title="실종" image="iconLost2" id="Fi0-1B-waJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNq-jF-Y2d">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -4789,11 +4789,15 @@ open API 플랫폼입니다.</string>
         <image name="iconCommentsMain" width="12" height="12"/>
         <image name="iconFilterBlack" width="24" height="24"/>
         <image name="iconGo" width="19" height="12"/>
+        <image name="iconHome" width="27" height="27"/>
+        <image name="iconLost2" width="27" height="27"/>
         <image name="iconMypage2" width="24" height="24"/>
         <image name="iconNoticeDefault" width="24" height="24"/>
         <image name="iconOption" width="13" height="3"/>
         <image name="iconPointer" width="17" height="12"/>
+        <image name="iconReport" width="27" height="27"/>
         <image name="iconShare" width="17" height="20"/>
+        <image name="iconShelter" width="27" height="27"/>
         <image name="iconView" width="20" height="14"/>
         <image name="iconViewDetail" width="19" height="14"/>
         <image name="iconViewMain" width="16" height="11"/>
