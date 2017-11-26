@@ -23,6 +23,35 @@ struct Sido: PublicDataProtocol {
         self.code = dict["code"] as! Int
         self.name = dict["name"] as! String
     }
+    
+    init?(name: String) {
+        // 시도 이름으로 초기화
+        if let path = Bundle.main.path(forResource: "RegionList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let regions: [AnyObject] = dict["Region"] as? [AnyObject] {
+                if let sido = regions.map({ (dict) -> Sido in
+                    return Sido(dict: dict as! [String: AnyObject])
+                }).first(where: {$0.name == name}) {
+                    self.code = sido.code
+                    self.name = sido.name
+                    self.towns = sido.towns
+                } else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    func getGungu(name: String) -> Gungu? {
+        if let gungu = self.towns.first(where: {$0.name == name}) {
+            return gungu
+        } else {
+            return nil
+        }
+    }
 }
 
 struct Gungu: PublicDataProtocol {

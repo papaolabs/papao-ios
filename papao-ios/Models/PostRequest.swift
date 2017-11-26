@@ -27,8 +27,8 @@ struct PostRequest {
     var weight: Float?                          // 몸무게
     var feature: String?                        // 특징
     
-    var sidoCode: Int?                          // 시도
-    var gunguCode: Int?                         // 군구
+    var sido: Sido?                          // 시도
+    var gungu: Gungu?                         // 군구
     
     // MARK: - For UI
     var images: [UIImage]?
@@ -49,16 +49,16 @@ struct PostRequest {
             "uid": uid as AnyObject,
             "postType": postType.rawValue as AnyObject,
             "imageUrls": imageUrls as AnyObject,
-            "upKindCode": species?.code as AnyObject,
-            "kindCode": breed?.code as AnyObject,
+            "upKindCode": (species?.code ?? SpeciesName.ETC.rawValue) as AnyObject,
+            "kindCode": (breed?.code ?? -1) as AnyObject,
             "contact": contact as AnyObject,
-            "genderType": genderType?.rawValue as AnyObject,
-            "neuterType": neuterType?.rawValue as AnyObject,
-            "age": age?.name as AnyObject,
-            "weight": weight as AnyObject,
-            "feature": String(describing: feature) as AnyObject,
-            "sidoCode": sidoCode as AnyObject,
-            "gunguCode": gunguCode as AnyObject
+            "genderType": (genderType?.rawValue ?? Gender.Q.rawValue) as AnyObject,
+            "neuterType": (neuterType?.rawValue ?? Neuter.U.rawValue) as AnyObject,
+            "age": (age?.name ?? "-1") as AnyObject,
+            "weight": (weight ?? -1) as AnyObject,
+            "feature": (feature ?? "") as AnyObject,
+            "sidoCode": (sido?.code ?? -1) as AnyObject,
+            "gunguCode": (gungu?.code ?? -1) as AnyObject
         ]
     }
 }

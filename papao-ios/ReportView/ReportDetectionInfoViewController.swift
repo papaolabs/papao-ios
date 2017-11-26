@@ -147,8 +147,26 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
             if let markerForCurrentLocation = self.markerForCurrentLocation, let addressString = self.addressExceptCountry(geocodeResponse?.firstResult()) {
                 markerForCurrentLocation.title = addressString
                 self.post?.happenPlace = addressString
+                
+                // 시도 군구 코드 입력
+                if let (sido, gungu) = self.getSido(from: geocodeResponse?.firstResult()) {
+                    self.post?.sido = sido
+                    self.post?.gungu = gungu
+                }
             }
         }
+    }
+    
+    private func getSido(from address: GMSAddress?) -> (Sido?, Gungu?)? {
+        guard let administrativeAreaName = address?.administrativeArea,
+            let locality = address?.locality else {
+                return (nil, nil)
+        }
+        guard let sido = Sido(name: administrativeAreaName) else {
+            return (nil, nil)
+        }
+        
+        return (sido, sido.getGungu(name: locality))
     }
     
     private func addressExceptCountry(_ address: GMSAddress?) -> String? {
