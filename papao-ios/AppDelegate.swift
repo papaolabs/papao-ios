@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // register push
         registerPushNotification(application)
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         return true
     }
     
