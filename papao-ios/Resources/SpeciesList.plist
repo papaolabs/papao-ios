@@ -9,18 +9,273 @@
 			<integer>417000</integer>
 			<key>name</key>
 			<string>DOG</string>
+			<key>breeds</key>
+			<array>
+				<dict>
+					<key>code</key>
+					<integer>54</integer>
+					<key>name</key>
+					<string>골든 리트리버</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>56</integer>
+					<key>name</key>
+					<string>그레이 하운드</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>118</integer>
+					<key>name</key>
+					<string>그레이트 피레니즈</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>38</integer>
+					<key>name</key>
+					<string>닥스훈트</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>13</integer>
+					<key>name</key>
+					<string>비글</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>41</integer>
+					<key>name</key>
+					<string>도베르만</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>120</integer>
+					<key>name</key>
+					<string>도사</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>121</integer>
+					<key>name</key>
+					<string>롯트와일러</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>72</integer>
+					<key>name</key>
+					<string>말티즈</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>79</integer>
+					<key>name</key>
+					<string>미니어쳐 슈나우저</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>77</integer>
+					<key>name</key>
+					<string>미니어쳐 핀셔</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>12</integer>
+					<key>name</key>
+					<string>바셋 하운드</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>22</integer>
+					<key>name</key>
+					<string>보스턴 테리어</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>24</integer>
+					<key>name</key>
+					<string>복서</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>27</integer>
+					<key>name</key>
+					<string>불독</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>96</integer>
+					<key>name</key>
+					<string>사모예드</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>1</integer>
+					<key>name</key>
+					<string>삽살개</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>34</integer>
+					<key>name</key>
+					<string>샤페이</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>104</integer>
+					<key>name</key>
+					<string>세인트 버나드</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>122</integer>
+					<key>name</key>
+					<string>셰퍼드</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>124</integer>
+					<key>name</key>
+					<string>스피츠</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>103</integer>
+					<key>name</key>
+					<string>시베리안 허스키</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>101</integer>
+					<key>name</key>
+					<string>시츄</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>7</integer>
+					<key>name</key>
+					<string>알라스칸 말라뮤트</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>112</integer>
+					<key>name</key>
+					<string>와이어 폭스 테리어</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>113</integer>
+					<key>name</key>
+					<string>요크셔 테리어</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>108</integer>
+					<key>name</key>
+					<string>웰시 코기 펨브로크</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>67</integer>
+					<key>name</key>
+					<string>진도견</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>35</integer>
+					<key>name</key>
+					<string>차우차우</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>32</integer>
+					<key>name</key>
+					<string>치와와</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>125</integer>
+					<key>name</key>
+					<string>코카 스파니엘</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>90</integer>
+					<key>name</key>
+					<string>퍼그</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>36</integer>
+					<key>name</key>
+					<string>콜리</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>87</integer>
+					<key>name</key>
+					<string>페키니즈</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>89</integer>
+					<key>name</key>
+					<string>포메라니안</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>126</integer>
+					<key>name</key>
+					<string>포인터</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>128</integer>
+					<key>name</key>
+					<string>푸들</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>114</integer>
+					<key>name</key>
+					<string>믹스견</string>
+				</dict>
+				<dict>
+					<key>code</key>
+					<integer>115</integer>
+					<key>name</key>
+					<string>기타</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>422400</integer>
 			<key>name</key>
 			<string>CAT</string>
+			<key>breeds</key>
+			<array>
+				<dict>
+					<key>code</key>
+					<integer>116</integer>
+					<key>name</key>
+					<string>고양이</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>code</key>
 			<integer>429900</integer>
 			<key>name</key>
 			<string>ETC</string>
+			<key>breeds</key>
+			<array>
+				<dict>
+					<key>code</key>
+					<integer>117</integer>
+					<key>name</key>
+					<string>기타축종</string>
+				</dict>
+			</array>
 		</dict>
 	</array>
 </dict>

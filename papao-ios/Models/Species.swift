@@ -32,6 +32,7 @@ enum SpeciesName: Int {
 struct Species: PublicDataProtocol {
     var code: Int
     var name: String
+    var breeds: [Breed] = []
     
     init(dict: [String: AnyObject]) {
         self.code = dict["code"] as! Int
@@ -44,6 +45,11 @@ struct Species: PublicDataProtocol {
             self.name = SpeciesName.ETC.description
         default:
             self.name = SpeciesName.ETC.description
+        }
+        if let breeds = dict["breeds"] as? [[String : AnyObject]] {
+            self.breeds = breeds.map({ (town) -> Breed in
+                return Breed(dict: town)
+            })
         }
     }
 }

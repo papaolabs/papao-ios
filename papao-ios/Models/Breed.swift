@@ -9,12 +9,10 @@
 import Foundation
 
 struct Breed: PublicDataProtocol {
-    var species: Species
     var code: Int
     var name: String
     
     init(dict: [String: AnyObject]) {
-        self.species = Species(dict: dict["category"] as! [String : AnyObject])
         self.code = dict["code"] as! Int
         self.name = dict["name"] as! String
     }
