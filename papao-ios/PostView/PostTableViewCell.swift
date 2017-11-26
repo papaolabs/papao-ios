@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import AlamofireImage
+import SDWebImage
 
 class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postImageView: UIImageView!
@@ -38,9 +38,9 @@ class PostTableViewCell: UITableViewCell {
         
         // set represent image
         if post.imageUrls.count > 0 {
-            if let url = post.imageUrls[0]["url"] as? String {
+            if let urlString = post.imageUrls[0]["url"] as? String, let url = URL(string: urlString) {
                 let placeholderImage = UIImage(named: "placeholder")!
-                postImageView.af_setImage(withURL: URL(string: url)!, placeholderImage: placeholderImage)
+                postImageView.sd_setImage(with: url, placeholderImage: placeholderImage)
                 
 //                Alamofire.request(url).responseImage { response in
 //                    if let data = response.result.value {
