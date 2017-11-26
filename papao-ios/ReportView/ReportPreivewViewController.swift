@@ -147,14 +147,15 @@ class ReportPreviewViewController: UIViewController {
         }
     }
     
-    private func imageToGrayscale(_ image: UIImage) -> UIImage {
-        let context = CIContext(options: nil)
-        let currentFilter = CIFilter(name: "CIPhotoEffectNoir")
-        currentFilter!.setValue(CIImage(image: image), forKey: kCIInputImageKey)
-        let output = currentFilter!.outputImage
-        let cgimg = context.createCGImage(output!,from: output!.extent)
-        let processedImage = UIImage(cgImage: cgimg!)
-        return processedImage
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
     }
     
     // MARK: - IBActions
@@ -192,7 +193,27 @@ class ReportPreviewViewController: UIViewController {
     }
     
     @IBAction func registerReport(_ sender: Any) {
-        
-        self.navigationController?.popToRootViewController(animated: true)
+        if let postRequest = post {
+            let api = HttpHelper.init()
+            api.createPost(parameters: postRequest.toDict(), completion: { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    switch cudResult.rawValue {
+                    case let code where code > 0:
+                        self.navigationController?.popToRootViewController(animated: true)
+                    default:
+                        self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                    self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                    })
+                }
+            })
+        } else {
+            self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+            })
+        }
     }
 }

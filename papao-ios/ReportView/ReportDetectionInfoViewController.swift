@@ -192,6 +192,11 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         
         if segue.identifier == "PreviewSegue" {
             if let viewController = segue.destination as? ReportPreviewViewController {
+                // 텍스트뷰 설정 안누르고 바로 다음버튼 눌렀을 때
+                if let featureText = featureTextView.text {
+                    post?.feature = featureText
+                }
+                
                 // pass data to next viewController
                 viewController.post = post
                 print("AnimalInfo \(post)")
