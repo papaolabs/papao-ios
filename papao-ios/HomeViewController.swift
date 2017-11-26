@@ -39,6 +39,20 @@ class HomeViewController: UIViewController {
         loadPosts(postType: .PROTECTING)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setNavigationSetting()
+    }
+    
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(named: "backgroundGray")
+        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+    
     func loadStat() {
         // get date of 3 month ago
         let formatter = DateFormatter()
@@ -152,18 +166,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row;
         switch row {
         case PostType.SYSTEM.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconShelter20")
             cell.postTypeLabel.text = PostType.SYSTEM.description
             cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? nil)
         case PostType.PROTECTING.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconLost20")
             cell.postTypeLabel.text = PostType.PROTECTING.description
             cell.setPosts(posts: postSeries[PostType.PROTECTING.rawValue] ?? nil)
         case PostType.ROADREPORT.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconReport20")
             cell.postTypeLabel.text = PostType.ROADREPORT.description
             cell.setPosts(posts: postSeries[PostType.ROADREPORT.rawValue] ?? nil)
         case PostType.MISSING.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconReport20")
             cell.postTypeLabel.text = PostType.MISSING.description
             cell.setPosts(posts: postSeries[PostType.MISSING.rawValue] ?? nil)
         default:
+            cell.postTypeImageView.image = UIImage.init(named: "iconShelter20")
             cell.postTypeLabel.text = PostType.SYSTEM.description
             cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? nil)
         }
