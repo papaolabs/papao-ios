@@ -11,6 +11,7 @@ import Alamofire
 
 class PostTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var emptyView: UIView!
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.SYSTEM])
     let api = HttpHelper.init()
@@ -19,6 +20,7 @@ class PostTableViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        tableView.backgroundView = emptyView
         setPullToRefresh()
         
         loadPostData()
@@ -106,7 +108,11 @@ class PostTableViewController: UIViewController {
 extension PostTableViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = postResponse?.elements.count ?? 0
+        guard let count = postResponse?.elements.count, count > 0 else {
+            tableView.separatorStyle = .none
+            return 0
+        }
+        tableView.separatorStyle = .singleLine
         return count
     }
     

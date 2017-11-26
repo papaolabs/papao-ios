@@ -11,6 +11,7 @@ import AccountKit
 
 class NotificationViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var emptyView: UIView!
     let api = HttpHelper.init()
     var history: NotificationHistory?
     var userId: String?
@@ -19,6 +20,7 @@ class NotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundView = emptyView
         setPullToRefresh()
         
         userId = AccountManager.sharedInstance.getLoggedUser()?.id
@@ -99,7 +101,12 @@ class NotificationViewController: UIViewController {
 
 extension NotificationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.history?.pushLogs.count ?? 0
+        guard let count = self.history?.pushLogs.count, count > 0 else {
+            tableView.separatorStyle = .none
+            return 0
+        }
+        tableView.separatorStyle = .singleLine
+        return count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

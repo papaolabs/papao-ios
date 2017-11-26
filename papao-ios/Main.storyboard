@@ -208,13 +208,55 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyView" destination="kFA-Dg-Wtu" id="1zQ-4A-jDC"/>
                         <outlet property="tableView" destination="3cI-r2-vjF" id="J0l-Ay-NIk"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="fX6-tz-dqg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="kFA-Dg-Wtu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="168"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgQuestionmark" translatesAutoresizingMaskIntoConstraints="NO" id="ZuF-bG-Zlb">
+                            <rect key="frame" x="153" y="-18" width="68" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="4vd-87-JrO"/>
+                                <constraint firstAttribute="height" constant="68" id="rKg-xr-pFT"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 보호소 글이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2u-wr-uXB">
+                            <rect key="frame" x="90" y="74" width="195" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="VZZ-h1-Auw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" name="textBlack"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오른쪽 상단의 필터를 이용해 조건을 설정해보세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtv-Dz-2hU">
+                            <rect key="frame" x="19" y="98" width="336" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="ZFc-Jf-0Ua"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="c2u-wr-uXB" firstAttribute="top" secondItem="ZuF-bG-Zlb" secondAttribute="bottom" constant="24" id="RVk-2o-u54"/>
+                        <constraint firstItem="dtv-Dz-2hU" firstAttribute="centerX" secondItem="bd3-Oq-Wpk" secondAttribute="centerX" id="WPy-BO-1id"/>
+                        <constraint firstItem="ZuF-bG-Zlb" firstAttribute="centerX" secondItem="bd3-Oq-Wpk" secondAttribute="centerX" id="Yrk-gO-UgI"/>
+                        <constraint firstItem="dtv-Dz-2hU" firstAttribute="top" secondItem="c2u-wr-uXB" secondAttribute="bottom" constant="4" id="bU5-Oh-hvb"/>
+                        <constraint firstItem="c2u-wr-uXB" firstAttribute="centerX" secondItem="bd3-Oq-Wpk" secondAttribute="centerX" id="yyD-vZ-0fu"/>
+                        <constraint firstItem="c2u-wr-uXB" firstAttribute="centerY" secondItem="bd3-Oq-Wpk" secondAttribute="centerY" id="zc5-bQ-8Wc"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="bd3-Oq-Wpk"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="1116" y="131.78410794602701"/>
+            <point key="canvasLocation" x="1116" y="251"/>
         </scene>
         <!--알림-->
         <scene sceneID="RFU-rB-irg">
@@ -294,13 +336,55 @@
                     </view>
                     <navigationItem key="navigationItem" title="알림" id="zb0-4V-prE"/>
                     <connections>
+                        <outlet property="emptyView" destination="XqZ-EL-OgI" id="JZM-7P-NNL"/>
                         <outlet property="tableView" destination="qVm-Kp-pau" id="Enf-wv-ZxC"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="slC-1q-qcd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csY-UK-prE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="XqZ-EL-OgI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgQuestionmark" translatesAutoresizingMaskIntoConstraints="NO" id="855-Rd-TBp">
+                            <rect key="frame" x="153" y="-38" width="68" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="6Jf-bv-gfK"/>
+                                <constraint firstAttribute="height" constant="68" id="WIP-bL-kkS"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 알림이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-Bb-eWy">
+                            <rect key="frame" x="107" y="54" width="161" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="vwc-ej-6ou"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" name="textBlack"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자의 활동에 관한 알림이 추가 되면 표시됩니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kA1-AX-sfx">
+                            <rect key="frame" x="17.5" y="78" width="340" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="kid-Gq-E8p"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="855-Rd-TBp" firstAttribute="centerX" secondItem="kCR-f1-tdj" secondAttribute="centerX" id="JTG-x8-L1I"/>
+                        <constraint firstItem="kA1-AX-sfx" firstAttribute="centerX" secondItem="kCR-f1-tdj" secondAttribute="centerX" id="Njz-e5-FcG"/>
+                        <constraint firstItem="4YX-Bb-eWy" firstAttribute="centerX" secondItem="kCR-f1-tdj" secondAttribute="centerX" id="Ur3-yq-y0T"/>
+                        <constraint firstItem="4YX-Bb-eWy" firstAttribute="centerY" secondItem="kCR-f1-tdj" secondAttribute="centerY" id="XCN-G6-3H4"/>
+                        <constraint firstItem="kA1-AX-sfx" firstAttribute="top" secondItem="4YX-Bb-eWy" secondAttribute="bottom" constant="4" id="i5J-QQ-lBu"/>
+                        <constraint firstItem="4YX-Bb-eWy" firstAttribute="top" secondItem="855-Rd-TBp" secondAttribute="bottom" constant="24" id="yJH-Wc-XLu"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="kCR-f1-tdj"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="2375.1999999999998" y="-545.57721139430294"/>
+            <point key="canvasLocation" x="2375" y="-291"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="T2V-yT-Tn5">
@@ -1109,7 +1193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17I-AE-ULT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3188" y="-18.890554722638683"/>
+            <point key="canvasLocation" x="3308" y="60"/>
         </scene>
         <!--마이페이지-->
         <scene sceneID="8OT-ay-Ykp">
@@ -1314,7 +1398,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Er8-YP-pvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1116" y="-1661.0194902548726"/>
+            <point key="canvasLocation" x="2388" y="-2079"/>
         </scene>
         <!--내가 쓴 글 확인하기-->
         <scene sceneID="ypG-1o-keD">
@@ -1526,13 +1610,55 @@
                     </view>
                     <navigationItem key="navigationItem" title="내가 쓴 글 확인하기" id="wnz-Uu-GcT"/>
                     <connections>
+                        <outlet property="emptyView" destination="ELq-jb-CsH" id="6b7-W5-2Ps"/>
                         <outlet property="tableView" destination="GTp-Qr-37u" id="WIf-Yn-Xgb"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="gFm-Sh-ara"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZM-sJ-tzi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="ELq-jb-CsH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgQuestionmark" translatesAutoresizingMaskIntoConstraints="NO" id="gpL-Ja-2p0">
+                            <rect key="frame" x="153" y="-38" width="68" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="AWd-eH-Lgg"/>
+                                <constraint firstAttribute="width" constant="68" id="CG5-DU-h8k"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 내 글이 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeB-lu-whX">
+                            <rect key="frame" x="108" y="54" width="160" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="eUR-fG-d3R"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" name="textBlack"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="실종이나 제보 글을 쓰면 이 곳에서 확인할 수 있습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzB-FC-rcM">
+                            <rect key="frame" x="8" y="78" width="359" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="d7X-yO-0kA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="IeB-lu-whX" firstAttribute="top" secondItem="gpL-Ja-2p0" secondAttribute="bottom" constant="24" id="5vN-xL-5oO"/>
+                        <constraint firstItem="gpL-Ja-2p0" firstAttribute="centerX" secondItem="dQ6-yn-AYI" secondAttribute="centerX" id="NQN-y1-Cna"/>
+                        <constraint firstItem="IeB-lu-whX" firstAttribute="centerY" secondItem="dQ6-yn-AYI" secondAttribute="centerY" id="amm-Ev-Lac"/>
+                        <constraint firstItem="IeB-lu-whX" firstAttribute="centerX" secondItem="dQ6-yn-AYI" secondAttribute="centerX" id="cff-pa-4PO"/>
+                        <constraint firstItem="RzB-FC-rcM" firstAttribute="centerX" secondItem="dQ6-yn-AYI" secondAttribute="centerX" id="fRS-eq-oQ7"/>
+                        <constraint firstItem="RzB-FC-rcM" firstAttribute="top" secondItem="IeB-lu-whX" secondAttribute="bottom" constant="4" id="l67-dM-RaG"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="dQ6-yn-AYI"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="2036" y="-2002.8485757121441"/>
+            <point key="canvasLocation" x="3308" y="-2079"/>
         </scene>
         <!--papao-->
         <scene sceneID="SdL-gB-LkY">
@@ -2205,13 +2331,55 @@
                     </view>
                     <navigationItem key="navigationItem" title="북마크" id="7n2-au-qWZ"/>
                     <connections>
+                        <outlet property="emptyView" destination="Kd5-8v-NOU" id="OhT-sQ-o9g"/>
                         <outlet property="tableView" destination="fgo-DK-Qwv" id="v8Z-BV-feg"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="u00-w1-cI0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfM-NF-ZOC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Kd5-8v-NOU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgQuestionmark" translatesAutoresizingMaskIntoConstraints="NO" id="6WC-K8-wn5">
+                            <rect key="frame" x="153" y="-37.5" width="68" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="Xgn-ri-Ajx"/>
+                                <constraint firstAttribute="width" constant="68" id="sk9-Np-PU4"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 북마크가 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ho-M5-DMu">
+                            <rect key="frame" x="102.5" y="54.5" width="170.5" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="NoX-gZ-64B"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" name="textBlack"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="북마크 기능을 사용해 관심 포스트를 저장하세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue6-nH-aF7">
+                            <rect key="frame" x="29" y="78.5" width="316.5" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="HLq-ZU-TGM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="4ho-M5-DMu" firstAttribute="centerX" secondItem="f7F-ER-Fcr" secondAttribute="centerX" id="IKu-bH-yu0"/>
+                        <constraint firstItem="Ue6-nH-aF7" firstAttribute="centerX" secondItem="f7F-ER-Fcr" secondAttribute="centerX" id="Prk-Bs-vJz"/>
+                        <constraint firstItem="6WC-K8-wn5" firstAttribute="centerX" secondItem="f7F-ER-Fcr" secondAttribute="centerX" id="RNN-KN-v9e"/>
+                        <constraint firstItem="Ue6-nH-aF7" firstAttribute="top" secondItem="4ho-M5-DMu" secondAttribute="bottom" constant="4" id="Y8h-Cj-ix3"/>
+                        <constraint firstItem="4ho-M5-DMu" firstAttribute="top" secondItem="6WC-K8-wn5" secondAttribute="bottom" constant="24" id="dKd-KC-2Ou"/>
+                        <constraint firstItem="4ho-M5-DMu" firstAttribute="centerY" secondItem="f7F-ER-Fcr" secondAttribute="centerY" id="tqw-nm-ETs"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="f7F-ER-Fcr"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="2375.1999999999998" y="-1290.4047976011996"/>
+            <point key="canvasLocation" x="2374" y="-1192"/>
         </scene>
         <!--로그인-->
         <scene sceneID="Inw-XT-A1B">
@@ -2322,7 +2490,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Hi-tJ-hSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-183.19999999999999" y="-841.52923538230891"/>
+            <point key="canvasLocation" x="-519" y="-842"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rnQ-QC-CVx">
@@ -2343,7 +2511,7 @@ open API 플랫폼입니다.</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tn-il-hOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-522" y="132"/>
+            <point key="canvasLocation" x="-518" y="251"/>
         </scene>
         <!--보호소-->
         <scene sceneID="aYH-uE-ZMi">
@@ -2362,7 +2530,7 @@ open API 플랫폼입니다.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEU-38-URK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="132"/>
+            <point key="canvasLocation" x="262" y="251"/>
         </scene>
         <!--제보-->
         <scene sceneID="Iac-66-h7O">
@@ -2587,6 +2755,7 @@ open API 플랫폼입니다.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyView" destination="gIi-Ze-3Zk" id="rSZ-1L-iFX"/>
                         <outlet property="tableView" destination="e98-bE-YWX" id="hNP-OX-guf"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="U77-ID-9rx"/>
                         <segue destination="VVA-Yn-yd4" kind="show" identifier="normalReportSegue" id="GAb-v6-967"/>
@@ -2594,8 +2763,49 @@ open API 플랫폼입니다.</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPb-xr-riw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="gIi-Ze-3Zk">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgQuestionmark" translatesAutoresizingMaskIntoConstraints="NO" id="hgf-zp-xjp">
+                            <rect key="frame" x="153.5" y="-37.5" width="68" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="783-Ts-Rck"/>
+                                <constraint firstAttribute="height" constant="68" id="OIM-md-vzX"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 제보 글이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJs-Mg-Yl4">
+                            <rect key="frame" x="98" y="54.5" width="179.5" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="7YJ-p7-a4D"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" name="textBlack"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오른쪽 상단의 필터를 이용해 조건을 설정해보세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1e-8n-YRN">
+                            <rect key="frame" x="19.5" y="78.5" width="336" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="mlz-Nb-w9U"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="O1e-8n-YRN" firstAttribute="centerX" secondItem="XdR-n6-Wii" secondAttribute="centerX" id="5Qd-Z6-QIJ"/>
+                        <constraint firstItem="hgf-zp-xjp" firstAttribute="centerX" secondItem="XdR-n6-Wii" secondAttribute="centerX" id="FZl-FP-n0n"/>
+                        <constraint firstItem="NJs-Mg-Yl4" firstAttribute="centerX" secondItem="XdR-n6-Wii" secondAttribute="centerX" id="Vy1-bf-8r1"/>
+                        <constraint firstItem="NJs-Mg-Yl4" firstAttribute="top" secondItem="hgf-zp-xjp" secondAttribute="bottom" constant="24" id="Wj0-4r-zwP"/>
+                        <constraint firstItem="O1e-8n-YRN" firstAttribute="top" secondItem="NJs-Mg-Yl4" secondAttribute="bottom" constant="4" id="cmb-xx-TEo"/>
+                        <constraint firstItem="NJs-Mg-Yl4" firstAttribute="centerY" secondItem="XdR-n6-Wii" secondAttribute="centerY" id="mHP-tK-3PQ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="XdR-n6-Wii"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="1116" y="1661.9190404797603"/>
+            <point key="canvasLocation" x="1118" y="2224"/>
         </scene>
         <!--작성하기-->
         <scene sceneID="jBh-LL-PMI">
@@ -2797,7 +3007,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kZ-a2-5pB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="2444"/>
+            <point key="canvasLocation" x="2038" y="3007"/>
         </scene>
         <!--작성하기-->
         <scene sceneID="jBl-0e-YGi">
@@ -3151,7 +3361,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bt-At-z8p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2849" y="2545"/>
+            <point key="canvasLocation" x="2849" y="3107"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="0gb-dM-Qdj">
@@ -3435,7 +3645,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scA-mC-cIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3657" y="2574"/>
+            <point key="canvasLocation" x="3657" y="3137"/>
         </scene>
         <!--미리보기-->
         <scene sceneID="dUR-As-KDx">
@@ -3802,7 +4012,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ovA-gZ-gYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4489" y="2637"/>
+            <point key="canvasLocation" x="4489" y="3200"/>
         </scene>
         <!--사진 등록-->
         <scene sceneID="vN1-nx-bow">
@@ -3851,7 +4061,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyZ-My-rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="3199"/>
+            <point key="canvasLocation" x="2036" y="3360"/>
         </scene>
         <!--필터-->
         <scene sceneID="KTe-Ye-Yt0">
@@ -4147,7 +4357,7 @@ open API 플랫폼입니다.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEf-BK-Wrl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hbV-21-4TA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2848.8000000000002" y="903.59820089955031"/>
+            <point key="canvasLocation" x="3308" y="1304"/>
         </scene>
         <!--실종-->
         <scene sceneID="Uok-OY-mfH">
@@ -4344,13 +4554,55 @@ open API 플랫폼입니다.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyView" destination="SaB-AG-ceb" id="VAu-IF-Ysd"/>
                         <outlet property="tableView" destination="l3e-8s-zn3" id="5t2-qZ-dTu"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="iuM-cw-uXR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4j6-PK-P2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="SaB-AG-ceb">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgQuestionmark" translatesAutoresizingMaskIntoConstraints="NO" id="445-7z-9Ao">
+                            <rect key="frame" x="153" y="-37.5" width="68" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="FLc-yG-2kL"/>
+                                <constraint firstAttribute="width" constant="68" id="sNw-hW-OeQ"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 실종 글이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oao-q8-tM5">
+                            <rect key="frame" x="98" y="54.5" width="179.5" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Ygi-B1-fto"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" name="textBlack"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오른쪽 상단의 필터를 이용해 조건을 설정해보세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jo5-wQ-rNu">
+                            <rect key="frame" x="19" y="78.5" width="336" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="ZTR-ZE-FEY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Jo5-wQ-rNu" firstAttribute="centerX" secondItem="x1s-iO-sth" secondAttribute="centerX" id="Oqb-Gi-a3p"/>
+                        <constraint firstItem="oao-q8-tM5" firstAttribute="top" secondItem="445-7z-9Ao" secondAttribute="bottom" constant="24" id="T9x-lm-oVp"/>
+                        <constraint firstItem="oao-q8-tM5" firstAttribute="centerY" secondItem="x1s-iO-sth" secondAttribute="centerY" id="fHM-P0-m3k"/>
+                        <constraint firstItem="Jo5-wQ-rNu" firstAttribute="top" secondItem="oao-q8-tM5" secondAttribute="bottom" constant="4" id="s5p-Tg-u2W"/>
+                        <constraint firstItem="oao-q8-tM5" firstAttribute="centerX" secondItem="x1s-iO-sth" secondAttribute="centerX" id="sLx-yi-bCw"/>
+                        <constraint firstItem="445-7z-9Ao" firstAttribute="centerX" secondItem="x1s-iO-sth" secondAttribute="centerX" id="udb-vY-L6m"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="x1s-iO-sth"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="1132" y="903.59820089955031"/>
+            <point key="canvasLocation" x="1118" y="1305"/>
         </scene>
         <!--제보-->
         <scene sceneID="1Ci-MK-2D0">
@@ -4369,7 +4621,7 @@ open API 플랫폼입니다.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncv-qt-Ug1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="1662"/>
+            <point key="canvasLocation" x="262" y="2224"/>
         </scene>
         <!--홈-->
         <scene sceneID="BOu-9a-vLF">
@@ -4407,7 +4659,7 @@ open API 플랫폼입니다.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdc-zD-35r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="903"/>
+            <point key="canvasLocation" x="262" y="1304"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dHC-dG-Kz7">
@@ -4425,7 +4677,7 @@ open API 플랫폼입니다.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMj-Rx-ZIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-982" y="-842"/>
+            <point key="canvasLocation" x="-1319" y="-842"/>
         </scene>
     </scenes>
     <resources>
@@ -4445,6 +4697,7 @@ open API 플랫폼입니다.</string>
         <image name="iconView" width="20" height="14"/>
         <image name="iconViewDetail" width="19" height="14"/>
         <image name="iconViewMain" width="16" height="11"/>
+        <image name="imgQuestionmark" width="68" height="68"/>
         <image name="imgSignin2" width="208" height="217"/>
         <image name="sampleDog" width="606" height="869"/>
         <namedColor name="backgroundGray">
@@ -4466,7 +4719,25 @@ open API 플랫폼입니다.</string>
             <color red="0.84700000289999999" green="0.84700000289999999" blue="0.84700000289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textBlack">
+            <color red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBlack">
+            <color red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBlack">
             <color red="0.012000000104308128" green="0.012000000104308128" blue="0.012000000104308128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBlack">
+            <color red="0.012000000104308128" green="0.012000000104308128" blue="0.012000000104308128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBlack">
+            <color red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBlack">
+            <color red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textBlack">
+            <color red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="warmPink">
             <color red="0.98799997569999998" green="0.30599999430000002" blue="0.45899999139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4474,7 +4745,7 @@ open API 플랫폼입니다.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8mm-yr-yuE"/>
-        <segue reference="U77-ID-9rx"/>
+        <segue reference="u00-w1-cI0"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>
