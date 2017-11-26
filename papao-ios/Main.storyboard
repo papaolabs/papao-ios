@@ -3752,7 +3752,7 @@ open API 플랫폼입니다.</string>
         <!--미리보기-->
         <scene sceneID="dUR-As-KDx">
             <objects>
-                <viewController id="2lW-gF-8ij" customClass="ReportPreviewViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewViewController" id="2lW-gF-8ij" customClass="ReportPreviewViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2ml-uf-U2l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
