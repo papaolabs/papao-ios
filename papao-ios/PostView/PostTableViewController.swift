@@ -108,7 +108,11 @@ class PostTableViewController: UIViewController {
 extension PostTableViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = postResponse?.elements.count ?? 0
+        guard let count = postResponse?.elements.count, count > 0 else {
+            tableView.separatorStyle = .none
+            return 0
+        }
+        tableView.separatorStyle = .singleLine
         return count
     }
     

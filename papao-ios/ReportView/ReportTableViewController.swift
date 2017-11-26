@@ -147,7 +147,12 @@ class ReportTableViewController: UIViewController {
 extension ReportTableViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postResponse?.totalElements ?? 0
+        guard let count = postResponse?.elements.count, count > 0 else {
+            tableView.separatorStyle = .none
+            return 0
+        }
+        tableView.separatorStyle = .singleLine
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

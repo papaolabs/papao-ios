@@ -10,6 +10,7 @@ import UIKit
 
 class MyPostViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var emptyView: UIView!
     private var postResponse: PostResponse?
     var userId: String?
     var myPostOnlyfilter: Filter = Filter.init(postTypes: [.SYSTEM, .MISSING, .PROTECTING, .ROADREPORT])
@@ -19,6 +20,7 @@ class MyPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundView = emptyView
         setPullToRefresh()
 
         if let userId = userId {
@@ -89,7 +91,12 @@ class MyPostViewController: UIViewController {
 
 extension MyPostViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.postResponse?.elements.count ?? 0
+        guard let count = postResponse?.elements.count, count > 0 else {
+            tableView.separatorStyle = .none
+            return 0
+        }
+        tableView.separatorStyle = .singleLine
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

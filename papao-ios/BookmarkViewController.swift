@@ -12,6 +12,7 @@ import AccountKit
 
 class BookmarkViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var emptyView: UIView!
     var postResponse: PostResponse?
     var userId: String?
     let api = HttpHelper.init()
@@ -20,6 +21,7 @@ class BookmarkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundView = emptyView
         setPullToRefresh()
 
         let user = AccountManager.sharedInstance.getLoggedUser()
@@ -110,7 +112,12 @@ class BookmarkViewController: UIViewController {
 
 extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.postResponse?.elements.count ?? 0
+        guard let count = postResponse?.elements.count, count > 0 else {
+            tableView.separatorStyle = .none
+            return 0
+        }
+        tableView.separatorStyle = .singleLine
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
