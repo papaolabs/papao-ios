@@ -12,6 +12,7 @@ import Alamofire
 class MissingTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var filterBarButtonItem: UIBarButtonItem!
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.MISSING])
     let api = HttpHelper.init()
@@ -111,6 +112,9 @@ class MissingTableViewController: UIViewController {
     @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
             self.filter = filter
+            
+            // BarButtonItem 틴트 변경
+            filterBarButtonItem.tintColor = UIColor.init(named: "warmPink")
             
             // filter 적용 후 데이터 다시 로드
             loadPostData()

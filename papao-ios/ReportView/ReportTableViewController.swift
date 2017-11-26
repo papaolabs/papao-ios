@@ -12,6 +12,7 @@ import Alamofire
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var filterBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var writeButton: UIButton!
     @IBOutlet weak var writeRoadButton: UIButton!
     @IBOutlet weak var writeRoadButtonView: UIView!
@@ -236,6 +237,9 @@ class ReportTableViewController: UIViewController {
     @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
             self.filter = filter
+            
+            // BarButtonItem 틴트 변경
+            filterBarButtonItem.tintColor = UIColor.init(named: "warmPink")
             
             // filter 적용 후 데이터 다시 로드
             loadPostData()
