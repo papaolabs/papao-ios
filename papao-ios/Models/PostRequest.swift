@@ -17,8 +17,8 @@ struct PostRequest {
     var postType: PostType                      // Post 타입
     
     // Optional
-    var upKindCode: Int?                        // 축종코드
-    var kindCode: Int?                          // 품종코드
+    var species: Species?                       // 축종코드
+    var breed: Breed?                           // 품종
     var contact: String?                        // 연락처
     
     var genderType: String?                     // 성별
@@ -49,8 +49,8 @@ struct PostRequest {
             "uid": uid as AnyObject,
             "postType": postType.rawValue as AnyObject,
             "imageUrls": imageUrls as AnyObject,
-            "upKindCode": upKindCode as AnyObject,
-            "kindCode": kindCode as AnyObject,
+            "upKindCode": species?.code as AnyObject,
+            "kindCode": breed?.code as AnyObject,
             "contact": contact as AnyObject,
             "genderType": genderType as AnyObject,
             "neuterType": neuterType as AnyObject,

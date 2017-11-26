@@ -62,11 +62,9 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setTitle() {
-        if let species = post?.upKindCode {
-            if let speciesName = SpeciesName(rawValue: Int(species)) {
-                speciesLabel.setTitle(speciesName.description, for: .normal)
-            }
-            breedLabel.text = String(describing:post?.kindCode)
+        if let species = post?.species {
+            speciesLabel.setTitle(species.name, for: .normal)
+            breedLabel.text = String(describing:post?.breed?.name)
             genderLabel.text = post?.genderType ?? "모름"
         }
     }
