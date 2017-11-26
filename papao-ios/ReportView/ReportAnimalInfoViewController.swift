@@ -29,7 +29,8 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     
     // instance for posting Post
     var post: PostRequest?
-    
+    var currentSpecies: Species?
+
     var breedList: [PublicDataProtocol]!
     var speciesList: [PublicDataProtocol]!
     var ageList: [PublicDataProtocol]!
@@ -72,15 +73,6 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             }
         }
         
-        // create breed list
-        if let path = Bundle.main.path(forResource: "BreedList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
-            if let breedList: [AnyObject] = dict["Breed"] as? [AnyObject] {
-                self.breedList = breedList.map({ (dict) -> Breed in
-                    return Breed(dict: dict as! [String: AnyObject])
-                })
-            }
-        }
-        
         // create weight list
         if let path = Bundle.main.path(forResource: "WeightList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             if let weightList: [AnyObject] = dict["Weight"] as? [AnyObject] {
@@ -111,10 +103,13 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     }
     
     @IBAction func breedButtonPressed(_ sender: UIButton) {
+        guard let breeds = currentSpecies?.breeds else {
+            return
+        }
         picker = PPOPicker(parentViewController: self)
         picker?.delegate = self
         picker?.callerButton = sender
-        picker?.set(items: [breedList])
+        picker?.set(items: [breeds])
         picker?.startPicking()
     }
     
@@ -135,13 +130,22 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     }
     
     @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
-        post?.genderType = genderList[sender.selectedSegmentIndex].keyName
+        post?.genderType = genderList[sender.selectedSegmentIndex]
         print(String(describing: post))
     }
     
     @IBAction func neuterValueChanged(_ sender: UISegmentedControl) {
-        post?.neuterType = neuterList[sender.selectedSegmentIndex].keyName
+        post?.neuterType = neuterList[sender.selectedSegmentIndex]
         print(String(describing: post))
+    }
+    
+    private func selectDefaultBreed() {
+        post?.breed = nil
+        // 축종 선택 시 품종 첫번째꺼 자동 설정
+        if let species = post?.species, species.breeds.count > 0 {
+            post?.breed = species.breeds[0]
+            breedButton.setTitle(post?.breed?.name, for: .normal)
+        }
     }
 
     // MARK: - PPOPicker Delegate
@@ -159,15 +163,18 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             switch callerView.tag {
             case PickerName.SpeciesPicker.rawValue:
                 if let species = selectedPublicData as? Species {
-                    post?.upKindCode = species.code
+                    post?.species = species
+                    currentSpecies = species
+                    selectDefaultBreed()
                 }
             case PickerName.BreedPicker.rawValue:
                 if let breed = selectedPublicData as? Breed {
-                    post?.kindCode = breed.code
+                    post?.breed = breed
                 }
             case PickerName.AgePicker.rawValue:
                 if let age = selectedPublicData as? Age {
-                    post?.age = Int(age.name)
+                    post?.age = age
+                    callerView.setTitle(age.name, for: .normal)
                 }
             case PickerName.WeightPicker.rawValue:
                 if let weight = selectedPublicData as? Weight {
@@ -208,7 +215,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Todo: Post Validation
         if let post = post {
-            guard post.upKindCode != nil else {
+            guard post.species != nil else {
                 presentAlert(message: "축종 선택은 필수입니다.")
                 return
             }

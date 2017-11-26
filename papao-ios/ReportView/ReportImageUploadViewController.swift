@@ -40,6 +40,8 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(post.postType)
+        
         // set step Label
         stepLabel2.setRadius(radius: stepLabel2.bounds.width/2)
         stepLabel2.setBorder(color: UIColor.white)

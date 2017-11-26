@@ -9,6 +9,7 @@
 import UIKit
 import AccountKit
 import Alamofire
+import SDWebImage
 
 class MyPageViewController: UITableViewController {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -51,7 +52,7 @@ class MyPageViewController: UITableViewController {
             // set images
             if let url = user.profileUrl {
                 let placeholderImage = UIImage(named: "placeholder")!
-                profileImageView.af_setImage(withURL: URL(string: url)!, placeholderImage: placeholderImage)
+                profileImageView.sd_setImage(with: URL(string: url)!, placeholderImage: placeholderImage)
             }
         } else {
             phoneNumberLabel.isHidden = true

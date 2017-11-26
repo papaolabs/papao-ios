@@ -172,27 +172,7 @@ struct PostDetail {
     var sidoName: String?           // 시도
     var gunguName: String?          // 군구
 
-    var age: Int?                   // 출생연도
-    var ageDesc: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        
-        guard let age = self.age,
-              let birthday: Date = formatter.date(from: String(age)) else {
-            return "모름"
-        }
-        
-        let now = Date()
-        let calendar = Calendar.current
-        
-        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
-        let ageYear = ageComponents.year!
-        
-        if ageYear < 1 {
-            return "1살 미만"
-        }
-        return String(describing: "\(ageYear) 살")
-    }
+    var age: Age?                   // 출생연도
     var weight: Float?              // 몸무게 Float
 
     var hitCount: Int?              // 조회수
@@ -252,10 +232,11 @@ struct PostDetail {
         self.gunguName = json["gunguName"] as? String
         
         
-        if let age = json["age"] as? Int{
-            self.age = age
+        if let age = json["age"] as? Int {
+            // conformed Age protocol
+            self.age = Age(dict: ["name": age as AnyObject])
         } else if let ageString = json["age"] as? String {
-            self.age = Int(ageString)
+            self.age = Age(dict: ["name": ageString as AnyObject])
         }
         
         if let weight = json["weight"] as? Float {

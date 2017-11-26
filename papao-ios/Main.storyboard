@@ -2731,23 +2731,120 @@ open API 플랫폼입니다.</string>
                                     <outlet property="delegate" destination="s5w-ii-cZ5" id="FpM-2n-ySC"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pm-oR-TFg" userLabel="Road Button View">
+                                <rect key="frame" x="209" y="401" width="142" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ux-b7-58a">
+                                        <rect key="frame" x="86" y="0.0" width="56" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="BNd-A3-QTI"/>
+                                            <constraint firstAttribute="width" constant="56" id="ZLI-61-pyG"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" image="iconWriteRoad">
+                                            <color key="titleColor" name="borderGray"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="roadReportButtonPressed:" destination="s5w-ii-cZ5" eventType="touchUpInside" id="aPX-9X-NEI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="길거리 제보" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqD-Hj-yFf">
+                                        <rect key="frame" x="0.0" y="18" width="78" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="HIj-9V-IAB"/>
+                                            <constraint firstAttribute="width" constant="78" id="gNv-Mg-ZPV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="eqD-Hj-yFf" firstAttribute="leading" secondItem="2pm-oR-TFg" secondAttribute="leading" id="0jl-dE-PnL"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Ux-b7-58a" secondAttribute="bottom" id="MHc-YC-6Zz"/>
+                                    <constraint firstItem="3Ux-b7-58a" firstAttribute="top" secondItem="2pm-oR-TFg" secondAttribute="top" id="MoD-IW-3ya"/>
+                                    <constraint firstItem="3Ux-b7-58a" firstAttribute="leading" secondItem="eqD-Hj-yFf" secondAttribute="trailing" constant="8" id="UBL-7S-Utd"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Ux-b7-58a" secondAttribute="trailing" id="UMI-Lb-4it"/>
+                                    <constraint firstItem="eqD-Hj-yFf" firstAttribute="centerY" secondItem="2pm-oR-TFg" secondAttribute="centerY" id="dWo-Dq-acX"/>
+                                    <constraint firstAttribute="height" constant="56" id="dwH-jU-NhZ"/>
+                                    <constraint firstAttribute="width" constant="142" id="xZD-as-MwL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-yD-frx" userLabel="Protection Button View">
+                                <rect key="frame" x="209" y="465" width="142" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loO-TY-TdA">
+                                        <rect key="frame" x="86" y="0.0" width="56" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="039-ts-bny"/>
+                                            <constraint firstAttribute="height" constant="56" id="T4e-mt-n9R"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" image="iconWriteProtection">
+                                            <color key="titleColor" name="borderGray"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="protectionReportButtonPressed:" destination="s5w-ii-cZ5" eventType="touchUpInside" id="Kcp-kj-mtW"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="임시 보호" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jji-xW-Wzn">
+                                        <rect key="frame" x="0.0" y="18" width="78" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="4OT-bE-HPf"/>
+                                            <constraint firstAttribute="width" constant="78" id="xLd-GM-Qbz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="jji-xW-Wzn" firstAttribute="leading" secondItem="tOs-yD-frx" secondAttribute="leading" id="A6V-VS-ZGX"/>
+                                    <constraint firstAttribute="height" constant="56" id="I1n-2W-fI2"/>
+                                    <constraint firstAttribute="trailing" secondItem="loO-TY-TdA" secondAttribute="trailing" id="SNM-t9-JT0"/>
+                                    <constraint firstItem="loO-TY-TdA" firstAttribute="top" secondItem="tOs-yD-frx" secondAttribute="top" id="SrS-Xz-qvf"/>
+                                    <constraint firstAttribute="bottom" secondItem="loO-TY-TdA" secondAttribute="bottom" id="Usw-4G-fRU"/>
+                                    <constraint firstItem="loO-TY-TdA" firstAttribute="leading" secondItem="jji-xW-Wzn" secondAttribute="trailing" constant="8" id="Y2t-Y2-j2x"/>
+                                    <constraint firstItem="jji-xW-Wzn" firstAttribute="centerY" secondItem="tOs-yD-frx" secondAttribute="centerY" id="c6n-GB-qIp"/>
+                                    <constraint firstAttribute="width" constant="142" id="kcG-oT-LFE"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peA-IV-w82">
+                                <rect key="frame" x="295" y="537" width="56" height="56"/>
+                                <color key="backgroundColor" name="warmPink"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="dLt-1R-KmZ"/>
+                                    <constraint firstAttribute="width" constant="56" id="uaB-y9-hp8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="writeButtonPressed:" destination="s5w-ii-cZ5" eventType="touchUpInside" id="7Xh-1n-moo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E8a-TQ-otJ" firstAttribute="trailing" secondItem="2pm-oR-TFg" secondAttribute="trailing" constant="24" id="LS8-tQ-DCB"/>
+                            <constraint firstItem="E8a-TQ-otJ" firstAttribute="trailing" secondItem="peA-IV-w82" secondAttribute="trailing" constant="24" id="PQv-yC-qPE"/>
+                            <constraint firstItem="E8a-TQ-otJ" firstAttribute="trailing" secondItem="2pm-oR-TFg" secondAttribute="trailing" constant="24" id="Uhi-Op-CcP"/>
+                            <constraint firstItem="E8a-TQ-otJ" firstAttribute="bottom" secondItem="peA-IV-w82" secondAttribute="bottom" constant="25" id="dmV-TF-dTL"/>
+                            <constraint firstItem="E8a-TQ-otJ" firstAttribute="trailing" secondItem="tOs-yD-frx" secondAttribute="trailing" constant="24" id="dwW-1P-UYW"/>
+                            <constraint firstItem="tOs-yD-frx" firstAttribute="top" secondItem="2pm-oR-TFg" secondAttribute="bottom" constant="8" id="g5C-pl-NpV"/>
+                            <constraint firstItem="peA-IV-w82" firstAttribute="top" secondItem="tOs-yD-frx" secondAttribute="bottom" constant="16" id="h54-ZB-elP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="E8a-TQ-otJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="제보" id="QAf-a9-Be6">
-                        <leftBarButtonItems>
-                            <barButtonItem title="퀵 제보" id="ZoD-zB-By6">
-                                <connections>
-                                    <action selector="quickReportButtonPressed:" destination="s5w-ii-cZ5" id="L8H-gW-TI3"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="일반 제보" id="0sD-Oc-QN6">
-                                <connections>
-                                    <action selector="normalReportButtonPressed:" destination="s5w-ii-cZ5" id="msu-JU-vQA"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Filter" image="iconFilterBlack" id="a6M-Q1-DAn">
                             <connections>
                                 <segue destination="XkD-I4-wDF" kind="show" identifier="FilterSegue" id="8mm-yr-yuE"/>
@@ -2757,9 +2854,14 @@ open API 플랫폼입니다.</string>
                     <connections>
                         <outlet property="emptyView" destination="gIi-Ze-3Zk" id="rSZ-1L-iFX"/>
                         <outlet property="tableView" destination="e98-bE-YWX" id="hNP-OX-guf"/>
+                        <outlet property="writeButton" destination="peA-IV-w82" id="RMl-WT-qgb"/>
+                        <outlet property="writeProtectionButton" destination="loO-TY-TdA" id="67Q-gU-vei"/>
+                        <outlet property="writeProtectionButtonView" destination="tOs-yD-frx" id="pfu-Up-3Jk"/>
+                        <outlet property="writeRoadButton" destination="3Ux-b7-58a" id="XhG-KC-jiJ"/>
+                        <outlet property="writeRoadButtonView" destination="2pm-oR-TFg" id="MK0-hM-4ul"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="U77-ID-9rx"/>
-                        <segue destination="VVA-Yn-yd4" kind="show" identifier="normalReportSegue" id="GAb-v6-967"/>
-                        <segue destination="B1G-Rm-6VC" kind="show" identifier="quickReportSegue" id="Zi3-Ud-OS9"/>
+                        <segue destination="VVA-Yn-yd4" kind="show" identifier="ProtectionReportSegue" id="GAb-v6-967"/>
+                        <segue destination="B1G-Rm-6VC" kind="show" identifier="RoadReportSegue" id="Zi3-Ud-OS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPb-xr-riw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3770,20 +3872,18 @@ open API 플랫폼입니다.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 살" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA1-Yc-k9Q">
-                                                        <rect key="frame" x="190" y="526" width="40" height="20"/>
+                                                        <rect key="frame" x="190" y="526" width="36" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Xaz-N9-ULM"/>
-                                                            <constraint firstAttribute="width" constant="40" id="q78-F6-aOf"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwF-N3-BSe">
-                                                        <rect key="frame" x="202" y="548" width="32" height="20"/>
+                                                        <rect key="frame" x="202" y="548" width="26" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="CZw-4X-jKN"/>
-                                                            <constraint firstAttribute="width" constant="32" id="o9j-8v-NSo"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
@@ -4012,7 +4112,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ovA-gZ-gYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4489" y="3200"/>
+            <point key="canvasLocation" x="4488.8000000000002" y="3199.7001499250377"/>
         </scene>
         <!--사진 등록-->
         <scene sceneID="vN1-nx-bow">
@@ -4061,7 +4161,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyZ-My-rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="3360"/>
+            <point key="canvasLocation" x="2038" y="3920"/>
         </scene>
         <!--필터-->
         <scene sceneID="KTe-Ye-Yt0">
@@ -4697,6 +4797,8 @@ open API 플랫폼입니다.</string>
         <image name="iconView" width="20" height="14"/>
         <image name="iconViewDetail" width="19" height="14"/>
         <image name="iconViewMain" width="16" height="11"/>
+        <image name="iconWriteProtection" width="27" height="27"/>
+        <image name="iconWriteRoad" width="27" height="27"/>
         <image name="imgQuestionmark" width="68" height="68"/>
         <image name="imgSignin2" width="208" height="217"/>
         <image name="sampleDog" width="606" height="869"/>
@@ -4710,7 +4812,7 @@ open API 플랫폼입니다.</string>
             <color red="0.875" green="0.86299997568130493" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="borderGray">
-            <color red="0.60799998044967651" green="0.60799998044967651" blue="0.60799998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="brightBlue">
             <color red="0.0" green="0.4779999852180481" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4727,7 +4829,7 @@ open API 플랫폼입니다.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8mm-yr-yuE"/>
-        <segue reference="u00-w1-cI0"/>
+        <segue reference="U77-ID-9rx"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>

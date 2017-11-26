@@ -237,12 +237,20 @@ final class HttpHelper {
         }
     }
     
-    func createPost(postRequest: PostRequest, completion: @escaping (ApiResult<PostDetail>) -> Void) {
-        manager.request(Router.createPost(parameters: postRequest.toDict())).responseString { response in
-            if let dict = response.value?.dictionaryFromJSON(), let postDetail = PostDetail(json: dict) {
-                completion(ApiResult{ return postDetail })
-            } else {
-                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+    func createPost(parameters: Parameters, completion: @escaping (ApiResult<CUDResult>) -> Void) {
+        let router = Router.createPost(parameters: parameters)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method: router.method, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
             }
         }
     }

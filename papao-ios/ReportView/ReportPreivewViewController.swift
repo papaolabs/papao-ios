@@ -62,12 +62,10 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setTitle() {
-        if let species = post?.upKindCode {
-            if let speciesName = SpeciesName(rawValue: Int(species)) {
-                speciesLabel.setTitle(speciesName.description, for: .normal)
-            }
-            breedLabel.text = String(describing:post?.kindCode)
-            genderLabel.text = post?.genderType ?? "모름"
+        if let species = post?.species {
+            speciesLabel.setTitle(species.name, for: .normal)
+            breedLabel.text = post?.breed?.name ?? "기타"
+            genderLabel.text = post?.genderType?.description
         }
     }
 
@@ -85,10 +83,15 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setAnimalInfo() {
-        weightLabel.text = String(describing:post?.weight)
-        neuterLabel.text = String(describing:post?.neuterType)
-        ageLabel.text = String(describing:post?.age)
-        genderDescriptionLabel.text = post?.genderType ?? Gender.Q.description
+        if let weight = post?.weight {
+            weightLabel.text = String(describing:weight)
+        } else {
+            weightLabel.text = "모름"
+        }
+        
+        neuterLabel.text = post?.neuterType?.description ?? Neuter.U.description
+        ageLabel.text = post?.age?.description ?? "미상"
+        genderDescriptionLabel.text = post?.genderType?.description ?? Gender.Q.description
     }
     
     func setDetectionInfo() {
@@ -144,14 +147,15 @@ class ReportPreviewViewController: UIViewController {
         }
     }
     
-    private func imageToGrayscale(_ image: UIImage) -> UIImage {
-        let context = CIContext(options: nil)
-        let currentFilter = CIFilter(name: "CIPhotoEffectNoir")
-        currentFilter!.setValue(CIImage(image: image), forKey: kCIInputImageKey)
-        let output = currentFilter!.outputImage
-        let cgimg = context.createCGImage(output!,from: output!.extent)
-        let processedImage = UIImage(cgImage: cgimg!)
-        return processedImage
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
     }
     
     // MARK: - IBActions
@@ -189,7 +193,27 @@ class ReportPreviewViewController: UIViewController {
     }
     
     @IBAction func registerReport(_ sender: Any) {
-        // Todo: Http POST
-        self.navigationController?.popToRootViewController(animated: true)
+        if let postRequest = post {
+            let api = HttpHelper.init()
+            api.createPost(parameters: postRequest.toDict(), completion: { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    switch cudResult.rawValue {
+                    case let code where code > 0:
+                        self.navigationController?.popToRootViewController(animated: true)
+                    default:
+                        self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                    self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                    })
+                }
+            })
+        } else {
+            self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+            })
+        }
     }
 }

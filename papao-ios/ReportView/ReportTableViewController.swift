@@ -12,10 +12,17 @@ import Alamofire
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var writeButton: UIButton!
+    @IBOutlet weak var writeRoadButton: UIButton!
+    @IBOutlet weak var writeRoadButtonView: UIView!
+    @IBOutlet weak var writeProtectionButton: UIButton!
+    @IBOutlet weak var writeProtectionButtonView: UIView!
+    let backgroundView = UIView()
+    
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.ROADREPORT, PostType.PROTECTING])
     let api = HttpHelper.init()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,7 +30,40 @@ class ReportTableViewController: UIViewController {
         tableView.backgroundView = emptyView
         setPullToRefresh()
         
+        // button customizing
+        writeButton.setRadius(radius: writeButton.frame.width/2)
+        writeRoadButton.setRadius(radius: writeRoadButton.frame.width/2)
+        writeProtectionButton.setRadius(radius: writeProtectionButton.frame.width/2)
+        
+        // backgroundView settings for floating buttons
+        backgroundView.frame = view.frame
+        backgroundView.backgroundColor = UIColor.init(white: 0, alpha: 0.7)
+        backgroundView.isHidden = true
+        backgroundView.alpha = 0
+        view.addSubview(backgroundView)
+        view.bringSubview(toFront: backgroundView)
+        view.bringSubview(toFront: writeRoadButtonView)
+        view.bringSubview(toFront: writeProtectionButtonView)
+        view.bringSubview(toFront: writeButton)
+        
         loadPostData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        writeRoadButtonView.isHidden = true
+        writeRoadButtonView.alpha = 0
+        writeRoadButtonView.frame.origin = CGPoint(x: writeRoadButtonView.frame.origin.x, y: view.frame.height - 74)
+        writeProtectionButtonView.isHidden = true
+        writeProtectionButtonView.alpha = 0
+        writeProtectionButtonView.frame.origin = CGPoint(x: writeProtectionButtonView.frame.origin.x, y: view.frame.height - 74)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        writeButton.isSelected = false
+        floatingButtonsActivate(activated: writeButton.isSelected)
     }
     
     func setPullToRefresh() {
@@ -85,7 +125,7 @@ class ReportTableViewController: UIViewController {
         }
     }
     
-    @IBAction func quickReportButtonPressed(_ sender: Any) {
+    @IBAction func writeButtonPressed(_ sender: Any) {
         guard AccountManager.sharedInstance.getLoggedUser() != nil else {
             alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
                 self.goToLoginView()
@@ -93,20 +133,50 @@ class ReportTableViewController: UIViewController {
             return
         }
         
-        performSegue(withIdentifier: "quickReportSegue", sender: nil)
+        writeButton.isSelected = !writeButton.isSelected
+        floatingButtonsActivate(activated: writeButton.isSelected)
     }
     
-    @IBAction func normalReportButtonPressed(_ sender: Any) {
-        guard AccountManager.sharedInstance.getLoggedUser() != nil else {
-            alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
-                self.goToLoginView()
+    private func floatingButtonsActivate(activated: Bool) {
+        if activated {
+            let protectionButtonPosition = CGPoint(x: writeProtectionButtonView.frame.origin.x, y: self.writeButton.frame.origin.y - 16 - writeProtectionButton.frame.height)
+            let roadButtonPosition = CGPoint(x: writeRoadButtonView.frame.origin.x, y: protectionButtonPosition.y - 8 - writeRoadButtonView.frame.height)
+            
+            self.backgroundView.isHidden = false
+            self.writeRoadButtonView.isHidden = false
+            self.writeProtectionButtonView.isHidden = false
+            UIView.animate(withDuration: 0.15, animations: {
+                self.backgroundView.alpha = 1.0
+                self.writeRoadButtonView.alpha = 1.0
+                self.writeProtectionButtonView.alpha = 1.0
+                self.writeRoadButtonView.frame.origin = roadButtonPosition
+                self.writeProtectionButtonView.frame.origin = protectionButtonPosition
+                self.writeButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
             })
-            return
+        } else {
+            UIView.animate(withDuration: 0.15, animations: {
+                self.backgroundView.alpha = 0
+                self.writeRoadButtonView.alpha = 0
+                self.writeProtectionButtonView.alpha = 0
+                self.writeRoadButtonView.frame.origin = CGPoint(x: self.writeRoadButtonView.frame.origin.x, y: self.writeButton.frame.origin.y)
+                self.writeProtectionButtonView.frame.origin = CGPoint(x: self.writeProtectionButtonView.frame.origin.x, y: self.writeButton.frame.origin.y)
+                self.writeButton.transform = CGAffineTransform(rotationAngle: 0)
+            }, completion: { (result) in
+                self.backgroundView.isHidden = true
+                self.writeRoadButtonView.isHidden = true
+                self.writeProtectionButtonView.isHidden = true
+            })
         }
-
-        performSegue(withIdentifier: "normalReportSegue", sender: nil)
     }
-
+    
+    @IBAction func roadReportButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "RoadReportSegue", sender: nil)
+    }
+    
+    @IBAction func protectionReportButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ProtectionReportSegue", sender: nil)
+    }
+    
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
@@ -123,13 +193,33 @@ class ReportTableViewController: UIViewController {
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         present(loginViewController, animated: true, completion: nil)
     }
-
+    
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FilterSegue" {
             if let viewController = segue.destination as? FilterViewController {
                 // pass data to next viewController
                 viewController.filter = filter
+            }
+        } else if segue.identifier == "ProtectionReportSegue" {
+            if let viewController = segue.destination as? ReportImageUploadViewController,
+                let user = AccountManager.sharedInstance.getLoggedUser() {
+                viewController.post.postType = .PROTECTING
+                viewController.post.uid = user.id
+            } else {
+                alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                    self.goToLoginView()
+                })
+            }
+        } else if segue.identifier == "RoadReportSegue" {
+            if let viewController = segue.destination as? ReportUploadViewController,
+                let user = AccountManager.sharedInstance.getLoggedUser() {
+                viewController.post.postType = .ROADREPORT
+                viewController.post.uid = user.id
+            } else {
+                alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                    self.goToLoginView()
+                })
             }
         }
     }
@@ -167,7 +257,7 @@ extension ReportTableViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
-
+    
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 158
