@@ -12,6 +12,13 @@ import Alamofire
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var writeButton: UIButton!
+    @IBOutlet weak var writeRoadButton: UIButton!
+    @IBOutlet weak var writeRoadButtonView: UIView!
+    @IBOutlet weak var writeProtectionButton: UIButton!
+    @IBOutlet weak var writeProtectionButtonView: UIView!
+    let backgroundView = UIView()
+    
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.ROADREPORT, PostType.PROTECTING])
     let api = HttpHelper.init()
@@ -22,6 +29,26 @@ class ReportTableViewController: UIViewController {
         
         tableView.backgroundView = emptyView
         setPullToRefresh()
+        
+        // button customizing
+        writeButton.setRadius(radius: writeButton.frame.width/2)
+        writeRoadButton.setRadius(radius: writeRoadButton.frame.width/2)
+        writeProtectionButton.setRadius(radius: writeProtectionButton.frame.width/2)
+        writeRoadButtonView.isHidden = true
+        writeRoadButtonView.alpha = 0
+        writeProtectionButtonView.isHidden = true
+        writeProtectionButtonView.alpha = 0
+        
+        // backgroundView settings for floating buttons
+        backgroundView.frame = view.frame
+        backgroundView.backgroundColor = UIColor.init(white: 0, alpha: 0.7)
+        backgroundView.isHidden = true
+        backgroundView.alpha = 0
+        view.addSubview(backgroundView)
+        view.bringSubview(toFront: backgroundView)
+        view.bringSubview(toFront: writeRoadButtonView)
+        view.bringSubview(toFront: writeProtectionButtonView)
+        view.bringSubview(toFront: writeButton)
         
         loadPostData()
     }
@@ -84,8 +111,8 @@ class ReportTableViewController: UIViewController {
             })
         }
     }
-    
-    @IBAction func quickReportButtonPressed(_ sender: Any) {
+
+    @IBAction func writeButtonPressed(_ sender: Any) {
         guard AccountManager.sharedInstance.getLoggedUser() != nil else {
             alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
                 self.goToLoginView()
@@ -93,17 +120,43 @@ class ReportTableViewController: UIViewController {
             return
         }
         
+        writeButton.isSelected = !writeButton.isSelected
+        if writeButton.isSelected {
+            let protectionButtonPosition = CGPoint(x: writeProtectionButtonView.frame.origin.x, y: self.writeButton.frame.origin.y - 16 - writeProtectionButton.frame.height)
+            let roadButtonPosition = CGPoint(x: writeRoadButtonView.frame.origin.x, y: protectionButtonPosition.y - 8 - writeRoadButtonView.frame.height)
+            
+            self.backgroundView.isHidden = false
+            self.writeRoadButtonView.isHidden = false
+            self.writeProtectionButtonView.isHidden = false
+            UIView.animate(withDuration: 0.15, animations: {
+                self.backgroundView.alpha = 1.0
+                self.writeRoadButtonView.alpha = 1.0
+                self.writeProtectionButtonView.alpha = 1.0
+                self.writeRoadButtonView.frame.origin = roadButtonPosition
+                self.writeProtectionButtonView.frame.origin = protectionButtonPosition
+                self.writeButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+            })
+        } else {
+            UIView.animate(withDuration: 0.15, animations: {
+                self.backgroundView.alpha = 0
+                self.writeRoadButtonView.alpha = 0
+                self.writeProtectionButtonView.alpha = 0
+                self.writeRoadButtonView.frame.origin = CGPoint(x: self.writeRoadButtonView.frame.origin.x, y: self.writeButton.frame.origin.y)
+                self.writeProtectionButtonView.frame.origin = CGPoint(x: self.writeProtectionButtonView.frame.origin.x, y: self.writeButton.frame.origin.y)
+                self.writeButton.transform = CGAffineTransform(rotationAngle: 0)
+            }, completion: { (result) in
+                self.backgroundView.isHidden = true
+                self.writeRoadButtonView.isHidden = true
+                self.writeProtectionButtonView.isHidden = true
+            })
+        }
+    }
+    
+    @IBAction func quickReportButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "quickReportSegue", sender: nil)
     }
     
     @IBAction func normalReportButtonPressed(_ sender: Any) {
-        guard AccountManager.sharedInstance.getLoggedUser() != nil else {
-            alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
-                self.goToLoginView()
-            })
-            return
-        }
-
         performSegue(withIdentifier: "normalReportSegue", sender: nil)
     }
 
