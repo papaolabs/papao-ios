@@ -64,7 +64,7 @@ class ReportPreviewViewController: UIViewController {
     func setTitle() {
         if let species = post?.species {
             speciesLabel.setTitle(species.name, for: .normal)
-            breedLabel.text = String(describing:post?.breed?.name)
+            breedLabel.text = post?.breed?.name ?? "기타"
             genderLabel.text = post?.genderType?.description
         }
     }
@@ -83,9 +83,14 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setAnimalInfo() {
-        weightLabel.text = String(describing:post?.weight)
-        neuterLabel.text = String(describing:post?.neuterType)
-        ageLabel.text = String(describing:post?.age)
+        if let weight = post?.weight {
+            weightLabel.text = String(describing:weight)
+        } else {
+            weightLabel.text = "모름"
+        }
+        
+        neuterLabel.text = post?.neuterType?.description ?? Neuter.U.description
+        ageLabel.text = post?.age?.description ?? "미상"
         genderDescriptionLabel.text = post?.genderType?.description ?? Gender.Q.description
     }
     
@@ -187,7 +192,7 @@ class ReportPreviewViewController: UIViewController {
     }
     
     @IBAction func registerReport(_ sender: Any) {
-        // Todo: Http POST
+        
         self.navigationController?.popToRootViewController(animated: true)
     }
 }

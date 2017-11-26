@@ -174,7 +174,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             case PickerName.AgePicker.rawValue:
                 if let age = selectedPublicData as? Age {
                     post?.age = age
-                    callerView.setTitle(age.description, for: .normal)
+                    callerView.setTitle(age.name, for: .normal)
                 }
             case PickerName.WeightPicker.rawValue:
                 if let weight = selectedPublicData as? Weight {

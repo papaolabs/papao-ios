@@ -56,7 +56,7 @@ struct PostRequest {
             "neuterType": neuterType?.rawValue as AnyObject,
             "age": age?.name as AnyObject,
             "weight": weight as AnyObject,
-            "feature": feature as AnyObject,
+            "feature": String(describing: feature) as AnyObject,
             "sidoCode": sidoCode as AnyObject,
             "gunguCode": gunguCode as AnyObject
         ]
