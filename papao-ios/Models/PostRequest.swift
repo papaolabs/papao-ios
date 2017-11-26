@@ -14,7 +14,7 @@ struct PostRequest {
     var happenPlace: String                     // 발견장소 (주소 문자열)
     var uid : Int                               // Post ID
     var imageUrls: [String]    // 사진 URL
-    var postType: String                        // Post 타입
+    var postType: PostType                      // Post 타입
     
     // Optional
     var upKindCode: Int?                        // 축종코드
@@ -37,7 +37,7 @@ struct PostRequest {
         happenDate = ""
         happenPlace = ""
         uid = -1
-        postType = PostType.ROADREPORT.rawValue
+        postType = PostType.ROADREPORT
         imageUrls = []
     }
 
@@ -47,8 +47,8 @@ struct PostRequest {
             "happenDate": happenDate as AnyObject,
             "happenPlace": happenPlace as AnyObject,
             "uid": uid as AnyObject,
-            "postType": postType as AnyObject,
-            "imageUrls": ["http://www.animal.go.kr/files/shelter/2017/11/20171114091119.jpg"] as AnyObject,
+            "postType": postType.rawValue as AnyObject,
+            "imageUrls": imageUrls as AnyObject,
             "upKindCode": upKindCode as AnyObject,
             "kindCode": kindCode as AnyObject,
             "contact": contact as AnyObject,

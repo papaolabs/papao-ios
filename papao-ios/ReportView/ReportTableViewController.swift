@@ -34,10 +34,6 @@ class ReportTableViewController: UIViewController {
         writeButton.setRadius(radius: writeButton.frame.width/2)
         writeRoadButton.setRadius(radius: writeRoadButton.frame.width/2)
         writeProtectionButton.setRadius(radius: writeProtectionButton.frame.width/2)
-        writeRoadButtonView.isHidden = true
-        writeRoadButtonView.alpha = 0
-        writeProtectionButtonView.isHidden = true
-        writeProtectionButtonView.alpha = 0
         
         // backgroundView settings for floating buttons
         backgroundView.frame = view.frame
@@ -51,6 +47,23 @@ class ReportTableViewController: UIViewController {
         view.bringSubview(toFront: writeButton)
         
         loadPostData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        writeRoadButtonView.isHidden = true
+        writeRoadButtonView.alpha = 0
+        writeRoadButtonView.frame.origin = CGPoint(x: writeRoadButtonView.frame.origin.x, y: view.frame.height - 74)
+        writeProtectionButtonView.isHidden = true
+        writeProtectionButtonView.alpha = 0
+        writeProtectionButtonView.frame.origin = CGPoint(x: writeProtectionButtonView.frame.origin.x, y: view.frame.height - 74)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        writeButton.isSelected = false
+        floatingButtonsActivate(activated: writeButton.isSelected)
     }
     
     func setPullToRefresh() {
@@ -121,7 +134,11 @@ class ReportTableViewController: UIViewController {
         }
         
         writeButton.isSelected = !writeButton.isSelected
-        if writeButton.isSelected {
+        floatingButtonsActivate(activated: writeButton.isSelected)
+    }
+    
+    private func floatingButtonsActivate(activated: Bool) {
+        if activated {
             let protectionButtonPosition = CGPoint(x: writeProtectionButtonView.frame.origin.x, y: self.writeButton.frame.origin.y - 16 - writeProtectionButton.frame.height)
             let roadButtonPosition = CGPoint(x: writeRoadButtonView.frame.origin.x, y: protectionButtonPosition.y - 8 - writeRoadButtonView.frame.height)
             
@@ -152,12 +169,12 @@ class ReportTableViewController: UIViewController {
         }
     }
     
-    @IBAction func quickReportButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "quickReportSegue", sender: nil)
+    @IBAction func roadReportButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "RoadReportSegue", sender: nil)
     }
     
-    @IBAction func normalReportButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "normalReportSegue", sender: nil)
+    @IBAction func protectionReportButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ProtectionReportSegue", sender: nil)
     }
 
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
@@ -183,6 +200,14 @@ class ReportTableViewController: UIViewController {
             if let viewController = segue.destination as? FilterViewController {
                 // pass data to next viewController
                 viewController.filter = filter
+            }
+        } else if segue.identifier == "ProtectionReportSegue" {
+            if let viewController = segue.destination as? ReportImageUploadViewController {
+                viewController.post.postType = .PROTECTING
+            }
+        } else if segue.identifier == "RoadReportSegue" {
+            if let viewController = segue.destination as? ReportUploadViewController {
+                viewController.post.postType = .ROADREPORT
             }
         }
     }

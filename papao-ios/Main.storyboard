@@ -2732,7 +2732,7 @@ open API 플랫폼입니다.</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pm-oR-TFg" userLabel="Road Button View">
-                                <rect key="frame" x="209" y="537" width="142" height="56"/>
+                                <rect key="frame" x="209" y="401" width="142" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ux-b7-58a">
                                         <rect key="frame" x="86" y="0.0" width="56" height="56"/>
@@ -2747,7 +2747,7 @@ open API 플랫폼입니다.</string>
                                             <color key="titleColor" name="borderGray"/>
                                         </state>
                                         <connections>
-                                            <action selector="quickReportButtonPressed:" destination="s5w-ii-cZ5" eventType="touchUpInside" id="riu-Zn-cok"/>
+                                            <action selector="roadReportButtonPressed:" destination="s5w-ii-cZ5" eventType="touchUpInside" id="aPX-9X-NEI"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="길거리 제보" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqD-Hj-yFf">
@@ -2774,7 +2774,7 @@ open API 플랫폼입니다.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-yD-frx" userLabel="Protection Button View">
-                                <rect key="frame" x="209" y="537" width="142" height="56"/>
+                                <rect key="frame" x="209" y="465" width="142" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loO-TY-TdA">
                                         <rect key="frame" x="86" y="0.0" width="56" height="56"/>
@@ -2789,7 +2789,7 @@ open API 플랫폼입니다.</string>
                                             <color key="titleColor" name="borderGray"/>
                                         </state>
                                         <connections>
-                                            <action selector="normalReportButtonPressed:" destination="s5w-ii-cZ5" eventType="touchUpInside" id="GL5-GS-6xD"/>
+                                            <action selector="protectionReportButtonPressed:" destination="s5w-ii-cZ5" eventType="touchUpInside" id="Kcp-kj-mtW"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="임시 보호" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jji-xW-Wzn">
@@ -2839,8 +2839,8 @@ open API 플랫폼입니다.</string>
                             <constraint firstItem="E8a-TQ-otJ" firstAttribute="trailing" secondItem="2pm-oR-TFg" secondAttribute="trailing" constant="24" id="Uhi-Op-CcP"/>
                             <constraint firstItem="E8a-TQ-otJ" firstAttribute="bottom" secondItem="peA-IV-w82" secondAttribute="bottom" constant="25" id="dmV-TF-dTL"/>
                             <constraint firstItem="E8a-TQ-otJ" firstAttribute="trailing" secondItem="tOs-yD-frx" secondAttribute="trailing" constant="24" id="dwW-1P-UYW"/>
-                            <constraint firstItem="tOs-yD-frx" firstAttribute="top" secondItem="peA-IV-w82" secondAttribute="top" id="g4f-yq-tcW"/>
-                            <constraint firstItem="2pm-oR-TFg" firstAttribute="top" secondItem="peA-IV-w82" secondAttribute="top" id="wTT-St-JgE"/>
+                            <constraint firstItem="tOs-yD-frx" firstAttribute="top" secondItem="2pm-oR-TFg" secondAttribute="bottom" constant="8" id="g5C-pl-NpV"/>
+                            <constraint firstItem="peA-IV-w82" firstAttribute="top" secondItem="tOs-yD-frx" secondAttribute="bottom" constant="16" id="h54-ZB-elP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="E8a-TQ-otJ"/>
                     </view>
@@ -2860,8 +2860,8 @@ open API 플랫폼입니다.</string>
                         <outlet property="writeRoadButton" destination="3Ux-b7-58a" id="XhG-KC-jiJ"/>
                         <outlet property="writeRoadButtonView" destination="2pm-oR-TFg" id="MK0-hM-4ul"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="U77-ID-9rx"/>
-                        <segue destination="VVA-Yn-yd4" kind="show" identifier="normalReportSegue" id="GAb-v6-967"/>
-                        <segue destination="B1G-Rm-6VC" kind="show" identifier="quickReportSegue" id="Zi3-Ud-OS9"/>
+                        <segue destination="VVA-Yn-yd4" kind="show" identifier="ProtectionReportSegue" id="GAb-v6-967"/>
+                        <segue destination="B1G-Rm-6VC" kind="show" identifier="RoadReportSegue" id="Zi3-Ud-OS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPb-xr-riw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4163,7 +4163,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyZ-My-rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="3360"/>
+            <point key="canvasLocation" x="2038" y="3920"/>
         </scene>
         <!--필터-->
         <scene sceneID="KTe-Ye-Yt0">

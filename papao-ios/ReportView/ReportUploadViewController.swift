@@ -17,6 +17,8 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var uploadedImageView: UIImageView!
     @IBOutlet weak var dateTakenLabel: UILabel!
     @IBOutlet weak var locationTakenLabel: UILabel!
+    
+    var post: PostRequest = PostRequest.init()
 
     // for getting a photo
     let picker = UIImagePickerController()
