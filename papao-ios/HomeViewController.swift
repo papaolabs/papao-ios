@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
         horizontalScrollView.setItemsMarginOnce()
         
         loadStat()
+        loadTodayStat()
         loadPosts(postType: .SYSTEM)
         loadPosts(postType: .MISSING)
         loadPosts(postType: .ROADREPORT)
@@ -71,6 +72,22 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func loadTodayStat() {
+        // get statistics for today
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let today = Date()
+        let parameters = ["beginDate": formatter.string(from: today), "endDate": formatter.string(from: today)]
+        api.stats(parameters: parameters) { (result) in
+            do {
+                let statistics = try result.unwrap()
+                self.updateCountLabel.text = String(describing: statistics.saveCount)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     func loadPosts(postType: PostType) {
         let filter = Filter.init(postTypes: [postType])
         api.readPosts(filter: filter, completion: { (result) in
@@ -94,8 +111,6 @@ class HomeViewController: UIViewController {
     }
     
     func createStatView(statistics: Statistics) {
-        updateCountLabel.text = String(describing: statistics.saveCount)
-        
         let adoptionRate = statistics.getRate(statisticsType: .adoption)
         let euthanasiaRate = statistics.getRate(statisticsType: .euthanasia)
         let naturalDeathRate = statistics.getRate(statisticsType: .naturalDeath)

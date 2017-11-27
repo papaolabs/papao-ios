@@ -1676,7 +1676,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="329"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 업데이트 된 유기동물은" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go9-1f-pC1">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 구조된 유기동물은" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go9-1f-pC1">
                                             <rect key="frame" x="32" y="26" width="240" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="a5f-fB-2oG"/>
