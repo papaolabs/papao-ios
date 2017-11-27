@@ -9,19 +9,19 @@
 import UIKit
 
 class FilterViewController: UIViewController {
-    @IBOutlet weak var dogButton: PPOBadge!
-    @IBOutlet weak var catButton: PPOBadge!
-    @IBOutlet weak var etcButton: PPOBadge!
+    @IBOutlet weak var speciesButton: PPOPickerButton!
     @IBOutlet weak var breedButton: PPOPickerButton!
     @IBOutlet weak var sidoButton: PPOPickerButton!
     @IBOutlet weak var gunguButton: PPOPickerButton!
     @IBOutlet weak var genderSegment: UISegmentedControl!
     @IBOutlet weak var beginDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
-    
+    @IBOutlet weak var dateSegment: UISegmentedControl!
+
     var filter: Filter?
     var genderList: [Gender] = [Gender.M, Gender.F, Gender.A]
-    var breedList: [PublicDataProtocol]!
+    var speciesList: [PublicDataProtocol]!
+    var currentSpecies: Species?
     var sidoList: [PublicDataProtocol]!
     var currentSido: Sido?
     
@@ -38,25 +38,18 @@ class FilterViewController: UIViewController {
         // set date pickers
         setBeginDatePicker()
         setEndDatePicker()
-        
-        // customizing some buttons
-        dogButton.setStyle(type: .medium)
-        dogButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
-        catButton.setStyle(type: .medium)
-        catButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
-        etcButton.setStyle(type: .medium)
-        etcButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
-        
+
         // set Indice to caller buttons to specify data
+        speciesButton.tag = PickerName.SpeciesPicker.rawValue
         breedButton.tag = PickerName.BreedPicker.rawValue
         sidoButton.tag = PickerName.SidoPicker.rawValue
         gunguButton.tag = PickerName.GunguPicker.rawValue
-
-        // create breed list
-        if let path = Bundle.main.path(forResource: "BreedList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
-            if let breedList: [AnyObject] = dict["Breed"] as? [AnyObject] {
-                self.breedList = breedList.map({ (dict) -> Breed in
-                    return Breed(dict: dict as! [String: AnyObject])
+    
+        // create species list
+        if let path = Bundle.main.path(forResource: "SpeciesList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let speciesList: [AnyObject] = dict["Species"] as? [AnyObject] {
+                self.speciesList = speciesList.map({ (dict) -> Species in
+                    return Species(dict: dict as! [String: AnyObject])
                 })
             }
         }
@@ -77,12 +70,9 @@ class FilterViewController: UIViewController {
         
         // 기존 필터 데이터 화면에 적용
         if let filter = self.filter {
-            if filter.species == .DOG {
-                dogButtonPressed(dogButton)
-            } else if filter.species == .CAT {
-                catButtonPressed(catButton)
-            } else if filter.species == .ETC {
-                etcButtonPressed(etcButton)
+            if let species = filter.species {
+                speciesButton.setTitle(species.name, for: .normal)
+                currentSpecies = species
             }
             
             if let breed = filter.breed {
@@ -113,51 +103,24 @@ class FilterViewController: UIViewController {
         }
     }
     
-    // MARK: - IBActions
-    @IBAction func dogButtonPressed(_ sender: PPOBadge) {
-        catButton.isSelected = false
-        etcButton.isSelected = false
-        
-        if sender.isSelected {
-            self.filter?.species = nil
-            sender.isSelected = false
-        } else {
-            self.filter?.species = SpeciesName.DOG
-            sender.isSelected = true
-        }
-    }
-    
-    @IBAction func catButtonPressed(_ sender: PPOBadge) {
-        dogButton.isSelected = false
-        etcButton.isSelected = false
-        
-        if sender.isSelected {
-            self.filter?.species = nil
-            sender.isSelected = false
-        } else {
-            self.filter?.species = SpeciesName.CAT
-            sender.isSelected = true
-        }
-    }
-    
-    @IBAction func etcButtonPressed(_ sender: PPOBadge) {
-        dogButton.isSelected = false
-        catButton.isSelected = false
-        
-        if sender.isSelected {
-            self.filter?.species = nil
-            sender.isSelected = false
-        } else {
-            self.filter?.species = SpeciesName.ETC
-            sender.isSelected = true
-        }
-    }
-    
-    @IBAction func breedButtonPressed(_ sender: UIButton) {
+    @IBAction func speciesButtonPressed(_ sender: UIButton) {
         picker = PPOPicker(parentViewController: self)
         picker?.delegate = self
         picker?.callerButton = sender
-        picker?.set(items: [breedList])
+        picker?.set(items: [speciesList])
+        picker?.startPicking()
+    }
+
+    @IBAction func breedButtonPressed(_ sender: UIButton) {
+        guard let breeds = currentSpecies?.breeds else {
+            presentAlert(message: "축종 선택을 먼저 해주세요")
+            return
+        }
+
+        picker = PPOPicker(parentViewController: self)
+        picker?.delegate = self
+        picker?.callerButton = sender
+        picker?.set(items: [breeds])
         picker?.startPicking()
     }
     
@@ -175,6 +138,7 @@ class FilterViewController: UIViewController {
     
     @IBAction func gunguButtonPressed(_ sender: UIButton) {
         guard let towns = currentSido?.towns else {
+            presentAlert(message: "시도 선택을 먼저 해주세요")
             return
         }
         picker = PPOPicker(parentViewController: self)
@@ -184,10 +148,42 @@ class FilterViewController: UIViewController {
         picker?.startPicking()
     }
 
+    @IBAction func dateValueChange(_ sender: UISegmentedControl) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        switch sender.selectedSegmentIndex {
+        case 0:
+            let lastWeek = Calendar.current.date(byAdding: .weekday, value: -7, to: Date())
+            filter?.beginDate = lastWeek
+            beginDateTextField.text = formatter.string(from: lastWeek!)
+        case 1:
+            let twoWeeksAgo = Calendar.current.date(byAdding: .weekday, value: -14, to: Date())
+            filter?.beginDate = twoWeeksAgo
+            beginDateTextField.text = formatter.string(from: twoWeeksAgo!)
+        case 2:
+            let lastMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+            filter?.beginDate = lastMonth
+            beginDateTextField.text = formatter.string(from: lastMonth!)
+        case 3:
+            let lastThreeMonth = Calendar.current.date(byAdding: .month, value: -3, to: Date())
+            filter?.beginDate = lastThreeMonth
+            beginDateTextField.text = formatter.string(from: lastThreeMonth!)
+        case 4:
+            let wholePeriod = Calendar.current.date(byAdding: .year, value: -10, to: Date())
+            filter?.beginDate = wholePeriod
+            beginDateTextField.text = formatter.string(from: wholePeriod!)
+        default: break
+        }
+    }
+    
     // MARK: - Private methods
-    fileprivate func clearGungu() {
-        filter?.gungu = nil
-        gunguButton.setTitle("전체", for: .normal)
+    fileprivate func presentAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: false)
     }
     
     fileprivate func setBeginDatePicker() {
@@ -211,7 +207,10 @@ class FilterViewController: UIViewController {
     }
     
     @objc func doneBeginDatePicker() {
-        //For date formate
+        // 날짜 선택 세그먼트 선택 취소
+        dateSegment.isSelected = false
+        
+        // For date formate
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         beginDateTextField.text = formatter.string(from: beginDatePicker.date)
@@ -265,8 +264,48 @@ class FilterViewController: UIViewController {
 }
 
 extension FilterViewController: PPOPickerDelegate {
+    fileprivate func clearGungu() {
+        filter?.gungu = nil
+        gunguButton.setTitle("전체", for: .normal)
+    }
+    
+    fileprivate func clearSido() {
+        filter?.sido = nil
+        currentSido = nil
+        sidoButton.setTitle("전체", for: .normal)
+    }
+    
+    fileprivate func clearSpecies() {
+        filter?.species = nil
+        currentSpecies = nil
+        speciesButton.setTitle("전체", for: .normal)
+    }
+    
+    fileprivate func clearBreed() {
+        filter?.breed = nil
+        breedButton.setTitle("전체", for: .normal)
+    }
+
     // MARK: - PPOPicker Delegate
     @objc func pickerCancelAction() {
+        // 취소 버튼 누르면 해제되는 것으로
+        if let callerView = picker?.callerButton {
+            // set selected data to post instance as picker
+            switch callerView.tag {
+            case PickerName.SpeciesPicker.rawValue:
+                clearSpecies()
+                clearBreed()
+            case PickerName.BreedPicker.rawValue:
+                clearBreed()
+            case PickerName.SidoPicker.rawValue:
+                clearSido()
+                clearGungu()
+            case PickerName.GunguPicker.rawValue:
+                clearGungu()
+            default: break
+            }
+        }
+        
         picker?.endPicking()
     }
     
@@ -277,6 +316,12 @@ extension FilterViewController: PPOPickerDelegate {
             
             // set selected data to post instance as picker
             switch callerView.tag {
+            case PickerName.SpeciesPicker.rawValue:
+                if let species = selectedPublicData as? Species {
+                    filter?.species = species
+                    currentSpecies = species
+                    clearBreed()
+                }
             case PickerName.BreedPicker.rawValue:
                 if let breed = selectedPublicData as? Breed {
                     filter?.breed = breed
@@ -300,25 +345,17 @@ extension FilterViewController: PPOPickerDelegate {
     }
     
     func pickerView(inputAccessoryViewFor pickerView: PPOPicker) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
-        view.backgroundColor = .white
-        let buttonWidth: CGFloat = 100
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.init(named: "warmPink")!
         
-        let cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - buttonWidth - 10, y: 0, width: buttonWidth, height: 40))
-        cancelButton.setTitle("취소", for: .normal)
-        cancelButton.setTitleColor(.black, for: .normal)
-        cancelButton.setTitleColor(.lightGray, for: .highlighted)
-        cancelButton.addTarget(self, action: #selector(pickerCancelAction), for: .touchUpInside)
-        view.addSubview(cancelButton)
+        let cancelButton = UIBarButtonItem(title: "초기화", style: .plain, target: self, action: #selector(pickerCancelAction))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(pickerSetAction))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
-        let setButton = UIButton(frame: CGRect(x: 10, y: 0, width: buttonWidth, height: 40))
-        setButton.setTitle("선택", for: .normal)
-        setButton.setTitleColor(.black, for: .normal)
-        setButton.setTitleColor(.lightGray, for: .highlighted)
-        setButton.addTarget(self, action: #selector(pickerSetAction), for: .touchUpInside)
-        view.addSubview(setButton)
-        
-        return view
+        return toolbar
     }
     
     func pickerView(didSelect value: PublicDataProtocol, inRow row: Int, inComponent component: Int, delegatedFrom pickerView: PPOPicker) {
