@@ -177,6 +177,7 @@ enum Router: URLRequestConvertible {
 
 enum ImageRouter: URLRequestConvertible {
     case upload(parameters: Parameters)
+    case search(postId: String)
     
     static let baseURLString = "\(valueForAPIKey(keyname: "IMG_API_BASE_URL"))v1/"
     
@@ -184,6 +185,8 @@ enum ImageRouter: URLRequestConvertible {
         switch self {
         case .upload(_):
             return .post
+        case .search(_):
+            return .get
         }
     }
     
@@ -191,6 +194,8 @@ enum ImageRouter: URLRequestConvertible {
         switch self {
         case .upload(_):
             return "upload"
+        case .search(let postId):
+            return "search/\(postId)"
         }
     }
 
@@ -200,7 +205,7 @@ enum ImageRouter: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .upload(let parameters):
+        case .upload(_), .search(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         }
 
@@ -465,6 +470,17 @@ final class HttpHelper {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Encoding Error"])))
                 }
             })
+        }
+    }
+    
+    func search(postId: String, completion: @escaping (ApiResult<PostResponse>) -> Void) {
+        manager.request(ImageRouter.search(postId: postId)).responseString { response in
+            if let dict = response.value?.dictionaryFromJSON() {
+                let postResponse = PostResponse(json: dict)
+                completion(ApiResult{ return postResponse })
+            } else {
+                completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+            }
         }
     }
 }
