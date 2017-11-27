@@ -113,6 +113,7 @@ class FilterViewController: UIViewController {
 
     @IBAction func breedButtonPressed(_ sender: UIButton) {
         guard let breeds = currentSpecies?.breeds else {
+            presentAlert(message: "축종 선택을 먼저 해주세요")
             return
         }
 
@@ -137,6 +138,7 @@ class FilterViewController: UIViewController {
     
     @IBAction func gunguButtonPressed(_ sender: UIButton) {
         guard let towns = currentSido?.towns else {
+            presentAlert(message: "시도 선택을 먼저 해주세요")
             return
         }
         picker = PPOPicker(parentViewController: self)
@@ -176,9 +178,12 @@ class FilterViewController: UIViewController {
     }
     
     // MARK: - Private methods
-    fileprivate func clearGungu() {
-        filter?.gungu = nil
-        gunguButton.setTitle("전체", for: .normal)
+    fileprivate func presentAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: false)
     }
     
     fileprivate func setBeginDatePicker() {
@@ -259,17 +264,48 @@ class FilterViewController: UIViewController {
 }
 
 extension FilterViewController: PPOPickerDelegate {
-    private func selectDefaultBreed() {
+    fileprivate func clearGungu() {
+        filter?.gungu = nil
+        gunguButton.setTitle("전체", for: .normal)
+    }
+    
+    fileprivate func clearSido() {
+        filter?.sido = nil
+        currentSido = nil
+        sidoButton.setTitle("전체", for: .normal)
+    }
+    
+    fileprivate func clearSpecies() {
+        filter?.species = nil
+        currentSpecies = nil
+        speciesButton.setTitle("전체", for: .normal)
+    }
+    
+    fileprivate func clearBreed() {
         filter?.breed = nil
-        // 축종 선택 시 품종 첫번째꺼 자동 설정
-        if let species = filter?.species, species.breeds.count > 0 {
-            filter?.breed = species.breeds[0]
-            breedButton.setTitle(filter?.breed?.name, for: .normal)
-        }
+        breedButton.setTitle("전체", for: .normal)
     }
 
     // MARK: - PPOPicker Delegate
     @objc func pickerCancelAction() {
+        // 취소 버튼 누르면 해제되는 것으로
+        if let callerView = picker?.callerButton {
+            // set selected data to post instance as picker
+            switch callerView.tag {
+            case PickerName.SpeciesPicker.rawValue:
+                clearSpecies()
+                clearBreed()
+            case PickerName.BreedPicker.rawValue:
+                clearBreed()
+            case PickerName.SidoPicker.rawValue:
+                clearSido()
+                clearGungu()
+            case PickerName.GunguPicker.rawValue:
+                clearGungu()
+            default: break
+            }
+        }
+        
         picker?.endPicking()
     }
     
@@ -284,7 +320,7 @@ extension FilterViewController: PPOPickerDelegate {
                 if let species = selectedPublicData as? Species {
                     filter?.species = species
                     currentSpecies = species
-                    selectDefaultBreed()
+                    clearBreed()
                 }
             case PickerName.BreedPicker.rawValue:
                 if let breed = selectedPublicData as? Breed {
@@ -309,25 +345,17 @@ extension FilterViewController: PPOPickerDelegate {
     }
     
     func pickerView(inputAccessoryViewFor pickerView: PPOPicker) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
-        view.backgroundColor = .white
-        let buttonWidth: CGFloat = 100
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.init(named: "warmPink")!
         
-        let cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - buttonWidth - 10, y: 0, width: buttonWidth, height: 40))
-        cancelButton.setTitle("취소", for: .normal)
-        cancelButton.setTitleColor(.black, for: .normal)
-        cancelButton.setTitleColor(.lightGray, for: .highlighted)
-        cancelButton.addTarget(self, action: #selector(pickerCancelAction), for: .touchUpInside)
-        view.addSubview(cancelButton)
+        let cancelButton = UIBarButtonItem(title: "초기화", style: .plain, target: self, action: #selector(pickerCancelAction))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(pickerSetAction))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
-        let setButton = UIButton(frame: CGRect(x: 10, y: 0, width: buttonWidth, height: 40))
-        setButton.setTitle("선택", for: .normal)
-        setButton.setTitleColor(.black, for: .normal)
-        setButton.setTitleColor(.lightGray, for: .highlighted)
-        setButton.addTarget(self, action: #selector(pickerSetAction), for: .touchUpInside)
-        view.addSubview(setButton)
-        
-        return view
+        return toolbar
     }
     
     func pickerView(didSelect value: PublicDataProtocol, inRow row: Int, inComponent component: Int, delegatedFrom pickerView: PPOPicker) {

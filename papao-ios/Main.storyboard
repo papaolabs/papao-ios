@@ -4487,7 +4487,7 @@ open API 플랫폼입니다.</string>
                                                     <constraint firstAttribute="height" constant="48" id="Hjo-AO-ESa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="품종 선택">
+                                                <state key="normal" title="전체">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
@@ -4568,7 +4568,7 @@ open API 플랫폼입니다.</string>
                                                     <constraint firstAttribute="height" constant="48" id="3jI-KV-BGN"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="축종 선택">
+                                                <state key="normal" title="전체">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
