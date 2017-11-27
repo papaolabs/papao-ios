@@ -20,7 +20,7 @@ class NotificationTableViewCell: UITableViewCell {
         switch pushLog.type {
         case .alarm:
             typeImageView.image = UIImage.init(named: "iconBellNotice")
-        case .bookmark:
+        case .post:
             typeImageView.image = UIImage.init(named: "iconBookmarkNotice")
         case .search:
             typeImageView.image = UIImage.init(named: "iconBookmarkNotice")

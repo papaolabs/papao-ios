@@ -16,7 +16,7 @@ class NotificationViewController: UIViewController {
     var history: NotificationHistory?
     var userId: String?
     let sizeOfPostPerPage = "20"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,9 +53,16 @@ class NotificationViewController: UIViewController {
         if let userId = userId {
             if let index = index {
                 let parameters = ["index": index, "size": sizeOfPostPerPage] as [String : AnyObject]
-                api.getPushHistory(userId: "userId", parameters: parameters) { (result) in
+                api.getPushHistory(userId: userId, parameters: parameters) { (result) in
                     do {
-                        self.history = try result.unwrap()
+                        let newHistory = try result.unwrap()
+                        if self.history != nil {
+                            // 기존에 목록 데이터가 있으면 pushLogs에 추가
+                            self.history?.pushLogs.append(contentsOf: newHistory.pushLogs.flatMap{ $0 })
+                        } else {
+                            // 기존에 목록 데이터 없으면 (처음 요청인 경우)
+                            self.history = newHistory
+                        }
                         self.tableView.reloadData()
                     } catch {
                         print(error)
@@ -118,7 +125,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NotificationTableViewCell = tableView.dequeueReusableCell(withIdentifier: "historyCell",
-                                                                    for: indexPath) as! NotificationTableViewCell
+                                                                            for: indexPath) as! NotificationTableViewCell
         let row = indexPath.row
         if let pushLog = history?.pushLogs[row] {
             cell.setPushLog(pushLog)
@@ -140,12 +147,23 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let pushLog = self.history?.pushLogs[indexPath.row]
-        guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
-            return
+        if let pushLog = self.history?.pushLogs[indexPath.row] {
+            switch pushLog.type {
+            case .alarm, .post:
+                guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
+                    return
+                }
+                
+                postDetailViewController.postId = pushLog.postId
+                self.navigationController?.pushViewController(postDetailViewController, animated: true)
+            case .search:
+                guard let imageSearchTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "ImageSearchTable") as? ImageSearchTableViewController else {
+                    return
+                }
+                
+                imageSearchTableViewController.postId = pushLog.postId
+                self.navigationController?.pushViewController(imageSearchTableViewController, animated: true)
+            }
         }
-        
-        postDetailViewController.postId = pushLog?.postId
-        self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }
