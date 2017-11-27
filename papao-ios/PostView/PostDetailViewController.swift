@@ -38,7 +38,8 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if navigationItem.backBarButtonItem == nil {
+        if self.isBeingPresented {
+            // modal로 detailViewController가 띄워졌을 때 (푸시 통해서 들어온 경우)
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: UIBarButtonItemStyle.plain, target: self, action: #selector(close))
         }
         
@@ -46,7 +47,6 @@ class PostDetailViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-
         
         speciesLabel.setStyle(type: .medium)
         
