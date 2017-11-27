@@ -9,9 +9,7 @@
 import UIKit
 
 class FilterViewController: UIViewController {
-    @IBOutlet weak var dogButton: PPOBadge!
-    @IBOutlet weak var catButton: PPOBadge!
-    @IBOutlet weak var etcButton: PPOBadge!
+    @IBOutlet weak var speciesButton: PPOPickerButton!
     @IBOutlet weak var breedButton: PPOPickerButton!
     @IBOutlet weak var sidoButton: PPOPickerButton!
     @IBOutlet weak var gunguButton: PPOPickerButton!
@@ -21,7 +19,8 @@ class FilterViewController: UIViewController {
     
     var filter: Filter?
     var genderList: [Gender] = [Gender.M, Gender.F, Gender.A]
-    var breedList: [PublicDataProtocol]!
+    var speciesList: [PublicDataProtocol]!
+    var currentSpecies: Species?
     var sidoList: [PublicDataProtocol]!
     var currentSido: Sido?
     
@@ -38,25 +37,21 @@ class FilterViewController: UIViewController {
         // set date pickers
         setBeginDatePicker()
         setEndDatePicker()
-        
-        // customizing some buttons
-        dogButton.setStyle(type: .medium)
-        dogButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
-        catButton.setStyle(type: .medium)
-        catButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
-        etcButton.setStyle(type: .medium)
-        etcButton.setBorder(color: UIColor.init(named: "borderGray") ?? .gray)
-        
+
         // set Indice to caller buttons to specify data
+        speciesButton.tag = PickerName.SpeciesPicker.rawValue
         breedButton.tag = PickerName.BreedPicker.rawValue
         sidoButton.tag = PickerName.SidoPicker.rawValue
         gunguButton.tag = PickerName.GunguPicker.rawValue
+        
+        // segment setting
+        genderSegment.tintColor = UIColor.init(named: "warmPink")!
 
-        // create breed list
-        if let path = Bundle.main.path(forResource: "BreedList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
-            if let breedList: [AnyObject] = dict["Breed"] as? [AnyObject] {
-                self.breedList = breedList.map({ (dict) -> Breed in
-                    return Breed(dict: dict as! [String: AnyObject])
+        // create species list
+        if let path = Bundle.main.path(forResource: "SpeciesList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let speciesList: [AnyObject] = dict["Species"] as? [AnyObject] {
+                self.speciesList = speciesList.map({ (dict) -> Species in
+                    return Species(dict: dict as! [String: AnyObject])
                 })
             }
         }
@@ -77,12 +72,9 @@ class FilterViewController: UIViewController {
         
         // 기존 필터 데이터 화면에 적용
         if let filter = self.filter {
-            if filter.species == .DOG {
-                dogButtonPressed(dogButton)
-            } else if filter.species == .CAT {
-                catButtonPressed(catButton)
-            } else if filter.species == .ETC {
-                etcButtonPressed(etcButton)
+            if let species = filter.species {
+                speciesButton.setTitle(species.name, for: .normal)
+                currentSpecies = species
             }
             
             if let breed = filter.breed {
@@ -113,51 +105,23 @@ class FilterViewController: UIViewController {
         }
     }
     
-    // MARK: - IBActions
-    @IBAction func dogButtonPressed(_ sender: PPOBadge) {
-        catButton.isSelected = false
-        etcButton.isSelected = false
-        
-        if sender.isSelected {
-            self.filter?.species = nil
-            sender.isSelected = false
-        } else {
-            self.filter?.species = SpeciesName.DOG
-            sender.isSelected = true
-        }
-    }
-    
-    @IBAction func catButtonPressed(_ sender: PPOBadge) {
-        dogButton.isSelected = false
-        etcButton.isSelected = false
-        
-        if sender.isSelected {
-            self.filter?.species = nil
-            sender.isSelected = false
-        } else {
-            self.filter?.species = SpeciesName.CAT
-            sender.isSelected = true
-        }
-    }
-    
-    @IBAction func etcButtonPressed(_ sender: PPOBadge) {
-        dogButton.isSelected = false
-        catButton.isSelected = false
-        
-        if sender.isSelected {
-            self.filter?.species = nil
-            sender.isSelected = false
-        } else {
-            self.filter?.species = SpeciesName.ETC
-            sender.isSelected = true
-        }
-    }
-    
-    @IBAction func breedButtonPressed(_ sender: UIButton) {
+    @IBAction func speciesButtonPressed(_ sender: UIButton) {
         picker = PPOPicker(parentViewController: self)
         picker?.delegate = self
         picker?.callerButton = sender
-        picker?.set(items: [breedList])
+        picker?.set(items: [speciesList])
+        picker?.startPicking()
+    }
+
+    @IBAction func breedButtonPressed(_ sender: UIButton) {
+        guard let breeds = currentSpecies?.breeds else {
+            return
+        }
+
+        picker = PPOPicker(parentViewController: self)
+        picker?.delegate = self
+        picker?.callerButton = sender
+        picker?.set(items: [breeds])
         picker?.startPicking()
     }
     
@@ -265,6 +229,15 @@ class FilterViewController: UIViewController {
 }
 
 extension FilterViewController: PPOPickerDelegate {
+    private func selectDefaultBreed() {
+        filter?.breed = nil
+        // 축종 선택 시 품종 첫번째꺼 자동 설정
+        if let species = filter?.species, species.breeds.count > 0 {
+            filter?.breed = species.breeds[0]
+            breedButton.setTitle(filter?.breed?.name, for: .normal)
+        }
+    }
+
     // MARK: - PPOPicker Delegate
     @objc func pickerCancelAction() {
         picker?.endPicking()
@@ -277,6 +250,12 @@ extension FilterViewController: PPOPickerDelegate {
             
             // set selected data to post instance as picker
             switch callerView.tag {
+            case PickerName.SpeciesPicker.rawValue:
+                if let species = selectedPublicData as? Species {
+                    filter?.species = species
+                    currentSpecies = species
+                    selectDefaultBreed()
+                }
             case PickerName.BreedPicker.rawValue:
                 if let breed = selectedPublicData as? Breed {
                     filter?.breed = breed
