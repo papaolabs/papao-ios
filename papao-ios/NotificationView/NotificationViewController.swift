@@ -53,9 +53,16 @@ class NotificationViewController: UIViewController {
         if let userId = userId {
             if let index = index {
                 let parameters = ["index": index, "size": sizeOfPostPerPage] as [String : AnyObject]
-                api.getPushHistory(userId: "userId", parameters: parameters) { (result) in
+                api.getPushHistory(userId: userId, parameters: parameters) { (result) in
                     do {
-                        self.history = try result.unwrap()
+                        let newHistory = try result.unwrap()
+                        if self.history != nil {
+                            // 기존에 목록 데이터가 있으면 pushLogs에 추가
+                            self.history?.pushLogs.append(contentsOf: newHistory.pushLogs.flatMap{ $0 })
+                        } else {
+                            // 기존에 목록 데이터 없으면 (처음 요청인 경우)
+                            self.history = newHistory
+                        }
                         self.tableView.reloadData()
                     } catch {
                         print(error)
