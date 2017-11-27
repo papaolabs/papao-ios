@@ -16,7 +16,7 @@ class NotificationViewController: UIViewController {
     var history: NotificationHistory?
     var userId: String?
     let sizeOfPostPerPage = "20"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,7 +125,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NotificationTableViewCell = tableView.dequeueReusableCell(withIdentifier: "historyCell",
-                                                                    for: indexPath) as! NotificationTableViewCell
+                                                                            for: indexPath) as! NotificationTableViewCell
         let row = indexPath.row
         if let pushLog = history?.pushLogs[row] {
             cell.setPushLog(pushLog)
@@ -147,12 +147,23 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let pushLog = self.history?.pushLogs[indexPath.row]
-        guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
-            return
+        if let pushLog = self.history?.pushLogs[indexPath.row] {
+            switch pushLog.type {
+            case .alarm, .post:
+                guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
+                    return
+                }
+                
+                postDetailViewController.postId = pushLog.postId
+                self.navigationController?.pushViewController(postDetailViewController, animated: true)
+            case .search:
+                guard let imageSearchTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "ImageSearchTable") as? ImageSearchTableViewController else {
+                    return
+                }
+                
+                imageSearchTableViewController.postId = pushLog.postId
+                self.navigationController?.pushViewController(imageSearchTableViewController, animated: true)
+            }
         }
-        
-        postDetailViewController.postId = pushLog?.postId
-        self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 class ImageSearchTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var emptyView: UIView!
+    var postId: Int?
     var postResponse: PostResponse?
     let api = HttpHelper.init()
     
@@ -45,7 +46,18 @@ class ImageSearchTableViewController: UIViewController {
     }
     
     func loadSearchResult() {
-        
+        if let postId = postId {
+            api.search(postId: "\(postId)", completion: { (result) in
+                do {
+                    self.postResponse = try result.unwrap()
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
+        } else {
+            print("postId가 잘못됐습니다")
+        }
     }
 }
 

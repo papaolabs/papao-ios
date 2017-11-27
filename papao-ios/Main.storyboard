@@ -390,7 +390,7 @@
         <!--유사한 동물 찾기-->
         <scene sceneID="PTi-LR-I0o">
             <objects>
-                <viewController id="c0c-rV-ZFO" customClass="ImageSearchTableViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageSearchTable" id="c0c-rV-ZFO" customClass="ImageSearchTableViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dLA-9l-pYw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
