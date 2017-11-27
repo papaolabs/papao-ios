@@ -229,7 +229,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     window?.rootViewController?.present(navigationViewController, animated: true, completion: nil)
                 }
             case .search:
-                // Todo: 서치 결과
+                if let imageSearchTableViewController = storyboard.instantiateViewController(withIdentifier: "ImageSearchTable") as? ImageSearchTableViewController {
+                    imageSearchTableViewController.postId = Int(postId)
+                    let navigationViewController = UINavigationController(rootViewController: imageSearchTableViewController)
+                    window?.rootViewController?.present(navigationViewController, animated: true, completion: nil)
+                }
                 break
             }
             completionHandler()

@@ -18,6 +18,11 @@ class ImageSearchTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if self.isBeingPresented {
+            // modal로 imageSearchTableView가 띄워졌을 때 (푸시 통해서 들어온 경우)
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: UIBarButtonItemStyle.plain, target: self, action: #selector(close))
+        }
+        
         tableView.backgroundView = emptyView
         setPullToRefresh()
     }
@@ -25,6 +30,10 @@ class ImageSearchTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadSearchResult()
+    }
+    
+    @objc func close() {
+        dismiss(animated: true, completion: nil)
     }
     
     func setPullToRefresh() {
