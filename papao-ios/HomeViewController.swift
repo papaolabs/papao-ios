@@ -21,10 +21,10 @@ class HomeViewController: UIViewController {
     var statistics: Statistics?
     var postSeries: [String: [Post]?] = [:]
 
-    fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setPullToRefresh()
         
         // initialize scrollView
         horizontalScrollView.defaultMarginSettings = MarginSettings(leftMargin: 15, miniMarginBetweenItems: 8, miniAppearWidthOfLastItem: 24)
@@ -52,6 +52,28 @@ class HomeViewController: UIViewController {
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .default
+    }
+    
+    func setPullToRefresh() {
+        if #available(iOS 10.0, *) {
+            let refreshControl = UIRefreshControl()
+            let title = "당겨서 새로고침"
+            refreshControl.attributedTitle = NSAttributedString(string: title)
+            refreshControl.addTarget(self,
+                                     action: #selector(refreshOptions(sender:)),
+                                     for: .valueChanged)
+            tableView.refreshControl = refreshControl
+        }
+    }
+    
+    @objc private func refreshOptions(sender: UIRefreshControl) {
+        loadStat()
+        loadTodayStat()
+        loadPosts(postType: .SYSTEM)
+        loadPosts(postType: .MISSING)
+        loadPosts(postType: .ROADREPORT)
+        loadPosts(postType: .PROTECTING)
+        sender.endRefreshing()
     }
     
     func loadStat() {
@@ -203,8 +225,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.postTypeLabel.text = PostType.SYSTEM.description
             cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? nil)
         }
-        
-//        cell.setPost(post: post)
         
         return cell
     }
