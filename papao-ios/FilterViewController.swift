@@ -16,7 +16,8 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var genderSegment: UISegmentedControl!
     @IBOutlet weak var beginDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
-    
+    @IBOutlet weak var dateSegment: UISegmentedControl!
+
     var filter: Filter?
     var genderList: [Gender] = [Gender.M, Gender.F, Gender.A]
     var speciesList: [PublicDataProtocol]!
@@ -43,10 +44,7 @@ class FilterViewController: UIViewController {
         breedButton.tag = PickerName.BreedPicker.rawValue
         sidoButton.tag = PickerName.SidoPicker.rawValue
         gunguButton.tag = PickerName.GunguPicker.rawValue
-        
-        // segment setting
-        genderSegment.tintColor = UIColor.init(named: "warmPink")!
-
+    
         // create species list
         if let path = Bundle.main.path(forResource: "SpeciesList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             if let speciesList: [AnyObject] = dict["Species"] as? [AnyObject] {
@@ -148,6 +146,35 @@ class FilterViewController: UIViewController {
         picker?.startPicking()
     }
 
+    @IBAction func dateValueChange(_ sender: UISegmentedControl) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        switch sender.selectedSegmentIndex {
+        case 0:
+            let lastWeek = Calendar.current.date(byAdding: .weekday, value: -7, to: Date())
+            filter?.beginDate = lastWeek
+            beginDateTextField.text = formatter.string(from: lastWeek!)
+        case 1:
+            let twoWeeksAgo = Calendar.current.date(byAdding: .weekday, value: -14, to: Date())
+            filter?.beginDate = twoWeeksAgo
+            beginDateTextField.text = formatter.string(from: twoWeeksAgo!)
+        case 2:
+            let lastMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+            filter?.beginDate = lastMonth
+            beginDateTextField.text = formatter.string(from: lastMonth!)
+        case 3:
+            let lastThreeMonth = Calendar.current.date(byAdding: .month, value: -3, to: Date())
+            filter?.beginDate = lastThreeMonth
+            beginDateTextField.text = formatter.string(from: lastThreeMonth!)
+        case 4:
+            let wholePeriod = Calendar.current.date(byAdding: .year, value: -10, to: Date())
+            filter?.beginDate = wholePeriod
+            beginDateTextField.text = formatter.string(from: wholePeriod!)
+        default: break
+        }
+    }
+    
     // MARK: - Private methods
     fileprivate func clearGungu() {
         filter?.gungu = nil
@@ -175,7 +202,10 @@ class FilterViewController: UIViewController {
     }
     
     @objc func doneBeginDatePicker() {
-        //For date formate
+        // 날짜 선택 세그먼트 선택 취소
+        dateSegment.isSelected = false
+        
+        // For date formate
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         beginDateTextField.text = formatter.string(from: beginDatePicker.date)
