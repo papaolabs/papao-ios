@@ -113,7 +113,9 @@ class HomeViewController: UIViewController {
     
     func infoView(statisticsType: StatisticsType, rate: Int, updateDate: Date) -> UIView {
         let view = UIView(frame: CGRect.zero)
-        view.backgroundColor = UIColor.init(named: statisticsType.backgroundColorString) ?? .purple
+        view.layer.addSublayer(statisticsType.background(frame: CGRect(x: 0, y: 0, width: 328, height: 184)))
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
         view.setRadius(radius: 8)
         
         let formatter = DateFormatter()

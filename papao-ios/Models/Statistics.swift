@@ -40,21 +40,24 @@ enum StatisticsType {
         case .naturalDeath:
             return ("tangerineOrange", "eggShell")
         case .returnPet:
-            return ("coolBlue", "lightSkyBlue")
+            return ("barney", "lavenderPink")
         }
     }
     
-    var backgroundColorString: String {
+    func background(frame: CGRect) -> CAGradientLayer {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = frame
         switch self {
         case .adoption:
-            return "warmPink"
-        case .euthanasia:
-            return "skyBlue"
+            gradientLayer.colors = [UIColor.init(named: "warmPinkTwo")!.cgColor, UIColor.init(named: "warmPink")!.cgColor]
         case .naturalDeath:
-            return "pastelOrange"
+            gradientLayer.colors = [UIColor.init(named: "lightGold")!.cgColor, UIColor.init(named: "pastelOrange")!.cgColor]
+        case .euthanasia:
+            gradientLayer.colors = [UIColor.init(named: "carolinaBlue")!.cgColor, UIColor.init(named: "skyBlue")!.cgColor]
         case .returnPet:
-            return "seafoamBlue"
+            gradientLayer.colors = [UIColor.init(named: "purplePink")!.cgColor, UIColor.init(named: "purpleyPink")!.cgColor]
         }
+        return gradientLayer
     }
 }
 
