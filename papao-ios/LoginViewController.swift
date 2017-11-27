@@ -29,6 +29,7 @@ final class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNavigationSetting()
         
         if AccountManager.sharedInstance.isLoggedUserValid() {
             DispatchQueue.main.async(execute: {
@@ -42,6 +43,15 @@ final class LoginViewController: UIViewController {
             }
         }
     }
+    
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+
     
     // MARK: - actions
     @IBAction func cancelButtonPressed(_ sender: Any) {

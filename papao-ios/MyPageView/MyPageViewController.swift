@@ -35,8 +35,20 @@ class MyPageViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationSetting()
+        
         loadMyInfo()
     }
+    
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+
     
     func loadMyInfo() {
         user = AccountManager.sharedInstance.getLoggedUser()

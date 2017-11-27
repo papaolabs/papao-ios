@@ -12,6 +12,7 @@ import Alamofire
 class ReportTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var filterBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var writeButton: UIButton!
     @IBOutlet weak var writeRoadButton: UIButton!
     @IBOutlet weak var writeRoadButtonView: UIView!
@@ -51,6 +52,7 @@ class ReportTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNavigationSetting()
         
         writeRoadButtonView.isHidden = true
         writeRoadButtonView.alpha = 0
@@ -65,7 +67,15 @@ class ReportTableViewController: UIViewController {
         writeButton.isSelected = false
         floatingButtonsActivate(activated: writeButton.isSelected)
     }
-    
+
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+
     func setPullToRefresh() {
         if #available(iOS 10.0, *) {
             let refreshControl = UIRefreshControl()
@@ -227,6 +237,9 @@ class ReportTableViewController: UIViewController {
     @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
             self.filter = filter
+            
+            // BarButtonItem 틴트 변경
+            filterBarButtonItem.tintColor = UIColor.init(named: "warmPink")
             
             // filter 적용 후 데이터 다시 로드
             loadPostData()

@@ -21,10 +21,10 @@ class HomeViewController: UIViewController {
     var statistics: Statistics?
     var postSeries: [String: [Post]?] = [:]
 
-    fileprivate var accountKit = AKFAccountKit(responseType: .accessToken)
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setPullToRefresh()
         
         // initialize scrollView
         horizontalScrollView.defaultMarginSettings = MarginSettings(leftMargin: 15, miniMarginBetweenItems: 8, miniAppearWidthOfLastItem: 24)
@@ -33,10 +33,47 @@ class HomeViewController: UIViewController {
         horizontalScrollView.setItemsMarginOnce()
         
         loadStat()
+        loadTodayStat()
         loadPosts(postType: .SYSTEM)
         loadPosts(postType: .MISSING)
         loadPosts(postType: .ROADREPORT)
         loadPosts(postType: .PROTECTING)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setNavigationSetting()
+    }
+    
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(named: "backgroundGray")
+        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+    
+    func setPullToRefresh() {
+        if #available(iOS 10.0, *) {
+            let refreshControl = UIRefreshControl()
+            let title = "당겨서 새로고침"
+            refreshControl.attributedTitle = NSAttributedString(string: title)
+            refreshControl.addTarget(self,
+                                     action: #selector(refreshOptions(sender:)),
+                                     for: .valueChanged)
+            tableView.refreshControl = refreshControl
+        }
+    }
+    
+    @objc private func refreshOptions(sender: UIRefreshControl) {
+        loadStat()
+        loadTodayStat()
+        loadPosts(postType: .SYSTEM)
+        loadPosts(postType: .MISSING)
+        loadPosts(postType: .ROADREPORT)
+        loadPosts(postType: .PROTECTING)
+        sender.endRefreshing()
     }
     
     func loadStat() {
@@ -51,6 +88,22 @@ class HomeViewController: UIViewController {
             do {
                 let statistics = try result.unwrap()
                 self.createStatView(statistics: statistics)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func loadTodayStat() {
+        // get statistics for today
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let today = Date()
+        let parameters = ["beginDate": formatter.string(from: today), "endDate": formatter.string(from: today)]
+        api.stats(parameters: parameters) { (result) in
+            do {
+                let statistics = try result.unwrap()
+                self.updateCountLabel.text = String(describing: statistics.saveCount)
             } catch {
                 print(error)
             }
@@ -80,8 +133,6 @@ class HomeViewController: UIViewController {
     }
     
     func createStatView(statistics: Statistics) {
-        updateCountLabel.text = String(describing: statistics.saveCount)
-        
         let adoptionRate = statistics.getRate(statisticsType: .adoption)
         let euthanasiaRate = statistics.getRate(statisticsType: .euthanasia)
         let naturalDeathRate = statistics.getRate(statisticsType: .naturalDeath)
@@ -99,7 +150,9 @@ class HomeViewController: UIViewController {
     
     func infoView(statisticsType: StatisticsType, rate: Int, updateDate: Date) -> UIView {
         let view = UIView(frame: CGRect.zero)
-        view.backgroundColor = UIColor.init(named: statisticsType.backgroundColorString) ?? .purple
+        view.layer.addSublayer(statisticsType.background(frame: CGRect(x: 0, y: 0, width: 328, height: 184)))
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
         view.setRadius(radius: 8)
         
         let formatter = DateFormatter()
@@ -152,23 +205,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row;
         switch row {
         case PostType.SYSTEM.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconShelter20")
             cell.postTypeLabel.text = PostType.SYSTEM.description
             cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? nil)
         case PostType.PROTECTING.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconLost20")
             cell.postTypeLabel.text = PostType.PROTECTING.description
             cell.setPosts(posts: postSeries[PostType.PROTECTING.rawValue] ?? nil)
         case PostType.ROADREPORT.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconReport20")
             cell.postTypeLabel.text = PostType.ROADREPORT.description
             cell.setPosts(posts: postSeries[PostType.ROADREPORT.rawValue] ?? nil)
         case PostType.MISSING.index:
+            cell.postTypeImageView.image = UIImage.init(named: "iconReport20")
             cell.postTypeLabel.text = PostType.MISSING.description
             cell.setPosts(posts: postSeries[PostType.MISSING.rawValue] ?? nil)
         default:
+            cell.postTypeImageView.image = UIImage.init(named: "iconShelter20")
             cell.postTypeLabel.text = PostType.SYSTEM.description
             cell.setPosts(posts: postSeries[PostType.SYSTEM.rawValue] ?? nil)
         }
-        
-//        cell.setPost(post: post)
         
         return cell
     }

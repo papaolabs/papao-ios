@@ -71,14 +71,18 @@ class HomePostView: UIView {
         
         // set represent image
         if post.imageUrls.count > 0 {
-            if let url = post.imageUrls[0]["url"] as? String {
-                Alamofire.request(url).responseData { response in
-                    if let data = response.result.value {
-                        let image = UIImage(data: data)
-                        self.thumbImageView.image = image
-                    }
-                }
+            if let urlString = post.imageUrls[0]["url"] as? String, let url = URL(string: urlString) {
+                let placeholderImage = UIImage(named: "placeholder")!
+                self.thumbImageView.sd_setImage(with: url, placeholderImage: placeholderImage)
             }
         }
+        
+        // add gradient
+        let gradient = CAGradientLayer()
+        gradient.frame = thumbImageView.bounds
+        gradient.colors = [UIColor.init(white: 0, alpha: 0).cgColor, UIColor.init(white: 0, alpha: 0.25).cgColor]
+        thumbImageView.layer.addSublayer(gradient)
+        thumbImageView.layer.cornerRadius = 8
+        thumbImageView.layer.masksToBounds = true
     }
 }

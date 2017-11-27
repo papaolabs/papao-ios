@@ -209,6 +209,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emptyView" destination="kFA-Dg-Wtu" id="1zQ-4A-jDC"/>
+                        <outlet property="filterBarButtonItem" destination="TPY-9v-4cJ" id="cpj-d7-zQQ"/>
                         <outlet property="tableView" destination="3cI-r2-vjF" id="J0l-Ay-NIk"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="fX6-tz-dqg"/>
                     </connections>
@@ -1936,8 +1937,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="329"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 업데이트 된 유기동물은" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go9-1f-pC1">
-                                            <rect key="frame" x="32" y="25" width="240" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 구조된 유기동물은" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go9-1f-pC1">
+                                            <rect key="frame" x="32" y="26" width="240" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="a5f-fB-2oG"/>
                                                 <constraint firstAttribute="width" constant="240" id="m2B-TT-Mbl"/>
@@ -1947,7 +1948,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마리 입니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gp-ad-dyL">
-                                            <rect key="frame" x="72" y="49" width="91" height="24"/>
+                                            <rect key="frame" x="72" y="50" width="91" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="GuE-pL-Doi"/>
                                             </constraints>
@@ -1956,7 +1957,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTc-Gl-ZO8">
-                                            <rect key="frame" x="32" y="49" width="38" height="24"/>
+                                            <rect key="frame" x="32" y="50" width="38" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="hjF-Yi-JPP"/>
                                             </constraints>
@@ -1965,21 +1966,21 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog_03" translatesAutoresizingMaskIntoConstraints="NO" id="47w-Vy-rIM">
-                                            <rect key="frame" x="293" y="24" width="50" height="50"/>
+                                            <rect key="frame" x="293" y="25" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="FDY-v9-HuR"/>
                                                 <constraint firstAttribute="width" constant="50" id="dCp-AH-zf4"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconGo" translatesAutoresizingMaskIntoConstraints="NO" id="y9e-Ez-f8O">
-                                            <rect key="frame" x="171" y="56" width="17" height="10"/>
+                                            <rect key="frame" x="171" y="57" width="17" height="10"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="17" id="lPa-rg-lwu"/>
                                                 <constraint firstAttribute="height" constant="10" id="zXK-JM-hWL"/>
                                             </constraints>
                                         </imageView>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-Sx-StW" customClass="ASHorizontalScrollView" customModule="ASHorizontalScrollView">
-                                            <rect key="frame" x="0.0" y="97" width="375" height="184"/>
+                                            <rect key="frame" x="0.0" y="107" width="375" height="184"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="184" id="sfi-bW-oGt"/>
                                             </constraints>
@@ -1987,7 +1988,7 @@
                                     </subviews>
                                     <color key="backgroundColor" name="backgroundGray"/>
                                     <constraints>
-                                        <constraint firstItem="47w-Vy-rIM" firstAttribute="top" secondItem="Mrm-C7-hFd" secondAttribute="top" constant="24" id="20u-if-fO9"/>
+                                        <constraint firstItem="47w-Vy-rIM" firstAttribute="top" secondItem="Mrm-C7-hFd" secondAttribute="top" constant="25" id="20u-if-fO9"/>
                                         <constraint firstItem="47w-Vy-rIM" firstAttribute="leading" secondItem="go9-1f-pC1" secondAttribute="trailing" constant="21" id="6AO-oD-q4s"/>
                                         <constraint firstItem="go9-1f-pC1" firstAttribute="leading" secondItem="Mrm-C7-hFd" secondAttribute="leading" constant="32" id="6kD-iH-0UO"/>
                                         <constraint firstAttribute="trailing" secondItem="47w-Vy-rIM" secondAttribute="trailing" constant="32" id="72P-O4-IXI"/>
@@ -1996,9 +1997,9 @@
                                         <constraint firstItem="DTc-Gl-ZO8" firstAttribute="leading" secondItem="Mrm-C7-hFd" secondAttribute="leading" constant="32" id="TSB-lx-I6R"/>
                                         <constraint firstAttribute="height" constant="329" id="U9K-b1-cm1"/>
                                         <constraint firstItem="sJk-Sx-StW" firstAttribute="leading" secondItem="Mrm-C7-hFd" secondAttribute="leading" id="XuB-VN-TuS"/>
-                                        <constraint firstItem="sJk-Sx-StW" firstAttribute="top" secondItem="1gp-ad-dyL" secondAttribute="bottom" constant="24" id="YVR-5x-Hcx"/>
+                                        <constraint firstItem="sJk-Sx-StW" firstAttribute="top" secondItem="1gp-ad-dyL" secondAttribute="bottom" constant="33" id="YVR-5x-Hcx"/>
                                         <constraint firstItem="y9e-Ez-f8O" firstAttribute="leading" secondItem="1gp-ad-dyL" secondAttribute="trailing" constant="8" id="cx3-d4-j6d"/>
-                                        <constraint firstItem="go9-1f-pC1" firstAttribute="top" secondItem="Mrm-C7-hFd" secondAttribute="top" constant="25" id="dxb-4m-52H"/>
+                                        <constraint firstItem="go9-1f-pC1" firstAttribute="top" secondItem="Mrm-C7-hFd" secondAttribute="top" constant="26" id="dxb-4m-52H"/>
                                         <constraint firstAttribute="trailing" secondItem="sJk-Sx-StW" secondAttribute="trailing" id="neC-fH-97l"/>
                                         <constraint firstItem="1gp-ad-dyL" firstAttribute="leading" secondItem="DTc-Gl-ZO8" secondAttribute="trailing" constant="2" id="ocu-xx-QaH"/>
                                         <constraint firstItem="y9e-Ez-f8O" firstAttribute="centerY" secondItem="1gp-ad-dyL" secondAttribute="centerY" id="quc-pL-ZZB"/>
@@ -2015,7 +2016,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lz-Av-JId" userLabel="Item View" customClass="HomePostView" customModule="papao_ios" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="70" width="107.5" height="164"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="64f-Zi-7oM">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="64f-Zi-7oM">
                                                             <rect key="frame" x="0.0" y="0.0" width="107.5" height="108"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="믹스견" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtS-ai-YNB">
@@ -2128,7 +2129,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yh-Xw-Wmc" userLabel="Item View" customClass="HomePostView" customModule="papao_ios" customModuleProvider="target">
                                                     <rect key="frame" x="252.5" y="70" width="107.5" height="164"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ok-tH-Rqh">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ok-tH-Rqh">
                                                             <rect key="frame" x="0.0" y="0.0" width="107.5" height="108"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="믹스견" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHV-Ki-eHM">
@@ -2218,7 +2219,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9I-Jm-wuJ" userLabel="Item View" customClass="HomePostView" customModule="papao_ios" customModuleProvider="target">
                                                     <rect key="frame" x="133.5" y="70" width="108" height="164"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="scL-23-wre">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="scL-23-wre">
                                                             <rect key="frame" x="0.0" y="0.0" width="108" height="108"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="믹스견" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPc-uJ-mHT">
@@ -2778,7 +2779,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="aYH-uE-ZMi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TaB-Pe-tml" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="보호소" id="ZcN-vj-OkA"/>
+                    <tabBarItem key="tabBarItem" title="보호소" image="iconShelter" id="ZcN-vj-OkA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wl7-QP-npm">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -3114,6 +3115,7 @@ open API 플랫폼입니다.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="emptyView" destination="gIi-Ze-3Zk" id="rSZ-1L-iFX"/>
+                        <outlet property="filterBarButtonItem" destination="a6M-Q1-DAn" id="WiJ-zD-uTh"/>
                         <outlet property="tableView" destination="e98-bE-YWX" id="hNP-OX-guf"/>
                         <outlet property="writeButton" destination="peA-IV-w82" id="RMl-WT-qgb"/>
                         <outlet property="writeProtectionButton" destination="loO-TY-TdA" id="67Q-gU-vei"/>
@@ -4346,6 +4348,7 @@ open API 플랫폼입니다.</string>
                     </view>
                     <navigationItem key="navigationItem" title="미리보기" id="lRA-hF-1fm">
                         <barButtonItem key="rightBarButtonItem" title="게시" id="RmU-iw-roH">
+                            <color key="tintColor" name="warmPink"/>
                             <connections>
                                 <action selector="registerReport:" destination="2lW-gF-8ij" id="O3O-Kb-VqH"/>
                             </connections>
@@ -4698,6 +4701,7 @@ open API 플랫폼입니다.</string>
                     </view>
                     <navigationItem key="navigationItem" title="필터" id="0y5-xk-Dwt">
                         <barButtonItem key="rightBarButtonItem" title="적용" id="KI0-Pg-zH8">
+                            <color key="tintColor" name="warmPink"/>
                             <connections>
                                 <segue destination="hbV-21-4TA" kind="unwind" unwindAction="unwindToPostViewControllerWithSegue:" id="zSk-yd-3pu"/>
                             </connections>
@@ -4916,6 +4920,7 @@ open API 플랫폼입니다.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="emptyView" destination="SaB-AG-ceb" id="VAu-IF-Ysd"/>
+                        <outlet property="filterBarButtonItem" destination="poq-LF-7oi" id="Zbh-1I-Lgb"/>
                         <outlet property="tableView" destination="l3e-8s-zn3" id="5t2-qZ-dTu"/>
                         <segue destination="9Kx-qY-ef7" kind="show" identifier="PostDetailSegue" id="iuM-cw-uXR"/>
                     </connections>
@@ -4969,7 +4974,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="1Ci-MK-2D0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="40W-xx-EqJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="제보" id="CVZ-2x-PxY"/>
+                    <tabBarItem key="tabBarItem" title="제보" image="iconReport" id="CVZ-2x-PxY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cfx-g5-Fqt">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -4988,7 +4993,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="BOu-9a-vLF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HNg-48-auV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" id="Xfl-a4-Xi2"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="iconHome" id="Xfl-a4-Xi2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hkT-GD-xxn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -5007,7 +5012,7 @@ open API 플랫폼입니다.</string>
         <scene sceneID="lzL-Je-TV9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B2J-SQ-NgE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="실종" id="Fi0-1B-waJ"/>
+                    <tabBarItem key="tabBarItem" title="실종" image="iconLost2" id="Fi0-1B-waJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNq-jF-Y2d">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -5050,11 +5055,15 @@ open API 플랫폼입니다.</string>
         <image name="iconCommentsMain" width="12" height="12"/>
         <image name="iconFilterBlack" width="24" height="24"/>
         <image name="iconGo" width="19" height="12"/>
+        <image name="iconHome" width="27" height="27"/>
+        <image name="iconLost2" width="27" height="27"/>
         <image name="iconMypage2" width="24" height="24"/>
         <image name="iconNoticeDefault" width="24" height="24"/>
         <image name="iconOption" width="13" height="3"/>
         <image name="iconPointer" width="17" height="12"/>
+        <image name="iconReport" width="27" height="27"/>
         <image name="iconShare" width="17" height="20"/>
+        <image name="iconShelter" width="27" height="27"/>
         <image name="iconView" width="20" height="14"/>
         <image name="iconViewDetail" width="19" height="14"/>
         <image name="iconViewMain" width="16" height="11"/>
@@ -5094,7 +5103,7 @@ open API 플랫폼입니다.</string>
             <color red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="warmPink">
-            <color red="0.98799997569999998" green="0.30599999430000002" blue="0.45899999139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.98799997568130493" green="0.3059999942779541" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

@@ -26,11 +26,20 @@ class NotificationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNavigationSetting()
         
         userId = AccountManager.sharedInstance.getLoggedUser()?.id
         loadNotificationHistory()
     }
     
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+
     func setPullToRefresh() {
         if #available(iOS 10.0, *) {
             let refreshControl = UIRefreshControl()
