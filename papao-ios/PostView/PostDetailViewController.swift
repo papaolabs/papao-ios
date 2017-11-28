@@ -202,10 +202,18 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.parentViewController = self
             return cell
         case PostDetailSection.description.hashValue:
-            let cell: PostDetailTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailTextCell",
-                                                                                    for: indexPath) as! PostDetailTextTableViewCell
-            cell.setPostDetail(postDetail)
-            return cell
+            if postDetail?.postType == .SYSTEM {
+                // 보호소일 때만
+                let cell: PostDetailTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailTextCell",
+                                                                                      for: indexPath) as! PostDetailTextTableViewCell
+                cell.setPostDetail(postDetail)
+                return cell
+            } else {
+                let cell: PostDetailReportTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailReportTextCell",
+                                                                                      for: indexPath) as! PostDetailReportTextTableViewCell
+                cell.setPostDetail(postDetail)
+                return cell
+            }
         case PostDetailSection.comment.hashValue:
             let cell: PostDetailCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailCommentCell",
                                                                               for: indexPath) as! PostDetailCommentTableViewCell

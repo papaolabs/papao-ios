@@ -31,6 +31,7 @@
 		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
 		4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */; };
 		4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E579E7E1FB47E22002E5404 /* PostRequest.swift */; };
+		4E5847AF1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5847AE1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift */; };
 		4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */; };
 		4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */; };
 		4E63D42D1FC13EAB00F61446 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63D42C1FC13EAB00F61446 /* Comment.swift */; };
@@ -135,6 +136,7 @@
 		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
 		4E579E7E1FB47E22002E5404 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		4E5847AE1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailReportTextTableViewCell.swift; sourceTree = "<group>"; };
 		4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTableViewController.swift; sourceTree = "<group>"; };
 		4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTypePostTableViewCell.swift; sourceTree = "<group>"; };
 		4E63D42C1FC13EAB00F61446 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */,
 				4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */,
 				4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */,
+				4E5847AE1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift */,
 				4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */,
 				4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */,
 				4E63D42E1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift */,
@@ -680,6 +683,7 @@
 				4E26919A1FCD2F9300F77119 /* UIColor+PPAdditions.swift in Sources */,
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
 				4E36059D1FC85D5A00748989 /* ImageResponse.swift in Sources */,
+				4E5847AF1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift in Sources */,
 				4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */,
 				4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
