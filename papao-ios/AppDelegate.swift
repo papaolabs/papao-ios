@@ -206,19 +206,23 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let postIdString = userInfo["postId"] as? String,
             let postId = Int(postIdString),
             let messageType = MessageType(rawValue: type) {
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarController = (window?.rootViewController as? UITabBarController)
+            tabBarController?.selectedIndex = 0
+
             switch messageType {
             case .alarm, .post:
-                if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController {
+                if let navigationController = tabBarController?.selectedViewController as? UINavigationController,
+                    let previewViewController = storyboard.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController {
                     previewViewController.postId = Int(postId)
-                    let navigationViewController = UINavigationController(rootViewController: previewViewController)
-                    window?.rootViewController?.present(navigationViewController, animated: true, completion: nil)
+                    navigationController.pushViewController(previewViewController, animated: true)
                 }
             case .search:
-                if let imageSearchTableViewController = storyboard.instantiateViewController(withIdentifier: "ImageSearchTable") as? ImageSearchTableViewController {
+                if let navigationController = tabBarController?.selectedViewController as? UINavigationController,
+                    let imageSearchTableViewController = storyboard.instantiateViewController(withIdentifier: "ImageSearchTable") as? ImageSearchTableViewController {
                     imageSearchTableViewController.postId = Int(postId)
-                    let navigationViewController = UINavigationController(rootViewController: imageSearchTableViewController)
-                    window?.rootViewController?.present(navigationViewController, animated: true, completion: nil)
+                    navigationController.pushViewController(imageSearchTableViewController, animated: true)
                 }
                 break
             }
