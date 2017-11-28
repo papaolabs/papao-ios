@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2375,6 +2376,7 @@
                     <size key="freeformSize" width="375" height="705"/>
                     <connections>
                         <outlet property="horizontalScrollView" destination="sJk-Sx-StW" id="cOh-nO-gI1"/>
+                        <outlet property="notificationBarButtonItem" destination="DcQ-gU-HEe" id="WYY-K9-yn2"/>
                         <outlet property="tableView" destination="Ua9-bS-2Fp" id="Krj-Jx-Xhx"/>
                         <outlet property="updateCountLabel" destination="DTc-Gl-ZO8" id="QKd-HT-n57"/>
                     </connections>
@@ -5051,7 +5053,7 @@ open API 플랫폼입니다.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6Ah-ec-oni"/>
-        <segue reference="iuM-cw-uXR"/>
+        <segue reference="gFm-Sh-ara"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>

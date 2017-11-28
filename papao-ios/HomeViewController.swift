@@ -15,7 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var updateCountLabel: UILabel!
     @IBOutlet var horizontalScrollView: ASHorizontalScrollView!
-
+    @IBOutlet weak var notificationBarButtonItem: UIBarButtonItem!
+    
     var adoptionInfoView: UIView?
     var euthanasiaInfoView: UIView?
     var naturalDeathInfoView: UIView?
@@ -49,6 +50,13 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setNavigationSetting()
+        
+        // 뱃지 카운트 한개 이상일 때 버튼이미지 변경
+        if UIApplication.shared.applicationIconBadgeNumber > 0 {
+            notificationBarButtonItem.image = UIImage.init(named: "iconNoticePush")
+        } else {
+            notificationBarButtonItem.image = UIImage.init(named: "iconNoticeDefault")
+        }
     }
     
     func setNavigationSetting() {
