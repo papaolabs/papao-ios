@@ -4581,6 +4581,7 @@ open API 플랫폼입니다.</string>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="UJJ-Z4-iqc">
                                                 <rect key="frame" x="32" y="531" width="311" height="29"/>
                                                 <segments>
+                                                    <segment title="오늘"/>
                                                     <segment title="1주"/>
                                                     <segment title="2주"/>
                                                     <segment title="1개월"/>

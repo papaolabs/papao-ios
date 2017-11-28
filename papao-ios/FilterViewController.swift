@@ -155,22 +155,28 @@ class FilterViewController: UIViewController {
 
         switch sender.selectedSegmentIndex {
         case 0:
+            let today = Date()
+            filter?.beginDate = today
+            filter?.endDate = today
+            beginDateTextField.text = formatter.string(from: today)
+            endDateTextField.text = formatter.string(from: today)
+        case 1:
             let lastWeek = Calendar.current.date(byAdding: .weekday, value: -7, to: Date())
             filter?.beginDate = lastWeek
             beginDateTextField.text = formatter.string(from: lastWeek!)
-        case 1:
+        case 2:
             let twoWeeksAgo = Calendar.current.date(byAdding: .weekday, value: -14, to: Date())
             filter?.beginDate = twoWeeksAgo
             beginDateTextField.text = formatter.string(from: twoWeeksAgo!)
-        case 2:
+        case 3:
             let lastMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
             filter?.beginDate = lastMonth
             beginDateTextField.text = formatter.string(from: lastMonth!)
-        case 3:
+        case 4:
             let lastThreeMonth = Calendar.current.date(byAdding: .month, value: -3, to: Date())
             filter?.beginDate = lastThreeMonth
             beginDateTextField.text = formatter.string(from: lastThreeMonth!)
-        case 4:
+        case 5:
             let wholePeriod = Calendar.current.date(byAdding: .year, value: -10, to: Date())
             filter?.beginDate = wholePeriod
             beginDateTextField.text = formatter.string(from: wholePeriod!)
