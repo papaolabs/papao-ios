@@ -772,7 +772,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mvw-wa-Y7Q" userLabel="Content View">
                                                             <rect key="frame" x="8" y="0.0" width="359" height="420.5"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lK9-RK-crW">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lK9-RK-crW">
                                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="358.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="lK9-RK-crW" secondAttribute="height" multiplier="1:1" id="fHI-eF-hnS"/>
