@@ -270,13 +270,17 @@ final class HttpHelper {
         }
     }
     
-    func registerBookmark(postId: String, userId: String, completion: @escaping (ApiResult<Bool>) -> Void) {
+    func registerBookmark(postId: String, userId: String, completion: @escaping (ApiResult<CUDResult>) -> Void) {
         let router = Router.registerBookmark(postId: postId, userId: userId)
         if let url = router.urlRequest?.url {
             manager.request(url, method:router.method, parameters: [:], encoding: userId).responseJSON { response in
                 if let value = response.result.value {
                     let json = JSON(value)
-                    completion(ApiResult{ return json.boolValue })
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }
@@ -284,13 +288,17 @@ final class HttpHelper {
         }
     }
     
-    func cancelBookmark(postId: String, userId: String, completion: @escaping (ApiResult<Bool>) -> Void) {
+    func cancelBookmark(postId: String, userId: String, completion: @escaping (ApiResult<CUDResult>) -> Void) {
         let router = Router.cancelBookmark(postId: postId, userId: userId)
         if let url = router.urlRequest?.url {
             manager.request(url, method:router.method, parameters: [:], encoding: userId).responseJSON { response in
                 if let value = response.result.value {
                     let json = JSON(value)
-                    completion(ApiResult{ return json.boolValue })
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
                 } else {
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
                 }

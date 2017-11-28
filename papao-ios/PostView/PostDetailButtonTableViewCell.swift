@@ -47,6 +47,7 @@ class PostDetailButtonTableViewCell: UITableViewCell {
         api.checkBookmark(postId: "\(postId)", parameter: ["userId": userId]) { (result) in
             do {
                 let isBookmarked = try result.unwrap()
+                
                 self.bookmarkButton.bookmarked = isBookmarked
             } catch {
                 print(error)
@@ -66,19 +67,43 @@ class PostDetailButtonTableViewCell: UITableViewCell {
     }
     
     func toggleBookmarkState(postId: Int, userId: String, willBookmark: Bool) {
-        let completionCallback: (ApiResult<Bool>) -> (Void) = { (result) in
-            do {
-                let isBookmarked = try result.unwrap()
-                self.bookmarkButton.bookmarked = isBookmarked
-                self.loadBookmarkCount(postId: postId)
-            } catch {
-                print(error)
-            }
-        }
         if willBookmark {
-            api.registerBookmark(postId: "\(postId)", userId: userId, completion: completionCallback)
+            api.registerBookmark(postId: "\(postId)", userId: userId) { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    switch cudResult.rawValue {
+                    case let code where code > 0:
+                        self.bookmarkButton.bookmarked = true
+                        self.loadBookmarkCount(postId: postId)
+
+                    default:
+                        self.alert(message: "북마크 등록에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                    self.alert(message: "북마크 등록에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                    })
+                }
+            }
         } else {
-            api.cancelBookmark(postId: "\(postId)", userId: userId, completion: completionCallback)
+            api.cancelBookmark(postId: "\(postId)", userId: userId) { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    switch cudResult.rawValue {
+                    case let code where code > 0:
+                        self.bookmarkButton.bookmarked = false
+                        self.loadBookmarkCount(postId: postId)
+                    default:
+                        self.alert(message: "북마크 취소에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                    self.alert(message: "북마크 취소에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                    })
+                }
+            }
         }
     }
 

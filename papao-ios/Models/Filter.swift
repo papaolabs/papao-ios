@@ -60,7 +60,7 @@ struct Filter {
             dict["sidoCode"] = "\(sido.code)" as AnyObject
         }
         if let gungu = gungu {
-            dict["gungu"] = "\(gungu.code)" as AnyObject
+            dict["gunguCode"] = "\(gungu.code)" as AnyObject
         }
         if let userId = userId {
             dict["userId"] = "\(userId)" as AnyObject

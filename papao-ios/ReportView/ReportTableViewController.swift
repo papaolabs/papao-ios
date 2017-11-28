@@ -89,9 +89,8 @@ class ReportTableViewController: UIViewController {
     }
     
     @objc private func refreshOptions(sender: UIRefreshControl) {
-        // index 초기화
-        filter.index = "0"
         // 데이터 새로고침
+        clearPostData()
         loadPostData()
         sender.endRefreshing()
     }
@@ -135,6 +134,13 @@ class ReportTableViewController: UIViewController {
         }
     }
     
+    fileprivate func clearPostData() {
+        // index 초기화
+        filter.index = "0"
+        postResponse = nil
+        tableView.reloadData()
+    }
+
     @IBAction func writeButtonPressed(_ sender: Any) {
         guard AccountManager.sharedInstance.getLoggedUser() != nil else {
             alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
@@ -236,7 +242,11 @@ class ReportTableViewController: UIViewController {
     
     @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
+            // 새 필터 적용
             self.filter = filter
+            
+            // 데이터 초기화
+            clearPostData()
             
             // BarButtonItem 틴트 변경
             filterBarButtonItem.tintColor = UIColor.ppWarmPink

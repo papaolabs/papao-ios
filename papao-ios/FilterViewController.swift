@@ -86,6 +86,7 @@ class FilterViewController: UIViewController {
             }
             
             if let sido = filter.sido {
+                currentSido = sido
                 sidoButton.setTitle(sido.name, for: .normal)
             }
             if let gungu = filter.gungu {
@@ -154,22 +155,28 @@ class FilterViewController: UIViewController {
 
         switch sender.selectedSegmentIndex {
         case 0:
+            let today = Date()
+            filter?.beginDate = today
+            filter?.endDate = today
+            beginDateTextField.text = formatter.string(from: today)
+            endDateTextField.text = formatter.string(from: today)
+        case 1:
             let lastWeek = Calendar.current.date(byAdding: .weekday, value: -7, to: Date())
             filter?.beginDate = lastWeek
             beginDateTextField.text = formatter.string(from: lastWeek!)
-        case 1:
+        case 2:
             let twoWeeksAgo = Calendar.current.date(byAdding: .weekday, value: -14, to: Date())
             filter?.beginDate = twoWeeksAgo
             beginDateTextField.text = formatter.string(from: twoWeeksAgo!)
-        case 2:
+        case 3:
             let lastMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
             filter?.beginDate = lastMonth
             beginDateTextField.text = formatter.string(from: lastMonth!)
-        case 3:
+        case 4:
             let lastThreeMonth = Calendar.current.date(byAdding: .month, value: -3, to: Date())
             filter?.beginDate = lastThreeMonth
             beginDateTextField.text = formatter.string(from: lastThreeMonth!)
-        case 4:
+        case 5:
             let wholePeriod = Calendar.current.date(byAdding: .year, value: -10, to: Date())
             filter?.beginDate = wholePeriod
             beginDateTextField.text = formatter.string(from: wholePeriod!)
@@ -195,12 +202,13 @@ class FilterViewController: UIViewController {
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.ppWarmPink
         
-        //done button & cancel button
-        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneBeginDatePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelDatePicker))
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneBeginDatePicker))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
         
         beginDateTextField.inputAccessoryView = toolbar
         beginDateTextField.inputView = beginDatePicker
@@ -208,7 +216,7 @@ class FilterViewController: UIViewController {
     
     @objc func doneBeginDatePicker() {
         // 날짜 선택 세그먼트 선택 취소
-        dateSegment.isSelected = false
+        dateSegment.selectedSegmentIndex = UISegmentedControlNoSegment
         
         // For date formate
         let formatter = DateFormatter()
@@ -232,18 +240,22 @@ class FilterViewController: UIViewController {
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.ppWarmPink
         
-        //done button & cancel button
-        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneEndDatePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelDatePicker))
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneEndDatePicker))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
         
         endDateTextField.inputAccessoryView = toolbar
         endDateTextField.inputView = endDatePicker
     }
     
     @objc func doneEndDatePicker() {
+        // 날짜 선택 세그먼트 선택 취소
+        dateSegment.selectedSegmentIndex = UISegmentedControlNoSegment
+        
         //For date formate
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

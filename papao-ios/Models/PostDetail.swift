@@ -179,6 +179,11 @@ struct PostDetail {
     var createdDate: String?        // 등록 날짜
     var updatedDate: String?        // 수정 날짜
     
+    var noticeBeginDate: String?    // 공고 시작 날짜
+    var noticeEndDate: String?      // 공고 종료 날짜
+    var deadlineDay: Int?           // 남은 날짜 수
+    var userId: String?             // 글쓴이 ID
+    
     init?(json: [String: Any]) {
         guard let upKindName = json["upKindName"] as? String,
             let imageUrls = json["imageUrls"] as? [[String: Any]],
@@ -195,7 +200,9 @@ struct PostDetail {
         self.happenDate = happenDate
         self.happenPlace = happenPlace
         self.id = Int(id)
-        self.desertionId = json["desertionId"] as? String
+        if let desertionId = json["desertionId"] as? String, desertionId != "-1" {
+            self.desertionId = desertionId
+        }
 
         if let stateType = json["stateType"] as? String {
             self.stateType = State(rawValue: stateType) ?? State.PROCESS
@@ -253,6 +260,11 @@ struct PostDetail {
         
         self.createdDate = json["createdDate"] as? String
         self.updatedDate = json["updatedDate"] as? String
+        
+        self.noticeBeginDate = json["noticeBeginDate"] as? String
+        self.noticeEndDate = json["noticeEndDate"] as? String
+        self.deadlineDay = json["deadlineDay"] as? Int
+        self.userId = json["userId"] as? String
     }
 }
 

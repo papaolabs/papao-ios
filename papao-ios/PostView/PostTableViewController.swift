@@ -53,9 +53,8 @@ class PostTableViewController: UIViewController {
     }
     
     @objc private func refreshOptions(sender: UIRefreshControl) {
-        // index 초기화
-        filter.index = "0"
         // 데이터 새로고침
+        clearPostData()
         loadPostData()
         sender.endRefreshing()
     }
@@ -99,6 +98,13 @@ class PostTableViewController: UIViewController {
         }
     }
     
+    fileprivate func clearPostData() {
+        // index 초기화
+        filter.index = "0"
+        postResponse = nil
+        tableView.reloadData()
+    }
+    
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FilterSegue" {
@@ -111,7 +117,11 @@ class PostTableViewController: UIViewController {
     
     @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
+            // 새 필터 적용
             self.filter = filter
+            
+            // 데이터 초기화
+            clearPostData()
             
             // BarButtonItem 틴트 변경
             filterBarButtonItem.tintColor = UIColor.ppWarmPink

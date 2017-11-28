@@ -28,6 +28,9 @@ class NotificationViewController: UIViewController {
         super.viewWillAppear(animated)
         setNavigationSetting()
         
+        // 알림 페이지 진입 시 뱃지 삭제
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         userId = AccountManager.sharedInstance.getLoggedUser()?.id
         loadNotificationHistory()
     }

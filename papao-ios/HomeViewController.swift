@@ -15,6 +15,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var updateCountLabel: UILabel!
     @IBOutlet var horizontalScrollView: ASHorizontalScrollView!
+    @IBOutlet weak var notificationBarButtonItem: UIBarButtonItem!
+    
+    var adoptionInfoView: UIView?
+    var euthanasiaInfoView: UIView?
+    var naturalDeathInfoView: UIView?
+    var returnPetInfoView: UIView?
 
     let api = HttpHelper.init()
 
@@ -44,6 +50,13 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setNavigationSetting()
+        
+        // 뱃지 카운트 한개 이상일 때 버튼이미지 변경
+        if UIApplication.shared.applicationIconBadgeNumber > 0 {
+            notificationBarButtonItem.image = UIImage.init(named: "iconNoticePush")
+        } else {
+            notificationBarButtonItem.image = UIImage.init(named: "iconNoticeDefault")
+        }
     }
     
     func setNavigationSetting() {
@@ -67,6 +80,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func refreshOptions(sender: UIRefreshControl) {
+        let _ = horizontalScrollView.removeAllItems()
         loadStat()
         loadTodayStat()
         loadPosts(postType: .SYSTEM)
@@ -115,13 +129,7 @@ class HomeViewController: UIViewController {
         api.readPosts(filter: filter, completion: { (result) in
             do {
                 let postResponse = try result.unwrap()
-                let sortedPosts = postResponse.elements.sorted(by: { (post1, post2) -> Bool in
-                    if let post1 = post1?.hitCount, let post2 = post2?.hitCount {
-                        return post1 >= post2
-                    } else {
-                        return true
-                    }
-                }).flatMap{ $0 }
+                let sortedPosts = postResponse.elements.flatMap{ $0 }
                 // assign posts to dictionary
                 self.postSeries[postType.rawValue] = sortedPosts  // 3개 이하인 경우처리?
                 // reload table
@@ -137,7 +145,7 @@ class HomeViewController: UIViewController {
         let euthanasiaRate = statistics.getRate(statisticsType: .euthanasia)
         let naturalDeathRate = statistics.getRate(statisticsType: .naturalDeath)
         let returnRate = statistics.getRate(statisticsType: .returnPet)
-        
+
         let adoptionInfoView = infoView(statisticsType: .adoption, rate: adoptionRate, updateDate: statistics.endDate)
         horizontalScrollView.addItem(adoptionInfoView)
         let euthanasiaInfoView = infoView(statisticsType: .euthanasia, rate: euthanasiaRate, updateDate: statistics.endDate)
