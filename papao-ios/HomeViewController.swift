@@ -121,13 +121,7 @@ class HomeViewController: UIViewController {
         api.readPosts(filter: filter, completion: { (result) in
             do {
                 let postResponse = try result.unwrap()
-                let sortedPosts = postResponse.elements.sorted(by: { (post1, post2) -> Bool in
-                    if let post1 = post1?.hitCount, let post2 = post2?.hitCount {
-                        return post1 >= post2
-                    } else {
-                        return true
-                    }
-                }).flatMap{ $0 }
+                let sortedPosts = postResponse.elements.flatMap{ $0 }
                 // assign posts to dictionary
                 self.postSeries[postType.rawValue] = sortedPosts  // 3개 이하인 경우처리?
                 // reload table
