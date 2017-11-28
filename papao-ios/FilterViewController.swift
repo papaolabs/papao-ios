@@ -86,6 +86,7 @@ class FilterViewController: UIViewController {
             }
             
             if let sido = filter.sido {
+                currentSido = sido
                 sidoButton.setTitle(sido.name, for: .normal)
             }
             if let gungu = filter.gungu {
