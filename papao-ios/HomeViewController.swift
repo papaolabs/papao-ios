@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
         setPullToRefresh()
         
         // initialize scrollView

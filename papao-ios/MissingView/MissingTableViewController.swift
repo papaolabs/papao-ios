@@ -21,7 +21,7 @@ class MissingTableViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        tableView.backgroundView = emptyView
+        tableView.tableFooterView = UIView()
         setPullToRefresh()
         
         loadPostData()
@@ -137,9 +137,11 @@ extension MissingTableViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = postResponse?.elements.count, count > 0 else {
             tableView.separatorStyle = .none
+            tableView.backgroundView = emptyView
             return 0
         }
         tableView.separatorStyle = .singleLine
+        tableView.backgroundView = nil
         return count
     }
     

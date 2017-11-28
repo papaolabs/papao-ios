@@ -20,7 +20,7 @@ class MyPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundView = emptyView
+        tableView.tableFooterView = UIView()
         setPullToRefresh()
     }
     
@@ -96,9 +96,11 @@ extension MyPostViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = postResponse?.elements.count, count > 0 else {
             tableView.separatorStyle = .none
+            tableView.backgroundView = emptyView
             return 0
         }
         tableView.separatorStyle = .singleLine
+        tableView.backgroundView = nil
         return count
     }
     

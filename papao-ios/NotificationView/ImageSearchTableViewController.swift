@@ -23,7 +23,7 @@ class ImageSearchTableViewController: UIViewController {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: UIBarButtonItemStyle.plain, target: self, action: #selector(close))
         }
         
-        tableView.backgroundView = emptyView
+        tableView.tableFooterView = UIView()
         setPullToRefresh()
     }
     
@@ -74,9 +74,11 @@ extension ImageSearchTableViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = postResponse?.elements.count, count > 0 else {
             tableView.separatorStyle = .none
+            tableView.backgroundView = emptyView
             return 0
         }
         tableView.separatorStyle = .singleLine
+        tableView.backgroundView = nil
         return count
     }
     
