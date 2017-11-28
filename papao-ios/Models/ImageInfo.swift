@@ -2,7 +2,7 @@
 //  ImageInfo.swift
 //  papao-ios
 //
-//  Created by 1002719 on 2017. 10. 23..
+//  Created by closer27 on 2017. 10. 23..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 

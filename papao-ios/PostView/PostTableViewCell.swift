@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell {
     func setPost(post: Post) {
         kindLabel.text = post.kindName
         genderLabel.text = post.genderType.description
-        happenDateLabel.text = post.happenDate
+        happenDateLabel.text = post.noticeBeginDate
         happenPlaceLabel.text = post.happenPlace
         viewCountLabel.text = String(describing:post.hitCount ?? 0)
         commentCountLabel.text = String(describing:post.commentCount ?? 0)
@@ -41,18 +41,6 @@ class PostTableViewCell: UITableViewCell {
             if let urlString = post.imageUrls[0]["url"] as? String, let url = URL(string: urlString) {
                 let placeholderImage = UIImage(named: "placeholder")!
                 postImageView.sd_setImage(with: url, placeholderImage: placeholderImage)
-                
-//                Alamofire.request(url).responseImage { response in
-//                    if let data = response.result.value {
-//                        DispatchQueue.main.async(execute: {() -> Void in
-//                            let image = UIImage(data: data)
-//                            self.postImageView.image = image
-//                        })
-//                    }
-//                    if let image = response.result.value {
-//                        self.postImageView.image = image
-//                    }
-//                }
             }
         }
         

@@ -24,6 +24,7 @@ struct Post {
     var hitCount: Int?              // 조회수
     var createdDate: String?        // 등록 날짜
     var updatedDate: String?        // 수정 날짜
+    var noticeBeginDate: String?    // 공고 시작 날짜
     
     init?(json: [String: Any]) {
         guard let imageUrls = json["imageUrls"] as? [[String: Any]],
@@ -70,5 +71,6 @@ struct Post {
         
         self.createdDate = json["createdDate"] as? String
         self.updatedDate = json["updatedDate"] as? String
+        self.noticeBeginDate = json["noticeBeginDate"] as? String
     }
 }
