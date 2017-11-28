@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'papao-ios' do
   pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'SDWebImage', '~> 4.2'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'GoogleMaps', '~> 2.4'

@@ -11,6 +11,7 @@ import CoreData
 import GoogleMaps
 import UserNotifications
 import AccountKit
+import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // register push
         registerPushNotification(application)
+        
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        NetworkActivityIndicatorManager.shared.startDelay = 1.0
+        NetworkActivityIndicatorManager.shared.completionDelay = 0.2
+
 
         return true
     }
