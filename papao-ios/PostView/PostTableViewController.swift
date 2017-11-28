@@ -34,8 +34,8 @@ class PostTableViewController: UIViewController {
     
     func setNavigationSetting() {
         self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.tintColor = UIColor.ppTextBlack
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.ppTextBlack]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .default
     }
@@ -114,7 +114,7 @@ class PostTableViewController: UIViewController {
             self.filter = filter
             
             // BarButtonItem 틴트 변경
-            filterBarButtonItem.tintColor = UIColor.init(named: "warmPink")
+            filterBarButtonItem.tintColor = UIColor.ppWarmPink
             
             // filter 적용 후 데이터 다시 로드
             loadPostData()

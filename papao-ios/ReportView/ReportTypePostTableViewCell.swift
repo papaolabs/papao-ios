@@ -15,7 +15,7 @@ class ReportTypePostTableViewCell: PostTableViewCell {
         super.setPost(post: post)
         
         // PostType badge
-        postTypeBadge.setStyle(type: .small, backgroundColor: UIColor.init(named: "placeholderGray"), titleColor: UIColor.init(named: "textBlack"))
+        postTypeBadge.setStyle(type: .small, backgroundColor: UIColor.ppPlaceholderGray, titleColor: UIColor.ppTextBlack)
         postTypeBadge.setTitle(post.postType.description, for: .normal)
     }
 

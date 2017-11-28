@@ -162,10 +162,8 @@ enum Router: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .readPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
-             .readComments(_), .createComment(_, _), .setStatus(_), .profile(_):
-            urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .createPost(let parameters), .join(let parameters), .setPush(let parameters):
+        case .readPost(_), .createPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
+             .readComments(_), .createComment(_, _), .setStatus(_), .join(_), .setPush(_), .profile(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .readPostsByPage(let parameters), .readBookmarkByUserId(_, let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters), .getPushHistory(_, let parameters):
             urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
@@ -466,7 +464,7 @@ final class HttpHelper {
                         }
                     }
                 case .failure(let encodingError):
-//                    print(encodingError)
+                    print(encodingError)
                     completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Encoding Error"])))
                 }
             })

@@ -348,7 +348,7 @@ extension FilterViewController: PPOPickerDelegate {
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
-        toolbar.tintColor = UIColor.init(named: "warmPink")!
+        toolbar.tintColor = UIColor.ppWarmPink
         
         let cancelButton = UIBarButtonItem(title: "초기화", style: .plain, target: self, action: #selector(pickerCancelAction))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)

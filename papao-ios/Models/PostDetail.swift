@@ -74,13 +74,13 @@ enum State: String {
         case .PROCESS:
             return nil
         case .RETURN:
-            return UIColor.init(named: "dodgerBlue")
+            return UIColor.ppDodgerBlue
         case .NATURALDEATH:
-            return UIColor.init(named: "pinkishGrey")
+            return UIColor.ppPinkishGrey
         case .EUTHANASIA:
-            return UIColor.init(named: "borderGray")
+            return UIColor.ppBorderGray
         case .ADOPTION:
-            return UIColor.init(named: "warmPink")
+            return UIColor.ppWarmPink
         }
     }
     

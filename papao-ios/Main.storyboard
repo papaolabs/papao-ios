@@ -201,7 +201,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="보호소" id="jWl-a8-62c">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" image="iconFilterBlack" id="TPY-9v-4cJ">
+                        <barButtonItem key="rightBarButtonItem" image="iconFilterBlack" id="TPY-9v-4cJ">
                             <connections>
                                 <segue destination="XkD-I4-wDF" kind="show" identifier="FilterSegue" id="jQc-9Y-PAu"/>
                             </connections>
@@ -2354,18 +2354,18 @@
                         <viewLayoutGuide key="safeArea" id="wPT-ph-7EP"/>
                     </view>
                     <navigationItem key="navigationItem" title="papao" id="7Op-Sf-lli">
-                        <barButtonItem key="leftBarButtonItem" title="mypage" image="iconMypage2" id="o2J-MJ-2vQ">
+                        <barButtonItem key="leftBarButtonItem" image="iconMypage2" id="o2J-MJ-2vQ">
                             <connections>
                                 <segue destination="Dng-dt-6Bo" kind="show" id="LD4-zY-fOM"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Notification" image="iconNoticeDefault" id="DcQ-gU-HEe">
+                            <barButtonItem image="iconNoticeDefault" id="DcQ-gU-HEe">
                                 <connections>
                                     <segue destination="A4K-rz-oCB" kind="show" id="OGy-NA-POw"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="bookmark" image="iconBookmarkDetail" id="OsK-Mb-87l">
+                            <barButtonItem image="iconBookmarkDetail" id="OsK-Mb-87l">
                                 <connections>
                                     <segue destination="O9a-2I-8YW" kind="show" id="LxG-wJ-UDP"/>
                                 </connections>
@@ -3107,7 +3107,7 @@ open API 플랫폼입니다.</string>
                         <viewLayoutGuide key="safeArea" id="E8a-TQ-otJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="제보" id="QAf-a9-Be6">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" image="iconFilterBlack" id="a6M-Q1-DAn">
+                        <barButtonItem key="rightBarButtonItem" image="iconFilterBlack" id="a6M-Q1-DAn">
                             <connections>
                                 <segue destination="XkD-I4-wDF" kind="show" identifier="FilterSegue" id="8mm-yr-yuE"/>
                             </connections>
@@ -4864,7 +4864,7 @@ open API 플랫폼입니다.</string>
                         <viewLayoutGuide key="safeArea" id="DaI-YM-p2o"/>
                     </view>
                     <navigationItem key="navigationItem" title="실종" id="zuW-7Q-ESM">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" image="iconFilterBlack" id="poq-LF-7oi">
+                        <barButtonItem key="rightBarButtonItem" image="iconFilterBlack" id="poq-LF-7oi">
                             <connections>
                                 <segue destination="XkD-I4-wDF" kind="show" identifier="FilterSegue" id="6Ah-ec-oni"/>
                             </connections>
@@ -5027,9 +5027,6 @@ open API 플랫폼입니다.</string>
         <namedColor name="backgroundGray">
             <color red="0.94900000100000004" green="0.94900000100000004" blue="0.94900000100000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="backgroundGray">
-            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="borderBlack">
             <color red="0.59200000760000004" green="0.59200000760000004" blue="0.59200000760000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -5053,8 +5050,8 @@ open API 플랫폼입니다.</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8mm-yr-yuE"/>
-        <segue reference="1zP-mk-Ehc"/>
+        <segue reference="6Ah-ec-oni"/>
+        <segue reference="iuM-cw-uXR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="warmPink"/>
 </document>

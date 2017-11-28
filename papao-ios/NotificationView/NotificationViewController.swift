@@ -34,8 +34,8 @@ class NotificationViewController: UIViewController {
     
     func setNavigationSetting() {
         self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.tintColor = UIColor.ppTextBlack
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.ppTextBlack]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .default
     }
