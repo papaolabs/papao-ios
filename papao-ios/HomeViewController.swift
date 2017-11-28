@@ -16,6 +16,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var updateCountLabel: UILabel!
     @IBOutlet var horizontalScrollView: ASHorizontalScrollView!
 
+    var adoptionInfoView: UIView?
+    var euthanasiaInfoView: UIView?
+    var naturalDeathInfoView: UIView?
+    var returnPetInfoView: UIView?
+
     let api = HttpHelper.init()
 
     var statistics: Statistics?
@@ -67,6 +72,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func refreshOptions(sender: UIRefreshControl) {
+        let _ = horizontalScrollView.removeAllItems()
         loadStat()
         loadTodayStat()
         loadPosts(postType: .SYSTEM)
@@ -137,7 +143,7 @@ class HomeViewController: UIViewController {
         let euthanasiaRate = statistics.getRate(statisticsType: .euthanasia)
         let naturalDeathRate = statistics.getRate(statisticsType: .naturalDeath)
         let returnRate = statistics.getRate(statisticsType: .returnPet)
-        
+
         let adoptionInfoView = infoView(statisticsType: .adoption, rate: adoptionRate, updateDate: statistics.endDate)
         horizontalScrollView.addItem(adoptionInfoView)
         let euthanasiaInfoView = infoView(statisticsType: .euthanasia, rate: euthanasiaRate, updateDate: statistics.endDate)
