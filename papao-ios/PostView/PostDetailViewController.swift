@@ -243,7 +243,7 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
         case PostDetailSection.image.rawValue:
             return 421
         case PostDetailSection.description.rawValue:
-            return 244
+            return UITableViewAutomaticDimension
         case PostDetailSection.commentContent.rawValue:
             return UITableViewAutomaticDimension
         case PostDetailSection.commentWriting.rawValue:
@@ -259,7 +259,7 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
         case PostDetailSection.image.rawValue:
             return 421
         case PostDetailSection.description.rawValue:
-            return 244
+            return UITableViewAutomaticDimension
         case PostDetailSection.commentContent.rawValue:
             return UITableViewAutomaticDimension
         case PostDetailSection.commentWriting.rawValue:
