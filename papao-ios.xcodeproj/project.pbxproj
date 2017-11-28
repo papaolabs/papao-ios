@@ -12,6 +12,7 @@
 		4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */; };
 		4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE421F9C620500E34203 /* ReportTableViewController.swift */; };
 		4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */; };
+		4E26919A1FCD2F9300F77119 /* UIColor+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */; };
 		4E291C841FCC374400EA9FF4 /* ImageSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E291C831FCC374400EA9FF4 /* ImageSearchTableViewController.swift */; };
 		4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */; };
 		4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */; };
@@ -115,6 +116,7 @@
 		4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DictionaryFromJson.swift"; sourceTree = "<group>"; };
 		4E21DE421F9C620500E34203 /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
+		4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+PPAdditions.swift"; sourceTree = "<group>"; };
 		4E291C831FCC374400EA9FF4 /* ImageSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchTableViewController.swift; sourceTree = "<group>"; };
 		4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageUploadViewController.swift; sourceTree = "<group>"; };
 		4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ruler.swift"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		4E326A851FA2049C006325B4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */,
 				4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */,
 				4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */,
 				4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */,
@@ -674,6 +677,7 @@
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E8CDB6E1FC93CEF00403E45 /* AccountManager.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
+				4E26919A1FCD2F9300F77119 /* UIColor+PPAdditions.swift in Sources */,
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
 				4E36059D1FC85D5A00748989 /* ImageResponse.swift in Sources */,
 				4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */,
@@ -879,6 +883,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E5KH6XGE5T;
 				INFOPLIST_FILE = "papao-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.papaolabs.papao-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -896,6 +901,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E5KH6XGE5T;
 				INFOPLIST_FILE = "papao-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.papaolabs.papao-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";

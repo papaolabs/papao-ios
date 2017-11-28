@@ -23,7 +23,7 @@ class MyPageViewController: UITableViewController {
         super.viewDidLoad()
         
         // initialize UI
-        profileImageView.setBorder(color: UIColor.init(named: "placeholderGray") ?? .gray, width: 3)
+        profileImageView.setBorder(color: UIColor.ppPlaceholderGray, width: 3)
         profileImageView.setRadius(radius: profileImageView.frame.width/2)
 
         // remove extra empty cells
@@ -43,8 +43,8 @@ class MyPageViewController: UITableViewController {
     
     func setNavigationSetting() {
         self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.tintColor = UIColor.ppTextBlack
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.ppTextBlack]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .default
     }

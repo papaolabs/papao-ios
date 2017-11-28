@@ -31,16 +31,16 @@ enum StatisticsType {
         }
     }
     
-    var chartColorString: (String, String) {
+    var chartColors: (UIColor, UIColor) {
         switch self {
         case .adoption:
-            return ("darkishPink", "lightPink")
+            return (.ppDarkishPink, .ppLightPink)
         case .euthanasia:
-            return ("darkSkyBlue", "babyBlue")
+            return (.ppDarkSkyBlue, .ppBabyBlue)
         case .naturalDeath:
-            return ("tangerineOrange", "eggShell")
+            return (.ppTangerineOrange, .ppEggShell)
         case .returnPet:
-            return ("barney", "lavenderPink")
+            return (.ppBarney, .ppLavenderPink)
         }
     }
     
@@ -49,13 +49,13 @@ enum StatisticsType {
         gradientLayer.frame = frame
         switch self {
         case .adoption:
-            gradientLayer.colors = [UIColor.init(named: "warmPinkTwo")!.cgColor, UIColor.init(named: "warmPink")!.cgColor]
+            gradientLayer.colors = [UIColor.ppWarmPinkTwo.cgColor, UIColor.ppWarmPink.cgColor]
         case .naturalDeath:
-            gradientLayer.colors = [UIColor.init(named: "lightGold")!.cgColor, UIColor.init(named: "pastelOrange")!.cgColor]
+            gradientLayer.colors = [UIColor.ppLightGold.cgColor, UIColor.ppPastelOrange.cgColor]
         case .euthanasia:
-            gradientLayer.colors = [UIColor.init(named: "carolinaBlue")!.cgColor, UIColor.init(named: "skyBlue")!.cgColor]
+            gradientLayer.colors = [UIColor.ppCarolinaBlue.cgColor, UIColor.ppSkyBlue.cgColor]
         case .returnPet:
-            gradientLayer.colors = [UIColor.init(named: "purplePink")!.cgColor, UIColor.init(named: "purpleyPink")!.cgColor]
+            gradientLayer.colors = [UIColor.ppPurplePink.cgColor, UIColor.ppPurpleyPink.cgColor]
         }
         return gradientLayer
     }

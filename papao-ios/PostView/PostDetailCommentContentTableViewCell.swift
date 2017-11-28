@@ -22,7 +22,7 @@ class PostDetailCommentContentTableViewCell: UITableViewCell {
     
     func initialize() {
         thumbnailImageView.setRadius(radius: thumbnailImageView.frame.size.width/2)
-        thumbnailImageView.setBorder(color: UIColor.init(named: "placeholderGray") ?? .gray, width: 0.4)
+        thumbnailImageView.setBorder(color: UIColor.ppPlaceholderGray, width: 0.4)
         // Todo: - placeholder image 설정
     }
     

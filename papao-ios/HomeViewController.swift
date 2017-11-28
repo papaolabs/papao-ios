@@ -47,9 +47,9 @@ class HomeViewController: UIViewController {
     }
     
     func setNavigationSetting() {
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(named: "backgroundGray")
-        self.navigationController?.navigationBar.tintColor = UIColor.init(named: "textBlack") ?? .black
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.init(named: "textBlack") ?? .black]
+        self.navigationController?.navigationBar.barTintColor = UIColor.ppBackgroundGray
+        self.navigationController?.navigationBar.tintColor = UIColor.ppTextBlack
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.ppTextBlack]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .default
     }
@@ -168,8 +168,8 @@ class HomeViewController: UIViewController {
         pieLayer.cornerRadius = 107/2
         pieLayer.masksToBounds = true
         pieLayer.frame = CGRect.init(x: 33, y: 46, width: 107, height: 107)
-        pieLayer.addValues([PieElement(value: Float(100-rate), color: UIColor.init(named: statisticsType.chartColorString.0) ?? UIColor.purple),
-                            PieElement(value: Float(rate), color: UIColor.init(named: statisticsType.chartColorString.1) ?? UIColor.magenta)], animated: true)
+        pieLayer.addValues([PieElement(value: Float(100-rate), color: statisticsType.chartColors.0),
+                            PieElement(value: Float(rate), color: statisticsType.chartColors.1)], animated: true)
         view.layer.addSublayer(pieLayer)
         
         let dateString = "최근 3개월 간"

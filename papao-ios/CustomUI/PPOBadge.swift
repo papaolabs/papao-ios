@@ -18,8 +18,8 @@ class PPOBadge: UIButton {
     
     override open var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? UIColor.init(named: "warmPink") : UIColor.clear
-            layer.borderColor = isSelected ? UIColor.init(named: "warmPink")?.cgColor : borderColor?.cgColor
+            backgroundColor = isSelected ? UIColor.ppWarmPink : UIColor.clear
+            layer.borderColor = isSelected ? UIColor.ppWarmPink.cgColor : borderColor?.cgColor
         }
         
     }
@@ -39,7 +39,7 @@ class PPOBadge: UIButton {
     func initialize() {
         // set other operations after super.init, if required
         layer.borderWidth = 1
-        layer.borderColor = UIColor.init(named: "textBlack")?.cgColor
+        layer.borderColor = UIColor.ppTextBlack.cgColor
 
         // blocking interactions
     }
@@ -65,8 +65,8 @@ class PPOBadge: UIButton {
             setBorder(color: backgroundColor)
             borderColor = color
         } else {
-            setBorder(color: UIColor.init(named: "borderGray") ?? .black)
-            borderColor = UIColor.init(named: "borderGray") ?? .black
+            setBorder(color: UIColor.ppBorderGray)
+            borderColor = UIColor.ppBorderGray
         }
     }
 }

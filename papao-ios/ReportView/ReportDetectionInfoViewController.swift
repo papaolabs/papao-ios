@@ -30,9 +30,9 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        mapView.setBorder(color: UIColor.ppBorderGray)
         mapView.setRadius(radius: 2)
-        featureTextView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        featureTextView.setBorder(color: UIColor.ppBorderGray)
         featureTextView.setRadius(radius: 2)
         
         locationManager = CLLocationManager()
@@ -217,7 +217,6 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
                 
                 // pass data to next viewController
                 viewController.post = post
-                print("AnimalInfo \(post)")
             }
         }
     }

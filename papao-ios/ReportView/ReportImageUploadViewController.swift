@@ -30,7 +30,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(named: "warmPink")
+        self.navigationController?.navigationBar.barTintColor = UIColor.ppWarmPink
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.isTranslucent = false
@@ -63,7 +63,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         imageScrollView.alwaysBounceHorizontal = true
         imageScrollView.isPagingEnabled = true
         imageScrollView.delegate = self
-        imageScrollView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        imageScrollView.setBorder(color: UIColor.ppBorderGray)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uploadImagesPressed))
         imageScrollView.addGestureRecognizer(tapGestureRecognizer)
         imageScrollView.isUserInteractionEnabled = true
