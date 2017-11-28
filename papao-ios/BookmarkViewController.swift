@@ -146,7 +146,10 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let count = postResponse?.elements.count, indexPath.row == count - 1 {
+        // 현재 로딩 된 포스트의 총 개수가 포스트 총 개수보다 작고, 마지막 직전 셀이 노출 될 예정인 경우 다음 페이지 로딩
+        if let postResponse = postResponse,
+            postResponse.totalElements > postResponse.elements.count,
+            indexPath.row == postResponse.elements.count - 1 {
             if let size = Int(sizeOfPostPerPage) {
                 let nextIndex = indexPath.row/size + 1
                 loadBookmarks(index: "\(nextIndex)")

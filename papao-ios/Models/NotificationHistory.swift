@@ -16,6 +16,8 @@ enum MessageType: String {
 
 struct NotificationHistory {
     var userId: Int
+    var totalElements: Int
+    var totalPages: Int
     var pushLogs: [PushLog]
     
     init(json: [String: Any]) {
@@ -23,6 +25,18 @@ struct NotificationHistory {
             self.userId = userId
         } else {
             self.userId = -1
+        }
+        
+        if let totalElements = json["totalElements"] as? Int {
+            self.totalElements = totalElements
+        } else {
+            self.totalElements = 0
+        }
+        
+        if let totalPages = json["totalPages"] as? Int {
+            self.totalPages = totalPages
+        } else {
+            self.totalPages = 0
         }
 
         if let pushLogs = json["pushLogs"] as? [[String: Any]] {

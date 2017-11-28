@@ -146,7 +146,9 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let count = history?.pushLogs.count, indexPath.row == count - 1 {
+        if let history = history,
+            history.totalElements > history.pushLogs.count,
+            indexPath.row == history.pushLogs.count - 1 {
             if let size = Int(sizeOfPostPerPage) {
                 let nextIndex = indexPath.row/size + 1
                 loadNotificationHistory(index: "\(nextIndex)")

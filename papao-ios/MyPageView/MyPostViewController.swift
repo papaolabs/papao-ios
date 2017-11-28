@@ -121,10 +121,16 @@ extension MyPostViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let count = postResponse?.elements.count, indexPath.row == count-1 {
-            //you might decide to load sooner than -1 I guess...
-            //load more into data here
-            loadPostData(index: "\(count)")
+        // 현재 로딩 된 포스트의 총 개수가 포스트 총 개수보다 작고, 마지막 직전 셀이 노출 될 예정인 경우 다음 페이지 로딩
+        if let postResponse = postResponse,
+            postResponse.totalElements > postResponse.elements.count,
+            indexPath.row == postResponse.elements.count - 1 {
+            if let size = Int(myPostOnlyfilter.size) {
+                let nextIndex = indexPath.row/size + 1
+                loadPostData(index: "\(nextIndex)")
+            } else {
+                print("pagination에 문제가 있습니다")
+            }
         }
     }
     
