@@ -196,12 +196,13 @@ class FilterViewController: UIViewController {
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.ppWarmPink
         
-        //done button & cancel button
-        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneBeginDatePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelDatePicker))
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneBeginDatePicker))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
         
         beginDateTextField.inputAccessoryView = toolbar
         beginDateTextField.inputView = beginDatePicker
@@ -209,7 +210,7 @@ class FilterViewController: UIViewController {
     
     @objc func doneBeginDatePicker() {
         // 날짜 선택 세그먼트 선택 취소
-        dateSegment.isSelected = false
+        dateSegment.selectedSegmentIndex = UISegmentedControlNoSegment
         
         // For date formate
         let formatter = DateFormatter()
@@ -233,18 +234,22 @@ class FilterViewController: UIViewController {
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.ppWarmPink
         
-        //done button & cancel button
-        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneEndDatePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelDatePicker))
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(doneEndDatePicker))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
         
         endDateTextField.inputAccessoryView = toolbar
         endDateTextField.inputView = endDatePicker
     }
     
     @objc func doneEndDatePicker() {
+        // 날짜 선택 세그먼트 선택 취소
+        dateSegment.selectedSegmentIndex = UISegmentedControlNoSegment
+        
         //For date formate
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
