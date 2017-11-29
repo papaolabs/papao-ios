@@ -52,4 +52,33 @@ struct Species: PublicDataProtocol {
             })
         }
     }
+    
+    init?(code: Int) {
+        // 축종 코드로 초기화
+        if let path = Bundle.main.path(forResource: "SpeciesList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let regions: [AnyObject] = dict["Species"] as? [AnyObject] {
+                if let sido = regions.map({ (dict) -> Species in
+                    return Species(dict: dict as! [String: AnyObject])
+                }).first(where: {$0.code == code}) {
+                    self.code = sido.code
+                    self.name = sido.name
+                    self.breeds = sido.breeds
+                } else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    func getBreed(code: Int) -> Breed? {
+        if let breed = self.breeds.first(where: {$0.code == code}) {
+            return breed
+        } else {
+            return nil
+        }
+    }
 }

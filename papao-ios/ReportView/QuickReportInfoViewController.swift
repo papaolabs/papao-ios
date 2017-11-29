@@ -1,39 +1,59 @@
 //
-//  ReportDetectionInfoViewController.swift
+//  QuickReportInfoViewController.swift
 //  papao-ios
 //
-//  Created by closer27 on 2017. 10. 30..
+//  Created by closer27 on 2017. 11. 29..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
 import UIKit
 import GoogleMaps
 
-class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
+class QuickReportInfoViewController: UIViewController {
     @IBOutlet weak var contentScrollView: UIScrollView!
+
+    @IBOutlet weak var speciesButton: UIButton!
+    @IBOutlet weak var breedButton: UIButton!
+    
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var featureTextView: UITextView!
     
-    @IBOutlet weak var happenDateTitleLabel: UILabel!
-    @IBOutlet weak var happenPlaceTitleLabel: UILabel!
+    var post: PostRequest?
+    var currentSpecies: Species?
+    
+    var breedList: [PublicDataProtocol]!
+    var speciesList: [PublicDataProtocol]!
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var markerForCurrentLocation: GMSMarker?
-
+    
     // for input the date
     var comp = NSDateComponents()
     private let datePicker = UIDatePicker()
-
-    // instance for posting Post
-    var post: PostRequest?
-
+    
+    fileprivate var picker: PPOPicker?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTitleLabel()
+        // set Indice to caller buttons to specify data
+        breedButton.tag = PickerName.BreedPicker.rawValue
+        speciesButton.tag = PickerName.SpeciesPicker.rawValue
+        
+        // create species list
+        if let path = Bundle.main.path(forResource: "SpeciesList", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let speciesList: [AnyObject] = dict["Species"] as? [AnyObject] {
+                self.speciesList = speciesList.map({ (dict) -> Species in
+                    return Species(dict: dict as! [String: AnyObject])
+                })
+            }
+        }
+        
+        // auto filling
+        setPost(post: post)
         
         mapView.setBorder(color: UIColor.ppBorderGray)
         mapView.setRadius(radius: 2)
@@ -52,28 +72,21 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         setFeatureTextView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = UIColor.ppWarmPink
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barStyle = .black
-    }
-    
-    func setTitleLabel() {
-        if let postType = post?.postType {
-            switch postType {
-            case .MISSING:
-                happenDateTitleLabel.text = "실종 정보를 입력해주세요"
-                happenPlaceTitleLabel.text = "실종 장소를 지정해주세요"
-            case .ROADREPORT, .PROTECTING:
-                happenDateTitleLabel.text = "발견 정보를 입력해주세요"
-                happenPlaceTitleLabel.text = "발견 장소를 지정해주세요"
-            default:
-                break
-            }
+    func setPost(post: PostRequest?) {
+        // 품종, 축종 자동 입력
+        if let species = post?.species {
+            currentSpecies = species
+            speciesButton.setTitle(species.name, for: .normal)
         }
+        if let breed = post?.breed {
+            breedButton.setTitle(breed.name, for: .normal)
+        }
+        
+        // 전화번호와 날짜 자동 입력
+        if let user = AccountManager.sharedInstance.getLoggedUser() {
+            contactTextField.text = user.phone.getPhoneWithoutDash()
+        }
+        dateTextField.text = post?.happenDate.toString(format: "yyyy-MM-dd")
     }
     
     func setContactTextField() {
@@ -82,7 +95,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         toolbar.setItems([spaceButton,doneButton], animated: false)
         toolbar.sizeToFit()
-
+        
         contactTextField.inputAccessoryView = toolbar
     }
     
@@ -99,7 +112,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         datePicker.datePickerMode = .date
         datePicker.calendar = Calendar.autoupdatingCurrent
         datePicker.locale = Locale.init(identifier: "kr_KR")
-
+        
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
@@ -115,12 +128,15 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         // add datepicker to textField
         dateTextField.inputView = datePicker
     }
-
+    
     @objc func doneDatePicker() {
-        //For date format
-        dateTextField.text = datePicker.date.toString(format: "yyyy-MM-dd")
+        //For date formate
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        dateTextField.text = formatter.string(from: datePicker.date)
         
         // set date for Post instance
+        formatter.dateFormat = "yyyyMMdd"
         post?.happenDate = datePicker.date
         
         //dismiss date picker dialog
@@ -138,7 +154,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         toolbar.setItems([spaceButton,doneButton], animated: false)
         toolbar.sizeToFit()
-
+        
         featureTextView.inputAccessoryView = toolbar
     }
     
@@ -149,11 +165,153 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         self.view.endEditing(true)
     }
     
+    // MARK: - IBActions
+    @IBAction func speciesButtonPressed(_ sender: UIButton) {
+        picker = PPOPicker(parentViewController: self)
+        picker?.delegate = self
+        picker?.callerButton = sender
+        picker?.set(items: [speciesList])
+        picker?.startPicking()
+        
+    }
+    
+    @IBAction func breedButtonPressed(_ sender: UIButton) {
+        guard let breeds = currentSpecies?.breeds else {
+            return
+        }
+        picker = PPOPicker(parentViewController: self)
+        picker?.delegate = self
+        picker?.callerButton = sender
+        picker?.set(items: [breeds])
+        picker?.startPicking()
+    }
+    
+    private func selectDefaultBreed() {
+        post?.breed = nil
+        // 축종 선택 시 품종 첫번째꺼 자동 설정
+        if let species = post?.species, species.breeds.count > 0 {
+            post?.breed = species.breeds[0]
+            breedButton.setTitle(post?.breed?.name, for: .normal)
+        }
+    }
+    
+    // MARK: - Private Functions
+    func presentAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: false)
+    }
+    
+    @IBAction func registerReport(_ sender: Any) {
+        if let postRequest = post {
+            let api = HttpHelper.init()
+            api.createPost(parameters: postRequest.toDict(), completion: { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    switch cudResult.rawValue {
+                    case let code where code > 0:
+                        self.navigationController?.popToRootViewController(animated: true)
+                    default:
+                        self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                    self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                    })
+                }
+            })
+        } else {
+            self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+            })
+        }
+    }
+    
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
+    }
+}
+
+extension QuickReportInfoViewController: PPOPickerDelegate {
+    // MARK: - PPOPicker Delegate
+    @objc func pickerCancelAction() {
+        picker?.endPicking()
+    }
+    
+    @objc func pickerSetAction() {
+        if let selectedItems = picker?.selectedItems, let callerView = picker?.callerButton {
+            print("\(selectedItems)")
+            let selectedPublicData: PublicDataProtocol = selectedItems[0]
+            callerView.setTitle(selectedPublicData.name, for: .normal)
+            
+            // set selected data to post instance as picker
+            switch callerView.tag {
+            case PickerName.SpeciesPicker.rawValue:
+                if let species = selectedPublicData as? Species {
+                    post?.species = species
+                    currentSpecies = species
+                    selectDefaultBreed()
+                }
+            case PickerName.BreedPicker.rawValue:
+                if let breed = selectedPublicData as? Breed {
+                    post?.breed = breed
+                }
+            case PickerName.AgePicker.rawValue:
+                if let age = selectedPublicData as? Age {
+                    post?.age = age
+                    callerView.setTitle(age.name, for: .normal)
+                }
+            case PickerName.WeightPicker.rawValue:
+                if let weight = selectedPublicData as? Weight {
+                    post?.weight = Float(weight.name)
+                }
+            default: break
+            }
+        }
+        picker?.endPicking()
+    }
+    
+    func pickerView(inputAccessoryViewFor pickerView: PPOPicker) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
+        view.backgroundColor = .white
+        let buttonWidth: CGFloat = 100
+        
+        let cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - buttonWidth - 10, y: 0, width: buttonWidth, height: 40))
+        cancelButton.setTitle("취소", for: .normal)
+        cancelButton.setTitleColor(.black, for: .normal)
+        cancelButton.setTitleColor(.lightGray, for: .highlighted)
+        cancelButton.addTarget(self, action: #selector(pickerCancelAction), for: .touchUpInside)
+        view.addSubview(cancelButton)
+        
+        let setButton = UIButton(frame: CGRect(x: 10, y: 0, width: buttonWidth, height: 40))
+        setButton.setTitle("선택", for: .normal)
+        setButton.setTitleColor(.black, for: .normal)
+        setButton.setTitleColor(.lightGray, for: .highlighted)
+        setButton.addTarget(self, action: #selector(pickerSetAction), for: .touchUpInside)
+        view.addSubview(setButton)
+        
+        return view
+    }
+    
+    func pickerView(didSelect value: PublicDataProtocol, inRow row: Int, inComponent component: Int, delegatedFrom pickerView: PPOPicker) {
+    }
+}
+
+extension QuickReportInfoViewController: GMSMapViewDelegate {
     // MARK: - Google Marker Delegates
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
         setAddress(from: marker.position)
     }
-
+    
     // MARK: - Private Functions
     private func createMarker(_ location: CLLocationCoordinate2D) {
         // Creates a marker in the center of the map.
@@ -208,47 +366,9 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         }
         return nil
     }
-
-    func presentAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "네", style: .cancel) { (_) in
-        }
-        alert.addAction(okAction)
-        self.present(alert, animated: false)
-    }
-
-    // MARK: - Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Todo: Post Validation
-        if let post = post {
-            guard post.happenDate != nil else {
-                presentAlert(message: "발견 날짜 입력은 필수입니다.")
-                return
-            }
-//            guard post.happenDate != nil else {
-//                presentAlert(message: "발견 장소 지정은 필수입니다.")
-//                return
-//            }
-        } else {
-            print("post 생성 에러")
-            return
-        }
-        
-        if segue.identifier == "PreviewSegue" {
-            if let viewController = segue.destination as? ReportPreviewViewController {
-                // 텍스트뷰 설정 안누르고 바로 다음버튼 눌렀을 때
-                if let featureText = featureTextView.text {
-                    post?.feature = featureText
-                }
-                
-                // pass data to next viewController
-                viewController.post = post
-            }
-        }
-    }
 }
 
-extension ReportDetectionInfoViewController: CLLocationManagerDelegate {
+extension QuickReportInfoViewController: CLLocationManagerDelegate {
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
@@ -258,7 +378,7 @@ extension ReportDetectionInfoViewController: CLLocationManagerDelegate {
                                               longitude: location.coordinate.longitude,
                                               zoom: 15)
         self.createMarker(location.coordinate)
-
+        
         if mapView.isHidden {
             mapView.isHidden = false
             mapView.camera = camera
@@ -291,7 +411,7 @@ extension ReportDetectionInfoViewController: CLLocationManagerDelegate {
     }
 }
 
-extension ReportDetectionInfoViewController: UITextViewDelegate {
+extension QuickReportInfoViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         contentScrollView.setContentOffset(CGPoint.init(x: 0, y: contentScrollView.frame.size.height), animated: true)
     }
@@ -301,3 +421,4 @@ extension ReportDetectionInfoViewController: UITextViewDelegate {
         self.view.endEditing(true);
     }
 }
+

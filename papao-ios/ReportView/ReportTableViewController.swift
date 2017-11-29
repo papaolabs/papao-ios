@@ -228,7 +228,7 @@ class ReportTableViewController: UIViewController {
                 })
             }
         } else if segue.identifier == "RoadReportSegue" {
-            if let viewController = segue.destination as? ReportUploadViewController,
+            if let viewController = segue.destination as? QuickReportUploadViewController,
                 let user = AccountManager.sharedInstance.getLoggedUser() {
                 viewController.post.postType = .ROADREPORT
                 viewController.post.uid = user.id

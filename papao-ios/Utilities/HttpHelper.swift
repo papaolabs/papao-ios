@@ -176,15 +176,17 @@ enum Router: URLRequestConvertible {
 enum ImageRouter: URLRequestConvertible {
     case upload(parameters: Parameters)
     case search(postId: String)
+    case uploadSteet(parameters: Parameters)
     
     static let baseURLString = "\(valueForAPIKey(keyname: "IMG_API_BASE_URL"))v1/"
     
     var method: HTTPMethod {
         switch self {
-        case .upload(_):
+        case .upload(_), .uploadSteet(_):
             return .post
         case .search(_):
             return .get
+            
         }
     }
     
@@ -194,6 +196,8 @@ enum ImageRouter: URLRequestConvertible {
             return "upload"
         case .search(let postId):
             return "search/\(postId)"
+        case .uploadSteet(_):
+            return "upload/street"
         }
     }
 
@@ -203,7 +207,7 @@ enum ImageRouter: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .upload(_), .search(_):
+        case .upload(_), .search(_), .uploadSteet(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         }
 
@@ -487,6 +491,54 @@ final class HttpHelper {
             } else {
                 completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
             }
+        }
+    }
+    
+    func uploadImageStreet(imageRequest: ImageRequest, completion: @escaping (ApiResult<ImageResponse>) -> Void) {
+        let router = ImageRouter.uploadSteet(parameters: [:])
+        let parameters = ["post_type" : imageRequest.postType.rawValue]
+        if let url = router.urlRequest?.url {
+            manager.upload(multipartFormData: { (multipartFormData) in
+                for (key,value) in parameters {
+                    if let value = value as? String {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    }
+                }
+                
+                for (index, element) in imageRequest.file.enumerated() {
+                    if  let imageData = UIImageJPEGRepresentation(element, 0.6) {
+                        multipartFormData.append(imageData, withName: "file", fileName: "image\(index).jpeg", mimeType: "image/jpeg")
+                    }
+                }
+            }, to: url,
+               method: .post,
+               encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    
+                    upload.uploadProgress(closure: { (progress) in
+                        //                        print(progress)
+                        // Todo: - 진행률 표시
+                    })
+                    
+                    upload.responseJSON { response in
+                        // If the request to get activities is succesfull, store them
+                        if response.result.isSuccess{
+                            //                            print(response.debugDescription)
+                            if let value = response.result.value {
+                                let imageResponseJson = JSON(value)
+                                completion(ApiResult{ return ImageResponse(json: imageResponseJson.dictionaryObject!) })
+                            }
+                        } else {
+                            //                            print(response.debugDescription)
+                            completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                        }
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Encoding Error"])))
+                }
+            })
         }
     }
 }
