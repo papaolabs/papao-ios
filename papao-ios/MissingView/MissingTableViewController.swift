@@ -13,6 +13,12 @@ class MissingTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var emptyView: UIView!
     @IBOutlet weak var filterBarButtonItem: UIBarButtonItem!
+
+    @IBOutlet weak var writeButton: UIButton!
+    @IBOutlet weak var writeMissingButton: UIButton!
+    @IBOutlet weak var writeMissingButtonView: UIView!
+    let backgroundView = UIView()
+
     var postResponse: PostResponse?
     var filter = Filter.init(postTypes: [PostType.MISSING])
     let api = HttpHelper.init()
@@ -24,12 +30,37 @@ class MissingTableViewController: UIViewController {
         tableView.tableFooterView = UIView()
         setPullToRefresh()
         
+        // button customizing
+        writeButton.setRadius(radius: writeButton.frame.width/2)
+        writeMissingButton.setRadius(radius: writeMissingButton.frame.width/2)
+        
+        // backgroundView settings for floating buttons
+        backgroundView.frame = view.frame
+        backgroundView.backgroundColor = UIColor.init(white: 0, alpha: 0.7)
+        backgroundView.isHidden = true
+        backgroundView.alpha = 0
+        view.addSubview(backgroundView)
+        view.bringSubview(toFront: backgroundView)
+        view.bringSubview(toFront: writeMissingButton)
+        view.bringSubview(toFront: writeMissingButtonView)
+        view.bringSubview(toFront: writeButton)
+        
         loadPostData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationSetting()
+        
+        writeMissingButtonView.isHidden = true
+        writeMissingButtonView.alpha = 0
+        writeMissingButtonView.frame.origin = CGPoint(x: writeMissingButtonView.frame.origin.x, y: view.frame.height - 74)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        writeButton.isSelected = false
+        floatingButtonsActivate(activated: writeButton.isSelected)
     }
     
     func setNavigationSetting() {
@@ -104,6 +135,64 @@ class MissingTableViewController: UIViewController {
         postResponse = nil
         tableView.reloadData()
     }
+    
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
+    }
+    
+    fileprivate func goToLoginView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        present(loginViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func writeButtonPressed(_ sender: Any) {
+        guard AccountManager.sharedInstance.getLoggedUser() != nil else {
+            alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                self.goToLoginView()
+            })
+            return
+        }
+        
+        writeButton.isSelected = !writeButton.isSelected
+        floatingButtonsActivate(activated: writeButton.isSelected)
+    }
+    
+    private func floatingButtonsActivate(activated: Bool) {
+        if activated {
+            let writeMissingButtonPosition = CGPoint(x: writeMissingButtonView.frame.origin.x, y: self.writeButton.frame.origin.y - 16 - writeMissingButtonView.frame.height)
+            
+            self.backgroundView.isHidden = false
+            self.writeMissingButtonView.isHidden = false
+            UIView.animate(withDuration: 0.15, animations: {
+                self.backgroundView.alpha = 1.0
+                self.writeMissingButtonView.alpha = 1.0
+                self.writeMissingButtonView.frame.origin = writeMissingButtonPosition
+                self.writeButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+            })
+        } else {
+            UIView.animate(withDuration: 0.15, animations: {
+                self.backgroundView.alpha = 0
+                self.writeMissingButtonView.alpha = 0
+                self.writeMissingButtonView.frame.origin = CGPoint(x: self.writeMissingButtonView.frame.origin.x, y: self.writeButton.frame.origin.y)
+                self.writeButton.transform = CGAffineTransform(rotationAngle: 0)
+            }, completion: { (result) in
+                self.backgroundView.isHidden = true
+                self.writeMissingButtonView.isHidden = true
+            })
+        }
+    }
+    
+    @IBAction func writeMissinButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "MissingSegue", sender: nil)
+    }
 
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,6 +200,16 @@ class MissingTableViewController: UIViewController {
             if let viewController = segue.destination as? FilterViewController {
                 // pass data to next viewController
                 viewController.filter = filter
+            }
+        } else if segue.identifier == "MissingSegue" {
+            if let viewController = segue.destination as? ReportImageUploadViewController,
+                let user = AccountManager.sharedInstance.getLoggedUser() {
+                viewController.post.postType = .MISSING
+                viewController.post.uid = user.id
+            } else {
+                alert(message: "로그인이 필요한 화면입니다. 로그인 하시겠습니까?", confirmText: "네", cancel: true, completion: { (action) in
+                    self.goToLoginView()
+                })
             }
         }
     }
