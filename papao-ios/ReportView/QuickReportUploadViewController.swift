@@ -136,7 +136,10 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "QuickAnimalInfoSegue" {
-            
+            if let viewController = segue.destination as? QuickReportInfoViewController {
+                // pass data to next viewController
+                viewController.post = post
+            }
         }
     }
 }

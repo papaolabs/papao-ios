@@ -73,7 +73,20 @@ class QuickReportInfoViewController: UIViewController {
     }
     
     func setPost(post: PostRequest?) {
+        // 품종, 축종 자동 입력
+        if let species = post?.species {
+            currentSpecies = species
+            speciesButton.setTitle(species.name, for: .normal)
+        }
+        if let breed = post?.breed {
+            breedButton.setTitle(breed.name, for: .normal)
+        }
         
+        // 전화번호와 날짜 자동 입력
+        if let user = AccountManager.sharedInstance.getLoggedUser() {
+            contactTextField.text = user.phone.getPhoneWithoutDash()
+        }
+        dateTextField.text = post?.happenDate.toString(format: "yyyy-MM-dd")
     }
     
     func setContactTextField() {
@@ -124,7 +137,7 @@ class QuickReportInfoViewController: UIViewController {
         
         // set date for Post instance
         formatter.dateFormat = "yyyyMMdd"
-        post?.happenDate = formatter.string(from: datePicker.date)
+        post?.happenDate = datePicker.date
         
         //dismiss date picker dialog
         self.view.endEditing(true)
