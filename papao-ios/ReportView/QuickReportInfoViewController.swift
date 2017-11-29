@@ -203,6 +203,42 @@ class QuickReportInfoViewController: UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: false)
     }
+    
+    @IBAction func registerReport(_ sender: Any) {
+        if let postRequest = post {
+            let api = HttpHelper.init()
+            api.createPost(parameters: postRequest.toDict(), completion: { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    switch cudResult.rawValue {
+                    case let code where code > 0:
+                        self.navigationController?.popToRootViewController(animated: true)
+                    default:
+                        self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                    self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                    })
+                }
+            })
+        } else {
+            self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+            })
+        }
+    }
+    
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        self.present(alert, animated: false)
+    }
 }
 
 extension QuickReportInfoViewController: PPOPickerDelegate {

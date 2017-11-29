@@ -44,7 +44,7 @@ struct PostRequest {
     func toDict() -> [String: AnyObject] {
         // Todo: - imageUrls 처리
         return [
-            "happenDate": happenDate as AnyObject,
+            "happenDate": happenDate.toString(format: "yyyyMMdd") as AnyObject,
             "happenPlace": happenPlace as AnyObject,
             "uid": uid as AnyObject,
             "postType": postType.rawValue as AnyObject,

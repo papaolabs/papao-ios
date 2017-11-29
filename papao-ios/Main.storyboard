@@ -5100,7 +5100,11 @@ open API 플랫폼입니다.</string>
                         <viewLayoutGuide key="safeArea" id="aih-Pj-B1R"/>
                     </view>
                     <navigationItem key="navigationItem" title="길거리 제보" id="Wtf-hG-epa">
-                        <barButtonItem key="rightBarButtonItem" title="등록" id="418-P3-nbv"/>
+                        <barButtonItem key="rightBarButtonItem" title="등록" id="418-P3-nbv">
+                            <connections>
+                                <action selector="registerReport:" destination="kbq-XN-PVm" id="qbc-qo-ruz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1300"/>
                     <connections>

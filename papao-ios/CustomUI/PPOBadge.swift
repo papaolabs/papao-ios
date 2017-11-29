@@ -56,7 +56,7 @@ class PPOBadge: UIButton {
         }
         
         setBackgroundColor(color: backgroundColor)
-        setTitleColor(titleColor, for: .normal)
+        setTitleColor(titleColor ?? .ppTextBlack, for: .normal)
     }
     
     func setBackgroundColor(color: UIColor?) {
