@@ -52,6 +52,15 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         setFeatureTextView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barTintColor = UIColor.ppWarmPink
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .black
+    }
+    
     func setTitleLabel() {
         if let postType = post?.postType {
             switch postType {

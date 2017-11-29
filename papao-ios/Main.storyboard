@@ -4235,7 +4235,7 @@ open API 플랫폼입니다.</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hor-Ml-gQo"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="sZ3-dq-sZV">
+                    <navigationItem key="navigationItem" title="작성하기" id="sZ3-dq-sZV">
                         <barButtonItem key="rightBarButtonItem" title="다음" id="otb-sA-jyY">
                             <connections>
                                 <segue destination="2lW-gF-8ij" kind="show" identifier="PreviewSegue" id="wgs-Xw-o8U"/>
