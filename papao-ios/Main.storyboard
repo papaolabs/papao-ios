@@ -2258,6 +2258,9 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="64f-Zi-7oM">
                                                             <rect key="frame" x="0.0" y="0.0" width="107.5" height="108"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="64f-Zi-7oM" secondAttribute="height" multiplier="107:108" id="whi-p4-XRU"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="믹스견" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtS-ai-YNB">
                                                             <rect key="frame" x="0.0" y="116" width="107.5" height="16"/>
@@ -2315,13 +2318,13 @@
                                                         <constraint firstItem="oft-R4-1Ok" firstAttribute="top" secondItem="uex-Bt-Z2V" secondAttribute="bottom" id="5tP-Ed-j3f"/>
                                                         <constraint firstAttribute="trailing" secondItem="oft-R4-1Ok" secondAttribute="trailing" id="8cX-vF-WWn"/>
                                                         <constraint firstItem="0FI-B9-FMm" firstAttribute="leading" secondItem="Z7h-b5-A93" secondAttribute="trailing" constant="2" id="E9P-Xw-nsB"/>
-                                                        <constraint firstAttribute="bottom" secondItem="oft-R4-1Ok" secondAttribute="bottom" id="Fvc-CZ-SQS"/>
+                                                        <constraint firstItem="KtS-ai-YNB" firstAttribute="top" secondItem="64f-Zi-7oM" secondAttribute="bottom" constant="8" id="Efu-9d-Ymf"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oft-R4-1Ok" secondAttribute="bottom" priority="250" id="Fvc-CZ-SQS"/>
                                                         <constraint firstAttribute="trailing" secondItem="64f-Zi-7oM" secondAttribute="trailing" id="G1u-bY-I0Z"/>
                                                         <constraint firstAttribute="trailing" secondItem="KtS-ai-YNB" secondAttribute="trailing" id="GD0-TC-yo7"/>
                                                         <constraint firstItem="uex-Bt-Z2V" firstAttribute="leading" secondItem="2Lz-Av-JId" secondAttribute="leading" id="Ihn-yg-TeB"/>
                                                         <constraint firstItem="iIe-pB-lSY" firstAttribute="centerY" secondItem="sl5-xW-RcZ" secondAttribute="centerY" id="JI3-Tr-tpf"/>
                                                         <constraint firstItem="KtS-ai-YNB" firstAttribute="leading" secondItem="2Lz-Av-JId" secondAttribute="leading" id="LK0-Ol-Zmz"/>
-                                                        <constraint firstItem="KtS-ai-YNB" firstAttribute="top" secondItem="64f-Zi-7oM" secondAttribute="bottom" constant="8" id="MWc-l9-BV9"/>
                                                         <constraint firstItem="Z7h-b5-A93" firstAttribute="centerY" secondItem="sl5-xW-RcZ" secondAttribute="centerY" id="RiK-MW-QFb"/>
                                                         <constraint firstItem="64f-Zi-7oM" firstAttribute="leading" secondItem="sl5-xW-RcZ" secondAttribute="trailing" constant="-18" id="RyT-Qv-kbN"/>
                                                         <constraint firstItem="oft-R4-1Ok" firstAttribute="leading" secondItem="2Lz-Av-JId" secondAttribute="leading" id="bo3-fQ-hXN"/>
@@ -2371,6 +2374,9 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ok-tH-Rqh">
                                                             <rect key="frame" x="0.0" y="0.0" width="107.5" height="108"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="6Ok-tH-Rqh" secondAttribute="height" multiplier="107:108" id="LKy-zv-HFR"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="믹스견" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHV-Ki-eHM">
                                                             <rect key="frame" x="0.0" y="116" width="107.5" height="16"/>
@@ -2441,10 +2447,10 @@
                                                         <constraint firstItem="EHV-Ki-eHM" firstAttribute="leading" secondItem="6Yh-Xw-Wmc" secondAttribute="leading" id="YJd-WF-aim"/>
                                                         <constraint firstAttribute="trailing" secondItem="jz2-gw-ivJ" secondAttribute="trailing" id="YZh-Qe-fMj"/>
                                                         <constraint firstAttribute="trailing" secondItem="HUz-vg-SjM" secondAttribute="trailing" id="btK-dz-xta"/>
+                                                        <constraint firstItem="EHV-Ki-eHM" firstAttribute="top" secondItem="6Ok-tH-Rqh" secondAttribute="bottom" constant="8" id="fC6-rP-jtg"/>
                                                         <constraint firstItem="6Ok-tH-Rqh" firstAttribute="leading" secondItem="6Yh-Xw-Wmc" secondAttribute="leading" id="hkT-DX-xWE"/>
                                                         <constraint firstItem="Vtu-gM-JdE" firstAttribute="top" secondItem="6Ok-tH-Rqh" secondAttribute="bottom" constant="-20" id="o0D-3s-JLk"/>
-                                                        <constraint firstItem="EHV-Ki-eHM" firstAttribute="top" secondItem="6Ok-tH-Rqh" secondAttribute="bottom" constant="8" id="r6r-ZJ-aXF"/>
-                                                        <constraint firstAttribute="bottom" secondItem="HUz-vg-SjM" secondAttribute="bottom" id="uth-pR-F8J"/>
+                                                        <constraint firstAttribute="bottom" secondItem="HUz-vg-SjM" secondAttribute="bottom" priority="250" id="uth-pR-F8J"/>
                                                         <constraint firstItem="jz2-gw-ivJ" firstAttribute="leading" secondItem="6Yh-Xw-Wmc" secondAttribute="leading" id="zrx-oQ-joz"/>
                                                     </constraints>
                                                     <connections>
@@ -2461,6 +2467,9 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="scL-23-wre">
                                                             <rect key="frame" x="0.0" y="0.0" width="108" height="108"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="scL-23-wre" secondAttribute="height" multiplier="1:1" id="25h-vv-4s7"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="믹스견" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPc-uJ-mHT">
                                                             <rect key="frame" x="0.0" y="116" width="108" height="16"/>
@@ -2527,15 +2536,15 @@
                                                         <constraint firstItem="HQV-Kg-c3E" firstAttribute="leading" secondItem="2PI-ND-TY4" secondAttribute="trailing" constant="2" id="O76-F3-OvF"/>
                                                         <constraint firstItem="Q2y-zD-jvP" firstAttribute="leading" secondItem="Q9I-Jm-wuJ" secondAttribute="leading" id="QjM-cF-1zd"/>
                                                         <constraint firstItem="QPc-uJ-mHT" firstAttribute="leading" secondItem="Q9I-Jm-wuJ" secondAttribute="leading" id="Rdc-PY-Lqr"/>
+                                                        <constraint firstItem="QPc-uJ-mHT" firstAttribute="top" secondItem="scL-23-wre" secondAttribute="bottom" constant="8" id="UUD-DT-Foo"/>
                                                         <constraint firstItem="8ul-YQ-UNj" firstAttribute="top" secondItem="Q2y-zD-jvP" secondAttribute="bottom" id="VIw-3c-YNw"/>
                                                         <constraint firstAttribute="trailing" secondItem="scL-23-wre" secondAttribute="trailing" id="XXn-rO-lgh"/>
                                                         <constraint firstItem="HQV-Kg-c3E" firstAttribute="centerY" secondItem="Glr-Vw-pGg" secondAttribute="centerY" id="Zfu-yt-fhN"/>
                                                         <constraint firstItem="scL-23-wre" firstAttribute="leading" secondItem="Glr-Vw-pGg" secondAttribute="trailing" constant="-18" id="bFH-kE-OJR"/>
                                                         <constraint firstAttribute="trailing" secondItem="8ul-YQ-UNj" secondAttribute="trailing" id="cXQ-uL-b4N"/>
-                                                        <constraint firstAttribute="bottom" secondItem="8ul-YQ-UNj" secondAttribute="bottom" id="dQ8-UI-CCR"/>
+                                                        <constraint firstAttribute="bottom" secondItem="8ul-YQ-UNj" secondAttribute="bottom" priority="250" id="dQ8-UI-CCR"/>
                                                         <constraint firstItem="scL-23-wre" firstAttribute="top" secondItem="Q9I-Jm-wuJ" secondAttribute="top" id="dxI-8d-KnD"/>
                                                         <constraint firstItem="8ul-YQ-UNj" firstAttribute="leading" secondItem="Q9I-Jm-wuJ" secondAttribute="leading" id="u0A-2c-EvO"/>
-                                                        <constraint firstItem="QPc-uJ-mHT" firstAttribute="top" secondItem="scL-23-wre" secondAttribute="bottom" constant="8" id="yiJ-SP-MSP"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="breedLabel" destination="QPc-uJ-mHT" id="bYe-gd-nVe"/>
@@ -5818,20 +5827,11 @@ open API 플랫폼입니다.</string>
         <namedColor name="backgroundGray">
             <color red="0.94900000100000004" green="0.94900000100000004" blue="0.94900000100000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="backgroundGray">
-            <color red="0.94900000100000004" green="0.94900000100000004" blue="0.94900000100000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="backgroundGray">
-            <color red="0.94900000100000004" green="0.94900000100000004" blue="0.94900000100000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="borderBlack">
             <color red="0.59200000760000004" green="0.59200000760000004" blue="0.59200000760000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="borderColor">
             <color red="0.875" green="0.86299997568130493" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="borderGray">
-            <color red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="borderGray">
             <color red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5844,21 +5844,6 @@ open API 플랫폼입니다.</string>
         </namedColor>
         <namedColor name="textBlack">
             <color red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="warmPink">
-            <color red="0.98799997569999998" green="0.30599999430000002" blue="0.45899999139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="warmPink">
-            <color red="0.98799997568130493" green="0.3059999942779541" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="warmPink">
-            <color red="0.98799997569999998" green="0.30599999430000002" blue="0.45899999139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="warmPink">
-            <color red="0.98799997569999998" green="0.30599999430000002" blue="0.45899999139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="warmPink">
-            <color red="0.98799997569999998" green="0.30599999430000002" blue="0.45899999139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="warmPink">
             <color red="0.98799997569999998" green="0.30599999430000002" blue="0.45899999139999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
