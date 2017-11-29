@@ -52,4 +52,12 @@ struct Species: PublicDataProtocol {
             })
         }
     }
+    
+    func getBreed(code: Int) -> Breed? {
+        if let breed = self.breeds.first(where: {$0.code == code}) {
+            return breed
+        } else {
+            return nil
+        }
+    }
 }
