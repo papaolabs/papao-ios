@@ -4781,7 +4781,7 @@ open API 플랫폼입니다.</string>
         <!--길거리 제보-->
         <scene sceneID="7cm-cs-Qso">
             <objects>
-                <viewController id="kbq-XN-PVm" sceneMemberID="viewController">
+                <viewController id="kbq-XN-PVm" customClass="QuickReportInfoViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SQ4-w3-qjE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5001,6 +5001,7 @@ open API 플랫폼입니다.</string>
                                                         </state>
                                                         <connections>
                                                             <action selector="speciesButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="7No-Tr-YWE"/>
+                                                            <action selector="speciesButtonPressed:" destination="kbq-XN-PVm" eventType="touchUpInside" id="ad8-cv-yAk"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAR-hx-ngT" customClass="PPOPickerButton" customModule="papao_ios" customModuleProvider="target">
@@ -5014,6 +5015,7 @@ open API 플랫폼입니다.</string>
                                                         </state>
                                                         <connections>
                                                             <action selector="breedButtonPressed:" destination="dOE-c2-VuM" eventType="touchUpInside" id="iQ3-Ge-qKX"/>
+                                                            <action selector="breedButtonPressed:" destination="kbq-XN-PVm" eventType="touchUpInside" id="pYX-xW-pam"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -5101,6 +5103,15 @@ open API 플랫폼입니다.</string>
                         <barButtonItem key="rightBarButtonItem" title="등록" id="418-P3-nbv"/>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1300"/>
+                    <connections>
+                        <outlet property="breedButton" destination="nAR-hx-ngT" id="40r-Cc-dxG"/>
+                        <outlet property="contactTextField" destination="NPj-SS-4Ir" id="0e1-gx-b6k"/>
+                        <outlet property="contentScrollView" destination="oiv-Q9-ejJ" id="Mod-8b-Ebf"/>
+                        <outlet property="dateTextField" destination="L0k-IJ-ZtQ" id="tx2-om-QuX"/>
+                        <outlet property="featureTextView" destination="zKy-Vg-moV" id="zbk-3J-HQ6"/>
+                        <outlet property="mapView" destination="0qT-Bo-aSC" id="QQp-XU-MBT"/>
+                        <outlet property="speciesButton" destination="tBT-Dw-THa" id="P5B-do-UAH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tt-En-AIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

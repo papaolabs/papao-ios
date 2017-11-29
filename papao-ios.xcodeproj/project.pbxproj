@@ -60,6 +60,7 @@
 		4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */; };
 		4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */; };
 		4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */; };
+		4EC737851FCEC73400A855C5 /* QuickReportInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */; };
 		4ED371D81FBF25860061C4C6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */; };
 		4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */; };
 		4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371DB1FC0376E0061C4C6 /* Filter.swift */; };
@@ -171,6 +172,7 @@
 		4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPreivewViewController.swift; sourceTree = "<group>"; };
+		4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickReportInfoViewController.swift; sourceTree = "<group>"; };
 		4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4ED371DB1FC0376E0061C4C6 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */,
 				4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */,
 				4E28BE221FCE95DE001797E3 /* QuickReportUploadViewController.swift */,
+				4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */,
 				4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
+				4EC737851FCEC73400A855C5 /* QuickReportInfoViewController.swift in Sources */,
 				4E3490DC1FC5C97200967596 /* MyPageViewController.swift in Sources */,
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
 				4E8CDB6E1FC93CEF00403E45 /* AccountManager.swift in Sources */,
