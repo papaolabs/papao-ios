@@ -114,6 +114,23 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
         let api = HttpHelper.init()
         // Todo: 포스트 타입 지정
         let imageRequest = ImageRequest.init(file: images, postType: .ROADREPORT)
+        api.uploadImageStreet(imageRequest: imageRequest) { (result) in
+            do {
+                let imageResponse = try result.unwrap()
+                // post에 url과 이미지를 저장
+                self.post.imageUrls = imageResponse.imageUrls
+                self.post.images = self.selectedImages
+                
+                // 축종과 품종이 존재하면 추가
+                self.post.species = imageResponse.species
+                self.post.breed = imageResponse.breed
+                
+                // 다음 뷰로 이동
+                self.performSegue(withIdentifier: "QuickAnimalInfoSegue", sender: nil)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     // MARK: - Segue

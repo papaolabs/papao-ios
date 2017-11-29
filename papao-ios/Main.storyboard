@@ -3096,7 +3096,7 @@ open API 플랫폼입니다.</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09Y-uE-Ruu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09Y-uE-Ruu">
                                                     <rect key="frame" x="148" y="69" width="40" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="pD8-3W-Sc2"/>
@@ -4764,13 +4764,14 @@ open API 플랫폼입니다.</string>
                     <navigationItem key="navigationItem" title="길거리 제보" id="oAV-1y-txW">
                         <barButtonItem key="rightBarButtonItem" title="다음" id="qjP-Os-JbD">
                             <connections>
-                                <segue destination="kbq-XN-PVm" kind="show" identifier="QuickAnimalInfoSegue" id="keV-6O-WWG"/>
+                                <action selector="nextButtonPressed:" destination="pun-cD-O6u" id="XX3-cy-FLq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="photoImageView" destination="Ls5-ox-COd" id="Db2-65-rza"/>
                         <outlet property="step2Label" destination="BVq-CJ-XDt" id="e2M-Nm-Vcc"/>
+                        <segue destination="kbq-XN-PVm" kind="show" identifier="QuickAnimalInfoSegue" id="MwO-gx-CMZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZN-pA-fwz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5088,7 +5089,7 @@ open API 플랫폼입니다.</string>
                         <constraints>
                             <constraint firstItem="aih-Pj-B1R" firstAttribute="bottom" secondItem="54s-Ha-Q4P" secondAttribute="bottom" id="7SE-lb-ZFk"/>
                             <constraint firstItem="54s-Ha-Q4P" firstAttribute="trailing" secondItem="aih-Pj-B1R" secondAttribute="trailing" id="9f5-CP-SPY"/>
-                            <constraint firstItem="7bV-tL-xo9" firstAttribute="top" secondItem="SQ4-w3-qjE" secondAttribute="top" id="dXq-VD-19j"/>
+                            <constraint firstItem="7bV-tL-xo9" firstAttribute="top" secondItem="aih-Pj-B1R" secondAttribute="top" constant="-64" id="dXq-VD-19j"/>
                             <constraint firstItem="54s-Ha-Q4P" firstAttribute="top" secondItem="7bV-tL-xo9" secondAttribute="bottom" constant="-1" id="gAI-QF-VT2"/>
                             <constraint firstItem="7bV-tL-xo9" firstAttribute="trailing" secondItem="aih-Pj-B1R" secondAttribute="trailing" id="gFb-eR-lvT"/>
                             <constraint firstItem="54s-Ha-Q4P" firstAttribute="leading" secondItem="aih-Pj-B1R" secondAttribute="leading" id="t6g-oX-aiY"/>

@@ -26,8 +26,8 @@ struct ImageResponse {
             self.imageUrls = []
         }
         
-        if let speciesCode = json["kind_code"] as? Int, let speciesName = SpeciesName(rawValue: speciesCode) {
-            self.species = Species.init(dict: ["code": speciesName.rawValue as AnyObject, "name": speciesName.description as AnyObject])
+        if let speciesCode = json["up_kind_code"] as? Int {
+            self.species = Species.init(code: speciesCode)
         }
         
         if let breedCode = json["kind_code"] as? Int, let species = self.species {
