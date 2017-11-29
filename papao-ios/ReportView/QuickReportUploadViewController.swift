@@ -11,9 +11,11 @@ import BSImagePicker
 import Photos
 
 class QuickReportUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var photoBackgroundView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     private var selectedImages: [UIImage]!
     @IBOutlet weak var step2Label: UILabel!
+    @IBOutlet weak var nextBarButtonItem: UIBarButtonItem!
     
     let tagForIconView = 999
 
@@ -40,6 +42,11 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
         // set picker
         picker.delegate = self
         picker.maxNumberOfSelections = 1
+        
+        // set ImageView
+        photoBackgroundView.setBorder(color: .ppBorderGray)
+        photoImageView.setBorder(color: UIColor.ppBorderGray)
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uploadImagesPressed))
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         photoImageView.isUserInteractionEnabled = true
@@ -111,11 +118,17 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
     }
     
     func uploadImages(_ images: [UIImage]) {
+        // 등록 중 버튼 클릭 금지
+        nextBarButtonItem.isEnabled = false
+        
         let api = HttpHelper.init()
         // Todo: 포스트 타입 지정
         let imageRequest = ImageRequest.init(file: images, postType: .ROADREPORT)
         api.uploadImageStreet(imageRequest: imageRequest) { (result) in
             do {
+                // 버튼 클릭 해제
+                self.nextBarButtonItem.isEnabled = true
+                
                 let imageResponse = try result.unwrap()
                 // post에 url과 이미지를 저장
                 self.post.imageUrls = imageResponse.imageUrls
@@ -128,6 +141,7 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
                 // 다음 뷰로 이동
                 self.performSegue(withIdentifier: "QuickAnimalInfoSegue", sender: nil)
             } catch {
+                self.nextBarButtonItem.isEnabled = true
                 print(error)
             }
         }

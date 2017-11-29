@@ -3611,6 +3611,7 @@ open API 플랫폼입니다.</string>
                         <outlet property="pageControl" destination="CJO-J0-eTA" id="mdZ-kv-cEX"/>
                         <outlet property="stepLabel2" destination="MPh-O6-Gcn" id="aFi-hl-Rux"/>
                         <outlet property="stepLabel3" destination="xqd-Xx-7Xh" id="1T7-ZI-zLl"/>
+                        <outlet property="stepTitleLabel3" destination="AKB-4L-JFa" id="dVH-oY-zzQ"/>
                         <outlet property="titleLabel" destination="jaq-Da-9fB" id="UWx-ZC-awn"/>
                         <segue destination="dOE-c2-VuM" kind="show" identifier="AnimalInfoSegue" id="vhg-Ak-DQf"/>
                     </connections>
@@ -3967,6 +3968,7 @@ open API 플랫폼입니다.</string>
                         <outlet property="neuterSegment" destination="kcC-Pd-a6d" id="MOM-r5-Xc6"/>
                         <outlet property="speciesButton" destination="gja-uk-m7I" id="va6-aL-fAc"/>
                         <outlet property="stepLabel3" destination="emq-rG-9Sz" id="I4I-o4-syb"/>
+                        <outlet property="stepTitleLabel3" destination="dvo-kg-qKx" id="GdY-iB-YFy"/>
                         <outlet property="weightButton" destination="atf-c9-jqh" id="I4o-sX-xJT"/>
                     </connections>
                 </viewController>
@@ -4251,9 +4253,11 @@ open API 플랫폼입니다.</string>
                         <outlet property="contentScrollView" destination="jZN-pA-4uS" id="nA3-5i-dRZ"/>
                         <outlet property="dateTextField" destination="ZwA-b0-c5Y" id="4BX-gr-IQM"/>
                         <outlet property="featureTextView" destination="l47-oS-4z8" id="pcO-6M-TtX"/>
+                        <outlet property="happenDateDescLabel" destination="SiA-r6-I6c" id="iOq-b9-znc"/>
                         <outlet property="happenDateTitleLabel" destination="ISY-O6-vnf" id="nei-xJ-qSQ"/>
                         <outlet property="happenPlaceTitleLabel" destination="KMV-gF-DU4" id="ldE-Wu-CnO"/>
                         <outlet property="mapView" destination="vZe-Br-4cK" id="DhT-bS-4Nv"/>
+                        <outlet property="stepTitleLabel3" destination="0Dk-hx-su4" id="DCQ-7c-f86"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scA-mC-cIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4702,8 +4706,22 @@ open API 플랫폼입니다.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqd-em-aib" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ls5-ox-COd">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuq-Ip-yjo">
                                                         <rect key="frame" x="8" y="74" width="359" height="359"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconAddpic" translatesAutoresizingMaskIntoConstraints="NO" id="RMQ-8J-nEY">
+                                                                <rect key="frame" x="151" y="156" width="56" height="46"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.875" green="0.86299997569999998" blue="0.86299997569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="RMQ-8J-nEY" firstAttribute="centerY" secondItem="uuq-Ip-yjo" secondAttribute="centerY" id="Q7k-AK-6JE"/>
+                                                            <constraint firstItem="RMQ-8J-nEY" firstAttribute="centerX" secondItem="uuq-Ip-yjo" secondAttribute="centerX" id="sWh-vg-t8B"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ls5-ox-COd">
+                                                        <rect key="frame" x="8" y="74" width="359" height="359"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Ls5-ox-COd" secondAttribute="height" multiplier="1:1" id="WF2-tL-4DS"/>
                                                         </constraints>
@@ -4720,12 +4738,16 @@ open API 플랫폼입니다.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.94900000100000004" green="0.94900000100000004" blue="0.94900000100000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="uuq-Ip-yjo" firstAttribute="centerX" secondItem="Ls5-ox-COd" secondAttribute="centerX" id="6Co-rR-mhg"/>
                                                     <constraint firstItem="Ls5-ox-COd" firstAttribute="top" secondItem="Qlp-V5-1cK" secondAttribute="bottom" constant="24" id="E6V-Vh-5nJ"/>
+                                                    <constraint firstItem="uuq-Ip-yjo" firstAttribute="centerY" secondItem="Ls5-ox-COd" secondAttribute="centerY" id="FHW-si-u7R"/>
                                                     <constraint firstItem="Ls5-ox-COd" firstAttribute="leading" secondItem="gqd-em-aib" secondAttribute="leading" constant="8" id="Gw4-SV-YkX"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ls5-ox-COd" secondAttribute="trailing" constant="8" id="QXA-kQ-6LR"/>
+                                                    <constraint firstItem="uuq-Ip-yjo" firstAttribute="width" secondItem="Ls5-ox-COd" secondAttribute="width" id="cUq-L8-fmU"/>
                                                     <constraint firstItem="Qlp-V5-1cK" firstAttribute="centerX" secondItem="gqd-em-aib" secondAttribute="centerX" id="dYl-DC-ULa"/>
                                                     <constraint firstAttribute="bottom" secondItem="Ls5-ox-COd" secondAttribute="bottom" constant="67" id="oyk-Ki-Ypx"/>
                                                     <constraint firstItem="Qlp-V5-1cK" firstAttribute="top" secondItem="gqd-em-aib" secondAttribute="top" constant="30" id="qHQ-UE-JJ3"/>
+                                                    <constraint firstItem="uuq-Ip-yjo" firstAttribute="height" secondItem="Ls5-ox-COd" secondAttribute="height" id="yRt-J5-kFB"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -4770,6 +4792,7 @@ open API 플랫폼입니다.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="nextBarButtonItem" destination="qjP-Os-JbD" id="QPv-Ix-8mZ"/>
+                        <outlet property="photoBackgroundView" destination="uuq-Ip-yjo" id="YkY-Z7-2zq"/>
                         <outlet property="photoImageView" destination="Ls5-ox-COd" id="Db2-65-rza"/>
                         <outlet property="step2Label" destination="BVq-CJ-XDt" id="e2M-Nm-Vcc"/>
                         <segue destination="kbq-XN-PVm" kind="show" identifier="QuickAnimalInfoSegue" id="MwO-gx-CMZ"/>
@@ -5810,6 +5833,7 @@ open API 플랫폼입니다.</string>
     </scenes>
     <resources>
         <image name="dog_03" width="65" height="65"/>
+        <image name="iconAddpic" width="56" height="46"/>
         <image name="iconBookmarkDetail" width="16" height="23"/>
         <image name="iconBookmarkPressed" width="16" height="23"/>
         <image name="iconCheck" width="16" height="16"/>
