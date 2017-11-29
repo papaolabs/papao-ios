@@ -6,6 +6,8 @@
 	<string>434f48d26920c704f86267f756023ce0</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Milou</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2017112812</string>
+	<string>2017112922</string>
 	<key>FacebookAppID</key>
 	<string>122630828406457</string>
 	<key>LSRequiresIPhoneOS</key>

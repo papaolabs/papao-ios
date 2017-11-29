@@ -1811,31 +1811,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="54" id="abg-Fw-UVA">
-                                        <rect key="frame" x="0.0" y="260" width="375" height="54"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="abg-Fw-UVA" id="o5d-ab-XCL">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="53.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q&amp;A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLW-jy-zE0">
-                                                    <rect key="frame" x="26" y="17" width="35.5" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="qRQ-PH-Ucp"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="iLW-jy-zE0" firstAttribute="centerY" secondItem="o5d-ab-XCL" secondAttribute="centerY" id="Qj7-8Y-TNV"/>
-                                                <constraint firstItem="iLW-jy-zE0" firstAttribute="leading" secondItem="o5d-ab-XCL" secondAttribute="leading" constant="26" id="en5-Ut-YSo"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="54" id="NGT-CB-slB">
-                                        <rect key="frame" x="0.0" y="314" width="375" height="54"/>
+                                        <rect key="frame" x="0.0" y="260" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NGT-CB-slB" id="qxv-9l-wR8">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="53.5"/>
@@ -1858,7 +1835,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="54" id="qTO-Z1-Us0">
-                                        <rect key="frame" x="0.0" y="368" width="375" height="54"/>
+                                        <rect key="frame" x="0.0" y="314" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qTO-Z1-Us0" id="VDw-9L-pv3">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="53.5"/>
@@ -1877,6 +1854,29 @@
                                             <constraints>
                                                 <constraint firstItem="n26-83-C6q" firstAttribute="leading" secondItem="VDw-9L-pv3" secondAttribute="leading" constant="26" id="DST-yk-DXA"/>
                                                 <constraint firstItem="n26-83-C6q" firstAttribute="centerY" secondItem="VDw-9L-pv3" secondAttribute="centerY" id="iQO-TN-9pb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="54" id="abg-Fw-UVA">
+                                        <rect key="frame" x="0.0" y="368" width="375" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="abg-Fw-UVA" id="o5d-ab-XCL">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="53.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후원하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLW-jy-zE0">
+                                                    <rect key="frame" x="26" y="17.5" width="59" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="qRQ-PH-Ucp"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iLW-jy-zE0" firstAttribute="centerY" secondItem="o5d-ab-XCL" secondAttribute="centerY" id="Qj7-8Y-TNV"/>
+                                                <constraint firstItem="iLW-jy-zE0" firstAttribute="leading" secondItem="o5d-ab-XCL" secondAttribute="leading" constant="26" id="en5-Ut-YSo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2161,7 +2161,7 @@
             </objects>
             <point key="canvasLocation" x="4082" y="-3043"/>
         </scene>
-        <!--papao-->
+        <!--Milou-->
         <scene sceneID="SdL-gB-LkY">
             <objects>
                 <viewController id="gb8-J2-MqX" customClass="HomeViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -2601,7 +2601,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wPT-ph-7EP"/>
                     </view>
-                    <navigationItem key="navigationItem" title="papao" id="7Op-Sf-lli">
+                    <navigationItem key="navigationItem" title="Milou" id="7Op-Sf-lli">
                         <barButtonItem key="leftBarButtonItem" image="iconMypage2" id="o2J-MJ-2vQ">
                             <connections>
                                 <segue destination="Dng-dt-6Bo" kind="show" id="LD4-zY-fOM"/>
@@ -4702,7 +4702,7 @@ open API 플랫폼입니다.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqd-em-aib" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Ls5-ox-COd">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ls5-ox-COd">
                                                         <rect key="frame" x="8" y="74" width="359" height="359"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Ls5-ox-COd" secondAttribute="height" multiplier="1:1" id="WF2-tL-4DS"/>
@@ -4769,6 +4769,7 @@ open API 플랫폼입니다.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="nextBarButtonItem" destination="qjP-Os-JbD" id="QPv-Ix-8mZ"/>
                         <outlet property="photoImageView" destination="Ls5-ox-COd" id="Db2-65-rza"/>
                         <outlet property="step2Label" destination="BVq-CJ-XDt" id="e2M-Nm-Vcc"/>
                         <segue destination="kbq-XN-PVm" kind="show" identifier="QuickAnimalInfoSegue" id="MwO-gx-CMZ"/>
@@ -5832,7 +5833,6 @@ open API 플랫폼입니다.</string>
         <image name="iconWriteRoad" width="27" height="27"/>
         <image name="imgQuestionmark" width="68" height="68"/>
         <image name="imgSignin2" width="208" height="217"/>
-        <image name="placeholder" width="108" height="108"/>
         <image name="sampleDog" width="606" height="869"/>
     </resources>
     <inferredMetricsTieBreakers>
