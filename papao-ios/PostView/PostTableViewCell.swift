@@ -30,8 +30,8 @@ class PostTableViewCell: UITableViewCell {
     
     func setPost(post: Post) {
         kindLabel.text = post.kindName
-        genderLabel.text = post.genderType.description
-        happenDateLabel.text = post.noticeBeginDate
+        genderLabel.text = post.genderType != .Q ? post.genderType.description : ""
+        happenDateLabel.text = post.noticeBeginDate?.toDate(format: "yyyyMMdd")?.toString(format: "yyyy년 MM월 dd일")
         happenPlaceLabel.text = post.happenPlace
         viewCountLabel.text = String(describing:post.hitCount ?? 0)
         commentCountLabel.text = String(describing:post.commentCount ?? 0)

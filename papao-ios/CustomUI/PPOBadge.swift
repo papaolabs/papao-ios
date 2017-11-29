@@ -47,7 +47,7 @@ class PPOBadge: UIButton {
     func setStyle(type: PPOBadgeType, backgroundColor: UIColor? = nil, titleColor: UIColor? = nil) {
         switch type {
         case .small:
-            setRadius(radius: 10)
+            setRadius(radius: 8)
             contentEdgeInsets = .init(top: 3, left: 8, bottom: 2, right: 8)
         case .medium:
             setBackgroundColor(color: backgroundColor)

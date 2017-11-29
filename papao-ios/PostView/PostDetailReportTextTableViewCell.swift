@@ -40,7 +40,7 @@ class PostDetailReportTextTableViewCell: UITableViewCell {
         
         neuterLabel.text = postDetail.neuterType.description
 
-        happenDateLabel.text = postDetail.happenDate
+        happenDateLabel.text = postDetail.happenDate.toDate(format: "yyyyMMdd")?.toString(format: "yyyy년 MM월 dd일")
         happenPlaceLabel.text = postDetail.happenPlace
         featureLabel.text = postDetail.feature ?? ""
         userContactLabel.text = postDetail.managerContact ?? ""

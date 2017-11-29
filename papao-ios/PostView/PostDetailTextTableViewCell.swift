@@ -40,15 +40,16 @@ class PostDetailTextTableViewCell: UITableViewCell {
         neuterLabel.text = postDetail.neuterType.description
         
         desertionNumberLabel.text = postDetail.desertionId ?? ""
-        if let startDay = postDetail.noticeBeginDate, let endDay = postDetail.noticeEndDate {
-            desertionDateLabel.text = "\(startDay)-\(endDay)"
+        if let startDay = postDetail.noticeBeginDate?.toDate(format: "yyyyMMdd")?.toString(format: "yyyy년 MM월 dd일"),
+            let endDay = postDetail.noticeEndDate?.toDate(format: "yyyyMMdd")?.toString(format: "yyyy년 MM월 dd일") {
+            desertionDateLabel.text = "\(startDay) - \(endDay)"
         } else {
             
         }
-        happenDateLabel.text = postDetail.happenDate
+        happenDateLabel.text = postDetail.happenDate.toDate(format: "yyyyMMdd")?.toString(format: "yyyy년 MM월 dd일")
         happenPlaceLabel.text = postDetail.happenPlace
         featureLabel.text = postDetail.feature ?? ""
-        userContactLabel.text = "\(postDetail.shelterName ?? postDetail.managerName ?? "") (\(postDetail.managerContact ?? ""))"
+        userContactLabel.text = "\(postDetail.managerName ?? "") (\(postDetail.managerContact ?? ""))"
     }
 }
 
