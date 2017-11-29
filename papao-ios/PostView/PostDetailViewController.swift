@@ -75,6 +75,7 @@ class PostDetailViewController: UIViewController {
                 let postDetail = try result.unwrap()
                 self.postDetail = postDetail
                 
+                self.genderLabel.text = postDetail.genderType.description
                 self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
                 self.breedLabel.text = postDetail.kindName
                 self.hitCountLabel.text = "\(postDetail.hitCount ?? 0)"
