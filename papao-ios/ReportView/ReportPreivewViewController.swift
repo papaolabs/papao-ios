@@ -128,7 +128,7 @@ class ReportPreviewViewController: UIViewController {
     
     func setDetectionInfo() {
         if let post = self.post {
-            happenDateLabel.text = post.happenDate
+            happenDateLabel.text = post.happenDate.toString(format: "yyyy-MM-dd")
             happenPlaceLabel.text = post.happenPlace
             userContactLabel.text = post.contact ?? "없음"
             featureLabel.text = post.feature ?? ""

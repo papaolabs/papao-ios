@@ -117,14 +117,11 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     }
 
     @objc func doneDatePicker() {
-        //For date formate
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        dateTextField.text = formatter.string(from: datePicker.date)
+        //For date format
+        dateTextField.text = datePicker.date.toString(format: "yyyy-MM-dd")
         
         // set date for Post instance
-        formatter.dateFormat = "yyyyMMdd"
-        post?.happenDate = formatter.string(from: datePicker.date)
+        post?.happenDate = datePicker.date
         
         //dismiss date picker dialog
         self.view.endEditing(true)
@@ -224,14 +221,14 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Todo: Post Validation
         if let post = post {
-            guard post.happenDate != "" else {
+            guard post.happenDate != nil else {
                 presentAlert(message: "발견 날짜 입력은 필수입니다.")
                 return
             }
-            guard post.happenDate != "" else {
-                presentAlert(message: "발견 장소 지정은 필수입니다.")
-                return
-            }
+//            guard post.happenDate != nil else {
+//                presentAlert(message: "발견 장소 지정은 필수입니다.")
+//                return
+//            }
         } else {
             print("post 생성 에러")
             return

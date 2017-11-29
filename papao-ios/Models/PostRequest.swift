@@ -10,7 +10,7 @@ import UIKit
 
 struct PostRequest {
     // Required
-    var happenDate: String                      // 발견날짜 (yyyyMMdd)
+    var happenDate: Date                        // 발견날짜 (yyyyMMdd)
     var happenPlace: String                     // 발견장소 (주소 문자열)
     var uid : String                            // Post ID
     var imageUrls: [String]    // 사진 URL
@@ -27,14 +27,14 @@ struct PostRequest {
     var weight: Float?                          // 몸무게
     var feature: String?                        // 특징
     
-    var sido: Sido?                          // 시도
-    var gungu: Gungu?                         // 군구
+    var sido: Sido?                             // 시도
+    var gungu: Gungu?                           // 군구
     
     // MARK: - For UI
     var images: [UIImage]?
     
     init() {
-        happenDate = ""
+        happenDate = Date()                     // 오늘로 자동 설정
         happenPlace = ""
         uid = "-1"
         postType = PostType.ROADREPORT
