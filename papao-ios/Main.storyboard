@@ -882,6 +882,9 @@
                                                                     <rect key="frame" x="88" y="8" width="24" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <state key="normal" title="공유" image="iconShare"/>
+                                                                    <connections>
+                                                                        <action selector="shareButtonPressed:" destination="ZFZ-hy-PDW" eventType="touchUpInside" id="evL-0K-ion"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nca-xO-bcm">
                                                                     <rect key="frame" x="323" y="8" width="24" height="24"/>

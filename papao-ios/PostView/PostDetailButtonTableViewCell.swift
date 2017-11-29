@@ -117,6 +117,13 @@ class PostDetailButtonTableViewCell: UITableViewCell {
             })
         }
     }
+
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        if let postId = postDetail?.id, let url = URL(string: "\(valueForAPIKey(keyname: "API_BASE_URL"))dashboard/posts/\(postId)/share") {
+            let vc = UIActivityViewController(activityItems: [url], applicationActivities: [])
+            parentViewController?.present(vc, animated: true)
+        }
+    }
     
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
