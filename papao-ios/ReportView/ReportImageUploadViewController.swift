@@ -13,7 +13,8 @@ import Photos
 class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var stepLabel2: UILabel!
     @IBOutlet weak var stepLabel3: UILabel!
-
+    @IBOutlet weak var stepTitleLabel3: UILabel!
+    
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -97,10 +98,13 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         switch post.postType {
         case .MISSING:
             titleLabel.text = "실종된 동물의 사진을 업로드해주세요."
+            stepTitleLabel3.text = "실종 정보"
         case .ROADREPORT:
             titleLabel.text = "발견하신 동물의 사진을 업로드해주세요."
+            stepTitleLabel3.text = "발견 정보"
         case .PROTECTING:
             titleLabel.text = "보호 중인 동물의 사진을 업로드해주세요."
+            stepTitleLabel3.text = "발견 정보"
         default:
             break
         }

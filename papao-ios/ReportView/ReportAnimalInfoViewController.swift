@@ -19,6 +19,7 @@ enum PickerName: Int {
 
 class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     @IBOutlet weak var stepLabel3: UILabel!
+    @IBOutlet weak var stepTitleLabel3: UILabel!
     @IBOutlet weak var animalInfoTitleLabel: UILabel!
 
     @IBOutlet weak var speciesButton: UIButton!
@@ -99,10 +100,13 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         if let postType = post?.postType {
             switch postType {
             case .MISSING:
+                stepTitleLabel3.text = "실종 정보"
                 animalInfoTitleLabel.text = "실종된 동물의 정보를 입력해주세요."
             case .PROTECTING:
+                stepTitleLabel3.text = "발견 정보"
                 animalInfoTitleLabel.text = "보호 중인 동물의 정보를 입력해주세요."
             case .ROADREPORT:
+                stepTitleLabel3.text = "발견 정보"
                 animalInfoTitleLabel.text = "발견하신 동물의 정보를 입력해주세요."
             default:
                 break

@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 
 class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
+    @IBOutlet weak var stepTitleLabel3: UILabel!
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var contactTextField: UITextField!
@@ -17,6 +18,7 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var featureTextView: UITextView!
     
     @IBOutlet weak var happenDateTitleLabel: UILabel!
+    @IBOutlet weak var happenDateDescLabel: UILabel!
     @IBOutlet weak var happenPlaceTitleLabel: UILabel!
     
     var locationManager = CLLocationManager()
@@ -65,9 +67,13 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         if let postType = post?.postType {
             switch postType {
             case .MISSING:
+                stepTitleLabel3.text = "실종 정보"
+                happenDateDescLabel.text = "실종 날짜"
                 happenDateTitleLabel.text = "실종 정보를 입력해주세요"
                 happenPlaceTitleLabel.text = "실종 장소를 지정해주세요"
             case .ROADREPORT, .PROTECTING:
+                stepTitleLabel3.text = "발견 정보"
+                happenDateDescLabel.text = "발견 날짜"
                 happenDateTitleLabel.text = "발견 정보를 입력해주세요"
                 happenPlaceTitleLabel.text = "발견 장소를 지정해주세요"
             default:
