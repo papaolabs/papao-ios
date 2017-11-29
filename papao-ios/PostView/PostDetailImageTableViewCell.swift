@@ -15,7 +15,7 @@ class PostDetailImageTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailButton2: UIButton!
     @IBOutlet weak var thumbnailButton3: UIButton!
     var thumbnailButtons: [UIButton] = []
-    var images: [UIImage] = []
+    var images: [UIImage?] = [UIImage?](repeating: nil, count: 3)
     var postDetail: PostDetail?
     
     override func awakeFromNib() {
@@ -24,7 +24,6 @@ class PostDetailImageTableViewCell: UITableViewCell {
             button.setRadius(radius: 2)
         }
     }
-    
     func setPostDetail(_ postDetail: PostDetail?) {
         self.postDetail = postDetail
         setImages()
