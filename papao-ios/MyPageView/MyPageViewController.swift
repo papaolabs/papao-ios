@@ -10,6 +10,7 @@ import UIKit
 import AccountKit
 import Alamofire
 import SDWebImage
+import SafariServices
 
 class MyPageViewController: UITableViewController {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -110,6 +111,27 @@ class MyPageViewController: UITableViewController {
         self.navigationController?.pushViewController(myPostViewController, animated: true)
     }
     
+    func goToWeb(index: Int) {
+        let baseURLString = "\(valueForAPIKey(keyname: "API_BASE_URL"))"
+        var urlString = baseURLString
+        var url: URL?
+        switch index {
+        case 0:
+            url = URL(string: urlString + "dashboard/board/notice")
+        case 1:
+            url = URL(string: urlString + "dashboard/board/accessterms")
+        case 2:
+            url = URL(string: urlString + "/dashboard/board/opensource")
+        case 3:
+            url = URL(string: urlString + "/dashboard/board/sponsor")
+        default:
+            break
+        }
+        
+        let safari = SFSafariViewController(url: url!)
+        present(safari, animated: true, completion: nil)
+    }
+    
     // MARK: - TableView Delegate
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -122,6 +144,7 @@ class MyPageViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let section = indexPath.section
+        let row = indexPath.row
         if (section == 0 || section == 1) && self.user == nil {
             // 로그인 안된 사용자 클릭 시
             presentLoginAlert()
@@ -133,7 +156,8 @@ class MyPageViewController: UITableViewController {
             presentLogoutAlert()
         case 1:
             goToMyPostView()
-        default: break
+        default:
+            goToWeb(index: row)
         }
     }
 }
