@@ -13,6 +13,7 @@
 		4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE421F9C620500E34203 /* ReportTableViewController.swift */; };
 		4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */; };
 		4E26919A1FCD2F9300F77119 /* UIColor+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */; };
+		4E28BE231FCE95DE001797E3 /* QuickReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28BE221FCE95DE001797E3 /* QuickReportUploadViewController.swift */; };
 		4E291C841FCC374400EA9FF4 /* ImageSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E291C831FCC374400EA9FF4 /* ImageSearchTableViewController.swift */; };
 		4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */; };
 		4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */; };
@@ -118,6 +119,7 @@
 		4E21DE421F9C620500E34203 /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
 		4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+PPAdditions.swift"; sourceTree = "<group>"; };
+		4E28BE221FCE95DE001797E3 /* QuickReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickReportUploadViewController.swift; sourceTree = "<group>"; };
 		4E291C831FCC374400EA9FF4 /* ImageSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchTableViewController.swift; sourceTree = "<group>"; };
 		4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageUploadViewController.swift; sourceTree = "<group>"; };
 		4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ruler.swift"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */,
 				4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */,
 				4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */,
+				4E28BE221FCE95DE001797E3 /* QuickReportUploadViewController.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -701,6 +704,7 @@
 				4EF9C3C11FC327CC0075716F /* Statistics.swift in Sources */,
 				4EDDBC191FBDC397009F9001 /* User.swift in Sources */,
 				4E6423BC1FADD75E0099A4C7 /* Age.swift in Sources */,
+				4E28BE231FCE95DE001797E3 /* QuickReportUploadViewController.swift in Sources */,
 				4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */,
 				4E7060CF1FA5FEE300B88F92 /* PPOPicker.swift in Sources */,
 				4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */,
