@@ -38,11 +38,6 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // keyboard event
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-        
         speciesLabel.setStyle(type: .medium)
         
         let footer = UIView.init(frame: CGRect.zero)
@@ -53,6 +48,22 @@ class PostDetailViewController: UIViewController {
             getComments(postId: postId)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // keyboard event
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 
     @objc func close() {
         dismiss(animated: true, completion: nil)

@@ -299,11 +299,15 @@ extension ReportDetectionInfoViewController: CLLocationManagerDelegate {
 
 extension ReportDetectionInfoViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        contentScrollView.setContentOffset(CGPoint.init(x: 0, y: contentScrollView.frame.size.height), animated: true)
+        contentScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 303, right: 0)
+        contentScrollView.scrollIndicatorInsets = contentScrollView.contentInset
+        contentScrollView.scrollToBottom()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        contentScrollView.setContentOffset(CGPoint.init(x: 0, y: contentScrollView.contentSize.height - contentScrollView.frame.size.height), animated: true)
+        contentScrollView.contentInset = UIEdgeInsets.zero
+        contentScrollView.scrollIndicatorInsets = contentScrollView.contentInset
+        contentScrollView.scrollToBottom()
         self.view.endEditing(true);
     }
 }

@@ -63,6 +63,7 @@
 		4EC737851FCEC73400A855C5 /* QuickReportInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */; };
 		4EC737891FCECCC000A855C5 /* String+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC737881FCECCC000A855C5 /* String+PPAdditions.swift */; };
 		4EC7378B1FCED45400A855C5 /* Date+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7378A1FCED45400A855C5 /* Date+PPAdditions.swift */; };
+		4EC7378D1FCF345900A855C5 /* UIScrollView+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7378C1FCF345900A855C5 /* UIScrollView+PPAdditions.swift */; };
 		4ED371D81FBF25860061C4C6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */; };
 		4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */; };
 		4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371DB1FC0376E0061C4C6 /* Filter.swift */; };
@@ -177,6 +178,7 @@
 		4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickReportInfoViewController.swift; sourceTree = "<group>"; };
 		4EC737881FCECCC000A855C5 /* String+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PPAdditions.swift"; sourceTree = "<group>"; };
 		4EC7378A1FCED45400A855C5 /* Date+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+PPAdditions.swift"; sourceTree = "<group>"; };
+		4EC7378C1FCF345900A855C5 /* UIScrollView+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PPAdditions.swift"; sourceTree = "<group>"; };
 		4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4ED371DB1FC0376E0061C4C6 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */,
 				4EC737881FCECCC000A855C5 /* String+PPAdditions.swift */,
 				4EC7378A1FCED45400A855C5 /* Date+PPAdditions.swift */,
+				4EC7378C1FCF345900A855C5 /* UIScrollView+PPAdditions.swift */,
 			);
 			name = Extension;
 			path = "papao-ios/Extension";
@@ -710,6 +713,7 @@
 				4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
 				4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */,
+				4EC7378D1FCF345900A855C5 /* UIScrollView+PPAdditions.swift in Sources */,
 				4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */,
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
 				4E63D4331FC1A5AA00F61446 /* PostDetailCommentWritingTableViewCell.swift in Sources */,

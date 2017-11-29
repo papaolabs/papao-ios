@@ -4948,7 +4948,7 @@ open API 플랫폼입니다.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
-                                                            <outlet property="delegate" destination="oMh-hW-vWT" id="KBd-K7-Pbu"/>
+                                                            <outlet property="delegate" destination="kbq-XN-PVm" id="hgj-9T-6z0"/>
                                                         </connections>
                                                     </textView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qT-Bo-aSC" customClass="GMSMapView">
