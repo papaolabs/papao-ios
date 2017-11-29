@@ -3608,6 +3608,7 @@ open API 플랫폼입니다.</string>
                         <outlet property="pageControl" destination="CJO-J0-eTA" id="mdZ-kv-cEX"/>
                         <outlet property="stepLabel2" destination="MPh-O6-Gcn" id="aFi-hl-Rux"/>
                         <outlet property="stepLabel3" destination="xqd-Xx-7Xh" id="1T7-ZI-zLl"/>
+                        <outlet property="titleLabel" destination="jaq-Da-9fB" id="UWx-ZC-awn"/>
                         <segue destination="dOE-c2-VuM" kind="show" identifier="AnimalInfoSegue" id="vhg-Ak-DQf"/>
                     </connections>
                 </viewController>
@@ -3957,6 +3958,7 @@ open API 플랫폼입니다.</string>
                     <size key="freeformSize" width="375" height="902"/>
                     <connections>
                         <outlet property="ageButton" destination="kf4-dw-fos" id="Mud-58-uzj"/>
+                        <outlet property="animalInfoTitleLabel" destination="0R8-Kc-mpp" id="HS0-KY-iiG"/>
                         <outlet property="breedButton" destination="xd4-tY-HsJ" id="eRz-ax-xir"/>
                         <outlet property="genderSegment" destination="vA4-h7-fJQ" id="h4o-Gz-gZF"/>
                         <outlet property="neuterSegment" destination="kcC-Pd-a6d" id="MOM-r5-Xc6"/>
@@ -4246,6 +4248,8 @@ open API 플랫폼입니다.</string>
                         <outlet property="contentScrollView" destination="jZN-pA-4uS" id="nA3-5i-dRZ"/>
                         <outlet property="dateTextField" destination="ZwA-b0-c5Y" id="4BX-gr-IQM"/>
                         <outlet property="featureTextView" destination="l47-oS-4z8" id="pcO-6M-TtX"/>
+                        <outlet property="happenDateTitleLabel" destination="ISY-O6-vnf" id="nei-xJ-qSQ"/>
+                        <outlet property="happenPlaceTitleLabel" destination="KMV-gF-DU4" id="ldE-Wu-CnO"/>
                         <outlet property="mapView" destination="vZe-Br-4cK" id="DhT-bS-4Nv"/>
                     </connections>
                 </viewController>
@@ -4413,17 +4417,17 @@ open API 플랫폼입니다.</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연락처 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8i-EF-EKn">
-                                                        <rect key="frame" x="12" y="592" width="50" height="20"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연락처" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8i-EF-EKn">
+                                                        <rect key="frame" x="12" y="592" width="61" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="1c4-pd-6tQ"/>
-                                                            <constraint firstAttribute="width" constant="50" id="iW0-E7-deR"/>
+                                                            <constraint firstAttribute="width" constant="61" id="iW0-E7-deR"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견날짜 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1m-g9-est">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1m-g9-est">
                                                         <rect key="frame" x="12" y="614" width="61" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="ffT-Ff-G5c"/>
@@ -4433,7 +4437,7 @@ open API 플랫폼입니다.</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견장소 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9H-dg-yAI">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9H-dg-yAI">
                                                         <rect key="frame" x="12" y="636" width="61" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="61" id="iQL-a2-MIX"/>
@@ -4444,7 +4448,7 @@ open API 플랫폼입니다.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.10.22 14:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyz-8o-eQ0">
-                                                        <rect key="frame" x="81" y="614" width="114.5" height="20"/>
+                                                        <rect key="frame" x="81" y="614" width="266" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="R9b-6j-8G8"/>
                                                         </constraints>
@@ -4454,15 +4458,6 @@ open API 플랫폼입니다.</string>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="송파구 잠실동 석촌호수 부근 블라블라블라블라블라" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9B-Vh-u0N">
                                                         <rect key="frame" x="81" y="636" width="266" height="36"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="010-0000-0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxy-Ix-w8Q">
-                                                        <rect key="frame" x="70" y="592" width="113" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="Tyt-17-dTr"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -4497,9 +4492,19 @@ open API 플랫폼입니다.</string>
                                                             <color key="titleColor" name="textBlack"/>
                                                         </state>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="010-0000-0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxy-Ix-w8Q">
+                                                        <rect key="frame" x="81" y="592" width="266" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="Tyt-17-dTr"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="uyz-8o-eQ0" secondAttribute="trailing" constant="12" id="16N-bg-0WF"/>
                                                     <constraint firstItem="z5E-PL-mLo" firstAttribute="top" secondItem="Axf-Ki-RH7" secondAttribute="bottom" constant="24" id="17G-D5-aek"/>
                                                     <constraint firstItem="6qC-hl-4Ar" firstAttribute="leading" secondItem="lFP-r5-Sy5" secondAttribute="leading" constant="12" id="46f-hh-yps"/>
                                                     <constraint firstItem="w9H-dg-yAI" firstAttribute="leading" secondItem="lFP-r5-Sy5" secondAttribute="leading" constant="12" id="7pq-wd-o0W"/>
@@ -4509,6 +4514,7 @@ open API 플랫폼입니다.</string>
                                                     <constraint firstItem="1TG-00-gQB" firstAttribute="leading" secondItem="z5E-PL-mLo" secondAttribute="trailing" constant="8" id="HB3-Uu-GkJ"/>
                                                     <constraint firstItem="8GK-Ry-xK3" firstAttribute="top" secondItem="1TG-00-gQB" secondAttribute="bottom" constant="2" id="I11-5H-7mI"/>
                                                     <constraint firstItem="JL9-gX-DPm" firstAttribute="top" secondItem="m9B-Vh-u0N" secondAttribute="bottom" constant="24" id="Ib5-Rk-vRg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Cxy-Ix-w8Q" secondAttribute="trailing" constant="12" id="InJ-QA-yHN"/>
                                                     <constraint firstItem="W2j-d2-hS7" firstAttribute="top" secondItem="uUs-fw-HmG" secondAttribute="bottom" constant="2" id="J5A-14-0Fb"/>
                                                     <constraint firstItem="uyz-8o-eQ0" firstAttribute="top" secondItem="Cxy-Ix-w8Q" secondAttribute="bottom" constant="2" id="LGe-nz-aJy"/>
                                                     <constraint firstItem="q0j-P2-HlK" firstAttribute="top" secondItem="EHw-m4-RPL" secondAttribute="bottom" constant="16" id="Lqr-7R-I32"/>
@@ -4603,7 +4609,9 @@ open API 플랫폼입니다.</string>
                         <outlet property="genderDescriptionLabel" destination="z5E-PL-mLo" id="CMQ-Kj-qgD"/>
                         <outlet property="genderLabel" destination="8vU-8A-Tud" id="Zde-n1-Qze"/>
                         <outlet property="happenDateLabel" destination="uyz-8o-eQ0" id="Kfd-l9-ouH"/>
+                        <outlet property="happenDateTitleLabel" destination="R1m-g9-est" id="MeS-4K-4Lr"/>
                         <outlet property="happenPlaceLabel" destination="m9B-Vh-u0N" id="r75-x8-47q"/>
+                        <outlet property="happenPlaceTitleLabel" destination="w9H-dg-yAI" id="Cv8-XA-pgV"/>
                         <outlet property="mapView" destination="JL9-gX-DPm" id="ZU1-qw-iIK"/>
                         <outlet property="neuterLabel" destination="TwF-N3-BSe" id="KdW-9D-W90"/>
                         <outlet property="representImageView" destination="EHw-m4-RPL" id="k3I-9l-rsF"/>

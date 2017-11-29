@@ -16,6 +16,9 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var featureTextView: UITextView!
     
+    @IBOutlet weak var happenDateTitleLabel: UILabel!
+    @IBOutlet weak var happenPlaceTitleLabel: UILabel!
+    
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var markerForCurrentLocation: GMSMarker?
@@ -29,6 +32,8 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setTitleLabel()
         
         mapView.setBorder(color: UIColor.ppBorderGray)
         mapView.setRadius(radius: 2)
@@ -45,6 +50,21 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         setDatePicker()
         setContactTextField()
         setFeatureTextView()
+    }
+    
+    func setTitleLabel() {
+        if let postType = post?.postType {
+            switch postType {
+            case .MISSING:
+                happenDateTitleLabel.text = "실종 정보를 입력해주세요"
+                happenPlaceTitleLabel.text = "실종 장소를 지정해주세요"
+            case .ROADREPORT, .PROTECTING:
+                happenDateTitleLabel.text = "발견 정보를 입력해주세요"
+                happenPlaceTitleLabel.text = "발견 장소를 지정해주세요"
+            default:
+                break
+            }
+        }
     }
     
     func setContactTextField() {

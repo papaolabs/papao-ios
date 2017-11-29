@@ -17,6 +17,9 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    // 포스트 타입별로 레이블 내용 변경
+    @IBOutlet weak var titleLabel: UILabel!
+    
     // for getting a photo
     private let picker = BSImagePickerViewController()
 
@@ -40,7 +43,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(post.postType)
+        setTitleLabel()
         
         // set step Label
         stepLabel2.setRadius(radius: stepLabel2.bounds.width/2)
@@ -87,6 +90,19 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
                 selectedImagesViews.append(imageView)
                 imageScrollView.addSubview(imageView)
             }
+        }
+    }
+    
+    func setTitleLabel() {
+        switch post.postType {
+        case .MISSING:
+            titleLabel.text = "실종된 동물의 사진을 업로드해주세요."
+        case .ROADREPORT:
+            titleLabel.text = "발견하신 동물의 사진을 업로드해주세요."
+        case .PROTECTING:
+            titleLabel.text = "보호 중인 동물의 사진을 업로드해주세요."
+        default:
+            break
         }
     }
     

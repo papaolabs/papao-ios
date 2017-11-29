@@ -19,14 +19,15 @@ enum PickerName: Int {
 
 class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     @IBOutlet weak var stepLabel3: UILabel!
-    
+    @IBOutlet weak var animalInfoTitleLabel: UILabel!
+
     @IBOutlet weak var speciesButton: UIButton!
     @IBOutlet weak var breedButton: UIButton!
     @IBOutlet weak var weightButton: UIButton!
     @IBOutlet weak var ageButton: UIButton!
     @IBOutlet weak var genderSegment: UISegmentedControl!
     @IBOutlet weak var neuterSegment: UISegmentedControl!
-    
+
     // instance for posting Post
     var post: PostRequest?
     var currentSpecies: Species?
@@ -43,6 +44,8 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setTitleLabel()
         
         // set step label
         stepLabel3.setBorder(color: .white)
@@ -88,6 +91,21 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
                 self.ageList = ageList.map({ (dict) -> Age in
                     return Age(dict: dict as! [String: AnyObject])
                 })
+            }
+        }
+    }
+    
+    func setTitleLabel() {
+        if let postType = post?.postType {
+            switch postType {
+            case .MISSING:
+                animalInfoTitleLabel.text = "실종된 동물의 정보를 입력해주세요."
+            case .PROTECTING:
+                animalInfoTitleLabel.text = "보호 중인 동물의 정보를 입력해주세요."
+            case .ROADREPORT:
+                animalInfoTitleLabel.text = "발견하신 동물의 정보를 입력해주세요."
+            default:
+                break
             }
         }
     }

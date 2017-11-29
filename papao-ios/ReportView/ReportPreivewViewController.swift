@@ -11,6 +11,9 @@ import GoogleMaps
 import Alamofire
 
 class ReportPreviewViewController: UIViewController {
+    @IBOutlet weak var happenDateTitleLabel: UILabel!
+    @IBOutlet weak var happenPlaceTitleLabel: UILabel!
+    
     @IBOutlet weak var speciesLabel: PPOBadge!
     @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
@@ -37,6 +40,7 @@ class ReportPreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTitleLabel()
         setCustomUI()
         setPost()
     }
@@ -52,6 +56,21 @@ class ReportPreviewViewController: UIViewController {
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.ppTextBlack]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .default
+    }
+    
+    func setTitleLabel() {
+        if let postType = post?.postType {
+            switch postType {
+            case .MISSING:
+                happenDateTitleLabel.text = "실종날짜"
+                happenPlaceTitleLabel.text = "실종장소"
+            case .ROADREPORT, .PROTECTING:
+                happenDateTitleLabel.text = "발견날짜"
+                happenPlaceTitleLabel.text = "발견장소"
+            default:
+                break
+            }
+        }
     }
 
     func setCustomUI() {
