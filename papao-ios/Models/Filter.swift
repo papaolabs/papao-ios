@@ -32,7 +32,7 @@ struct Filter {
         
         // 인덱스, 사이즈 기본값 설정
         self.index = "0"
-        self.size = "20"
+        self.size = "100"
     }
     
     func toDict() -> [String: AnyObject] {

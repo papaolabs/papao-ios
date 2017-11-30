@@ -15,7 +15,7 @@ class NotificationViewController: UIViewController {
     let api = HttpHelper.init()
     var history: NotificationHistory?
     var userId: String?
-    let sizeOfPostPerPage = "20"
+    let sizeOfPostPerPage = "100"
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -23,13 +23,14 @@ class PostTableViewController: UIViewController {
         
         tableView.tableFooterView = UIView()
         setPullToRefresh()
-        
-        loadPostData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationSetting()
+        
+        // 화면 표시될 때 무조건 새로고침
+        loadPostData()
     }
     
     func setNavigationSetting() {

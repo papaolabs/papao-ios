@@ -46,8 +46,6 @@ class ReportTableViewController: UIViewController {
         view.bringSubview(toFront: writeRoadButtonView)
         view.bringSubview(toFront: writeProtectionButtonView)
         view.bringSubview(toFront: writeButton)
-        
-        loadPostData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +58,9 @@ class ReportTableViewController: UIViewController {
         writeProtectionButtonView.isHidden = true
         writeProtectionButtonView.alpha = 0
         writeProtectionButtonView.frame.origin = CGPoint(x: writeProtectionButtonView.frame.origin.x, y: view.frame.height - 74)
+        
+        // 화면 표시될 때 무조건 새로고침
+        loadPostData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -100,7 +101,7 @@ class ReportTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func loadPostData(index: String? = nil) {
+    func loadPostData(index: String? = nil) {
         if let index = index {
             // 필터에 새 인덱스로 변경
             filter.index = index
