@@ -2948,20 +2948,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgSignin2" translatesAutoresizingMaskIntoConstraints="NO" id="zFh-4k-a8p">
-                                <rect key="frame" x="83" y="92" width="208" height="217"/>
+                                <rect key="frame" x="83" y="96" width="208" height="217"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="208" id="44D-EA-7lv"/>
                                     <constraint firstAttribute="height" constant="217" id="Hmt-fs-vNz"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="환영합니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXI-5h-pge">
-                                <rect key="frame" x="141.5" y="330" width="92.5" height="24"/>
+                                <rect key="frame" x="141.5" y="334" width="92.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <color key="textColor" red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hus-u7-b7f">
-                                <rect key="frame" x="73" y="362" width="228" height="60"/>
+                                <rect key="frame" x="73" y="366" width="228" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="228" id="2us-ip-ude"/>
                                     <constraint firstAttribute="height" constant="60" id="4Wd-Zp-7wK"/>
@@ -2974,7 +2974,7 @@ open API 플랫폼입니다.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입력정보는 회원가입을 위한 인증용으로만 사용됩니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBN-EW-Tuz">
-                                <rect key="frame" x="70" y="538" width="235" height="20"/>
+                                <rect key="frame" x="70" y="542" width="235" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="9fm-Y0-0pU"/>
                                 </constraints>
@@ -3003,7 +3003,7 @@ open API 플랫폼입니다.</string>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnz-X2-ESn" customClass="PPOBadge" customModule="papao_ios" customModuleProvider="target">
-                                <rect key="frame" x="67" y="486" width="240" height="44"/>
+                                <rect key="frame" x="67" y="490" width="240" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="SCH-bj-mIT"/>
                                     <constraint firstAttribute="height" constant="44" id="bj6-sQ-PVa"/>
@@ -3077,7 +3077,7 @@ open API 플랫폼입니다.</string>
                     <tabBarItem key="tabBarItem" title="보호소" image="iconShelter" id="ZcN-vj-OkA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wl7-QP-npm">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3472,7 +3472,7 @@ open API 플랫폼입니다.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9E-sN-cYG" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-4L-JFa">
                                         <rect key="frame" x="287" y="94" width="50" height="16"/>
@@ -3552,10 +3552,10 @@ open API 플랫폼입니다.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBu-Cq-ahp" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="118" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="122" width="375" height="510"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUj-8y-Sr2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnP-QO-mTa" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
@@ -3723,7 +3723,7 @@ open API 플랫폼입니다.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFk-Oe-jF8" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvo-kg-qKx">
                                         <rect key="frame" x="287" y="94" width="50" height="16"/>
@@ -3801,10 +3801,10 @@ open API 플랫폼입니다.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23e-JT-N6p" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="119" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="123" width="375" height="730"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CQY-WG-knY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5x-jG-3Rf" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
@@ -4080,7 +4080,7 @@ open API 플랫폼입니다.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vvd-Ux-TyF" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dk-hx-su4">
                                         <rect key="frame" x="287" y="94" width="50" height="16"/>
@@ -4156,10 +4156,10 @@ open API 플랫폼입니다.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJk-4G-Tt0" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="119" width="375" height="798"/>
+                                <rect key="frame" x="0.0" y="123" width="375" height="794"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZN-pA-4uS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="798"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="794"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0II-QU-CXA" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="794"/>
@@ -4368,7 +4368,7 @@ open API 플랫폼입니다.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWK-rc-xIk">
-                                <rect key="frame" x="0.0" y="64" width="375" height="999"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="995"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-gh-eCF" userLabel="Background View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1015"/>
@@ -4737,7 +4737,7 @@ open API 플랫폼입니다.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hc7-tR-Ona" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동물 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIu-bb-esS">
                                         <rect key="frame" x="257" y="94" width="50" height="16"/>
@@ -4793,10 +4793,10 @@ open API 플랫폼입니다.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRg-Ee-JTu" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="118" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="122" width="375" height="496"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Loi-Tl-Q1e">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="496"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqd-em-aib" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
@@ -4952,7 +4952,7 @@ open API 플랫폼입니다.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bV-tL-xo9" userLabel="Progress View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="4" width="375" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동물 정보" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYI-Wp-aSb">
                                         <rect key="frame" x="257" y="94" width="50" height="16"/>
@@ -5006,10 +5006,10 @@ open API 플랫폼입니다.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54s-Ha-Q4P" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="118" width="375" height="1133"/>
+                                <rect key="frame" x="0.0" y="122" width="375" height="1129"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oiv-Q9-ejJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1133"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1129"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpM-1e-NBP" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1118"/>
@@ -5345,7 +5345,7 @@ open API 플랫폼입니다.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0T-2F-k2y">
-                                <rect key="frame" x="0.0" y="64" width="375" height="630"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="626"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yd0-Gt-dI1">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="630"/>
@@ -5904,7 +5904,7 @@ open API 플랫폼입니다.</string>
                     <tabBarItem key="tabBarItem" title="제보" image="iconReport" id="CVZ-2x-PxY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cfx-g5-Fqt">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -5923,7 +5923,7 @@ open API 플랫폼입니다.</string>
                     <tabBarItem key="tabBarItem" title="홈" image="iconHome" id="Xfl-a4-Xi2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hkT-GD-xxn">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -5942,7 +5942,7 @@ open API 플랫폼입니다.</string>
                     <tabBarItem key="tabBarItem" title="실종" image="iconLost2" id="Fi0-1B-waJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNq-jF-Y2d">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -5960,7 +5960,7 @@ open API 플랫폼입니다.</string>
                 <navigationController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="QMx-TH-Twb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pin-oW-FhM">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

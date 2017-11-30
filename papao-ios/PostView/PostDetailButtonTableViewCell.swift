@@ -136,30 +136,46 @@ class PostDetailButtonTableViewCell: UITableViewCell {
         let alertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
         }
-        let processAction = UIAlertAction(title: "\(State.PROCESS.description)으로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            self.setStatus(postId: self.postDetail?.id, status: .PROCESS)
-        }
-        let returnAction = UIAlertAction(title: "\(State.RETURN.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            self.setStatus(postId: self.postDetail?.id, status: .RETURN)
-        }
-        let naturalDeathAction = UIAlertAction(title: "\(State.NATURALDEATH.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            self.setStatus(postId: self.postDetail?.id, status: .NATURALDEATH)
-        }
-        let euthanasiaAction = UIAlertAction(title: "\(State.EUTHANASIA.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            self.setStatus(postId: self.postDetail?.id, status: .EUTHANASIA)
-        }
-        let adoptionAction = UIAlertAction(title: "\(State.ADOPTION.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            self.setStatus(postId: self.postDetail?.id, status: .ADOPTION)
+        alertController.addAction(cancelAction)
+
+        if let postDetail = postDetail {
+            switch postDetail.postType {
+            case .PROTECTING:
+                let processAction = UIAlertAction(title: "\(State.PROCESS.description)으로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    self.setStatus(postId: postDetail.id, status: .PROCESS)
+                }
+                let returnAction = UIAlertAction(title: "\(State.RETURN.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    self.setStatus(postId: postDetail.id, status: .RETURN)
+                }
+                let naturalDeathAction = UIAlertAction(title: "\(State.NATURALDEATH.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    self.setStatus(postId: postDetail.id, status: .NATURALDEATH)
+                }
+                let euthanasiaAction = UIAlertAction(title: "\(State.EUTHANASIA.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    self.setStatus(postId: postDetail.id, status: .EUTHANASIA)
+                }
+                let adoptionAction = UIAlertAction(title: "\(State.ADOPTION.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    self.setStatus(postId: postDetail.id, status: .ADOPTION)
+                }
+                alertController.addAction(processAction)
+                alertController.addAction(returnAction)
+                alertController.addAction(naturalDeathAction)
+                alertController.addAction(euthanasiaAction)
+                alertController.addAction(adoptionAction)
+            case .MISSING:
+                let processAction = UIAlertAction(title: "찾는 중으로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    self.setStatus(postId: postDetail.id, status: .PROCESS)
+                }
+                let returnAction = UIAlertAction(title: "\(State.RETURN.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    self.setStatus(postId: postDetail.id, status: .RETURN)
+                }
+                alertController.addAction(processAction)
+                alertController.addAction(returnAction)
+            default: break
+            }
         }
         let deleteAction = UIAlertAction(title: "게시글 삭제", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             self.deletePost(postId: self.postDetail?.id)
         }
-        alertController.addAction(cancelAction)
-        alertController.addAction(processAction)
-        alertController.addAction(returnAction)
-        alertController.addAction(naturalDeathAction)
-        alertController.addAction(euthanasiaAction)
-        alertController.addAction(adoptionAction)
         alertController.addAction(deleteAction)
         parentViewController?.present(alertController, animated: true, completion: nil)
     }

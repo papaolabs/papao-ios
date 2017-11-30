@@ -77,7 +77,22 @@ class PostDetailViewController: UIViewController {
                 self.postDetail = postDetail
                 
                 self.statusBadge.setStyle(type: .medium, backgroundColor: postDetail.stateType.color, titleColor: .white)
-                self.statusBadge.setTitle(postDetail.stateType.description, for: .normal)
+                
+                if let postDetail = self.postDetail {
+                    switch postDetail.postType {
+                    case .PROTECTING, .SYSTEM:
+                        self.statusBadge.setTitle(postDetail.stateType.description, for: .normal)
+                    case .MISSING:
+                        if postDetail.stateType == .PROCESS {
+                            self.statusBadge.setTitle("찾는 중", for: .normal)
+                        } else {
+                            self.statusBadge.setTitle(postDetail.stateType.description, for: .normal)
+                        }
+                    case .ROADREPORT:
+                        self.statusBadge.isHidden = true
+                    }
+                }
+                
                 self.genderLabel.text = postDetail.genderType != .Q ? postDetail.genderType.description : ""
                 self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
                 self.breedLabel.text = postDetail.kindName
