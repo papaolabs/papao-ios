@@ -89,7 +89,9 @@ class QuickReportInfoViewController: UIViewController {
         
         // 전화번호와 날짜 자동 입력
         if let user = AccountManager.sharedInstance.getLoggedUser() {
-            contactTextField.text = user.phone.getPhoneWithoutDash()
+            let phoneNumber = user.phone.getPhoneWithoutDash()
+            contactTextField.text = phoneNumber
+            self.post?.contact = phoneNumber
         }
         dateTextField.text = post?.happenDate.toString(format: "yyyy-MM-dd")
     }

@@ -43,7 +43,11 @@ class PostDetailReportTextTableViewCell: UITableViewCell {
         happenDateLabel.text = postDetail.happenDate.toDate(format: "yyyyMMdd")?.toString(format: "yyyy년 MM월 dd일")
         happenPlaceLabel.text = postDetail.happenPlace
         featureLabel.text = postDetail.feature ?? ""
-        userContactLabel.text = postDetail.managerContact ?? ""
+        if let contact = postDetail.managerContact {
+            userContactLabel.text = contact != "-1" ? contact : "없음"
+        } else {
+            userContactLabel.text = "없음"
+        }
         
         if (postDetail.postType == .MISSING) {
             happenDateTitleLabel.text = "실종날짜"
