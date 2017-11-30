@@ -31,7 +31,7 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     let tagForIconView = 999
     
     var post: PostRequest = PostRequest.init()
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barTintColor = UIColor.ppWarmPink
@@ -99,12 +99,15 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         case .MISSING:
             titleLabel.text = "실종된 동물의 사진을 업로드해주세요."
             stepTitleLabel3.text = "실종 정보"
+            title = "실종 신고"
         case .ROADREPORT:
             titleLabel.text = "발견하신 동물의 사진을 업로드해주세요."
             stepTitleLabel3.text = "발견 정보"
+            title = "길거리 제보"
         case .PROTECTING:
             titleLabel.text = "보호 중인 동물의 사진을 업로드해주세요."
             stepTitleLabel3.text = "발견 정보"
+            title = "임시 보호"
         default:
             break
         }

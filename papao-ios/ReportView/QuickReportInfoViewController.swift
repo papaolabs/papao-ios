@@ -72,6 +72,11 @@ class QuickReportInfoViewController: UIViewController {
         setFeatureTextView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "길거리 제보"
+    }
+    
     func setPost(post: PostRequest?) {
         // 품종, 축종 자동 입력
         if let species = post?.species {

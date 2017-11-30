@@ -67,11 +67,19 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         if let postType = post?.postType {
             switch postType {
             case .MISSING:
+                title = "실종 신고"
                 stepTitleLabel3.text = "실종 정보"
                 happenDateDescLabel.text = "실종 날짜"
                 happenDateTitleLabel.text = "실종 정보를 입력해주세요"
                 happenPlaceTitleLabel.text = "실종 장소를 지정해주세요"
-            case .ROADREPORT, .PROTECTING:
+            case .ROADREPORT:
+                 title = "길거리 제보"
+                 stepTitleLabel3.text = "발견 정보"
+                 happenDateDescLabel.text = "발견 날짜"
+                 happenDateTitleLabel.text = "발견 정보를 입력해주세요"
+                 happenPlaceTitleLabel.text = "발견 장소를 지정해주세요"
+            case .PROTECTING:
+                title = "임시 보호"
                 stepTitleLabel3.text = "발견 정보"
                 happenDateDescLabel.text = "발견 날짜"
                 happenDateTitleLabel.text = "발견 정보를 입력해주세요"

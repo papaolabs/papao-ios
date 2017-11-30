@@ -31,6 +31,8 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .black
+        
+        title = "길거리 제보"
     }
     
     override func viewDidLoad() {

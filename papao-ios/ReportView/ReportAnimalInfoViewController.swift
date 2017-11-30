@@ -102,12 +102,15 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             case .MISSING:
                 stepTitleLabel3.text = "실종 정보"
                 animalInfoTitleLabel.text = "실종된 동물의 정보를 입력해주세요."
+                title = "실종 신고"
             case .PROTECTING:
                 stepTitleLabel3.text = "발견 정보"
                 animalInfoTitleLabel.text = "보호 중인 동물의 정보를 입력해주세요."
+                title = "임시 보호"
             case .ROADREPORT:
                 stepTitleLabel3.text = "발견 정보"
                 animalInfoTitleLabel.text = "발견하신 동물의 정보를 입력해주세요."
+                title = "길거리 제보"
             default:
                 break
             }
@@ -209,25 +212,16 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
     }
     
     func pickerView(inputAccessoryViewFor pickerView: PPOPicker) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
-        view.backgroundColor = .white
-        let buttonWidth: CGFloat = 100
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.ppWarmPink
         
-        let cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - buttonWidth - 10, y: 0, width: buttonWidth, height: 40))
-        cancelButton.setTitle("취소", for: .normal)
-        cancelButton.setTitleColor(.black, for: .normal)
-        cancelButton.setTitleColor(.lightGray, for: .highlighted)
-        cancelButton.addTarget(self, action: #selector(pickerCancelAction), for: .touchUpInside)
-        view.addSubview(cancelButton)
+        let cancelButton = UIBarButtonItem(title: "초기화", style: .plain, target: self, action: #selector(pickerCancelAction))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(pickerSetAction))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
-        let setButton = UIButton(frame: CGRect(x: 10, y: 0, width: buttonWidth, height: 40))
-        setButton.setTitle("선택", for: .normal)
-        setButton.setTitleColor(.black, for: .normal)
-        setButton.setTitleColor(.lightGray, for: .highlighted)
-        setButton.addTarget(self, action: #selector(pickerSetAction), for: .touchUpInside)
-        view.addSubview(setButton)
-        
-        return view
+        return toolbar
     }
     
     func pickerView(didSelect value: PublicDataProtocol, inRow row: Int, inComponent component: Int, delegatedFrom pickerView: PPOPicker) {
