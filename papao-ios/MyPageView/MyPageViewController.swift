@@ -127,7 +127,6 @@ class MyPageViewController: UITableViewController {
         default:
             break
         }
-        url = URL(string: urlString + "dashboard/board/accessterms")
 
         let safari = SFSafariViewController(url: url!)
         present(safari, animated: true, completion: nil)
