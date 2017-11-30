@@ -9,38 +9,55 @@
 import UIKit
 import Alamofire
 
-class PostTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PostTableViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
-    var posts: [Post] = []
-    
+    @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var filterBarButtonItem: UIBarButtonItem!
+    var postResponse: PostResponse?
+    var filter = Filter.init(postTypes: [PostType.SYSTEM])
+    let api = HttpHelper.init()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        let postString = "{\n" +
-            "  \"id\": 257,\n" +
-            "  \"type\": \"01\",\n" +
-            "  \"imageUrls\": [\"http://www.animal.go.kr/files/shelter/2017/08/201709012009506.jpg\"],\n" +
-            "  \"kindUpCode\": \"417000\",\n" +
-            "  \"kindCode\": \"72\",\n" +
-            "  \"kindName\": \"말티즈\",\n" +
-            "  \"happenDate\": \"20170901\",\n" +
-            "  \"happenPlace\": \"경기도 남양주시\",\n" +
-            "  \"userId\": \"01\",\n" +
-            "  \"userName\": \"남양주동물보호협회\",\n" +
-            "  \"userAddress\": \"경기도 남양주시 금곡로 44 (금곡동 성원빌딩) 1층\",\n" +
-            "  \"userContact\": \"031-591-7270\",\n" +
-            "  \"weight\": \"3.7\",\n" +
-            "  \"gender\": \"M\",\n" +
-            "  \"state\": \"종료(입양)\",\n" +
-            "  \"neuter\": \"Y\",\n" +
-            "  \"feature\": \"목줄 없고 온순함\",\n" +
-            "  \"introduction\": \"\"\n" +
-        "}"
-        if let dict = postString.dictionaryFromJSON() {
-            let post = Post(fromDict: dict)
-            posts.append(post)
+        
+        tableView.tableFooterView = UIView()
+        setPullToRefresh()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationSetting()
+        
+        // 화면 표시될 때 무조건 새로고침
+        loadPostData()
+    }
+    
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.ppTextBlack
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.ppTextBlack]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+    
+    func setPullToRefresh() {
+        if #available(iOS 10.0, *) {
+            let refreshControl = UIRefreshControl()
+            let title = "당겨서 새로고침"
+            refreshControl.attributedTitle = NSAttributedString(string: title)
+            refreshControl.addTarget(self,
+                                     action: #selector(refreshOptions(sender:)),
+                                     for: .valueChanged)
+            tableView.refreshControl = refreshControl
         }
+    }
+    
+    @objc private func refreshOptions(sender: UIRefreshControl) {
+        // 데이터 새로고침
+        clearPostData()
+        loadPostData()
+        sender.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,61 +65,132 @@ class PostTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - IBAction
-    @objc func favoriteButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: "즐겨찾기 되었습니다.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .cancel) { (_) in
+    fileprivate func loadPostData(index: String? = nil) {
+        if let index = index {
+            // 필터에 새 인덱스로 변경
+            filter.index = index
+            
+            api.readPosts(filter: filter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    if self.postResponse != nil {
+                        // 기존에 post 목록 데이터가 있으면 elements에 추가
+                        self.postResponse?.elements.append(contentsOf: newPostResponse.elements.flatMap{ $0 })
+                    } else {
+                        // 기존에 post 목록 데이터 없으면 (처음 요청인 경우)
+                        self.postResponse = newPostResponse
+                    }
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
+        } else {
+            // 처음 api 요청
+            api.readPosts(filter: filter, completion: { (result) in
+                do {
+                    let newPostResponse = try result.unwrap()
+                    self.postResponse = newPostResponse
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            })
         }
-        alert.addAction(okAction)
-        self.present(alert, animated: false)
-        
-        let button = sender as! UIButton
-        button.tintColor = UIColor.gray
     }
+    
+    fileprivate func clearPostData() {
+        // index 초기화
+        filter.index = "0"
+        postResponse = nil
+        tableView.reloadData()
+    }
+    
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FilterSegue" {
+            if let viewController = segue.destination as? FilterViewController {
+                // pass data to next viewController
+                viewController.filter = filter
+            }
+        }
+    }
+    
+    @IBAction func unwindToPostViewController(segue: UIStoryboardSegue) {
+        if let sourceViewController = segue.source as? FilterViewController, let filter = sourceViewController.filter {
+            // 새 필터 적용
+            self.filter = filter
+            
+            // 데이터 초기화
+            clearPostData()
+            
+            // BarButtonItem 틴트 변경
+            filterBarButtonItem.tintColor = UIColor.ppWarmPink
+            
+            // filter 적용 후 데이터 다시 로드
+            loadPostData()
+        }
+    }
+}
 
+extension PostTableViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        guard let count = postResponse?.elements.count, count > 0 else {
+            tableView.separatorStyle = .none
+            tableView.backgroundView = emptyView
+            return 0
+        }
+        tableView.separatorStyle = .singleLine
+        tableView.backgroundView = nil
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postCellIdentifier",
                                                                   for: indexPath) as! PostTableViewCell
         let row = indexPath.row;
-        let post = posts[row]
-        
-        cell.kindLabel.text = post.kindName
-        cell.happenDateLabel.text = post.happenDate
-        cell.happenPlaceLabel.text = post.happenPlace
-        
-        Alamofire.request(post.imageUrls[0]).responseData { response in
-            if let data = response.result.value {
-                let image = UIImage(data: data)
-                cell.postImageView.image = image
-            }
+        guard let post = postResponse?.elements[row] else {
+            return cell
         }
-        
-        cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+
+        cell.setPost(post: post)
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // 현재 로딩 된 포스트의 총 개수가 포스트 총 개수보다 작고, 마지막 직전 셀이 노출 될 예정인 경우 다음 페이지 로딩
+        if let postResponse = postResponse,
+            postResponse.totalElements > postResponse.elements.count,
+            indexPath.row == postResponse.elements.count - 1 {
+            if let size = Int(filter.size) {
+                let nextIndex = indexPath.row/size + 1
+                loadPostData(index: "\(nextIndex)")
+            } else {
+                print("pagination에 문제가 있습니다")
+            }
+        }
     }
     
     // MARK: - TableView Delegate
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 140
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = self.posts[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let row = self.postResponse?.elements[indexPath.row]
         guard let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostDetail") as? PostDetailViewController else {
             return
         }
 
-        postDetailViewController.post = row
+        postDetailViewController.postId = row?.id
         self.navigationController?.pushViewController(postDetailViewController, animated: true)
     }
 }

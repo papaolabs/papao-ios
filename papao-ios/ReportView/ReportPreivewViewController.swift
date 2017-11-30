@@ -11,6 +11,9 @@ import GoogleMaps
 import Alamofire
 
 class ReportPreviewViewController: UIViewController {
+    @IBOutlet weak var happenDateTitleLabel: UILabel!
+    @IBOutlet weak var happenPlaceTitleLabel: UILabel!
+    
     @IBOutlet weak var speciesLabel: PPOBadge!
     @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
@@ -33,24 +36,52 @@ class ReportPreviewViewController: UIViewController {
     @IBOutlet weak var featureLabel: UILabel!
     @IBOutlet weak var mapView: GMSMapView!
     
-    var post: Post?
+    var post: PostRequest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTitleLabel()
         setCustomUI()
         setPost()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationSetting()
+    }
+
+    func setNavigationSetting() {
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.ppTextBlack
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.ppTextBlack]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .default
+    }
+    
+    func setTitleLabel() {
+        if let postType = post?.postType {
+            switch postType {
+            case .MISSING:
+                happenDateTitleLabel.text = "실종날짜"
+                happenPlaceTitleLabel.text = "실종장소"
+            case .ROADREPORT, .PROTECTING:
+                happenDateTitleLabel.text = "발견날짜"
+                happenPlaceTitleLabel.text = "발견장소"
+            default:
+                break
+            }
+        }
+    }
+
     func setCustomUI() {
-        speciesLabel.setBorder(color: UIColor.init(named: "borderBlack") ?? UIColor.black)
-        speciesLabel.setRadius(radius: 13)
+        speciesLabel.setStyle(type: .medium)
         
         thumbnailButtons = [thumbnailButton1, thumbnailButton2, thumbnailButton3]
         thumbnailButtons.forEach { (button) in
             button.setRadius(radius: 2)
         }
         
-        mapView.setBorder(color: UIColor.init(named: "borderGray") ?? UIColor.black)
+        mapView.setBorder(color: UIColor.ppBorderGray)
         mapView.setRadius(radius: 2)
     }
     
@@ -63,12 +94,10 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setTitle() {
-        if let species = post?.kindUpCode, let speciesCode = Int(species) {
-            if let speciesName = SpeciesName(rawValue: speciesCode) {
-                speciesLabel.setTitle(speciesName.description, for: .normal)
-            }
-            breedLabel.text = post?.kindName ?? "기타축종"
-            genderLabel.text = post?.gender ?? "모름"
+        if let species = post?.species {
+            speciesLabel.setTitle(species.name, for: .normal)
+            breedLabel.text = post?.breed?.name ?? "기타"
+            genderLabel.text = post?.genderType?.description
         }
     }
 
@@ -86,17 +115,22 @@ class ReportPreviewViewController: UIViewController {
     }
     
     func setAnimalInfo() {
-        weightLabel.text = post?.weight ?? "모름"
-        neuterLabel.text = post?.neuter ?? Neuter.U.description
-        ageLabel.text = post?.age ?? "미상"
-        genderDescriptionLabel.text = post?.gender ?? Gender.Q.description
+        if let weight = post?.weight {
+            weightLabel.text = String(describing:weight)
+        } else {
+            weightLabel.text = "모름"
+        }
+        
+        neuterLabel.text = post?.neuterType?.description ?? Neuter.U.description
+        ageLabel.text = post?.age?.description ?? "미상"
+        genderDescriptionLabel.text = post?.genderType?.description ?? Gender.Q.description
     }
     
     func setDetectionInfo() {
         if let post = self.post {
-            happenDateLabel.text = post.happenDate
+            happenDateLabel.text = post.happenDate.toString(format: "yyyy-MM-dd")
             happenPlaceLabel.text = post.happenPlace
-            userContactLabel.text = post.userContact ?? "없음"
+            userContactLabel.text = post.contact ?? "없음"
             featureLabel.text = post.feature ?? ""
         }
     }
@@ -145,14 +179,15 @@ class ReportPreviewViewController: UIViewController {
         }
     }
     
-    private func imageToGrayscale(_ image: UIImage) -> UIImage {
-        let context = CIContext(options: nil)
-        let currentFilter = CIFilter(name: "CIPhotoEffectNoir")
-        currentFilter!.setValue(CIImage(image: image), forKey: kCIInputImageKey)
-        let output = currentFilter!.outputImage
-        let cgimg = context.createCGImage(output!,from: output!.extent)
-        let processedImage = UIImage(cgImage: cgimg!)
-        return processedImage
+    fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        if cancel {
+            let cancelAction = UIAlertAction(title: "아니오", style: .default)
+            alert.addAction(cancelAction)
+        }
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
+        self.present(alert, animated: false)
     }
     
     // MARK: - IBActions
@@ -190,7 +225,27 @@ class ReportPreviewViewController: UIViewController {
     }
     
     @IBAction func registerReport(_ sender: Any) {
-        // Todo: Http POST
-        self.navigationController?.popToRootViewController(animated: true)
+        if let postRequest = post {
+            let api = HttpHelper.init()
+            api.createPost(parameters: postRequest.toDict(), completion: { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    switch cudResult.rawValue {
+                    case let code where code > 0:
+                        self.navigationController?.popToRootViewController(animated: true)
+                    default:
+                        self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                    self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                    })
+                }
+            })
+        } else {
+            self.alert(message: "글 작성에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+            })
+        }
     }
 }

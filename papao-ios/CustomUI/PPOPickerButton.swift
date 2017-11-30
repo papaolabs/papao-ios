@@ -23,12 +23,12 @@ class PPOPickerButton: UIButton {
     func initialize() {
         // set background, color
         backgroundColor = .white
-        tintColor = UIColor.init(named: "brownishGray")
+        tintColor = UIColor.ppBrownishGray
         
         // set other operations after super.init, if required
         layer.cornerRadius = 8
         layer.borderWidth = 0.4
-        layer.borderColor = UIColor.init(named: "borderGray")?.cgColor
+        layer.borderColor = UIColor.ppBorderGray.cgColor
         
         // set image
         setImage(UIImage.init(named: "triangle"), for: .normal)

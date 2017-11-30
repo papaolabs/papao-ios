@@ -7,17 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E177B921FB6FCB200A10017 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E177B911FB6FCB200A10017 /* Post.swift */; };
+		4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */; };
 		4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */; };
 		4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE421F9C620500E34203 /* ReportTableViewController.swift */; };
 		4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */; };
+		4E26919A1FCD2F9300F77119 /* UIColor+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */; };
+		4E28BE231FCE95DE001797E3 /* QuickReportUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28BE221FCE95DE001797E3 /* QuickReportUploadViewController.swift */; };
+		4E291C841FCC374400EA9FF4 /* ImageSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E291C831FCC374400EA9FF4 /* ImageSearchTableViewController.swift */; };
 		4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */; };
 		4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */; };
+		4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */; };
+		4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D41FC4A09F00967596 /* NotificationHistory.swift */; };
+		4E3490D71FC5A5DA00967596 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */; };
+		4E3490DA1FC5BDB100967596 /* PPOBookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */; };
+		4E3490DC1FC5C97200967596 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3490DB1FC5C97200967596 /* MyPageViewController.swift */; };
+		4E36059B1FC85D4800748989 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36059A1FC85D4800748989 /* ImageRequest.swift */; };
+		4E36059D1FC85D5A00748989 /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36059C1FC85D5A00748989 /* ImageResponse.swift */; };
 		4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */; };
 		4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */; };
 		4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */; };
 		4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */; };
 		4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FC1F9E10580041A680 /* keys.plist */; };
 		4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */; };
+		4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */; };
+		4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E579E7E1FB47E22002E5404 /* PostRequest.swift */; };
+		4E5847AF1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5847AE1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift */; };
+		4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */; };
+		4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */; };
+		4E63D42D1FC13EAB00F61446 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63D42C1FC13EAB00F61446 /* Comment.swift */; };
+		4E63D42F1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63D42E1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift */; };
+		4E63D4311FC18B4C00F61446 /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63D4301FC18B4C00F61446 /* PostResponse.swift */; };
+		4E63D4331FC1A5AA00F61446 /* PostDetailCommentWritingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63D4321FC1A5AA00F61446 /* PostDetailCommentWritingTableViewCell.swift */; };
 		4E6423B41FADD44E0099A4C7 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6423B31FADD44E0099A4C7 /* Weight.swift */; };
 		4E6423B61FADD48B0099A4C7 /* WeightList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B51FADD48B0099A4C7 /* WeightList.plist */; };
 		4E6423BA1FADD4A20099A4C7 /* AgeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E6423B91FADD4A20099A4C7 /* AgeList.plist */; };
@@ -25,8 +46,9 @@
 		4E7060CF1FA5FEE300B88F92 /* PPOPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7060CE1FA5FEE300B88F92 /* PPOPicker.swift */; };
 		4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7060D01FA6022600B88F92 /* PublicDataProtocol.swift */; };
 		4E7060D51FA6132500B88F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7060D41FA612FE00B88F92 /* Main.storyboard */; };
-		4E835F011F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
-		4E835F021F9230A700BFA6BD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* Post.swift */; };
+		4E835F011F9230A700BFA6BD /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* PostDetail.swift */; };
+		4E835F021F9230A700BFA6BD /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E835F001F9230A700BFA6BD /* PostDetail.swift */; };
+		4E8CDB6E1FC93CEF00403E45 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8CDB6D1FC93CEF00403E45 /* AccountManager.swift */; };
 		4EA9CA051FA7674C00115784 /* ReportDetectionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */; };
 		4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */; };
 		4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9AAA1F91DCE700499B18 /* PostTableViewController.swift */; };
@@ -38,13 +60,28 @@
 		4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */; };
 		4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */; };
 		4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */; };
+		4EC737851FCEC73400A855C5 /* QuickReportInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */; };
+		4EC737891FCECCC000A855C5 /* String+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC737881FCECCC000A855C5 /* String+PPAdditions.swift */; };
+		4EC7378B1FCED45400A855C5 /* Date+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7378A1FCED45400A855C5 /* Date+PPAdditions.swift */; };
+		4EC7378D1FCF345900A855C5 /* UIScrollView+PPAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC7378C1FCF345900A855C5 /* UIScrollView+PPAdditions.swift */; };
+		4ED371D81FBF25860061C4C6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */; };
+		4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */; };
+		4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371DB1FC0376E0061C4C6 /* Filter.swift */; };
+		4ED371DE1FC038F90061C4C6 /* RegionList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED371DD1FC038F90061C4C6 /* RegionList.plist */; };
+		4ED371E01FC051C10061C4C6 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED371DF1FC051C10061C4C6 /* Region.swift */; };
 		4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6F3901FA5CC4D009E287C /* Breed.swift */; };
-		4ED6F3941FA5D0DE009E287C /* BreedList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3931FA5D0DE009E287C /* BreedList.plist */; };
 		4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ED6F3951FA5E004009E287C /* SpeciesList.plist */; };
 		4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED6F3971FA5E1C7009E287C /* Species.swift */; };
 		4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */; };
 		4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */; };
 		4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */; };
+		4EDDBC191FBDC397009F9001 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDDBC181FBDC397009F9001 /* User.swift */; };
+		4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE6B3E71FBB32C30017037D /* HomeViewController.swift */; };
+		4EF282FC1FB94D1600731679 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF282FB1FB94D1600731679 /* NotificationViewController.swift */; };
+		4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617961FB86EE000DADA27 /* HttpHelper.swift */; };
+		4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */; };
+		4EF9C3BF1FC28D940075716F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */; };
+		4EF9C3C11FC327CC0075716F /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9C3C01FC327CC0075716F /* Statistics.swift */; };
 		4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */; };
 		DCF28AB228872F9075DF9F98 /* Pods_papao_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */; };
 /* End PBXBuildFile section */
@@ -80,17 +117,38 @@
 
 /* Begin PBXFileReference section */
 		3AA2953E5DA39B051ADB1193 /* Pods_papao_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papao_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E177B911FB6FCB200A10017 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCommentButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DictionaryFromJson.swift"; sourceTree = "<group>"; };
 		4E21DE421F9C620500E34203 /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUploadViewController.swift; sourceTree = "<group>"; };
+		4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+PPAdditions.swift"; sourceTree = "<group>"; };
+		4E28BE221FCE95DE001797E3 /* QuickReportUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickReportUploadViewController.swift; sourceTree = "<group>"; };
+		4E291C831FCC374400EA9FF4 /* ImageSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchTableViewController.swift; sourceTree = "<group>"; };
 		4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageUploadViewController.swift; sourceTree = "<group>"; };
 		4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ruler.swift"; sourceTree = "<group>"; };
+		4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		4E3490D41FC4A09F00967596 /* NotificationHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistory.swift; sourceTree = "<group>"; };
+		4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBookmarkButton.swift; sourceTree = "<group>"; };
+		4E3490DB1FC5C97200967596 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		4E36059A1FC85D4800748989 /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		4E36059C1FC85D5A00748989 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		4E4AB4931F95CD9D008E90B3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailImageTableViewCell.swift; sourceTree = "<group>"; };
 		4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 		4E4CA5FC1F9E10580041A680 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
+		4E579E7E1FB47E22002E5404 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		4E5847AE1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailReportTextTableViewCell.swift; sourceTree = "<group>"; };
+		4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingTableViewController.swift; sourceTree = "<group>"; };
+		4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTypePostTableViewCell.swift; sourceTree = "<group>"; };
+		4E63D42C1FC13EAB00F61446 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		4E63D42E1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCommentContentTableViewCell.swift; sourceTree = "<group>"; };
+		4E63D4301FC18B4C00F61446 /* PostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
+		4E63D4321FC1A5AA00F61446 /* PostDetailCommentWritingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCommentWritingTableViewCell.swift; sourceTree = "<group>"; };
 		4E6423B31FADD44E0099A4C7 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		4E6423B51FADD48B0099A4C7 /* WeightList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeightList.plist; sourceTree = "<group>"; };
 		4E6423B91FADD4A20099A4C7 /* AgeList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgeList.plist; sourceTree = "<group>"; };
@@ -98,7 +156,8 @@
 		4E7060CE1FA5FEE300B88F92 /* PPOPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOPicker.swift; sourceTree = "<group>"; };
 		4E7060D01FA6022600B88F92 /* PublicDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicDataProtocol.swift; sourceTree = "<group>"; };
 		4E7060D41FA612FE00B88F92 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		4E835F001F9230A700BFA6BD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		4E835F001F9230A700BFA6BD /* PostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetail.swift; sourceTree = "<group>"; };
+		4E8CDB6D1FC93CEF00403E45 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetectionInfoViewController.swift; sourceTree = "<group>"; };
 		4EAE9AA51F91DCE700499B18 /* papao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "papao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,13 +175,29 @@
 		4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTextTableViewCell.swift; sourceTree = "<group>"; };
 		4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailButtonTableViewCell.swift; sourceTree = "<group>"; };
 		4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPreivewViewController.swift; sourceTree = "<group>"; };
+		4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickReportInfoViewController.swift; sourceTree = "<group>"; };
+		4EC737881FCECCC000A855C5 /* String+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PPAdditions.swift"; sourceTree = "<group>"; };
+		4EC7378A1FCED45400A855C5 /* Date+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+PPAdditions.swift"; sourceTree = "<group>"; };
+		4EC7378C1FCF345900A855C5 /* UIScrollView+PPAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PPAdditions.swift"; sourceTree = "<group>"; };
+		4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		4ED371DB1FC0376E0061C4C6 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		4ED371DD1FC038F90061C4C6 /* RegionList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RegionList.plist; sourceTree = "<group>"; };
+		4ED371DF1FC051C10061C4C6 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		4ED6F3901FA5CC4D009E287C /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
-		4ED6F3931FA5D0DE009E287C /* BreedList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BreedList.plist; sourceTree = "<group>"; };
 		4ED6F3951FA5E004009E287C /* SpeciesList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SpeciesList.plist; sourceTree = "<group>"; };
 		4ED6F3971FA5E1C7009E287C /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
 		4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnimalInfoViewController.swift; sourceTree = "<group>"; };
 		4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+OvalBorder.swift"; sourceTree = "<group>"; };
 		4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOBadge.swift; sourceTree = "<group>"; };
+		4EDDBC181FBDC397009F9001 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4EE6B3E71FBB32C30017037D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4EF282FB1FB94D1600731679 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		4EF617951FB801A800DADA27 /* papao-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "papao-ios.entitlements"; sourceTree = "<group>"; };
+		4EF617961FB86EE000DADA27 /* HttpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
+		4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		4EF9C3C01FC327CC0075716F /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPOPickerButton.swift; sourceTree = "<group>"; };
 		66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-papao-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,12 +241,15 @@
 		4E326A801FA1FE9B006325B4 /* ReportView */ = {
 			isa = PBXGroup;
 			children = (
-				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
 				4E21DE421F9C620500E34203 /* ReportTableViewController.swift */,
+				4E21DE441F9C676600E34203 /* ReportUploadViewController.swift */,
 				4E326A821FA1FFC7006325B4 /* ReportImageUploadViewController.swift */,
 				4EDAFAC81FA359AD00257F48 /* ReportAnimalInfoViewController.swift */,
 				4EA9CA041FA7674C00115784 /* ReportDetectionInfoViewController.swift */,
 				4EB7723B1FAEB9FA00769349 /* ReportPreivewViewController.swift */,
+				4E5F80091FBC9705001A23BE /* ReportTypePostTableViewCell.swift */,
+				4E28BE221FCE95DE001797E3 /* QuickReportUploadViewController.swift */,
+				4EC737841FCEC73400A855C5 /* QuickReportInfoViewController.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -184,7 +262,11 @@
 				4E4AB4951F95E1C4008E90B3 /* PostDetailViewController.swift */,
 				4E4AB4991F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift */,
 				4EB11FDD1F98C82A0058B863 /* PostDetailTextTableViewCell.swift */,
+				4E5847AE1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift */,
 				4EB11FDF1F98C8950058B863 /* PostDetailButtonTableViewCell.swift */,
+				4E177B931FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift */,
+				4E63D42E1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift */,
+				4E63D4321FC1A5AA00F61446 /* PostDetailCommentWritingTableViewCell.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -192,32 +274,77 @@
 		4E326A851FA2049C006325B4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4E2691991FCD2F9200F77119 /* UIColor+PPAdditions.swift */,
 				4E326A871FA206C6006325B4 /* UIViewController+Ruler.swift */,
 				4E1DA0041FAB5BE70097DF30 /* String+DictionaryFromJson.swift */,
 				4EDC3C721FAF259C004F3406 /* UIView+OvalBorder.swift */,
+				4EC737881FCECCC000A855C5 /* String+PPAdditions.swift */,
+				4EC7378A1FCED45400A855C5 /* Date+PPAdditions.swift */,
+				4EC7378C1FCF345900A855C5 /* UIScrollView+PPAdditions.swift */,
 			);
 			name = Extension;
 			path = "papao-ios/Extension";
 			sourceTree = SOURCE_ROOT;
 		};
+		4E3490D31FC49A6500967596 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				4EF282FB1FB94D1600731679 /* NotificationViewController.swift */,
+				4E3490D11FC49A5E00967596 /* NotificationTableViewCell.swift */,
+				4E291C831FCC374400EA9FF4 /* ImageSearchTableViewController.swift */,
+			);
+			path = NotificationView;
+			sourceTree = "<group>";
+		};
 		4E4CA5FE1F9E10F20041A680 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				4E4CA5FF1F9E110F0041A680 /* APIKeys.swift */,
+				4EF617961FB86EE000DADA27 /* HttpHelper.swift */,
+				4ED371D71FBF25860061C4C6 /* UserDefaultsKeys.swift */,
+				4E8CDB6D1FC93CEF00403E45 /* AccountManager.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4E5130BE1FC686EB00589FB7 /* MyPageView */ = {
+			isa = PBXGroup;
+			children = (
+				4E3490DB1FC5C97200967596 /* MyPageViewController.swift */,
+				4E5130BF1FC6870700589FB7 /* MyPostViewController.swift */,
+			);
+			path = MyPageView;
+			sourceTree = "<group>";
+		};
+		4E5F80061FBC7A45001A23BE /* MissingView */ = {
+			isa = PBXGroup;
+			children = (
+				4E5F80071FBC7ABE001A23BE /* MissingTableViewController.swift */,
+			);
+			path = MissingView;
 			sourceTree = "<group>";
 		};
 		4E835EFD1F92307900BFA6BD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4E835F001F9230A700BFA6BD /* Post.swift */,
+				4E579E7E1FB47E22002E5404 /* PostRequest.swift */,
+				4E63D4301FC18B4C00F61446 /* PostResponse.swift */,
+				4E177B911FB6FCB200A10017 /* Post.swift */,
+				4E835F001F9230A700BFA6BD /* PostDetail.swift */,
 				4E4CA5F91F9DFB9E0041A680 /* ImageInfo.swift */,
 				4ED6F3901FA5CC4D009E287C /* Breed.swift */,
 				4ED6F3971FA5E1C7009E287C /* Species.swift */,
 				4E7060D01FA6022600B88F92 /* PublicDataProtocol.swift */,
 				4E6423B31FADD44E0099A4C7 /* Weight.swift */,
 				4E6423BB1FADD75E0099A4C7 /* Age.swift */,
+				4EDDBC181FBDC397009F9001 /* User.swift */,
+				4ED371DB1FC0376E0061C4C6 /* Filter.swift */,
+				4ED371DF1FC051C10061C4C6 /* Region.swift */,
+				4E63D42C1FC13EAB00F61446 /* Comment.swift */,
+				4EF9C3C01FC327CC0075716F /* Statistics.swift */,
+				4E3490D41FC4A09F00967596 /* NotificationHistory.swift */,
+				4E36059A1FC85D4800748989 /* ImageRequest.swift */,
+				4E36059C1FC85D5A00748989 /* ImageResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,14 +375,23 @@
 		4EAE9AA71F91DCE700499B18 /* papao-ios */ = {
 			isa = PBXGroup;
 			children = (
+				4EF617951FB801A800DADA27 /* papao-ios.entitlements */,
+				4EF9C3BD1FC28D760075716F /* HomeView */,
 				4E326A811FA1FEDA006325B4 /* PostView */,
 				4E326A801FA1FE9B006325B4 /* ReportView */,
+				4E5F80061FBC7A45001A23BE /* MissingView */,
+				4E5130BE1FC686EB00589FB7 /* MyPageView */,
+				4E3490D31FC49A6500967596 /* NotificationView */,
 				4E4CA5FE1F9E10F20041A680 /* Utilities */,
 				4E835EFD1F92307900BFA6BD /* Models */,
 				4E326A851FA2049C006325B4 /* Extension */,
 				4EDC3C711FAF2551004F3406 /* CustomUI */,
 				4ED6F3921FA5D0B7009E287C /* Resources */,
 				4EAE9AA81F91DCE700499B18 /* AppDelegate.swift */,
+				4E3490D61FC5A5DA00967596 /* BookmarkViewController.swift */,
+				4EF617981FB8AA1D00DADA27 /* LoginViewController.swift */,
+				4EE6B3E71FBB32C30017037D /* HomeViewController.swift */,
+				4ED371D91FC0233C0061C4C6 /* FilterViewController.swift */,
 				4EAE9AB21F91DCE700499B18 /* Assets.xcassets */,
 				4E7060D41FA612FE00B88F92 /* Main.storyboard */,
 				4EAE9AB41F91DCE700499B18 /* LaunchScreen.storyboard */,
@@ -286,10 +422,10 @@
 		4ED6F3921FA5D0B7009E287C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4ED6F3931FA5D0DE009E287C /* BreedList.plist */,
 				4ED6F3951FA5E004009E287C /* SpeciesList.plist */,
 				4E6423B51FADD48B0099A4C7 /* WeightList.plist */,
 				4E6423B91FADD4A20099A4C7 /* AgeList.plist */,
+				4ED371DD1FC038F90061C4C6 /* RegionList.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -300,8 +436,17 @@
 				4E7060CE1FA5FEE300B88F92 /* PPOPicker.swift */,
 				4EDC3C741FAF3D17004F3406 /* PPOBadge.swift */,
 				4EFA8DC51FB0AB2500CDCBA2 /* PPOPickerButton.swift */,
+				4E3490D91FC5BDB100967596 /* PPOBookmarkButton.swift */,
 			);
 			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		4EF9C3BD1FC28D760075716F /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				4EF9C3BE1FC28D940075716F /* HomeTableViewCell.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 		EF54A41229C9B6A69EFEEEAE /* Frameworks */ = {
@@ -385,6 +530,11 @@
 					4EAE9AA41F91DCE700499B18 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					4EAE9ABB1F91DCE700499B18 = {
 						CreatedOnToolsVersion = 9.0;
@@ -400,10 +550,10 @@
 			};
 			buildConfigurationList = 4EAE9AA01F91DCE700499B18 /* Build configuration list for PBXProject "papao-ios" */;
 			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				ko,
 				Base,
 			);
 			mainGroup = 4EAE9A9C1F91DCE700499B18;
@@ -426,11 +576,11 @@
 				4E6423BA1FADD4A20099A4C7 /* AgeList.plist in Resources */,
 				4E4CA5FD1F9E10580041A680 /* keys.plist in Resources */,
 				4E6423B61FADD48B0099A4C7 /* WeightList.plist in Resources */,
+				4ED371DE1FC038F90061C4C6 /* RegionList.plist in Resources */,
 				4ED6F3961FA5E004009E287C /* SpeciesList.plist in Resources */,
 				4EAE9AB61F91DCE700499B18 /* LaunchScreen.storyboard in Resources */,
 				4E7060D51FA6132500B88F92 /* Main.storyboard in Resources */,
 				4EAE9AB31F91DCE700499B18 /* Assets.xcassets in Resources */,
-				4ED6F3941FA5D0DE009E287C /* BreedList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,16 +608,30 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ALThreeCircleSpinner/ALThreeCircleSpinner.framework",
+				"${BUILT_PRODUCTS_DIR}/ASHorizontalScrollView/ASHorizontalScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MagicPie/MagicPie.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALThreeCircleSpinner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ASHorizontalScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicPie.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +664,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-papao-ios/Pods-papao-ios-resources.sh",
+				"${PODS_ROOT}/AccountKit/AccountKitStrings.bundle",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -518,34 +683,71 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5F80081FBC7ABE001A23BE /* MissingTableViewController.swift in Sources */,
 				4EA9CA051FA7674C00115784 /* ReportDetectionInfoViewController.swift in Sources */,
 				4EB7723C1FAEB9FA00769349 /* ReportPreivewViewController.swift in Sources */,
 				4ED6F3911FA5CC4D009E287C /* Breed.swift in Sources */,
+				4E63D42F1FC1670700F61446 /* PostDetailCommentContentTableViewCell.swift in Sources */,
+				4E177B941FB7383B00A10017 /* PostDetailCommentButtonTableViewCell.swift in Sources */,
 				4EAE9AAB1F91DCE700499B18 /* PostTableViewController.swift in Sources */,
+				4E3490DA1FC5BDB100967596 /* PPOBookmarkButton.swift in Sources */,
+				4E63D4311FC18B4C00F61446 /* PostResponse.swift in Sources */,
+				4EE6B3E81FBB32C30017037D /* HomeViewController.swift in Sources */,
+				4ED371DC1FC0376E0061C4C6 /* Filter.swift in Sources */,
 				4EB11FE01F98C8950058B863 /* PostDetailButtonTableViewCell.swift in Sources */,
+				4EC737851FCEC73400A855C5 /* QuickReportInfoViewController.swift in Sources */,
+				4E3490DC1FC5C97200967596 /* MyPageViewController.swift in Sources */,
 				4EFA8DC61FB0AB2500CDCBA2 /* PPOPickerButton.swift in Sources */,
+				4E8CDB6E1FC93CEF00403E45 /* AccountManager.swift in Sources */,
 				4E4CA6001F9E110F0041A680 /* APIKeys.swift in Sources */,
+				4E26919A1FCD2F9300F77119 /* UIColor+PPAdditions.swift in Sources */,
 				4EDC3C731FAF259C004F3406 /* UIView+OvalBorder.swift in Sources */,
+				4E36059D1FC85D5A00748989 /* ImageResponse.swift in Sources */,
+				4EC737891FCECCC000A855C5 /* String+PPAdditions.swift in Sources */,
+				4E5847AF1FCDA7FA00102E0E /* PostDetailReportTextTableViewCell.swift in Sources */,
+				4E5130C01FC6870700589FB7 /* MyPostViewController.swift in Sources */,
+				4E3490D21FC49A5E00967596 /* NotificationTableViewCell.swift in Sources */,
 				4E4AB4961F95E1C4008E90B3 /* PostDetailViewController.swift in Sources */,
+				4EC7378B1FCED45400A855C5 /* Date+PPAdditions.swift in Sources */,
+				4E3490D51FC4A09F00967596 /* NotificationHistory.swift in Sources */,
+				4E3490D71FC5A5DA00967596 /* BookmarkViewController.swift in Sources */,
+				4E177B921FB6FCB200A10017 /* Post.swift in Sources */,
+				4EF617971FB86EE000DADA27 /* HttpHelper.swift in Sources */,
 				4EAE9AB11F91DCE700499B18 /* papao_ios.xcdatamodeld in Sources */,
+				4EF617991FB8AA1D00DADA27 /* LoginViewController.swift in Sources */,
+				4EC7378D1FCF345900A855C5 /* UIScrollView+PPAdditions.swift in Sources */,
 				4E7060D11FA6022600B88F92 /* PublicDataProtocol.swift in Sources */,
 				4E4AB4941F95CD9D008E90B3 /* PostTableViewCell.swift in Sources */,
+				4E63D4331FC1A5AA00F61446 /* PostDetailCommentWritingTableViewCell.swift in Sources */,
+				4EF9C3C11FC327CC0075716F /* Statistics.swift in Sources */,
+				4EDDBC191FBDC397009F9001 /* User.swift in Sources */,
 				4E6423BC1FADD75E0099A4C7 /* Age.swift in Sources */,
+				4E28BE231FCE95DE001797E3 /* QuickReportUploadViewController.swift in Sources */,
 				4E326A881FA206C6006325B4 /* UIViewController+Ruler.swift in Sources */,
 				4E7060CF1FA5FEE300B88F92 /* PPOPicker.swift in Sources */,
 				4E4AB49A1F95F4B4008E90B3 /* PostDetailImageTableViewCell.swift in Sources */,
+				4E36059B1FC85D4800748989 /* ImageRequest.swift in Sources */,
 				4EDAFAC91FA359AD00257F48 /* ReportAnimalInfoViewController.swift in Sources */,
 				4E6423B41FADD44E0099A4C7 /* Weight.swift in Sources */,
 				4EB11FDE1F98C82A0058B863 /* PostDetailTextTableViewCell.swift in Sources */,
 				4EAE9AA91F91DCE700499B18 /* AppDelegate.swift in Sources */,
+				4E63D42D1FC13EAB00F61446 /* Comment.swift in Sources */,
+				4EF282FC1FB94D1600731679 /* NotificationViewController.swift in Sources */,
+				4ED371D81FBF25860061C4C6 /* UserDefaultsKeys.swift in Sources */,
 				4E21DE431F9C620500E34203 /* ReportTableViewController.swift in Sources */,
 				4E4CA5FA1F9DFB9F0041A680 /* ImageInfo.swift in Sources */,
 				4E326A831FA1FFC7006325B4 /* ReportImageUploadViewController.swift in Sources */,
 				4E1DA0051FAB5BE70097DF30 /* String+DictionaryFromJson.swift in Sources */,
+				4EF9C3BF1FC28D940075716F /* HomeTableViewCell.swift in Sources */,
+				4E5F800A1FBC9705001A23BE /* ReportTypePostTableViewCell.swift in Sources */,
+				4ED371DA1FC0233C0061C4C6 /* FilterViewController.swift in Sources */,
+				4E291C841FCC374400EA9FF4 /* ImageSearchTableViewController.swift in Sources */,
 				4EDC3C751FAF3D17004F3406 /* PPOBadge.swift in Sources */,
 				4E21DE451F9C676600E34203 /* ReportUploadViewController.swift in Sources */,
+				4E579E7F1FB47E22002E5404 /* PostRequest.swift in Sources */,
+				4ED371E01FC051C10061C4C6 /* Region.swift in Sources */,
 				4ED6F3981FA5E1C7009E287C /* Species.swift in Sources */,
-				4E835F011F9230A700BFA6BD /* Post.swift in Sources */,
+				4E835F011F9230A700BFA6BD /* PostDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +756,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EAE9AC11F91DCE700499B18 /* papao_iosTests.swift in Sources */,
-				4E835F021F9230A700BFA6BD /* Post.swift in Sources */,
+				4E835F021F9230A700BFA6BD /* PostDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,9 +907,11 @@
 			baseConfigurationReference = 66FD528DA35404BC358B8CFE /* Pods-papao-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "papao-ios/papao-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E5KH6XGE5T;
 				INFOPLIST_FILE = "papao-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.papaolabs.papao-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -721,9 +925,11 @@
 			baseConfigurationReference = D57216B34D152BFC8ED3059B /* Pods-papao-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "papao-ios/papao-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E5KH6XGE5T;
 				INFOPLIST_FILE = "papao-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.papaolabs.papao-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";

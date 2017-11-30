@@ -2,7 +2,7 @@
 //  ReportUploadViewController.swift
 //  papao-ios
 //
-//  Created by 1002719 on 2017. 10. 22..
+//  Created by closer27 on 2017. 10. 22..
 //  Copyright © 2017년 papaolabs. All rights reserved.
 //
 
@@ -17,6 +17,8 @@ class ReportUploadViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var uploadedImageView: UIImageView!
     @IBOutlet weak var dateTakenLabel: UILabel!
     @IBOutlet weak var locationTakenLabel: UILabel!
+    
+    var post: PostRequest = PostRequest.init()
 
     // for getting a photo
     let picker = UIImagePickerController()
