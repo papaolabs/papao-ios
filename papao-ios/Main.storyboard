@@ -4808,7 +4808,7 @@ open API 플랫폼입니다.</string>
             </objects>
             <point key="canvasLocation" x="2848.8000000000002" y="3919.7901049475267"/>
         </scene>
-        <!--길거리 제보-->
+        <!--Delegate-->
         <scene sceneID="7cm-cs-Qso">
             <objects>
                 <viewController id="kbq-XN-PVm" customClass="QuickReportInfoViewController" customModule="papao_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -4961,7 +4961,7 @@ open API 플랫폼입니다.</string>
                                                             <constraint firstAttribute="height" constant="178" id="lie-ME-ZVK"/>
                                                         </constraints>
                                                         <connections>
-                                                            <outlet property="delegate" destination="oMh-hW-vWT" id="QId-Jr-AvR"/>
+                                                            <outlet property="delegate" destination="kbq-XN-PVm" id="A2f-Ry-4ou"/>
                                                         </connections>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자동 등록된 정보가 틀렸다면 정확하게 수정해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPh-dH-9k4">
