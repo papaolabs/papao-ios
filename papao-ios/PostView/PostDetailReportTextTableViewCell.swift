@@ -32,7 +32,7 @@ class PostDetailReportTextTableViewCell: UITableViewCell {
         genderLabel.text = postDetail.genderType.description
         ageLabel.text = postDetail.age?.description
         
-        if let weight = postDetail.weight {
+        if let weight = postDetail.weight, weight != -1 {
             weightLabel.text = "\(weight) kg"
         } else {
             weightLabel.text = "모름"

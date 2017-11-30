@@ -78,7 +78,7 @@ class PostDetailViewController: UIViewController {
                 
                 self.statusBadge.setStyle(type: .medium, backgroundColor: postDetail.stateType.color, titleColor: .white)
                 self.statusBadge.setTitle(postDetail.stateType.description, for: .normal)
-                self.genderLabel.text = postDetail.genderType.description
+                self.genderLabel.text = postDetail.genderType != .Q ? postDetail.genderType.description : ""
                 self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
                 self.breedLabel.text = postDetail.kindName
                 self.hitCountLabel.text = "\(postDetail.hitCount ?? 0)"
