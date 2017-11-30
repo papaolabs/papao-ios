@@ -94,6 +94,9 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
                 })
             }
         }
+        
+        // auto filling
+        setPost(post: post)
     }
     
     func setTitleLabel() {
@@ -114,6 +117,17 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             default:
                 break
             }
+        }
+    }
+    
+    func setPost(post: PostRequest?) {
+        // 품종, 축종 자동 입력
+        if let species = post?.species {
+            currentSpecies = species
+            speciesButton.setTitle(species.name, for: .normal)
+        }
+        if let breed = post?.breed {
+            breedButton.setTitle(breed.name, for: .normal)
         }
     }
     

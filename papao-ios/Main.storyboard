@@ -3655,7 +3655,10 @@ open API 플랫폼입니다.</string>
                     <size key="freeformSize" width="375" height="681"/>
                     <connections>
                         <outlet property="imageScrollView" destination="Mqm-Lx-ITs" id="aqJ-1o-Apr"/>
+                        <outlet property="loadingView" destination="IDf-Eb-162" id="522-z0-49q"/>
+                        <outlet property="nextBarButtonItem" destination="AeG-AN-G5Y" id="yzb-Hq-mWt"/>
                         <outlet property="pageControl" destination="CJO-J0-eTA" id="mdZ-kv-cEX"/>
+                        <outlet property="spinner" destination="eQI-7T-KiT" id="YSf-8z-TQk"/>
                         <outlet property="stepLabel2" destination="MPh-O6-Gcn" id="aFi-hl-Rux"/>
                         <outlet property="stepLabel3" destination="xqd-Xx-7Xh" id="1T7-ZI-zLl"/>
                         <outlet property="stepTitleLabel3" destination="AKB-4L-JFa" id="dVH-oY-zzQ"/>
@@ -3664,6 +3667,50 @@ open API 플랫폼입니다.</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kZ-a2-5pB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="IDf-Eb-162">
+                    <rect key="frame" x="0.0" y="0.0" width="74" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXe-mP-Wri" userLabel="Loading View">
+                            <rect key="frame" x="0.0" y="0.0" width="74" height="60"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미지 분석 중" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-Yy-dns">
+                                    <rect key="frame" x="5" y="34" width="64" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="SIQ-Bv-6rZ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQI-7T-KiT" userLabel="Spinner" customClass="ALThreeCircleSpinner" customModule="ALThreeCircleSpinner">
+                                    <rect key="frame" x="15" y="0.0" width="44" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="KCL-2U-arH"/>
+                                        <constraint firstAttribute="width" constant="44" id="XCS-Oy-Xhy"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="eQI-7T-KiT" firstAttribute="top" secondItem="CXe-mP-Wri" secondAttribute="top" id="1wY-wq-8jz"/>
+                                <constraint firstItem="eQI-7T-KiT" firstAttribute="centerX" secondItem="CXe-mP-Wri" secondAttribute="centerX" id="7Ik-Fm-b2a"/>
+                                <constraint firstAttribute="height" constant="60" id="F5V-pH-cz1"/>
+                                <constraint firstAttribute="bottom" secondItem="ohW-Yy-dns" secondAttribute="bottom" constant="5" id="Hpq-ST-Gbp"/>
+                                <constraint firstAttribute="width" constant="74" id="YSM-UG-fEA"/>
+                                <constraint firstItem="ohW-Yy-dns" firstAttribute="top" secondItem="eQI-7T-KiT" secondAttribute="bottom" constant="-10" id="fC1-Cy-AIe"/>
+                                <constraint firstItem="ohW-Yy-dns" firstAttribute="centerX" secondItem="CXe-mP-Wri" secondAttribute="centerX" id="ssF-ER-AeQ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="CXe-mP-Wri" firstAttribute="centerY" secondItem="gKc-4S-ua7" secondAttribute="centerY" id="9qq-Lj-eZo"/>
+                        <constraint firstItem="CXe-mP-Wri" firstAttribute="centerX" secondItem="gKc-4S-ua7" secondAttribute="centerX" id="ETN-vM-ojm"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="gKc-4S-ua7"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="2038" y="3007"/>
         </scene>
