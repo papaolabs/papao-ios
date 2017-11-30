@@ -181,12 +181,12 @@ class ReportPreviewViewController: UIViewController {
     
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
-        alert.addAction(okAction)
         if cancel {
             let cancelAction = UIAlertAction(title: "아니오", style: .default)
             alert.addAction(cancelAction)
         }
+        let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
+        alert.addAction(okAction)
         self.present(alert, animated: false)
     }
     

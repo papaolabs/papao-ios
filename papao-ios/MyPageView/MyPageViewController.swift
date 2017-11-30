@@ -90,15 +90,15 @@ class MyPageViewController: UITableViewController {
     
     private func presentLogoutAlert() {
         let alert = UIAlertController(title: nil, message: "로그아웃 하시겠어요?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "아니오", style: .cancel) { (_) in
+        }
+        alert.addAction(cancelAction)
         let okAction = UIAlertAction(title: "네", style: .default) { (_) in
             AccountManager.sharedInstance.logout()
             self.user = nil
             self.loadMyInfo()
         }
         alert.addAction(okAction)
-        let cancelAction = UIAlertAction(title: "아니오", style: .cancel) { (_) in
-        }
-        alert.addAction(cancelAction)
         self.present(alert, animated: false)
     }
     
@@ -127,7 +127,8 @@ class MyPageViewController: UITableViewController {
         default:
             break
         }
-        
+        url = URL(string: urlString + "dashboard/board/accessterms")
+
         let safari = SFSafariViewController(url: url!)
         present(safari, animated: true, completion: nil)
     }

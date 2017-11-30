@@ -2900,14 +2900,14 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgQuestionmark" translatesAutoresizingMaskIntoConstraints="NO" id="6WC-K8-wn5">
-                            <rect key="frame" x="153" y="-37.5" width="68" height="68"/>
+                            <rect key="frame" x="153" y="-38" width="68" height="68"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="68" id="Xgn-ri-Ajx"/>
                                 <constraint firstAttribute="width" constant="68" id="sk9-Np-PU4"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 북마크가 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ho-M5-DMu">
-                            <rect key="frame" x="102.5" y="54.5" width="170.5" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="북마크로 관심 포스트를 저장하세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ho-M5-DMu">
+                            <rect key="frame" x="70.5" y="54" width="234" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="NoX-gZ-64B"/>
                             </constraints>
@@ -2915,8 +2915,8 @@
                             <color key="textColor" red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="북마크 기능을 사용해 관심 포스트를 저장하세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue6-nH-aF7">
-                            <rect key="frame" x="29" y="78.5" width="316.5" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="북마크한 동물의 정보를 푸시로 알려줍니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue6-nH-aF7">
+                            <rect key="frame" x="44" y="78" width="287" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="HLq-ZU-TGM"/>
                             </constraints>
@@ -2973,7 +2973,7 @@ open API 플랫폼입니다.</string>
                                 <color key="textColor" red="0.0120000001" green="0.0120000001" blue="0.0120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입력정보는 회원가입을 위한 인증용으로만 사용됩니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBN-EW-Tuz">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입력정보는 회원가입을 위한 인증용으로만 사용됩니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBN-EW-Tuz">
                                 <rect key="frame" x="70" y="538" width="235" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="9fm-Y0-0pU"/>
@@ -2982,7 +2982,7 @@ open API 플랫폼입니다.</string>
                                 <color key="textColor" red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ld4-Pb-0l5">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ld4-Pb-0l5">
                                 <rect key="frame" x="121" y="629" width="39" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="Grv-ze-nY2"/>
@@ -2992,7 +2992,7 @@ open API 플랫폼입니다.</string>
                                     <color key="titleColor" red="0.60799998040000003" green="0.60799998040000003" blue="0.60799998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvE-cV-qoa">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvE-cV-qoa">
                                 <rect key="frame" x="170" y="629" width="83" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="i5Z-9t-hoc"/>
