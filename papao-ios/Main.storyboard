@@ -810,17 +810,39 @@
                                                                         <action selector="thumbnailButton3Pressed:" destination="GGm-ap-nge" eventType="touchUpInside" id="l4q-Zx-KcL"/>
                                                                     </connections>
                                                                 </button>
+                                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oiN-Ik-r9L" userLabel="Popup View">
+                                                                    <rect key="frame" x="107" y="310" width="144" height="27"/>
+                                                                    <subviews>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KD-Ej-xhv" customClass="PPOBadge" customModule="papao_ios" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="144" height="27"/>
+                                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <state key="normal" title="보호의무가 N일 후 종료됩니다">
+                                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            </state>
+                                                                        </button>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="bottom" secondItem="2KD-Ej-xhv" secondAttribute="bottom" id="4l1-KV-2Ac"/>
+                                                                        <constraint firstItem="2KD-Ej-xhv" firstAttribute="top" secondItem="oiN-Ik-r9L" secondAttribute="top" id="8Gc-nf-hJL"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="2KD-Ej-xhv" secondAttribute="trailing" id="O9W-9u-N31"/>
+                                                                        <constraint firstItem="2KD-Ej-xhv" firstAttribute="leading" secondItem="oiN-Ik-r9L" secondAttribute="leading" id="V1d-FZ-0mI"/>
+                                                                    </constraints>
+                                                                </view>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="lK9-RK-crW" firstAttribute="top" secondItem="Mvw-wa-Y7Q" secondAttribute="top" id="4OT-Ko-gkv"/>
                                                                 <constraint firstItem="u9t-Gp-EFC" firstAttribute="top" secondItem="owJ-Xt-LKF" secondAttribute="bottom" constant="-30" id="IM8-JW-j5Q"/>
                                                                 <constraint firstItem="Fbo-IX-EJ4" firstAttribute="leading" secondItem="owJ-Xt-LKF" secondAttribute="trailing" constant="16" id="KJw-xy-j8i"/>
+                                                                <constraint firstItem="oiN-Ik-r9L" firstAttribute="top" secondItem="lK9-RK-crW" secondAttribute="bottom" constant="-48.5" id="L0M-sh-LHh"/>
                                                                 <constraint firstItem="owJ-Xt-LKF" firstAttribute="leading" secondItem="u9t-Gp-EFC" secondAttribute="trailing" constant="16" id="RuW-n6-kvx"/>
                                                                 <constraint firstItem="owJ-Xt-LKF" firstAttribute="centerX" secondItem="Mvw-wa-Y7Q" secondAttribute="centerX" id="V6e-Cn-dx3"/>
                                                                 <constraint firstItem="owJ-Xt-LKF" firstAttribute="top" secondItem="lK9-RK-crW" secondAttribute="bottom" constant="16.5" id="YR0-tX-zWK"/>
                                                                 <constraint firstAttribute="bottom" secondItem="owJ-Xt-LKF" secondAttribute="bottom" constant="15.5" id="ZZA-Mq-tUf"/>
                                                                 <constraint firstItem="Fbo-IX-EJ4" firstAttribute="top" secondItem="owJ-Xt-LKF" secondAttribute="bottom" constant="-30" id="cv3-hu-6rh"/>
+                                                                <constraint firstItem="oiN-Ik-r9L" firstAttribute="centerX" secondItem="lK9-RK-crW" secondAttribute="centerX" id="gS4-J7-AS7"/>
                                                                 <constraint firstItem="lK9-RK-crW" firstAttribute="leading" secondItem="Mvw-wa-Y7Q" secondAttribute="leading" id="sv9-JI-Y2H"/>
                                                                 <constraint firstAttribute="trailing" secondItem="lK9-RK-crW" secondAttribute="trailing" id="ucR-2z-Vq9"/>
                                                             </constraints>
@@ -843,6 +865,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="deadlineBadge" destination="2KD-Ej-xhv" id="ySL-9P-LCe"/>
+                                            <outlet property="popupView" destination="oiN-Ik-r9L" id="ItQ-aN-yks"/>
                                             <outlet property="postImageView" destination="lK9-RK-crW" id="ACU-86-YEY"/>
                                             <outlet property="thumbnailButton1" destination="u9t-Gp-EFC" id="Xx8-7z-kgx"/>
                                             <outlet property="thumbnailButton2" destination="owJ-Xt-LKF" id="r07-jJ-xew"/>

@@ -14,6 +14,11 @@ class PostDetailImageTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailButton1: UIButton!
     @IBOutlet weak var thumbnailButton2: UIButton!
     @IBOutlet weak var thumbnailButton3: UIButton!
+    
+    // 공고일 안내
+    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var deadlineBadge: PPOBadge!
+    
     var thumbnailButtons: [UIButton] = []
     var images: [UIImage?] = [UIImage?](repeating: nil, count: 3)
     var postDetail: PostDetail?
@@ -27,6 +32,7 @@ class PostDetailImageTableViewCell: UITableViewCell {
     func setPostDetail(_ postDetail: PostDetail?) {
         self.postDetail = postDetail
         setImages()
+        setDeadlineBadge()
     }
     
     func setImages() {
@@ -46,6 +52,24 @@ class PostDetailImageTableViewCell: UITableViewCell {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    func setDeadlineBadge() {
+        if let deadlineDay = postDetail?.deadlineDay, postDetail?.postType == .SYSTEM {
+            popupView.isHidden = false
+            deadlineBadge.setStyle(type: .medium, backgroundColor: UIColor.init(white: 0, alpha: 0.4), titleColor: .white)
+            deadlineBadge.setBorder(color: .clear)
+            switch deadlineDay {
+            case let x where x > 0:
+                deadlineBadge.setTitle("보호의무가 \(deadlineDay)일 후 종료됩니다", for: .normal)
+            case let x where x == 0:
+                deadlineBadge.setTitle("보호의무가 오늘 종료됩니다", for: .normal)
+            case let x where x < 0:
+                deadlineBadge.setTitle("보호의무 기간이 종료되었습니다", for: .normal)
+            default:
+                break
             }
         }
     }

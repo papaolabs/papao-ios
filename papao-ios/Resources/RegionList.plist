@@ -443,7 +443,7 @@
 				<dict>
 					<key>code</key>
 					<integer>5690000</integer>
-					<key>towns</key>
+					<key>name</key>
 					<string>세종특별자치시</string>
 				</dict>
 			</array>
