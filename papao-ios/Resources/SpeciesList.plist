@@ -1,282 +1,1217 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Species</key>
-	<array>
-		<dict>
-			<key>code</key>
-			<integer>417000</integer>
-			<key>name</key>
-			<string>DOG</string>
-			<key>breeds</key>
-			<array>
-				<dict>
-					<key>code</key>
-					<integer>54</integer>
-					<key>name</key>
-					<string>골든 리트리버</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>56</integer>
-					<key>name</key>
-					<string>그레이 하운드</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>118</integer>
-					<key>name</key>
-					<string>그레이트 피레니즈</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>38</integer>
-					<key>name</key>
-					<string>닥스훈트</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>13</integer>
-					<key>name</key>
-					<string>비글</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>41</integer>
-					<key>name</key>
-					<string>도베르만</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>120</integer>
-					<key>name</key>
-					<string>도사</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>121</integer>
-					<key>name</key>
-					<string>롯트와일러</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>72</integer>
-					<key>name</key>
-					<string>말티즈</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>79</integer>
-					<key>name</key>
-					<string>미니어쳐 슈나우저</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>77</integer>
-					<key>name</key>
-					<string>미니어쳐 핀셔</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>12</integer>
-					<key>name</key>
-					<string>바셋 하운드</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>22</integer>
-					<key>name</key>
-					<string>보스턴 테리어</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>24</integer>
-					<key>name</key>
-					<string>복서</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>27</integer>
-					<key>name</key>
-					<string>불독</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>96</integer>
-					<key>name</key>
-					<string>사모예드</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>1</integer>
-					<key>name</key>
-					<string>삽살개</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>34</integer>
-					<key>name</key>
-					<string>샤페이</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>104</integer>
-					<key>name</key>
-					<string>세인트 버나드</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>122</integer>
-					<key>name</key>
-					<string>셰퍼드</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>124</integer>
-					<key>name</key>
-					<string>스피츠</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>103</integer>
-					<key>name</key>
-					<string>시베리안 허스키</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>101</integer>
-					<key>name</key>
-					<string>시츄</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>7</integer>
-					<key>name</key>
-					<string>알라스칸 말라뮤트</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>112</integer>
-					<key>name</key>
-					<string>와이어 폭스 테리어</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>113</integer>
-					<key>name</key>
-					<string>요크셔 테리어</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>108</integer>
-					<key>name</key>
-					<string>웰시 코기 펨브로크</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>67</integer>
-					<key>name</key>
-					<string>진도견</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>35</integer>
-					<key>name</key>
-					<string>차우차우</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>32</integer>
-					<key>name</key>
-					<string>치와와</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>125</integer>
-					<key>name</key>
-					<string>코카 스파니엘</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>90</integer>
-					<key>name</key>
-					<string>퍼그</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>36</integer>
-					<key>name</key>
-					<string>콜리</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>87</integer>
-					<key>name</key>
-					<string>페키니즈</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>89</integer>
-					<key>name</key>
-					<string>포메라니안</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>126</integer>
-					<key>name</key>
-					<string>포인터</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>128</integer>
-					<key>name</key>
-					<string>푸들</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>114</integer>
-					<key>name</key>
-					<string>믹스견</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>115</integer>
-					<key>name</key>
-					<string>기타</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>code</key>
-			<integer>422400</integer>
-			<key>name</key>
-			<string>CAT</string>
-			<key>breeds</key>
-			<array>
-				<dict>
-					<key>code</key>
-					<integer>116</integer>
-					<key>name</key>
-					<string>고양이</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>code</key>
-			<integer>429900</integer>
-			<key>name</key>
-			<string>ETC</string>
-			<key>breeds</key>
-			<array>
-				<dict>
-					<key>code</key>
-					<integer>117</integer>
-					<key>name</key>
-					<string>기타축종</string>
-				</dict>
-			</array>
-		</dict>
-	</array>
-</dict>
+    <dict>
+        <key>Species</key>
+        <array>
+            <dict>
+                <key>code</key>
+                <integer>417000</integer>
+                <key>name</key>
+                <string>DOG</string>
+                <key>breeds</key>
+                <array>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>54</integer>
+                        <key>name</key>
+                        <string>골든 리트리버</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>56</integer>
+                        <key>name</key>
+                        <string>그레이 하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>55</integer>
+                        <key>name</key>
+                        <string>그레이트 덴</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>118</integer>
+                        <key>name</key>
+                        <string>그레이트 피레니즈</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>37</integer>
+                        <key>name</key>
+                        <string>꼬똥 드 뚤레아</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>81</integer>
+                        <key>name</key>
+                        <string>네오폴리탄 마스티프</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>83</integer>
+                        <key>name</key>
+                        <string>노리치 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>82</integer>
+                        <key>name</key>
+                        <string>뉴펀들랜드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>38</integer>
+                        <key>name</key>
+                        <string>닥스훈트</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>39</integer>
+                        <key>name</key>
+                        <string>달마시안</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>40</integer>
+                        <key>name</key>
+                        <string>댄디 딘몬트 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>43</integer>
+                        <key>name</key>
+                        <string>도고 까니리오</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>42</integer>
+                        <key>name</key>
+                        <string>도고 아르젠티노</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>153</integer>
+                        <key>name</key>
+                        <string>도고 아르젠티노(중복)</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>41</integer>
+                        <key>name</key>
+                        <string>도베르만</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>120</integer>
+                        <key>name</key>
+                        <string>도사</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>155</integer>
+                        <key>name</key>
+                        <string>동경견</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>69</integer>
+                        <key>name</key>
+                        <string>라브라도 리트리버</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>71</integer>
+                        <key>name</key>
+                        <string>라사 압소</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>142</integer>
+                        <key>name</key>
+                        <string>라이카</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>93</integer>
+                        <key>name</key>
+                        <string>래빗 닥스훈드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>167</integer>
+                        <key>name</key>
+                        <string>랫 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>70</integer>
+                        <key>name</key>
+                        <string>레이크랜드 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>166</integer>
+                        <key>name</key>
+                        <string>로디지안 리즈백 </string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>94</integer>
+                        <key>name</key>
+                        <string>로트바일러</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>121</integer>
+                        <key>name</key>
+                        <string>롯트와일러</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>152</integer>
+                        <key>name</key>
+                        <string>마리노이즈</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>73</integer>
+                        <key>name</key>
+                        <string>마스티프</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>146</integer>
+                        <key>name</key>
+                        <string>말라뮤트</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>72</integer>
+                        <key>name</key>
+                        <string>말티즈</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>159</integer>
+                        <key>name</key>
+                        <string>맨체스터테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>76</integer>
+                        <key>name</key>
+                        <string>미니어쳐 닥스훈트</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>75</integer>
+                        <key>name</key>
+                        <string>미니어쳐 불 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>79</integer>
+                        <key>name</key>
+                        <string>미니어쳐 슈나우저</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>78</integer>
+                        <key>name</key>
+                        <string>미니어쳐 푸들</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>77</integer>
+                        <key>name</key>
+                        <string>미니어쳐 핀셔</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>74</integer>
+                        <key>name</key>
+                        <string>미디엄 푸들</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>80</integer>
+                        <key>name</key>
+                        <string>미텔 스피츠</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>133</integer>
+                        <key>name</key>
+                        <string>바센지</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>12</integer>
+                        <key>name</key>
+                        <string>바셋 하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>17</integer>
+                        <key>name</key>
+                        <string>버니즈 마운틴 독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>15</integer>
+                        <key>name</key>
+                        <string>베들링턴 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>164</integer>
+                        <key>name</key>
+                        <string>벨기에 그로넨달</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>157</integer>
+                        <key>name</key>
+                        <string>벨기에 쉽독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>148</integer>
+                        <key>name</key>
+                        <string>벨기에 테뷰런</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>16</integer>
+                        <key>name</key>
+                        <string>벨지안 셰퍼드 독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>20</integer>
+                        <key>name</key>
+                        <string>보더 콜리</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>21</integer>
+                        <key>name</key>
+                        <string>보르조이</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>22</integer>
+                        <key>name</key>
+                        <string>보스턴 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>24</integer>
+                        <key>name</key>
+                        <string>복서</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>23</integer>
+                        <key>name</key>
+                        <string>부비에 데 플랑드르</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>26</integer>
+                        <key>name</key>
+                        <string>불 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>27</integer>
+                        <key>name</key>
+                        <string>불독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>169</integer>
+                        <key>name</key>
+                        <string>브뤼셀그리펀</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>25</integer>
+                        <key>name</key>
+                        <string>브리타니 스파니엘</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>19</integer>
+                        <key>name</key>
+                        <string>블랙 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>13</integer>
+                        <key>name</key>
+                        <string>비글</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>18</integer>
+                        <key>name</key>
+                        <string>비숑 프리제</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>14</integer>
+                        <key>name</key>
+                        <string>비어디드 콜리</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>162</integer>
+                        <key>name</key>
+                        <string>비즐라</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>85</integer>
+                        <key>name</key>
+                        <string>빠삐용</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>96</integer>
+                        <key>name</key>
+                        <string>사모예드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>95</integer>
+                        <key>name</key>
+                        <string>살루키</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>1</integer>
+                        <key>name</key>
+                        <string>삽살개</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>34</integer>
+                        <key>name</key>
+                        <string>샤페이</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>104</integer>
+                        <key>name</key>
+                        <string>세인트 버나드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>31</integer>
+                        <key>name</key>
+                        <string>센트럴 아시안 오브차카</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>99</integer>
+                        <key>name</key>
+                        <string>셔틀랜드 쉽독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>122</integer>
+                        <key>name</key>
+                        <string>셰퍼드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>123</integer>
+                        <key>name</key>
+                        <string>슈나우져</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>97</integer>
+                        <key>name</key>
+                        <string>스코티쉬 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>132</integer>
+                        <key>name</key>
+                        <string>스코티시 디어하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>105</integer>
+                        <key>name</key>
+                        <string>스탠다드 푸들</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>154</integer>
+                        <key>name</key>
+                        <string>스테포드셔불테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>124</integer>
+                        <key>name</key>
+                        <string>스피츠</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>100</integer>
+                        <key>name</key>
+                        <string>시바</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>103</integer>
+                        <key>name</key>
+                        <string>시베리안 허스키</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>151</integer>
+                        <key>name</key>
+                        <string>시베리안라이카</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>139</integer>
+                        <key>name</key>
+                        <string>시잉프랑세즈</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>101</integer>
+                        <key>name</key>
+                        <string>시츄</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>102</integer>
+                        <key>name</key>
+                        <string>시코쿠</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>98</integer>
+                        <key>name</key>
+                        <string>실리햄 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>136</integer>
+                        <key>name</key>
+                        <string>실키테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>160</integer>
+                        <key>name</key>
+                        <string>아메리칸 불독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>8</integer>
+                        <key>name</key>
+                        <string>아메리칸 아키다</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>131</integer>
+                        <key>name</key>
+                        <string>아메리칸 에스키모</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>9</integer>
+                        <key>name</key>
+                        <string>아메리칸 코카 스파니엘</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>119</integer>
+                        <key>name</key>
+                        <string>아메리칸 핏불 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>150</integer>
+                        <key>name</key>
+                        <string>아메리칸불리</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>57</integer>
+                        <key>name</key>
+                        <string>아이리쉬 세터</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>58</integer>
+                        <key>name</key>
+                        <string>아이리쉬 울프 하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>59</integer>
+                        <key>name</key>
+                        <string>아이리쉬소프트코튼휘튼테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>6</integer>
+                        <key>name</key>
+                        <string>아키다</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>4</integer>
+                        <key>name</key>
+                        <string>아프간 하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>7</integer>
+                        <key>name</key>
+                        <string>알라스칸 말라뮤트</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>5</integer>
+                        <key>name</key>
+                        <string>에어델 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>143</integer>
+                        <key>name</key>
+                        <string>오브차카</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>11</integer>
+                        <key>name</key>
+                        <string>오스트랄리안 셰퍼드 독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>10</integer>
+                        <key>name</key>
+                        <string>오스트랄리안 캐틀 독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>137</integer>
+                        <key>name</key>
+                        <string>올드 잉글리쉬 불독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>84</integer>
+                        <key>name</key>
+                        <string>올드 잉글리쉬 쉽독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>163</integer>
+                        <key>name</key>
+                        <string>와이마라너</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>112</integer>
+                        <key>name</key>
+                        <string>와이어 폭스 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>113</integer>
+                        <key>name</key>
+                        <string>요크셔 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>149</integer>
+                        <key>name</key>
+                        <string>울프독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>110</integer>
+                        <key>name</key>
+                        <string>웨스트하이랜드화이트테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>108</integer>
+                        <key>name</key>
+                        <string>웰시 코기 펨브로크</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>109</integer>
+                        <key>name</key>
+                        <string>웰시 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>60</integer>
+                        <key>name</key>
+                        <string>이탈리안 그레이 하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>46</integer>
+                        <key>name</key>
+                        <string>잉글리쉬 세터</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>47</integer>
+                        <key>name</key>
+                        <string>잉글리쉬 스프링거 스파니엘</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>44</integer>
+                        <key>name</key>
+                        <string>잉글리쉬 코카 스파니엘</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>45</integer>
+                        <key>name</key>
+                        <string>잉글리쉬 포인터</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>53</integer>
+                        <key>name</key>
+                        <string>자이언트 슈나우져</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>62</integer>
+                        <key>name</key>
+                        <string>재패니즈 스피츠</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>61</integer>
+                        <key>name</key>
+                        <string>잭 러셀 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>52</integer>
+                        <key>name</key>
+                        <string>저먼 셰퍼드 독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>165</integer>
+                        <key>name</key>
+                        <string>저먼 와이어헤어드 포인터</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>51</integer>
+                        <key>name</key>
+                        <string>저먼 포인터</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>156</integer>
+                        <key>name</key>
+                        <string>제주개</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>129</integer>
+                        <key>name</key>
+                        <string>제페니즈칭</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>67</integer>
+                        <key>name</key>
+                        <string>진도견</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>35</integer>
+                        <key>name</key>
+                        <string>차우차우</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>33</integer>
+                        <key>name</key>
+                        <string>차이니즈 크레스티드 독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>32</integer>
+                        <key>name</key>
+                        <string>치와와</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>158</integer>
+                        <key>name</key>
+                        <string>카레리안 베어독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>144</integer>
+                        <key>name</key>
+                        <string>카이훗</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>29</integer>
+                        <key>name</key>
+                        <string>캐니스 팬더</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>30</integer>
+                        <key>name</key>
+                        <string>캐벌리어 킹 찰스 스파니엘</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>64</integer>
+                        <key>name</key>
+                        <string>케리 블루 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>28</integer>
+                        <key>name</key>
+                        <string>케인 코르소</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>2</integer>
+                        <key>name</key>
+                        <string>코리아 트라이 하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>68</integer>
+                        <key>name</key>
+                        <string>코리안 마스티프</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>125</integer>
+                        <key>name</key>
+                        <string>코카 스파니엘</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>141</integer>
+                        <key>name</key>
+                        <string>코카 푸</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>145</integer>
+                        <key>name</key>
+                        <string>코카시안오브차카</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>36</integer>
+                        <key>name</key>
+                        <string>콜리</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>66</integer>
+                        <key>name</key>
+                        <string>클라인스피츠</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>65</integer>
+                        <key>name</key>
+                        <string>키슈</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>63</integer>
+                        <key>name</key>
+                        <string>키스 훈드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>140</integer>
+                        <key>name</key>
+                        <string>토이 맨체스터 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>107</integer>
+                        <key>name</key>
+                        <string>토이 푸들</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>106</integer>
+                        <key>name</key>
+                        <string>티베탄 마스티프</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>86</integer>
+                        <key>name</key>
+                        <string>파슨 러셀 테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>88</integer>
+                        <key>name</key>
+                        <string>팔렌</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>90</integer>
+                        <key>name</key>
+                        <string>퍼그</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>87</integer>
+                        <key>name</key>
+                        <string>페키니즈</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>138</integer>
+                        <key>name</key>
+                        <string>페터데일테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>89</integer>
+                        <key>name</key>
+                        <string>포메라니안</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>126</integer>
+                        <key>name</key>
+                        <string>포인터</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>127</integer>
+                        <key>name</key>
+                        <string>폭스테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>128</integer>
+                        <key>name</key>
+                        <string>푸들</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>91</integer>
+                        <key>name</key>
+                        <string>풀리</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>3</integer>
+                        <key>name</key>
+                        <string>풍산견</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>161</integer>
+                        <key>name</key>
+                        <string>프레사까나리오</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>50</integer>
+                        <key>name</key>
+                        <string>프렌치 불독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>168</integer>
+                        <key>name</key>
+                        <string>프렌치 브리타니</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>49</integer>
+                        <key>name</key>
+                        <string>플랫 코티드 리트리버</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>147</integer>
+                        <key>name</key>
+                        <string>플롯하운드</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>92</integer>
+                        <key>name</key>
+                        <string>피레니안 마운틴 독</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>48</integer>
+                        <key>name</key>
+                        <string>필라 브라질레오</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>135</integer>
+                        <key>name</key>
+                        <string>핏불테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>130</integer>
+                        <key>name</key>
+                        <string>화이트리트리버</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>134</integer>
+                        <key>name</key>
+                        <string>화이트테리어</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>111</integer>
+                        <key>name</key>
+                        <string>휘펫</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>114</integer>
+                        <key>name</key>
+                        <string>믹스견</string>
+                    </dict>
+                    <dict>
+                        
+                        <key>code</key>
+                        <integer>115</integer>
+                        <key>name</key>
+                        <string>기타</string>
+                    </dict>
+                </array>
+            </dict>
+            <dict>
+                <key>code</key>
+                <integer>422400</integer>
+                <key>name</key>
+                <string>CAT</string>
+                <key>breeds</key>
+                <array>
+                    <dict>
+                        <key>code</key>
+                        <integer>116</integer>
+                        <key>name</key>
+                        <string>고양이</string>
+                    </dict>
+                </array>
+            </dict>
+            <dict>
+                <key>code</key>
+                <integer>429900</integer>
+                <key>name</key>
+                <string>ETC</string>
+                <key>breeds</key>
+                <array>
+                    <dict>
+                        <key>code</key>
+                        <integer>117</integer>
+                        <key>name</key>
+                        <string>기타축종</string>
+                    </dict>
+                </array>
+            </dict>
+        </array>
+    </dict>
 </plist>
