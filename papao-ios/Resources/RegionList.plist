@@ -91,18 +91,6 @@
 				</dict>
 				<dict>
 					<key>code</key>
-					<integer>3050000</integer>
-					<key>name</key>
-					<string>동대문구</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>3190000</integer>
-					<key>name</key>
-					<string>동작구</string>
-				</dict>
-				<dict>
-					<key>code</key>
 					<integer>3130000</integer>
 					<key>name</key>
 					<string>마포구</string>
@@ -183,23 +171,11 @@
 		</dict>
 		<dict>
 			<key>code</key>
-			<integer>626000</integer>
+			<real>6260000</real>
 			<key>name</key>
 			<string>부산광역시</string>
 			<key>towns</key>
 			<array>
-				<dict>
-					<key>code</key>
-					<integer>3360000</integer>
-					<key>name</key>
-					<string>강서구</string>
-				</dict>
-				<dict>
-					<key>code</key>
-					<integer>3360000</integer>
-					<key>name</key>
-					<string>강서구</string>
-				</dict>
 				<dict>
 					<key>code</key>
 					<integer>3360000</integer>
@@ -463,7 +439,14 @@
 			<key>name</key>
 			<string>세종특별자치시</string>
 			<key>towns</key>
-			<array/>
+			<array>
+				<dict>
+					<key>code</key>
+					<integer>5690000</integer>
+					<key>towns</key>
+					<string>세종특별자치시</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>code</key>
