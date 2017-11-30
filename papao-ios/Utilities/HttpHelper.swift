@@ -61,6 +61,7 @@ enum Router: URLRequestConvertible {
     case readPostsByPage(parameters: Parameters)
     case readPost(postId: String)
     case deletePost(postId: String, userId: String)
+    case setStatus(postId: String, userId: String, parameters: Parameters)
     
     // Bookmark
     case readBookmarkByUserId(userId: String, parameters: Parameters)
@@ -73,7 +74,6 @@ enum Router: URLRequestConvertible {
     case readComments(postId: String)
     case createComment(postId: String, parameters: Parameters)
     case deleteComment(commentId: String)
-    case setStatus(postId: String)
     
     // User
     case join(parameters: Parameters)
@@ -125,6 +125,8 @@ enum Router: URLRequestConvertible {
             return "posts/comments/\(commentId)"
         case .readPostsByPage(_):
             return "posts/pages"
+        case .setStatus(let postId):
+            return "posts/\(postId)/state"
         case .readBookmarkByUserId(let userId, _):
             return "posts/users/\(userId)/bookmarks"
         case .registerBookmark(let postId, _):
@@ -137,8 +139,6 @@ enum Router: URLRequestConvertible {
             return "posts/\(postId)/bookmarks/count"
         case .readComments(let postId), .createComment(let postId, _):
             return "posts/\(postId)/comments"
-        case .setStatus(let postId):
-            return "posts/\(postId)/state"
         case .join(_):
             return "users/join"
         case .profile(_):
@@ -163,9 +163,9 @@ enum Router: URLRequestConvertible {
         
         switch self {
         case .readPost(_), .createPost(_), .deletePost(_, _), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
-             .readComments(_), .createComment(_, _), .setStatus(_), .join(_), .setPush(_), .profile(_):
+             .readComments(_), .createComment(_, _), .join(_), .setPush(_), .profile(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
-        case .readPostsByPage(let parameters), .readBookmarkByUserId(_, let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters), .getPushHistory(_, let parameters):
+        case .readPostsByPage(let parameters), .setStatus(_, _, let parameters), .readBookmarkByUserId(_, let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters), .getPushHistory(_, let parameters):
             urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
         }
         
@@ -266,6 +266,24 @@ final class HttpHelper {
         let router = Router.deletePost(postId: "\(postId)", userId: userId)
         if let url = router.urlRequest?.url {
             manager.request(url, method: router.method, encoding: userId).responseJSON { response in
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
+            }
+        }
+    }
+    
+    func setStatus(postId: Int, userId: String, parameters: Parameters, completion: @escaping (ApiResult<CUDResult>) -> Void) {
+        let router = Router.setStatus(postId: "\(postId)", userId: userId, parameters: parameters)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method:router.method, parameters: parameters, encoding: userId).responseJSON { response in
                 if let value = response.result.value {
                     let json = JSON(value)
                     if let result = CUDResult.init(json: json.dictionaryObject) {
