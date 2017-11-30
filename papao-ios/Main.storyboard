@@ -886,13 +886,16 @@
                                                                         <action selector="shareButtonPressed:" destination="ZFZ-hy-PDW" eventType="touchUpInside" id="evL-0K-ion"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nca-xO-bcm">
+                                                                <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nca-xO-bcm">
                                                                     <rect key="frame" x="323" y="8" width="24" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="24" id="Vng-Wi-IzW"/>
                                                                         <constraint firstAttribute="width" constant="24" id="eAa-0y-uwm"/>
                                                                     </constraints>
                                                                     <state key="normal" title="수정" image="iconOption"/>
+                                                                    <connections>
+                                                                        <action selector="etcButtonPressed:" destination="ZFZ-hy-PDW" eventType="touchUpInside" id="v1f-uf-2e1"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4302,7 +4305,7 @@ open API 플랫폼입니다.</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EHw-m4-RPL">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EHw-m4-RPL">
                                                         <rect key="frame" x="0.0" y="80" width="359" height="359"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="359" id="ABF-dT-yB5"/>

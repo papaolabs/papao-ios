@@ -1,4 +1,4 @@
-//
+    //
 //  HttpHelper.swift
 //  papao-ios
 //
@@ -58,10 +58,9 @@ import Alamofire
 enum Router: URLRequestConvertible {
     // Post
     case createPost(parameters: Parameters)
-    case deleteComment(commentId: String)
     case readPostsByPage(parameters: Parameters)
     case readPost(postId: String)
-    case deletePost(postId: String)
+    case deletePost(postId: String, userId: String)
     
     // Bookmark
     case readBookmarkByUserId(userId: String, parameters: Parameters)
@@ -73,6 +72,7 @@ enum Router: URLRequestConvertible {
     // Comment
     case readComments(postId: String)
     case createComment(postId: String, parameters: Parameters)
+    case deleteComment(commentId: String)
     case setStatus(postId: String)
     
     // User
@@ -119,7 +119,7 @@ enum Router: URLRequestConvertible {
             return "posts/\(postId)"
         case .createPost(_):
             return "posts"
-        case .deletePost(let postId):
+        case .deletePost(let postId, _):
             return "posts/\(postId)"
         case .deleteComment(let commentId):
             return "posts/comments/\(commentId)"
@@ -162,7 +162,7 @@ enum Router: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .readPost(_), .createPost(_), .deletePost(_), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
+        case .readPost(_), .createPost(_), .deletePost(_, _), .deleteComment(_), .registerBookmark(_, _), .cancelBookmark(_, _), .countBookmark(_),
              .readComments(_), .createComment(_, _), .setStatus(_), .join(_), .setPush(_), .profile(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         case .readPostsByPage(let parameters), .readBookmarkByUserId(_, let parameters), .checkBookmark(_, let parameters), .stats(let parameters), .postRanking(let parameters), .getPushHistory(_, let parameters):
@@ -262,6 +262,24 @@ final class HttpHelper {
         }
     }
     
+    func deletePost(postId: Int, userId: String, completion: @escaping (ApiResult<CUDResult>) -> Void) {
+        let router = Router.deletePost(postId: "\(postId)", userId: userId)
+        if let url = router.urlRequest?.url {
+            manager.request(url, method: router.method, encoding: userId).responseJSON { response in
+                if let value = response.result.value {
+                    let json = JSON(value)
+                    if let result = CUDResult.init(json: json.dictionaryObject) {
+                        completion(ApiResult{ return result })
+                    } else {
+                        completion(ApiResult{ return .unknown })
+                    }
+                } else {
+                    completion(ApiResult.Failure(error: NSError(domain: "com.papaolabs.papao-ios", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Invalid Data"])))
+                }
+            }
+        }
+    }
+
     // Bookmark
     func readBookmarkByUserId(userId: String, parameters: Parameters, completion: @escaping (ApiResult<PostResponse>) -> Void) {
         manager.request(Router.readBookmarkByUserId(userId: userId, parameters: parameters)).responseString { response in
@@ -506,7 +524,7 @@ final class HttpHelper {
                 }
                 
                 for (index, element) in imageRequest.file.enumerated() {
-                    if  let imageData = UIImageJPEGRepresentation(element, 0.6) {
+                    if  let imageData = UIImageJPEGRepresentation(element, 0.4) {
                         multipartFormData.append(imageData, withName: "file", fileName: "image\(index).jpeg", mimeType: "image/jpeg")
                     }
                 }

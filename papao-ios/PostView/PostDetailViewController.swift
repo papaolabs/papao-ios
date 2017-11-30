@@ -144,6 +144,24 @@ class PostDetailViewController: UIViewController {
         }
     }
     
+    func deletePost(postId: Int) {
+        if let user = AccountManager.sharedInstance.getLoggedUser() {
+            api.deletePost(postId: postId, userId: user.id) { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    if cudResult == .success {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    } else {
+                        self.alert(message: "포스트 삭제에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
@@ -210,6 +228,9 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: PostDetailButtonTableViewCell = tableView.dequeueReusableCell(withIdentifier: "postDetailButtonCell",
             for: indexPath) as! PostDetailButtonTableViewCell
             cell.setPostDetail(postDetail)
+            cell.onDeleteButtonPressed = { (postId) in
+                self.deletePost(postId: postId)
+            }
             // Todo: - 다른 로직으로 개선 필요
             cell.parentViewController = self
             return cell

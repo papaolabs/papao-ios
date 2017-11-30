@@ -15,7 +15,8 @@ class PostDetailButtonTableViewCell: UITableViewCell {
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var etcButton: UIButton!
     fileprivate var isBookmarked: Bool = false
-    
+    var onDeleteButtonPressed : ((Int) -> Void)?
+
     // Todo: - 컨트롤러에서 처리 가능하도록 수정
     weak var parentViewController: UIViewController?
 
@@ -37,6 +38,11 @@ class PostDetailButtonTableViewCell: UITableViewCell {
             // user id 필요한 내용
             user = AccountManager.sharedInstance.getLoggedUser()
             if let userId = user?.id, let postId = self.postDetail?.id {
+                if userId == postDetail.userId {
+                    // 더보기 버튼 활성화
+                    etcButton.isHidden = false
+                }
+                
                 // 북마크 상태 조회 & 업데이트
                 self.loadBookmarkState(postId: postId, userId: userId)
             }
@@ -124,7 +130,19 @@ class PostDetailButtonTableViewCell: UITableViewCell {
             parentViewController?.present(vc, animated: true)
         }
     }
-    
+
+    @IBAction func etcButtonPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+        }
+            let deleteAction = UIAlertAction(title: "삭제", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                self.deletePost(postId: self.postDetail?.id)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        parentViewController?.present(alertController, animated: true, completion: nil)
+    }
+
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
@@ -140,6 +158,12 @@ class PostDetailButtonTableViewCell: UITableViewCell {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         parentViewController?.present(loginViewController, animated: true, completion: nil)
+    }
+    
+    fileprivate func deletePost(postId: Int?) {
+        if let onDeletePressed = self.onDeleteButtonPressed, let postId = postId {
+            onDeletePressed(postId)
+        }
     }
 }
 

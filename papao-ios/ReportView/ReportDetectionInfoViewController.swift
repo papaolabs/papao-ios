@@ -148,6 +148,8 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
     
     func setFeatureTextView() {
         let toolbar = UIToolbar()
+        toolbar.tintColor = UIColor.ppWarmPink
+
         let doneButton = UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(doneFeatureTextView))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         toolbar.setItems([spaceButton,doneButton], animated: false)
