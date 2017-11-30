@@ -12,5 +12,6 @@ target 'papao-ios' do
   pod 'DateToolsSwift', '~> 2.0'
   pod 'ASHorizontalScrollView', '~> 1.5.1'
   pod 'MagicPie', '~> 1.1'
+  pod 'ALThreeCircleSpinner', '~> 1.0'
 end
 

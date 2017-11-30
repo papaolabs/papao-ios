@@ -4839,16 +4839,62 @@ open API 플랫폼입니다.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingView" destination="bHE-c0-LZU" id="TEn-zr-cBi"/>
                         <outlet property="nextBarButtonItem" destination="qjP-Os-JbD" id="QPv-Ix-8mZ"/>
                         <outlet property="photoBackgroundView" destination="uuq-Ip-yjo" id="YkY-Z7-2zq"/>
                         <outlet property="photoImageView" destination="Ls5-ox-COd" id="Db2-65-rza"/>
+                        <outlet property="spinner" destination="XUq-bs-Ou7" id="lBf-L7-Bjf"/>
                         <outlet property="step2Label" destination="BVq-CJ-XDt" id="e2M-Nm-Vcc"/>
                         <segue destination="kbq-XN-PVm" kind="show" identifier="QuickAnimalInfoSegue" id="MwO-gx-CMZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZN-pA-fwz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="bHE-c0-LZU">
+                    <rect key="frame" x="0.0" y="0.0" width="74" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HX-IV-il7" userLabel="Loading View">
+                            <rect key="frame" x="0.0" y="0.0" width="74" height="60"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미지 분석 중" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2p-wh-YJu">
+                                    <rect key="frame" x="5" y="34" width="64" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="Qiq-at-w30"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUq-bs-Ou7" userLabel="Spinner" customClass="ALThreeCircleSpinner" customModule="ALThreeCircleSpinner">
+                                    <rect key="frame" x="15" y="0.0" width="44" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="ExP-XI-EyL"/>
+                                        <constraint firstAttribute="width" constant="44" id="FOK-qf-uUo"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="74" id="9C0-rG-wxH"/>
+                                <constraint firstItem="F2p-wh-YJu" firstAttribute="centerX" secondItem="4HX-IV-il7" secondAttribute="centerX" id="BDt-9F-Sj7"/>
+                                <constraint firstItem="XUq-bs-Ou7" firstAttribute="top" secondItem="4HX-IV-il7" secondAttribute="top" id="KYC-V2-a5t"/>
+                                <constraint firstItem="XUq-bs-Ou7" firstAttribute="centerX" secondItem="4HX-IV-il7" secondAttribute="centerX" id="TW9-eD-QQU"/>
+                                <constraint firstAttribute="height" constant="60" id="fQX-dg-Jrw"/>
+                                <constraint firstAttribute="bottom" secondItem="F2p-wh-YJu" secondAttribute="bottom" constant="5" id="jJL-i5-7oH"/>
+                                <constraint firstItem="F2p-wh-YJu" firstAttribute="top" secondItem="XUq-bs-Ou7" secondAttribute="bottom" constant="-10" id="lNi-Jd-WMK"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="4HX-IV-il7" firstAttribute="centerY" secondItem="dmR-ir-TnO" secondAttribute="centerY" id="Goa-2B-x1q"/>
+                        <constraint firstItem="4HX-IV-il7" firstAttribute="centerX" secondItem="dmR-ir-TnO" secondAttribute="centerX" id="vRz-i4-6O0"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="dmR-ir-TnO"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="2848.8000000000002" y="3919.7901049475267"/>
+            <point key="canvasLocation" x="2849" y="4146"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="7cm-cs-Qso">
@@ -5192,7 +5238,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tt-En-AIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3657" y="4204"/>
+            <point key="canvasLocation" x="3657" y="4429"/>
         </scene>
         <!--사진 등록-->
         <scene sceneID="vN1-nx-bow">
@@ -5241,7 +5287,7 @@ open API 플랫폼입니다.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyZ-My-rim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2038" y="3920"/>
+            <point key="canvasLocation" x="2038" y="4146"/>
         </scene>
         <!--필터-->
         <scene sceneID="KTe-Ye-Yt0">
