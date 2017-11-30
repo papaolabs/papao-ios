@@ -52,6 +52,9 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
         setDatePicker()
         setContactTextField()
         setFeatureTextView()
+        
+        // auto filling
+        setPost(post: post)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +91,14 @@ class ReportDetectionInfoViewController: UIViewController, GMSMapViewDelegate {
                 break
             }
         }
+    }
+    
+    func setPost(post: PostRequest?) {
+        // 전화번호와 날짜 자동 입력
+        if let user = AccountManager.sharedInstance.getLoggedUser() {
+            contactTextField.text = user.phone.getPhoneWithoutDash()
+        }
+        dateTextField.text = post?.happenDate.toString(format: "yyyy-MM-dd")
     }
     
     func setContactTextField() {

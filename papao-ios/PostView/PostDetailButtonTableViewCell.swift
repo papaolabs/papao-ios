@@ -16,6 +16,7 @@ class PostDetailButtonTableViewCell: UITableViewCell {
     @IBOutlet var etcButton: UIButton!
     fileprivate var isBookmarked: Bool = false
     var onDeleteButtonPressed : ((Int) -> Void)?
+    var onSetStatusButtonPressed : ((Int, State) -> Void)?
 
     // Todo: - 컨트롤러에서 처리 가능하도록 수정
     weak var parentViewController: UIViewController?
@@ -135,10 +136,30 @@ class PostDetailButtonTableViewCell: UITableViewCell {
         let alertController = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
         }
-            let deleteAction = UIAlertAction(title: "삭제", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                self.deletePost(postId: self.postDetail?.id)
+        let processAction = UIAlertAction(title: "\(State.PROCESS.description)으로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            self.setStatus(postId: self.postDetail?.id, status: .PROCESS)
+        }
+        let returnAction = UIAlertAction(title: "\(State.RETURN.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            self.setStatus(postId: self.postDetail?.id, status: .RETURN)
+        }
+        let naturalDeathAction = UIAlertAction(title: "\(State.NATURALDEATH.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            self.setStatus(postId: self.postDetail?.id, status: .NATURALDEATH)
+        }
+        let euthanasiaAction = UIAlertAction(title: "\(State.EUTHANASIA.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            self.setStatus(postId: self.postDetail?.id, status: .EUTHANASIA)
+        }
+        let adoptionAction = UIAlertAction(title: "\(State.ADOPTION.description)로 변경", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            self.setStatus(postId: self.postDetail?.id, status: .ADOPTION)
+        }
+        let deleteAction = UIAlertAction(title: "게시글 삭제", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            self.deletePost(postId: self.postDetail?.id)
         }
         alertController.addAction(cancelAction)
+        alertController.addAction(processAction)
+        alertController.addAction(returnAction)
+        alertController.addAction(naturalDeathAction)
+        alertController.addAction(euthanasiaAction)
+        alertController.addAction(adoptionAction)
         alertController.addAction(deleteAction)
         parentViewController?.present(alertController, animated: true, completion: nil)
     }
@@ -165,6 +186,13 @@ class PostDetailButtonTableViewCell: UITableViewCell {
             onDeletePressed(postId)
         }
     }
+    
+    fileprivate func setStatus(postId: Int?, status: State) {
+        if let onSetStatusPressed = self.onSetStatusButtonPressed, let postId = postId {
+            onSetStatusPressed(postId, status)
+        }
+    }
+    
 }
 
 

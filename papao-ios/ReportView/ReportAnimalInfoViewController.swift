@@ -94,6 +94,9 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
                 })
             }
         }
+        
+        // auto filling
+        setPost(post: post)
     }
     
     func setTitleLabel() {
@@ -114,6 +117,17 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
             default:
                 break
             }
+        }
+    }
+    
+    func setPost(post: PostRequest?) {
+        // 품종, 축종 자동 입력
+        if let species = post?.species {
+            currentSpecies = species
+            speciesButton.setTitle(species.name, for: .normal)
+        }
+        if let breed = post?.breed {
+            breedButton.setTitle(breed.name, for: .normal)
         }
     }
     
@@ -216,7 +230,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         toolbar.sizeToFit()
         toolbar.tintColor = UIColor.ppWarmPink
         
-        let cancelButton = UIBarButtonItem(title: "초기화", style: .plain, target: self, action: #selector(pickerCancelAction))
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(pickerCancelAction))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(pickerSetAction))
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)

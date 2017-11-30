@@ -9,6 +9,7 @@
 import UIKit
 import BSImagePicker
 import Photos
+import ALThreeCircleSpinner
 
 class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var stepLabel2: UILabel!
@@ -17,6 +18,11 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    
+    @IBOutlet weak var nextBarButtonItem: UIBarButtonItem!
+    // 로딩뷰
+    @IBOutlet var loadingView: UIView!
+    @IBOutlet weak var spinner: ALThreeCircleSpinner!
     
     // 포스트 타입별로 레이블 내용 변경
     @IBOutlet weak var titleLabel: UILabel!
@@ -71,6 +77,14 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uploadImagesPressed))
         imageScrollView.addGestureRecognizer(tapGestureRecognizer)
         imageScrollView.isUserInteractionEnabled = true
+        
+        // set Spinner
+        loadingView.center = imageScrollView.center
+        loadingView.setRadius(radius: 8)
+        loadingView.layer.masksToBounds = true
+        spinner.tintColor = .ppWarmPink
+        loadingView.isHidden = true
+        view.addSubview(loadingView)
     }
     
     override func viewDidLayoutSubviews() {
@@ -199,15 +213,27 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
     }
     
     func uploadImages(_ images: [UIImage]) {
+        // 로딩뷰 표시
+        loadingView.isHidden = false
+        nextBarButtonItem.isEnabled = false
+
         let api = HttpHelper.init()
         // Todo: 포스트 타입 지정
         let imageRequest = ImageRequest.init(file: images, postType: .ROADREPORT)
-        api.uploadImages(imageRequest: imageRequest) { (result) in
+        api.uploadImageStreet(imageRequest: imageRequest) { (result) in
+            // 로딩뷰 해제
+            self.loadingView.isHidden = false
+            self.nextBarButtonItem.isEnabled = false
+            
             do {
                 let imageResponse = try result.unwrap()
                 // post에 url과 이미지를 저장
                 self.post.imageUrls = imageResponse.imageUrls
                 self.post.images = self.selectedImages
+                
+                // 축종과 품종이 존재하면 추가
+                self.post.species = imageResponse.species
+                self.post.breed = imageResponse.breed
                 
                 // 다음 뷰로 이동
                 self.performSegue(withIdentifier: "AnimalInfoSegue", sender: nil)

@@ -9,6 +9,7 @@
 import UIKit
 import BSImagePicker
 import Photos
+import ALThreeCircleSpinner
 
 class QuickReportUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var photoBackgroundView: UIView!
@@ -16,6 +17,9 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
     private var selectedImages: [UIImage]!
     @IBOutlet weak var step2Label: UILabel!
     @IBOutlet weak var nextBarButtonItem: UIBarButtonItem!
+    
+    @IBOutlet var loadingView: UIView!
+    @IBOutlet weak var spinner: ALThreeCircleSpinner!
     
     let tagForIconView = 999
 
@@ -52,6 +56,14 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(uploadImagesPressed))
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         photoImageView.isUserInteractionEnabled = true
+        
+        // set Spinner
+        loadingView.center = photoImageView.center
+        loadingView.setRadius(radius: 8)
+        loadingView.layer.masksToBounds = true
+        spinner.tintColor = .ppWarmPink
+        loadingView.isHidden = true
+        view.addSubview(loadingView)
     }
     
     @IBAction func uploadImagesPressed() {
@@ -121,6 +133,7 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
     
     func uploadImages(_ images: [UIImage]) {
         // 등록 중 버튼 클릭 금지
+        loadingView.isHidden = false
         nextBarButtonItem.isEnabled = false
         
         let api = HttpHelper.init()
@@ -129,6 +142,7 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
         api.uploadImageStreet(imageRequest: imageRequest) { (result) in
             do {
                 // 버튼 클릭 해제
+                self.loadingView.isHidden = true
                 self.nextBarButtonItem.isEnabled = true
                 
                 let imageResponse = try result.unwrap()

@@ -44,8 +44,6 @@ class MissingTableViewController: UIViewController {
         view.bringSubview(toFront: writeMissingButton)
         view.bringSubview(toFront: writeMissingButtonView)
         view.bringSubview(toFront: writeButton)
-        
-        loadPostData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +53,9 @@ class MissingTableViewController: UIViewController {
         writeMissingButtonView.isHidden = true
         writeMissingButtonView.alpha = 0
         writeMissingButtonView.frame.origin = CGPoint(x: writeMissingButtonView.frame.origin.x, y: view.frame.height - 74)
+        
+        // 화면 표시될 때 무조건 새로고침
+        loadPostData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

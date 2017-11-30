@@ -3,6 +3,7 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
+  - ALThreeCircleSpinner (1.0.4)
   - ASHorizontalScrollView (1.5.1)
   - BSGridCollectionViewLayout (1.2.0)
   - BSImagePicker (2.7.1):
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - AccountKit (~> 4.26)
   - Alamofire (~> 4.5)
   - AlamofireNetworkActivityIndicator (~> 2.2)
+  - ALThreeCircleSpinner (~> 1.0)
   - ASHorizontalScrollView (~> 1.5.1)
   - BSImagePicker (~> 2.7)
   - DateToolsSwift (~> 2.0)
@@ -37,6 +39,7 @@ SPEC CHECKSUMS:
   AccountKit: c72905fc94ca89cef133e5eab7f6950ba9736ae7
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  ALThreeCircleSpinner: a87b9c3511e5fea8509923a17d6f38b11a9b1f5f
   ASHorizontalScrollView: 9c98b9226509540075b6398c92f68fb474bea7e9
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: eb12948a6e71b9855c2c37723dfd989b9b4288bd
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 9fc0eed23582c94b619cf04040d03abad5d623e1
+PODFILE CHECKSUM: c0e951f460f635c3e018823b18f77b13f7188f83
 
 COCOAPODS: 1.4.0.beta.1

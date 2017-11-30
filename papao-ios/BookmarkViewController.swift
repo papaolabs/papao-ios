@@ -16,7 +16,7 @@ class BookmarkViewController: UIViewController {
     var postResponse: PostResponse?
     var userId: String?
     let api = HttpHelper.init()
-    let sizeOfPostPerPage = "20"
+    let sizeOfPostPerPage = "100"
 
     override func viewDidLoad() {
         super.viewDidLoad()
