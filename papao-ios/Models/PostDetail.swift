@@ -72,7 +72,7 @@ enum State: String {
     var color: UIColor? {
         switch self {
         case .PROCESS:
-            return nil
+            return UIColor.ppBorderGray
         case .RETURN:
             return UIColor.ppDodgerBlue
         case .NATURALDEATH:

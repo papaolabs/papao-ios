@@ -125,7 +125,7 @@ enum Router: URLRequestConvertible {
             return "posts/comments/\(commentId)"
         case .readPostsByPage(_):
             return "posts/pages"
-        case .setStatus(let postId):
+        case .setStatus(let postId, _, _):
             return "posts/\(postId)/state"
         case .readBookmarkByUserId(let userId, _):
             return "posts/users/\(userId)/bookmarks"

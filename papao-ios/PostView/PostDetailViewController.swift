@@ -25,6 +25,7 @@ class PostDetailViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var speciesLabel: PPOBadge!
+    @IBOutlet weak var statusBadge: PPOBadge!
     @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
@@ -75,6 +76,8 @@ class PostDetailViewController: UIViewController {
                 let postDetail = try result.unwrap()
                 self.postDetail = postDetail
                 
+                self.statusBadge.setStyle(type: .medium, backgroundColor: postDetail.stateType.color, titleColor: .white)
+                self.statusBadge.setTitle(postDetail.stateType.description, for: .normal)
                 self.genderLabel.text = postDetail.genderType.description
                 self.speciesLabel.setTitle(postDetail.upKindName, for: .normal)
                 self.breedLabel.text = postDetail.kindName
@@ -162,6 +165,27 @@ class PostDetailViewController: UIViewController {
         }
     }
     
+    func setStatus(postId: Int, status: State) {
+        if let user = AccountManager.sharedInstance.getLoggedUser() {
+            api.setStatus(postId: postId, userId: user.id, parameters: ["stateType": status.rawValue]) { (result) in
+                do {
+                    let cudResult = try result.unwrap()
+                    if cudResult == .success {
+                        self.alert(message: "유기동물의 상태가 변경되었습니다", confirmText: "확인", completion: { (action) in
+                            // 내용 새로고침
+                            self.getPostDetail(postId: postId)
+                        })
+                    } else {
+                        self.alert(message: "유기동물 상태 변경에 실패했습니다. 다시 시도해주세요", confirmText: "확인", completion: { (action) in
+                        })
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
     fileprivate func alert(message: String, confirmText: String, cancel: Bool = false, completion: @escaping ((_ action: UIAlertAction) -> Void)) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: confirmText, style: .cancel, handler: completion)
@@ -230,6 +254,9 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setPostDetail(postDetail)
             cell.onDeleteButtonPressed = { (postId) in
                 self.deletePost(postId: postId)
+            }
+            cell.onSetStatusButtonPressed = { (postId, status) in
+                self.setStatus(postId: postId, status: status)
             }
             // Todo: - 다른 로직으로 개선 필요
             cell.parentViewController = self

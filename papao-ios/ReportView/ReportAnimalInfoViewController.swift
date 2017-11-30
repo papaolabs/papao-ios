@@ -216,7 +216,7 @@ class ReportAnimalInfoViewController: UIViewController, PPOPickerDelegate {
         toolbar.sizeToFit()
         toolbar.tintColor = UIColor.ppWarmPink
         
-        let cancelButton = UIBarButtonItem(title: "초기화", style: .plain, target: self, action: #selector(pickerCancelAction))
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(pickerCancelAction))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "설정", style: .plain, target: self, action: #selector(pickerSetAction))
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
