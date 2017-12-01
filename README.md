@@ -1,7 +1,7 @@
 # Milou for iOS
 > 유기견 보호소 위치 안내 및 커뮤니티
 
-[![Swift Version][swift-image]][swift-url] [![GitHub issue state](https://img.shields.io/github/issues/detail/s/badges/shields/979.svg)](https://github.com/papaolabs/papao-ios/issues)
+[![Swift Version][swift-image]][swift-url] [![GitHub issues](https://img.shields.io/github/issues/papaolabs/papao-ios.svg)](https://github.com/papaolabs/papao-ios/issues) ![Version][version-image] [![GitHub stars](https://img.shields.io/github/stars/papaolabs/papao-ios.svg)](https://github.com/papaolabs/papao-ios/stargazers)
 
 Milou는 유기동물이 우리 삶의 일부가 되는 세상을 추구합니다. 잃어버린 동물과 주인을, 버려진 동물과 미래의 주인을 이어주는 새로운 플랫폼입니다.
 
@@ -62,4 +62,4 @@ Team papao – [facebook page](https://www.facebook.com/pg/papaolabs) – closer
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE
-[github-issue]: https://img.shields.io/github/issues/badges/shields.svg
+[version-image]: https://img.shields.io/badge/version-v1.0-fc4e75.svg
