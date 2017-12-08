@@ -141,10 +141,12 @@ class QuickReportUploadViewController: UIViewController, UIImagePickerController
         let imageRequest = ImageRequest.init(file: images, postType: .ROADREPORT)
         api.uploadImageStreet(imageRequest: imageRequest) { (result) in
             do {
-                // 버튼 클릭 해제
-                self.loadingView.isHidden = true
-                self.nextBarButtonItem.isEnabled = true
-                
+                defer {
+                    // 로딩뷰 숨김
+                    self.loadingView.isHidden = true
+                    self.nextBarButtonItem.isEnabled = true
+                }
+
                 let imageResponse = try result.unwrap()
                 // post에 url과 이미지를 저장
                 self.post.imageUrls = imageResponse.imageUrls

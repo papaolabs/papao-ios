@@ -46,6 +46,12 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barStyle = .black
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        nextBarButtonItem.isEnabled = true
+        loadingView.isHidden = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -221,11 +227,13 @@ class ReportImageUploadViewController: UIViewController, UIScrollViewDelegate, U
         // Todo: 포스트 타입 지정
         let imageRequest = ImageRequest.init(file: images, postType: .ROADREPORT)
         api.uploadImageStreet(imageRequest: imageRequest) { (result) in
-            // 로딩뷰 해제
-            self.loadingView.isHidden = false
-            self.nextBarButtonItem.isEnabled = false
-            
             do {
+                defer {
+                    // 로딩뷰 숨김
+                    self.loadingView.isHidden = true
+                    self.nextBarButtonItem.isEnabled = true
+                }
+                
                 let imageResponse = try result.unwrap()
                 // post에 url과 이미지를 저장
                 self.post.imageUrls = imageResponse.imageUrls
