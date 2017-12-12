@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleMaps
+import Alamofire
 
 class PostDetailReportTextTableViewCell: UITableViewCell {
     @IBOutlet var genderLabel: UILabel!
@@ -20,6 +22,8 @@ class PostDetailReportTextTableViewCell: UITableViewCell {
     @IBOutlet var featureLabel: UILabel!
     @IBOutlet var userContactLabel: UILabel!
     
+    @IBOutlet var mapView: GMSMapView!
+
     // 실종, 제보 타이틀 변경용
     @IBOutlet weak var happenDateTitleLabel: UILabel!
     @IBOutlet weak var happenPlaceTitleLabel: UILabel!
@@ -53,5 +57,57 @@ class PostDetailReportTextTableViewCell: UITableViewCell {
             happenDateTitleLabel.text = "실종날짜"
             happenPlaceTitleLabel.text = "실종장소"
         }
+        
+        setMapView(happenPlace: postDetail.happenPlace)
+    }
+    
+    func setMapView(happenPlace address: String) {
+        guard address.count > 0 else {
+            mapView.isHidden = true
+            return
+        }
+        
+        mapView.settings.scrollGestures = false
+        mapView.settings.zoomGestures = false
+        
+        if let escapeAddress = address.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
+            let url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=@\(escapeAddress)"
+            print(url)
+            Alamofire.request(url).responseData { response in
+                if let json = response.result.value, let result = String.init(data: json, encoding: String.Encoding.utf8) {
+                    var latitude: Double = 0
+                    var longitude: Double = 0
+                    let scanner = Scanner.init(string: result)
+                    if scanner.scanUpTo("\"lat\" :", into: nil) && scanner.scanString("\"lat\" :", into: nil) {
+                        scanner.scanDouble(&latitude)
+                        if scanner.scanUpTo("\"lng\" :", into: nil) && scanner.scanString("\"lng\" :", into: nil) {
+                            scanner.scanDouble(&longitude)
+                        }
+                    }
+                    let coordinate = CLLocationCoordinate2D.init(latitude: latitude, longitude: longitude)
+                    self.createMarker(coordinate)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Private Functions
+    private func createMarker(_ location: CLLocationCoordinate2D) {
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        marker.map = mapView
+        marker.isDraggable = false
+        
+        let camera = GMSCameraPosition.camera(withLatitude: location.latitude,
+                                              longitude: location.longitude,
+                                              zoom: 15)
+        if mapView.isHidden {
+            mapView.isHidden = false
+            mapView.camera = camera
+        } else {
+            mapView.animate(to: camera)
+        }
     }
 }
+
