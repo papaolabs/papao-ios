@@ -6,6 +6,7 @@
 Milou는 유기동물이 우리 삶의 일부가 되는 세상을 추구합니다. 잃어버린 동물과 주인을, 버려진 동물과 미래의 주인을 이어주는 새로운 플랫폼입니다.
 
 <img src="https://cdn-pro.dprcdn.net/files/acc_602616/8gnBHn" width=300>
+[데모 영상 보기](https://vimeo.com/267162144)
 
 ## 기능
 
